@@ -1,0 +1,76 @@
+@extends('layout.app')
+
+@section('title', 'Painel')
+
+@section('page-title', 'Painel de Controle')
+
+@section('content')
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h4>Consultar erro Sitef</h4>
+                    <br>
+                    <br>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                    <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+            </div>
+        </div>
+    
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-secondary">
+                <div class="inner">
+                    <h4>Administradores</h4>
+                    <br>
+                    <br>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <a href="{{route('usuarios.index')}}" class="small-box-footer">
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    @include('erro-sitef._partials.modal-consulta-erros-sitef')
+@endsection
+
+@section('scripts')
+    <script>
+        function consultarerro()
+        {
+            let cod_erro = $('#codigo').val()
+            
+            let url = "{{url('/')}}/api/errossitef/"+cod_erro+"/consultar"
+           
+            if(cod_erro != '')
+            {
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(dados){
+                        if(dados){
+                            alert('ALERTA: Não é possível alterar este item. Existem medições relacionadas.')
+                            $('#editar-fator-'+val.value).prop("checked", false)
+                        }else{
+                            $('.edicao_indice_produtivo'+val.value).attr("readonly", false)
+                            $('.edicao_indice_improdutivo'+val.value).attr("readonly", false)
+                            $('.edicao_indice_feriado'+val.value).attr("readonly", false)
+                            $('.edicao_data_vigencia'+val.value).attr("readonly", false)
+                        }
+                    },
+                    error: function(){
+                        console.log('Ação indisponível no momento.')
+                    }
+                })
+            }
+        }
+    </script>
+@endsection
