@@ -24,7 +24,7 @@
                     <table id="table-datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
                         <thead>
                             <tr>
-                                <th style="width: 10px">ID</th>
+                                <th>Data</th>
                                 <th>Nome</th>
                                 <th>Matrícula</th>
                                 <th>Situação Admissional</th>
@@ -46,13 +46,13 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                <a href="{{route('ponto.show', [$row->id])}}" class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
+                                                <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{route('ponto.edite', [$row->id])}}" class="dropdown-item"><i class="far fa-edit"></i> Editar </a>
+                                                <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><i class="far fa-edit"></i> Editar </a>
                                                 <div class="dropdown-divider"></div>
                                                 <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><i class="fas fa-trash"></i> Remover </a>
                                             </div>
-                                          </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
@@ -75,11 +75,11 @@
 
 {{-- Removendo o registro --}}
 <script>
-    function remover(company, funcionario){
+    function remover(ponto, funcionario){
         $confirmacao = confirm('Tem certeza que deseja remover este Funcionário?');
 
         if($confirmacao){
-            window.location.href = "{{url('/')}}/construtoras/"+company+"/funcionarios/"+funcionario+"/destroy"
+            window.location.href = "{{url('/')}}/ponto/"+ponto+"/destroy"
         }
     }
 </script>

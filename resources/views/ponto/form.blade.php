@@ -56,6 +56,7 @@
                 @enderror
             </div>
         </div>
+
         <div class="col-md-5">
             <div class="form-group">
                 <label for="entrada_almoco">Entrada Almoço</label>
@@ -119,12 +120,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                @if (isset($ponto) && ($ponto->comprovante3))
-                    <br>
-                    <a href="{{url('/')}}/storage/{{$ponto->comprovante3}}" target="_blank">
-                        <img src="{{url('/')}}/storage/{{$ponto->comprovante3}}" width="150">
-                    </a>
-                @endif
             </div>
         </div>
         <div class="col-md-5">
@@ -137,12 +132,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                @if (isset($ponto) && ($ponto->comprovante4))
-                    <br>
-                    <a href="{{url('/')}}/storage/{{$ponto->comprovante4}}" target="_blank">
-                        <img src="{{url('/')}}/storage/{{$ponto->comprovante4}}" width="150">
-                    </a>
-                @endif
             </div>
         </div>
 
