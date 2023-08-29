@@ -18,7 +18,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('ponto.relatorio') }}" class="nav-link">
             <i class="nav-icon far fa-file-pdf fa-lg"></i>
              <p>Relatório</p>
           </a>
