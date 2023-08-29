@@ -30,9 +30,9 @@
                    with font-awesome or any other icon font library -->
               <li class="nav-item menu">
                 <a href="" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fas fa-tachometer-alt fa-lg"></i>
                   <p>
-                    PONTO
+                    Painel Principal
                   </p>
                 </a>
               </li>

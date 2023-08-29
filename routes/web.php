@@ -2,17 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    CanteiroController,
-    CompanyController,
-    FuncaoController,
-    FuncionarioController,
     PainelController,
     ResetaSenhaController,
     UsuarioController,
     ErrositefController,
-    ModuloItemController,
-    ModuloSubitensController,
-    ModuloPermissaoController
+    PontoController
 };
 
 //use App\Http\Controllers\Api\FatorController;
@@ -65,4 +59,17 @@ Route::group(['prefix'=>'erro-sitef', 'middleware'=>['auth']], function(){
     Route::get('/{erro_sitef}/edit', [ErrositefController::class, 'edit'])->name('erro-sitef.edit');
     Route::put('/{erro_sitef}/update', [ErrositefController::class, 'update'])->name('erro-sitef.update');
     Route::get('/{erro_sitef}/destroy', [ErrositefController::class, 'destroy'])->name('erro-sitef.destroy');
+});
+
+// PONTOS
+Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], function(){
+    Route::get('/index', [PontoController::class, 'index'])->name('index');
+    Route::get('create', [PontoController::class, 'create'])->name('create');
+    Route::post('store', [PontoController::class, 'store'])->name('store');
+    Route::get('{ponto}/edite', [PontoController::class, 'edite'])->name('edite');
+    Route::put('{ponto}/update', [PontoController::class, 'update'])->name('update');
+    Route::get('{ponto}/show', [PontoController::class, 'show'])->name('show');
+    Route::get('{ponto}/destroy', [PontoController::class, 'destroy'])->name('destroy');
+    Route::get('hora-extra', [PontoController::class, 'HoraExtra'])->name('hora-extra');
+    Route::get('relatorio', [PontoController::class, 'relatorio'])->name('relatorio');
 });

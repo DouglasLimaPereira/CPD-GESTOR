@@ -4,7 +4,7 @@
          with font-awesome or any other icon font library -->
     <li class="nav-item menu">
       <a href="" class="nav-link">
-        <i class="fas fa-clipboard-list fa-lg"></i>
+        <i class="nav-icon fas fa-clipboard-list fa-lg"></i>
         <p>
           PONTO
           <i class="right fas fa-angle-left"></i>
@@ -12,14 +12,14 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="" class="nav-link">
-            <i class="fas fa-user-clock fa-lg"></i>
+          <a href="{{ route('ponto.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-user-clock fa-lg"></i>
              <p>Pontos</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="" class="nav-link">
-            <i class="far fa-file-pdf fa-lg"></i>
+            <i class="nav-icon far fa-file-pdf fa-lg"></i>
              <p>Relatório</p>
           </a>
         </li>

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'active',
+        'cargo',
         'superadmin',
         'imagem',
         'telefone',
@@ -67,5 +68,15 @@ class User extends Authenticatable
     public function pessoa()
     {
         return $this->hasOne(Pessoa::class);
+    }
+
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pontos()
+    {
+        return $this->hasMany(Ponto::class);
     }
 }
