@@ -61,7 +61,7 @@ Route::group(['prefix'=>'erro-sitef', 'middleware'=>['auth']], function(){
     Route::get('/{erro_sitef}/destroy', [ErrositefController::class, 'destroy'])->name('erro-sitef.destroy');
 });
 
-// PONTOS
+    // PONTOS
 Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], function(){
     Route::get('/index', [PontoController::class, 'index'])->name('index');
     Route::get('create', [PontoController::class, 'create'])->name('create');
