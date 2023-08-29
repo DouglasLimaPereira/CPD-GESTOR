@@ -29,7 +29,7 @@
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
               <li class="nav-item menu">
-                <a href="" class="nav-link">
+                <a href="{{ route('painel.index') }}" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt fa-lg"></i>
                   <p>
                     Painel Principal

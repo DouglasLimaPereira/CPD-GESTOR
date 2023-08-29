@@ -50,13 +50,13 @@ class PontoController extends Controller
     {
         try {
             DB::beginTransaction();
-        
+            
             $dados = $request->all();
             
             $dados['user_id'] = auth()->user()->id;
-
+            
             if (Ponto::firstWhere('data', $request['data'])) {
-                return redirect()->back()->withInput();
+                return redirect()->back()->withInput()->with('info', 'Já existe Ponto cadastrado para este dia');
             }
 
             $ponto = Ponto::create($dados);
@@ -119,11 +119,11 @@ class PontoController extends Controller
             }
             
             DB::commit();
-            return redirect()->route('ponto.index');
+            return redirect()->route('ponto.index')->with('success', 'Ponto Cadastrado com Sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back();
+            return redirect()->back()->withInput()->with('info', 'Erro ao Cadastrar Ponto');
         }
     }
 
@@ -203,11 +203,11 @@ class PontoController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('ponto.index');
+            return redirect()->route('ponto.index')->with('success', 'Ponto Atualizado com Sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back();
+                return redirect()->back()->withInput()->with('info', 'Erro ao Atualizar Ponto');
         }
     }
 

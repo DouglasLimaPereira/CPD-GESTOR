@@ -107,7 +107,7 @@
   {{-- Toastr --}}
   <script>
     $(document).ready(function() {
-        toastr.options.timeOut = 15000;
+        toastr.options.timeOut = 5000;
         toastr.options.closeButton = true;
         @if(Session::has('error'))
           toastr.error('{{ Session::get('error') }}');
@@ -115,6 +115,8 @@
           toastr.warning('{{ Session::get('warning') }}');
         @elseif(Session::has('success'))
           toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('info'))
+          toastr.info('{{ Session::get('info') }}');
         @endif
     });
   </script>

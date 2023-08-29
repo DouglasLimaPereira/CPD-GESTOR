@@ -1,17 +1,30 @@
 @extends('layout.app')
 
-@section('content')
-<div class="container-fluid">
-    <div class="row justify-content-end">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header"><h4> <b> Data {{ date('d / m / Y', strtotime($ponto->created_at)) }}</b> </h4></div>
+@section('title', 'Pontos - Editar')
 
+@section('page-title', 'Pontos')
+
+@section('content')
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="far fa-edit"></i> Atualizar Ponto</h3>
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            {{-- <li class="nav-item">
+                                <a href="{{route('construtoras.index')}}" class="nav-link btn btn-secondary text-light">CANCELAR</a>
+                            </li> --}}
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.card-header -->
                 <div class="card-body">
                     @include('ponto.form')
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection
