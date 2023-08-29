@@ -219,8 +219,8 @@ class PontoController extends Controller
         //
     }
 
-    public function HoraExtra(){
-
+    public function HoraExtra()
+    {
         #-----------------------------------------------------------------------------------
         #| Verificando se a data atual é maior que dia 21 e menor que dia 1 do próximo mês |
         #-----------------------------------------------------------------------------------

@@ -23,7 +23,7 @@
             <thead class="table-secondary">
               <tr style="border: solid 1px black;">
                 <th colspan="2">Cargo</th>
-                <th colspan="3">{{auth()->user()->cargoS}}</th>
+                <th colspan="3">{{auth()->user()->cargo}}</th>
               </tr>
             </thead>
             <thead class="table-secondary">

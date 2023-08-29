@@ -37,7 +37,7 @@ class LoginController extends Controller
             }
 
             Session::put('user-name', Auth::user()->name);
-
+            Session::put('user-cargo', Auth::user()->cargo);
             
 
             return redirect()->route('painel.index');
