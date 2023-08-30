@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div class="card card-profile">
                         <div class="card-avatar text-center">
-                            <img src="{{asset('image/user.png')}}" height="20%">
+                            <img src="{{asset('image/user.png')}}" style="height: 300;">
                         </div>
                         <div class="card-body">
                             <h2 class="card-category text-gray">{{ $usuario->cargo }} / {{ $usuario->name }}</h2>
