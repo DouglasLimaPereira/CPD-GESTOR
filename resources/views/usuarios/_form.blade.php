@@ -9,10 +9,10 @@
 @endif
 
 @if(isset($usuario))
-    <form action="{{route('construtoras.usuarios.update', [$company->id, $usuario->id])}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('usuarios.update', $usuario->id)}}" method="POST" enctype="multipart/form-data">
     @method('PUT')
 @else
-    <form action="{{route('construtoras.usuarios.store', $company->id)}}" method="POST" enctype="multipart/form-data">    
+    <form action="{{route('usuarios.store', $usuario->id)}}" method="POST" enctype="multipart/form-data">    
 @endif
     @csrf
     {{-- @if(!isset($usuario))
@@ -30,8 +30,8 @@
         <div class="col-md-6">
             <div class="form-group">   
                 <label for="nome">Nome *</label>
-                <input type="text" name="nome" class="form-control nome-texto" id="nome" value="{{(isset($usuario)) ? $companyuser->pessoa->nome : old('nome')}}">
-                @if(!isset($usuario))
+                <input type="text" name="name" class="form-control" id="name" value="{{(isset($usuario)) ? $usuario->name : old('name')}}">
+                {{-- @if(!isset($usuario))
                     <span class="user-from-database" style="display: none">
                         <select name="pessoa_id" id="pessoa_id" class="form-control pessoa_id" data-live-search="true" data-style="border-secondary" onchange="getMail(this.value)">
                             <option value="">Selecione...</option>
@@ -44,41 +44,21 @@
                             @endisset
                         </select>
                     </span>
-                @endif
+                @endif --}}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">   
                 <label for="telefone">Telefone *</label>
-                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($usuario)) ? $companyuser->pessoa->telefone : old('telefone')}}" required>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="nome">O usuario autoriza pelo setor de engenharia ? *</label>
-                <select name="engenharia" id="engenharia" class="form-control" required>
-                    <option value="1" {{(isset($usuario) && $companyuser->pessoa->engenharia == 1) ? 'selected' : ''}}>SIM</option>
-                    <option value="2" {{ empty($usuario)?'selected':'' }} {{(isset($usuario) && $companyuser->pessoa->engenharia == 2) ? 'selected' : '' }}>NÃO</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="nome">O usuario autoriza pelo setor de segurança no trabalho ? *</label>
-                <select name="seguranca" id="seguranca" class="form-control" required>
-                    <option value="1" {{(isset($usuario) && $companyuser->pessoa->seguranca == 1) ? 'selected' : ''}}>SIM</option>
-                    <option value="2" {{ empty($usuario)?'selected':'' }} {{(isset($usuario) && $companyuser->pessoa->seguranca == 2) ? 'selected' : '' }}>NÃO</option>
-                </select>
+                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($usuario)) ? $usuario->telefone : old('telefone')}}" required>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-group">   
                 <label for="cargo">Cargo *</label>
-                <input type="text" name="cargo" class="form-control" id="cargo" value="{{(isset($usuario)) ? $companyuser->pessoa->cargo :  old('cargo')}}" required>
+                <input type="text" name="cargo" class="form-control" id="cargo" value="{{(isset($usuario)) ? $usuario->cargo :  old('cargo')}}" required>
             </div>
         </div>
 
@@ -92,14 +72,14 @@
                 {{-- @endif --}}
                 
                 
-                @if (isset($usuario) && ($companyuser->imagem))
+                {{-- @if (isset($usuario))
                 
                         <br>
                         <div class="img-hidden-after-remove">
-                            @if($companyuser->imagem_origem == 'g')
-                                <img class="img-fluid" src="{{env('APP_URL_GESTOR')}}/storage/{{$companyuser->imagem}}" width="250" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
-                            @elseif($companyuser->imagem_origem == 'c')
-                                <img class="img-fluid" src="{{env('APP_URL')}}/storage/{{str_replace('public', '',$companyuser->imagem)}}" width="250" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
+                            @if($usuario->imagem_origem == 'g')
+                                <img class="img-fluid" src="{{env('APP_URL_GESTOR')}}/storage/{{$usuario->imagem}}" width="250" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
+                            @elseif($usuario->imagem_origem == 'c')
+                                <img class="img-fluid" src="{{env('APP_URL')}}/storage/{{str_replace('public', '',$usuario->imagem)}}" width="250" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
                             @endif
                             
                             {{-- <img src="{{Storage::url($canteiro->logotipo)}}" width="250"> --}}
@@ -107,9 +87,9 @@
                             <div class="custom-control custom-checkbox">
                                 <input class="custom-control-input custom-control-input-danger" type="checkbox" id="remover_logotipo" name="remover_logotipo">
                                 <label for="remover_logotipo" id="remover_logotipo" class="custom-control-label text-danger">Remova esta imagem para cadastrar uma nova.</label>
-                            </div> --}}
+                            </div> --} }
                         </div>
-                    @endif
+                @endif --}}
                 
             </div>
         </div>
@@ -148,25 +128,25 @@
                 <div class="form-group">
                     <label for="active">Ativo *</label>
                     <select name="active" id="active" class="form-control" required>
-                        <option value="1" @if($companyuser->active == true) selected @endif>SIM</option>
-                        <option value="0" @if($companyuser->active == false) selected @endif>NÃO</option>
+                        <option value="1" @if($usuario->active == true) selected @endif>SIM</option>
+                        <option value="0" @if($usuario->active == false) selected @endif>NÃO</option>
                     </select>
                 </div>
             </div>
         @endif
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-12">
             <div class="custom-control custom-checkbox">
                 <input class="custom-control-input custom-control-input-info" type="checkbox" id="enviar_email" name="enviar_email">
                 <label for="enviar_email" class="custom-control-label text-info">Deseja enviar o email com a senha?</label>
             </div>
         </div>
-    </div>
+    </div> --}}
     
     <hr>
-    <a href="{{route('construtoras.usuarios.index', $company->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
+    <a href="{{route('painel.index')}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
     <button type="submit" class="btn btn-sm btn-success">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
   </form>
 
@@ -191,47 +171,47 @@
             gerarSenha();
         @endif
 
-        $(document).ready(function(){
-            //Atribuindo a busca no select
-            $('.user_id').selectpicker();
+        // $(document).ready(function(){
+        //     //Atribuindo a busca no select
+        //     $('.user_id').selectpicker();
 
-            $('#gerar-senha').click(function(){
-                gerarSenha();
-            })
+        //     $('#gerar-senha').click(function(){
+        //         gerarSenha();
+        //     })
 
-            $('#limpa-senha').click(function(){
-                $('#senha').val(``)
-                $('#senha').attr('readonly', 'readonly')
-            })
+        //     $('#limpa-senha').click(function(){
+        //         $('#senha').val(``)
+        //         $('#senha').attr('readonly', 'readonly')
+        //     })
 
-            $('#preencher-senha').click(function(){
-                $('#senha').val(``)
-                $('#senha').removeAttr('readonly')
-            })
-            $('#cancelar-senha').click(function(){
-                $('#senha').val(``)
-                $('#senha').attr('readonly', true)
-            })
+        //     $('#preencher-senha').click(function(){
+        //         $('#senha').val(``)
+        //         $('#senha').removeAttr('readonly')
+        //     })
+        //     $('#cancelar-senha').click(function(){
+        //         $('#senha').val(``)
+        //         $('#senha').attr('readonly', true)
+        //     })
 
-            //Trazendo as users a partir do banco de dados
+        //     //Trazendo as users a partir do banco de dados
             
-            $("#record-from-database").click(function(){
-                if($('#record-from-database').is(':checked')){
-                    $('.nome-texto').hide()
-                    $('.nome-texto').val('')
-                    $('.user-from-database').show()
-                    $('#email').attr('readonly', 'readonly')
-                    $('#email').val('')
+        //     $("#record-from-database").click(function(){
+        //         if($('#record-from-database').is(':checked')){
+        //             $('.nome-texto').hide()
+        //             $('.nome-texto').val('')
+        //             $('.user-from-database').show()
+        //             $('#email').attr('readonly', 'readonly')
+        //             $('#email').val('')
 
-                }else{
-                    $('.nome-texto').show()
-                    $('.user_id').val(null).trigger("change")
-                    $('.user-from-database').hide()
-                    $('#email').val('')
-                    $('#email').removeAttr('readonly')                    
-                }
-            })
-        })
+        //         }else{
+        //             $('.nome-texto').show()
+        //             $('.user_id').val(null).trigger("change")
+        //             $('.user-from-database').hide()
+        //             $('#email').val('')
+        //             $('#email').removeAttr('readonly')                    
+        //         }
+        //     })
+        // })
 
         function getMail(val){
             if(val != ""){
