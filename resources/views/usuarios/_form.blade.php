@@ -94,7 +94,6 @@
             </div>
         </div>
 
-        <input type="hidden" name="superadmin" value="1">
     </div>
     <h5 class="mt-3"><em>DADOS DE ACESSO</em></h5>
     <hr>
@@ -110,7 +109,7 @@
         <div class="col-md-4">
             <div class="form-group">   
                 <label for="senha">Senha *</label>
-                <input type="text" name="senha" class="form-control" id="senha" minlength="8" value="{{old('senha')}}" onload="gerarSenha()" readonly required>
+                <input type="text" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
                     @if (!isset($usuario))                    
                         <a href="javascript:void(0)" id="gerar-senha" class="text-info">[Gerar senha]</a>
                         <a href="javascript:void(0)" id="limpa-senha" class="text-danger">[Limpar senha]</a>
@@ -122,7 +121,6 @@
             </div>
         </div>
         
-
         @if(isset($usuario))
             <div class="col-md-4">
                 <div class="form-group">

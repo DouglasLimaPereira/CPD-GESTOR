@@ -20,15 +20,15 @@ class UsuarioRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        if($this->record_from_database)
-            $nome = (Pessoa::find($this->pessoa_id)->nome) ?? null;
+        // if($this->record_from_database)
+        //     $nome = (Pessoa::find($this->pessoa_id)->nome) ?? null;
 
-        // $senha = geraSenha();
-        $this->merge([
-            'cad_user_id' => auth()->user()->id,
-            'password' => bcrypt($this->senha),
-            'name' => $this->nome
-        ]);
+        // // $senha = geraSenha();
+        // $this->merge([
+        //     'cad_user_id' => auth()->user()->id,
+        //     'password' => bcrypt($this->senha),
+        //     'name' => $this->nome
+        // ]);
     }
 
     /**

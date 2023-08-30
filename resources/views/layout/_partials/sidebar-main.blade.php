@@ -11,16 +11,20 @@
         <!-- Sidebar -->
         <div class="sidebar">
           <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-              {{-- <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image"> --}}
-            </div>
-            <div class="info">
-              <a href="" class="d-block">
-                @if(session()->get('user-name'))
-                  {{session()->get('user-name')}}
-                @endif
-              </a>
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center">
+            <div class="row text-center">
+              <div class="image text-center">
+              </div>
+
+              <div class="info text-center">
+                <a href="{{ route('usuarios.index') }}" class="d-block text-center">
+                  @if(auth()->user())
+                    <img src="{{url('/')}}/storage/{{$usuario->imagem}}" class="img-fluid img-circle elevation-2" style="border-radius: 50%; width: 80; height: 80; top:3;">
+                    <br>
+                    {{auth()->user()->name}}
+                  @endif
+                </a>
+              </div>
             </div>
           </div>
     

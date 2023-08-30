@@ -23,7 +23,13 @@
                 <div class="card-body">
                     <div class="card card-profile">
                         <div class="card-avatar text-center">
-                            <img src="{{asset('image/user.png')}}" style="height: 300;">
+                            @if (isset($usuario) && ($usuario->imagem))
+                                <a href="{{url('/')}}/storage/{{$usuario->imagem}}" target="_blank">
+                                    <img src="{{url('/')}}/storage/{{$usuario->imagem}}" width="148">
+                                </a>
+                            @else
+                                <img src="{{asset('image/user.jpg')}}" style="height: 300;">
+                            @endif
                         </div>
                         <div class="card-body">
                             <h2 class="card-category text-gray">{{ $usuario->cargo }} / {{ $usuario->name }}</h2>

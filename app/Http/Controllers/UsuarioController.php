@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Recursos\Anexo;
 
 class UsuarioController extends Controller
 {
+    
+    private $hora_extra;
+
+    public function __construct(Anexo $anexo)
+    {
+        $this->anexo = $anexo;
+    } 
+
     public function index()
     {
         // $rows = $company->users()->where('superadmin', true)->paginate(10);
@@ -31,6 +40,57 @@ class UsuarioController extends Controller
         $pessoas = User::where('user_id', null)->orderBy('nome')->get();
 
         return view('usuarios.create', compact('company', 'pessoas'));
+    }
+
+    public function update(User $usuario, UsuarioRequest $request)
+    {
+        //Processo de atualização do usuário
+        // 1 - Atualiza os dados na tabela de usuário [email; name]
+        try {
+            //Checa se o email informado já existe
+            if(User::where('id', '!=', $usuario->id)->where('email', $request->email)->first())
+                return back()->with('info', 'O Email informado já está cadastrado');
+
+            DB::beginTransaction();
+            
+            // ATUALIZANDO OS DADOS DA TABELA USERS
+            
+            if($request->password != '')
+            {
+                $usuario->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'telefone' => $request->telefone,
+                    'cargo' => $request->cargo,
+                    'active' => $request->active,
+                    'password' => bcrypt($request->password),
+                ]);
+
+            }else{
+                $usuario->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'telefone' => $request->telefone,
+                    'cargo' => $request->cargo,
+                    'active' => $request->active,
+                ]);
+            }
+
+            if(isset($request->imagem) && $request->imagem->isValid()){
+                $imagem = $this->anexo->user_store(auth()->user()->id, $request->imagem, $usuario->imagem);
+                $usuario->update([
+                    'imagem' => $imagem,
+                ]);
+            }
+            
+            DB::commit();
+            
+            return redirect()->route('usuarios.index', $usuario->id)->with('success', 'Usuário atualizado com sucesso!');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            // return back()->withErrors($th->getMessage());
+            return back()->with('error', 'Erro ao Atualizar dados!');
+        }
     }
 
     // public function store(UsuarioRequest $request)

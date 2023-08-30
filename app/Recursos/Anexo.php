@@ -7,7 +7,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 class Anexo
 {
-    public function store($ponto_id, $user_id, $anexo, $anexo_banco, )
+    public function store($ponto_id = null, $user_id, $anexo, $anexo_banco, )
     {
         //Deletando o arquivo caso já exista algum
         // dd('oi');
@@ -15,6 +15,16 @@ class Anexo
         Storage::disk('public')->delete($anexo_banco);
 
         return $anexo->store('ponto/' . base64_encode($ponto_id) . '/usuario/' .base64_encode($user_id).'/comprovante', 'public');
+    }
+
+    public function user_store($user_id, $anexo, $anexo_banco, )
+    {
+        //Deletando o arquivo caso já exista algum
+        // dd('oi');
+        if(Storage::disk('public')->exists($anexo_banco))
+        Storage::disk('public')->delete($anexo_banco);
+
+        return $anexo->store('usuario/' .base64_encode($user_id).'/foto', 'public');
     }
 
     // public function storeWithResize($ponto = null, $user = null, $anexo_banco, $diretorio, $anexo)
