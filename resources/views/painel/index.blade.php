@@ -18,25 +18,9 @@
                 <div class="icon">
                     <i class="far fa-user " style="color: #000000;"></i>
                 </div>
-                    <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    <a href="{{route('usuarios.index')}}" class="small-box-footer">
                         <i class="fas fa-arrow-circle-right"></i>
                     </a>
-            </div>
-        </div>
-    
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4>Editar Dados</h4>
-                    <br>
-                    <br>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-user-edit " style="color: #000000;"></i>
-                </div>
-                <a href="{{route('usuarios.index')}}" class="small-box-footer">
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
     </div>
@@ -51,7 +35,7 @@
                     <br>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-history" style="color: #000000;"></i>
+                    <i class="fas fa-bug fa-lg" style="color: #000000;"></i>
                 </div>
                     <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <i class="fas fa-arrow-circle-right"></i>
