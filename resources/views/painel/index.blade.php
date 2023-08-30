@@ -6,6 +6,42 @@
 
 @section('content')
 
+<h4 class="mt-3"><em>DADOS DO USUÁRIO</em></h4>
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h4>Minhas Informações</h4>
+                    <br>
+                    <br>
+                </div>
+                <div class="icon">
+                    <i class="far fa-user " style="color: #000000;"></i>
+                </div>
+                    <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+            </div>
+        </div>
+    
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h4>Editar Dados</h4>
+                    <br>
+                    <br>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-edit " style="color: #000000;"></i>
+                </div>
+                <a href="{{route('usuarios.index')}}" class="small-box-footer">
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <h4 class="mt-3"><em>ERROS SITEF</em></h4>
     <div class="row">
         <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
@@ -15,35 +51,58 @@
                     <br>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-history"></i>
+                    <i class="fas fa-history" style="color: #000000;"></i>
                 </div>
                     <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <i class="fas fa-arrow-circle-right"></i>
                     </a>
             </div>
         </div>
-    
+    </div>
+
+    <h4 class="mt-3"><em>HORAS EXTRAS</em></h4>
+    <div class="row">
         <div class="col-lg-3 col-6">
-            <div class="small-box bg-secondary">
+            <div class="small-box bg-info">
                 <div class="inner">
-                    <h4>Administradores</h4>
+                    <h4>{{$hora_extra}}</h4>
                     <br>
                     <br>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-hourglass-half " style="color: #000000;"></i>
                 </div>
-                <a href="{{route('usuarios.index')}}" class="small-box-footer">
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
+                    <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
             </div>
         </div>
     </div>
+
+    <h4 class="mt-3"><em>RELATÓRIOS</em></h4>
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h4>PDF / CSV / XLS</h4>
+                    <br>
+                    <br>
+                </div>
+                <div class="icon">
+                    <i class="far fa-file-pdf" style="color: #000000;"></i>
+                </div>
+                    <a href="{{ route('ponto.relatorio') }}" target="_blank" class="small-box-footer">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+            </div>
+        </div>
+    </div>
+
     @include('erro-sitef._partials.modal-consulta-erros-sitef')
 @endsection
 
 @section('scripts')
-    <script>
+    {{--  <script>
         function consultarerro()
         {
             let cod_erro = $('#codigo').val()
@@ -72,5 +131,5 @@
                 })
             }
         }
-    </script>
+    </script>  --}}
 @endsection
