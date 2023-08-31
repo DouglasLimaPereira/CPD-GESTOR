@@ -15,6 +15,8 @@
     <form action="{{route('usuarios.store', $usuario->id)}}" method="POST" enctype="multipart/form-data">    
 @endif
     @csrf
+    <h5 class="mt-3"><em>DADOS PESSOAIS</em></h5>
+    <hr>
     {{-- @if(!isset($usuario))
         <div class="row">
             <div class="col-md-12">
@@ -67,8 +69,8 @@
                 <label for="logotipo">Foto</label>
                 {{-- @if(!$canteiro->logotipo)  --}}
                     
-                    <input type="file" name="imagem" class="form-control" id="imagem" value="{{old('imagem')}}">
-                    <small class="text-info">Formatos permitidos: .jpeg, .png, .jpg, .gif, .svg.</small>
+                    <input type="file" name="imagem" class="form-control" id="imagem" value="{{old('imagem')}}" accept="image/png, image/jpeg, image/jpg">
+                    <small class="text-info">Formatos permitidos: .jpeg, .png, .jpg, .svg.</small>
                 {{-- @endif --}}
                 
                 
@@ -144,8 +146,10 @@
     </div> --}}
     
     <hr>
-    <a href="{{route('painel.index')}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
-    <button type="submit" class="btn btn-sm btn-success">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    <div class="row float-right">
+        {{--  <a href="{{route('painel.index')}}" class="btn btn-sm btn-secondary mr-3"><i class="fas fa-undo-alt"></i> Voltar</a>  --}}
+        <button type="submit" class="btn btn-sm btn-success">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    </div>
   </form>
 
   @section('scripts')

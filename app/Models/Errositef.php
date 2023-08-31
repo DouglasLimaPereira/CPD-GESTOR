@@ -14,5 +14,6 @@ class Errositef extends Model
         'codigo',
         'titulo',
         'descricao',
+        'retentativa',
     ];
 }
