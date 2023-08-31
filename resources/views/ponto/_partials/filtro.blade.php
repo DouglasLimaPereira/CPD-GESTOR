@@ -9,7 +9,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            <button type="submit" class="form-control btn btn-primary">Filtrar</button>
+                            <button type="submit" class="form-control btn btn-light">Filtrar</button>
                         </div>
                     </div>
                 </div>

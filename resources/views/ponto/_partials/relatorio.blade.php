@@ -17,13 +17,15 @@
                             <li class="nav-item">
                                 <form action="{{ route('ponto.relatorio') }}" method="GET">
                                     <div class="dropdown">
-                                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        <a class="btn btn-primary btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                           Gerar Relatório
                                         </a>
                                       
                                         <div class="dropdown-menu">
                                           <a class="dropdown-item" href="route"><span class="text-danger"> <i class="fas fa-file-pdf fa-lg" style="color: #ff0000;"></i> PDF </span></a>
+                                          <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="#"><span class="text-success"> <i class="fas fa-file-excel fa-lg" style="color: #06b300;"></i> XLS </span></a>
+                                          <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="#"><span class="text-primary"> <i class="far fa-file-excel fa-lg" style="color: #003cff;"></i> CSV </span></a>
                                         </div>
                                     </div>
@@ -35,7 +37,7 @@
                 </div>
                 <div class="card-body">
                     @include('partials.datatables.buttons')
-                    <table class="table table-bordered table-sm table-striped" style="border: solid 1px black;">
+                    <table class="table table-bordered table-striped" style="border: solid 1px black;">
                         <thead class="thead-dark">
                           <tr>
                             <th>Data</th>
