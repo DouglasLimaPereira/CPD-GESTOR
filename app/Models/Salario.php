@@ -13,7 +13,6 @@ class Salario extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'canteiro_id',
         'funcao_id',
         'valor',
         'data_vigencia',
@@ -22,7 +21,7 @@ class Salario extends Model
         'active'
     ];
 
-    public function canteiro()
+    public function funcao()
     {
         return $this->belongsTo(Canteiro::class);
     }
