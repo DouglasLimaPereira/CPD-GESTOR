@@ -13,55 +13,54 @@
     </head>
     <body>
         <img src="{{public_path('image/logo.png')}}" height="90" style="margin-left: 30%; margin-top: -7%;">
-          <table class="table table-bordered table-sm table-striped mb-0">
-            <thead class="table-secondary">
-              <tr style="border: solid 1px black;">
-                <th colspan="2">Nome</th>
-                <th colspan="3">{{auth()->user()->name}}</th>
-              </tr>
-            </thead>
-            <thead class="table-secondary">
-              <tr style="border: solid 1px black;">
-                <th colspan="2">Cargo</th>
-                <th colspan="3">{{auth()->user()->cargo}}</th>
-              </tr>
-            </thead>
-            <thead class="table-secondary">
-              <tr style="border: solid 1px black;">
-                <th colspan="2">Mês</th>
-                <th colspan="3">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
-              </tr>
-            </thead>
-          </table>
-          <table class="table table-bordered table-sm table-striped" style="border: solid 1px black;">
-            <thead class="thead-dark">
-              <tr>
-                <th>Data</th>
-                <th>Entrada</th>
-                <th>Saida P/Almoço</th>
-                <th>Volta P/Almoço</th>
-                <th>Saída</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($pontos as $ponto)
-                    <tr 
-                    @if ($ponto->horas_negativas != '00:00:00')
-                      class="table-danger"
-                    @elseif ($ponto->horas_extras != '00:00:00')
-                      class="table-success"
-                    @else
-                      class="table-secondary"
-                    @endif style="border: solid 1px black;">
-                        <td> {{ date('d/m/Y', strtotime($ponto->data)) }}</td>
-                        <td> {{$ponto->entrada}} </td>
-                        <td> {{$ponto->entrada_almoco}} </td>
-                        <td> {{$ponto->saida_almoco}} </td>
-                        <td> {{$ponto->saida}} </td>
-                    </tr>
-                @endforeach
-            </tbody>
-          </table>
-        
+        <table class="table table-bordered table-sm table-striped mb-0">
+          <thead class="table-secondary">
+            <tr style="border: solid 1px black;">
+              <th colspan="2">Nome</th>
+              <th colspan="3">{{auth()->user()->name}}</th>
+            </tr>
+          </thead>
+          <thead class="table-secondary">
+            <tr style="border: solid 1px black;">
+              <th colspan="2">Cargo</th>
+              <th colspan="3">{{auth()->user()->cargo}}</th>
+            </tr>
+          </thead>
+          <thead class="table-secondary">
+            <tr style="border: solid 1px black;">
+              <th colspan="2">Mês</th>
+              <th colspan="3">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
+            </tr>
+          </thead>
+        </table>
+        <table class="table table-bordered table-sm table-striped" style="border: solid 1px black;">
+          <thead class="thead-dark">
+            <tr>
+              <th>Data</th>
+              <th>Entrada</th>
+              <th>Saida P/Almoço</th>
+              <th>Volta P/Almoço</th>
+              <th>Saída</th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($pontos['data'] as $key => $ponto)
+                <tr 
+                  @if ($pontos['horas_negativas'][$key] != '00:00:00')
+                    class="table-danger"
+                  @elseif ($pontos['horas_extras'][$key] != '00:00:00')
+                    class="table-success"
+                  @else
+                    class="table-secondary"
+                  @endif style="border: solid 1px black;">
+                      <td> {{ date('d/m/Y', strtotime($ponto)) }}</td>
+                      <td> {{$pontos['entrada'][$key]}} </td>
+                      <td> {{$pontos['entrada_almoco'][$key]}} </td>
+                      <td> {{$pontos['saida_almoco'][$key]}} </td>
+                      <td> {{$pontos['saida'][$key]}} </td>
+                </tr>
+              @endforeach
+          </tbody>
+        </table>
     </body>
 </html>

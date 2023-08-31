@@ -15,29 +15,61 @@
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <form action="{{ route('ponto.relatorio') }}" method="GET">
-                                    <div class="dropdown">
-                                        <a class="btn btn-primary btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                          Gerar Relatório
-                                        </a>
-                                      
-                                        <div class="dropdown-menu">
-                                          <a class="dropdown-item" href="route"><span class="text-danger"> <i class="fas fa-file-pdf fa-lg" style="color: #ff0000;"></i> PDF </span></a>
-                                          <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item" href="#"><span class="text-success"> <i class="fas fa-file-excel fa-lg" style="color: #06b300;"></i> XLS </span></a>
-                                          <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item" href="#"><span class="text-primary"> <i class="far fa-file-excel fa-lg" style="color: #003cff;"></i> CSV </span></a>
-                                        </div>
+                                <div class="dropdown">
+                                    <a class="btn btn-primary btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        Gerar Relatório
+                                    </a>
+                                    
+                                    <div class="dropdown-menu">
+                                        <form id="pdf" action="{{ route('ponto.pdf') }}" method="GET">
+                                            @foreach ($pontos as $ponto)
+                                                <input type="hidden" name="data[]" value="{{$ponto->data}}">
+                                                <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
+                                                <input type="hidden" name="entrada_almoco[]" value="{{$ponto->entrada_almoco}}">
+                                                <input type="hidden" name="saida_almoco[]" value="{{$ponto->saida_almoco}}">
+                                                <input type="hidden" name="saida[]" value="{{$ponto->saida}}">
+                                                <input type="hidden" name="horas_extras[]" value="{{$ponto->horas_extras}}">
+                                                <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
+                                            @endforeach
+                                            <a href="#" class="dropdown-item" onclick='document.forms["pdf"].submit()'><span class="text-danger"> <i class="fas fa-file-pdf fa-lg text-danger"></i> PDF </span></a>
+                                        </form>
+                                        <div class="dropdown-divider"></div>
+                                        <form id="xls" action="{{ route('ponto.xls') }}" method="GET">
+                                            @foreach ($pontos as $ponto)
+                                                <input type="hidden" name="data[]" value="{{$ponto->data}}">
+                                                <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
+                                                <input type="hidden" name="entrada_almoco[]" value="{{$ponto->entrada_almoco}}">
+                                                <input type="hidden" name="saida_almoco[]" value="{{$ponto->saida_almoco}}">
+                                                <input type="hidden" name="saida[]" value="{{$ponto->saida}}">
+                                                <input type="hidden" name="horas_extras[]" value="{{$ponto->horas_extras}}">
+                                                <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
+                                            @endforeach
+                                            <a href="#" class="dropdown-item" onclick='document.forms["pdf"].submit()'><span class="text-success"> <i class="fas fa-file-excel fa-lg text-success"></i> XLS </span></a>
+                                        </form>
+
+                                        <div class="dropdown-divider"></div>
+                                        <form id="csv" action="{{ route('ponto.csv') }}" method="GET">
+                                            @foreach ($pontos as $ponto)
+                                                <input type="hidden" name="data[]" value="{{$ponto->data}}">
+                                                <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
+                                                <input type="hidden" name="entrada_almoco[]" value="{{$ponto->entrada_almoco}}">
+                                                <input type="hidden" name="saida_almoco[]" value="{{$ponto->saida_almoco}}">
+                                                <input type="hidden" name="saida[]" value="{{$ponto->saida}}">
+                                                <input type="hidden" name="horas_extras[]" value="{{$ponto->horas_extras}}">
+                                                <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
+                                            @endforeach
+                                            <a href="#" class="dropdown-item" onclick='document.forms["csv"].submit()'><span class="text-primary"> <i class="far fa-file-excel fa-lg text-primary"></i> CSV </span></a>
+                                            
+                                        </form>
                                     </div>
-                                </form>
-                                {{--  <a href="{{ route('ponto.create') }}" class="nav-link active"><i class="fas fa-plus-circle"></i> NOVO PONTO</a>  --}}
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="card-body">
-                    @include('partials.datatables.buttons')
-                    <table class="table table-bordered table-striped" style="border: solid 1px black;">
+                    {{-- @include('partials.datatables.buttons') --}}
+                    <table class="table table-bordered table-striped" id="table-datatable" style="border: solid 1px black;">
                         <thead class="thead-dark">
                           <tr>
                             <th>Data</th>

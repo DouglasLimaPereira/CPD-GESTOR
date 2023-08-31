@@ -324,7 +324,7 @@ class PontoController extends Controller
 
     public function relatorio(Request $request) {
         $user = auth()->user();
-        $pontos = Ponto::where('user_id', $user->id);
+        $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user->id)->get();
         
         if (isset($request->data_fim) && $request->data_inicio == '') {
             return back()->with('info', 'Necessário informar a data inícial após informa a data final');
@@ -349,7 +349,7 @@ class PontoController extends Controller
             $pontos = $pontos->where('saida', $request->saida);
         }
 
-        $pontos = $pontos->get();
+        // $pontos = $pontos->get();
 
         // $pontos->map(function($item){
         //     $mes = explode('-', $item->data);
@@ -365,10 +365,33 @@ class PontoController extends Controller
 
         return view('ponto._partials.relatorio', compact('pontos'));
 
+    }
+    
+    public function pdf(Request $request){
+        $pontos = $request->all();
+        // dd($pontos);
+        // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+        return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
+        // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+        // ->stream
+        ->download('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
+    }
+
+    public function xls(Request $request){
+        dd($request);
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
         return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         // ->download
-        ->stream('pontos'.date('m').'-'.$user->name.'.pdf');
+        ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
+    }
+
+    public function csv(Request $request){
+        dd($request);
+        // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+        return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
+        // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+        // ->download
+        ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
     }
 }
