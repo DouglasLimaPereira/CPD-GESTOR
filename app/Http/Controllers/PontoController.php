@@ -322,10 +322,47 @@ class PontoController extends Controller
         return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas'));
     }
 
-    public function relatorio() {
+    public function relatorio(Request $request) {
         $user = auth()->user();
-        $pontos = Ponto::where('user_id', $user->id)->get();
+        $pontos = Ponto::where('user_id', $user->id);
         
+        if (isset($request->data_fim) && $request->data_inicio == '') {
+            return back()->with('info', 'Necessário informar a data inícial após informa a data final');
+        }
+
+        if (isset($request->data_inicio) && isset($request->data_fim)) {
+            $pontos = $pontos->whereBetween('data', [ $request->data_inicio, $request->data_fim ]);
+        }elseif (isset($request->data_inicio)) {
+            $pontos = $pontos->where('data', $request->data_inicio);
+        }
+
+        if (isset($request->entrada)) {
+            $pontos = $pontos->where('entrada', $request->entrada);
+        }
+        if (isset($request->entrada_almoco)) {
+            $pontos = $pontos->where('entrada_almoco', $request->entrada_almoco);
+        }
+        if (isset($request->saida_almoco)) {
+            $pontos = $pontos->where('saida_almoco', $request->saida_almoco);
+        }
+        if (isset($request->saida)) {
+            $pontos = $pontos->where('saida', $request->saida);
+        }
+
+        $pontos = $pontos->get();
+
+        // $pontos->map(function($item){
+        //     $mes = explode('-', $item->data);
+            
+        //     $item['mes'] = [];
+
+        //     if (!(in_array($mes[1], $item['mes']))) {
+        //         $item['mes'] = $mes[1];
+        //     } 
+        // });
+        // $meses = [1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril', 5 => 'mail', 6 => 'junho', 7 => 'julho', 8 => 'agosto', 9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'];
+        
+
         return view('ponto._partials.relatorio', compact('pontos'));
 
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');

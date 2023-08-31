@@ -8,6 +8,7 @@
 
     <div class="row">
         <div class="col-md-12">
+            @include('ponto._partials.filtro')
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Listagem de Pontos</h3>
@@ -15,9 +16,6 @@
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
                                 <form action="{{ route('ponto.relatorio') }}" method="GET">
-                                    
-                                    @include('ponto._partials.filtro')
-
                                     <div class="dropdown">
                                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                           Gerar Relatório
