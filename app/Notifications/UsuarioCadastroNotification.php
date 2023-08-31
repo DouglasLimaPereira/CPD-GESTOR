@@ -45,8 +45,8 @@ class UsuarioCadastroNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("SAGO - Cadastro de usuário")
-            ->from('noreply@sago.com.br', 'SAGO - GERENCIADOR DE OBRAS')
+            ->subject("CPD - GESTOR - Cadastro de usuário")
+            ->from('noreply@grupomateus.com.br', 'CPD - GESTOR')
             ->markdown('mail.cadastros.usuarios', [
                 'pessoa' => $this->pessoa,
                 'usuario' => $this->usuario,
