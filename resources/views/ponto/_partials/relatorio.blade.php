@@ -34,7 +34,7 @@
                                             <a href="#" class="dropdown-item" onclick='document.forms["formpdf"].submit()'><span class="text-danger"> <i class="fas fa-file-pdf fa-lg text-danger"></i> PDF </span></a>
                                         </form>
                                         <div class="dropdown-divider"></div>
-                                        <form id="xls" target="_blank" action="{{ route('ponto.xls') }}" method="GET">
+                                        <form id="xls" target="_blank" action="{{ route('ponto.xlsx') }}" method="GET">
                                             @foreach ($pontos as $ponto)
                                                 <input type="hidden" name="data[]" value="{{$ponto->data}}">
                                                 <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
@@ -44,7 +44,7 @@
                                                 <input type="hidden" name="horas_extras[]" value="{{$ponto->horas_extras}}">
                                                 <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
                                             @endforeach
-                                            <a href="#" class="dropdown-item" onclick='document.forms["pdf"].submit()'><span class="text-success"> <i class="fas fa-file-excel fa-lg text-success"></i> XLS </span></a>
+                                            <a href="#" class="dropdown-item" onclick='document.forms["xls"].submit()'><span class="text-success"> <i class="fas fa-file-excel fa-lg text-success"></i> XLS </span></a>
                                         </form>
 
                                         <div class="dropdown-divider"></div>

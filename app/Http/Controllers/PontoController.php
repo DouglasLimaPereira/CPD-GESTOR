@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PontosExport;
 use Illuminate\Http\Request;
 use App\Models\Ponto;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,7 @@ use Carbon\Carbon;
 use DateTime\DateTime;
 use Exception;
 use Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PontoController extends Controller
 {
@@ -385,13 +387,13 @@ class PontoController extends Controller
         ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
     }
 
-    public function xls(Request $request){
-        dd($request);
-        // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
-        // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-        // ->download
-        ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
+    public function xlsx(Request $request){
+      
+        $pontos = $request->all();
+        $PontosXLSX = new PontosExport($pontos);
+        
+        return Excel::download($PontosXLSX, 'Pontos-'.date('m').'-'.auth()->user()->name.'.xlsx');
+
     }
 
     public function csv(Request $request){
