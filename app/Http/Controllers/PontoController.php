@@ -181,18 +181,21 @@ class PontoController extends Controller
                 ]);
             }
 
+            // verificando se existe o ponto de saida e redirecionando para um recurso calculador de hora extra
             if (isset($request->saida) && $request->saida != '') {
                 $horas = $this->hora_extra->calcularHoraExtra($request);
-                # -----------------------------------------------------------------------------
-                #| Verificando se a hora é negativa ou positiva e atalizando o banco de dados |
-                # -----------------------------------------------------------------------------
+                // --------------------------------------------------------------------------
+                // Verificando se a hora é negativa ou positiva e atalizando o banco de dados
+                // --------------------------------------------------------------------------
                 if ( $horas[0] == '-') {
                     $ponto->update([
+                        'horas_extras' => '00:00:00',
                         'horas_negativas' => $horas[1]
                     ]);
                 }elseif ( $horas[0] == '+'){
                     $ponto->update([
-                        'horas_extras' => $horas[1]
+                        'horas_extras' => $horas[1],
+                        'horas_negativas' => '00:00:00',
                     ]);
                 }else{
                     $ponto->update([
@@ -200,6 +203,11 @@ class PontoController extends Controller
                         'horas_negativas' => '00:00:00',
                     ]);
                 }
+            }else{
+                $ponto->update([
+                    'horas_extras' => '00:00:00',
+                    'horas_negativas' => '00:00:00',
+                ]);
             }
 
             DB::commit();

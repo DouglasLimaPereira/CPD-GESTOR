@@ -16,33 +16,33 @@
     <body>
         <img src="{{public_path('image/logo.png')}}" height="90" style="margin-left: 30%; margin-top: -7%;">
         <table class="table table-bordered table-sm table-striped mb-0">
-          <thead class="table-secondary">
+          <thead class="">
             <tr style="border: solid 1px black;">
-              <th colspan="2">Nome</th>
-              <th colspan="3">{{auth()->user()->name}}</th>
+              <th colspan="2" style="border: solid 0.1px black;">Nome</th>
+              <th colspan="3" style="border: solid 0.1px black;">{{auth()->user()->name}}</th>
             </tr>
           </thead>
-          <thead class="table-secondary">
+          <thead class="">
             <tr style="border: solid 1px black;">
-              <th colspan="2">Cargo</th>
-              <th colspan="3">{{auth()->user()->cargo}}</th>
+              <th colspan="2" style="border: solid 0.1px black;">Cargo</th>
+              <th colspan="3" style="border: solid 0.1px black;">{{auth()->user()->cargo}}</th>
             </tr>
           </thead>
-          <thead class="table-secondary">
+          <thead class="">
             <tr style="border: solid 1px black;">
-              <th colspan="2">Mês</th>
-              <th colspan="3">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
+              <th colspan="2" style="border: solid 0.1px black;">Mês</th>
+              <th colspan="3" style="border: solid 0.1px black;">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
             </tr>
           </thead>
         </table>
-        <table class="table table-bordered table-sm table-striped" style="border: solid 1px black;">
-          <thead class="thead-dark">
-            <tr>
-              <th>Data</th>
-              <th>Entrada</th>
-              <th>Saida P/Almoço</th>
-              <th>Volta P/Almoço</th>
-              <th>Saída</th>
+        <table class="table table-bordered table-sm table-striped">
+          <thead class="table-secondary">
+            <tr style="border: solid 1px black;">
+              <th style="border: solid 0.1px black;">Data</th>
+              <th style="border: solid 0.1px black;">Entrada</th>
+              <th style="border: solid 0.1px black;">Saida P/Almoço</th>
+              <th style="border: solid 0.1px black;">Volta P/Almoço</th>
+              <th style="border: solid 0.1px black;">Saída</th>
             </tr>
           </thead>
           <tbody>
