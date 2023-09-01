@@ -373,8 +373,8 @@ class PontoController extends Controller
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
         return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-        // ->stream
-        ->download('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
+        // ->download
+        ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
     }
 
     public function xls(Request $request){

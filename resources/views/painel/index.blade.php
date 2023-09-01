@@ -75,7 +75,7 @@
                 <div class="icon">
                     <i class="far fa-file-pdf" style="color: #000000;"></i>
                 </div>
-                    <a href="{{ route('ponto.relatorio') }}" target="_blank" class="small-box-footer">
+                    <a href="{{ route('ponto.relatorio') }}" class="small-box-footer">
                         <i class="fas fa-arrow-circle-right"></i>
                     </a>
             </div>

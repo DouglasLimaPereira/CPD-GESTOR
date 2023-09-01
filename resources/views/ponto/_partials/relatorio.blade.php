@@ -21,7 +21,7 @@
                                     </a>
                                     
                                     <div class="dropdown-menu">
-                                        <form id="pdf" action="{{ route('ponto.pdf') }}" method="GET">
+                                        <form id="formpdf" target="_blank" action="{{ route('ponto.pdf') }}" method="GET">
                                             @foreach ($pontos as $ponto)
                                                 <input type="hidden" name="data[]" value="{{$ponto->data}}">
                                                 <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
@@ -31,10 +31,10 @@
                                                 <input type="hidden" name="horas_extras[]" value="{{$ponto->horas_extras}}">
                                                 <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
                                             @endforeach
-                                            <a href="#" class="dropdown-item" onclick='document.forms["pdf"].submit()'><span class="text-danger"> <i class="fas fa-file-pdf fa-lg text-danger"></i> PDF </span></a>
+                                            <a href="#" class="dropdown-item" onclick='document.forms["formpdf"].submit()'><span class="text-danger"> <i class="fas fa-file-pdf fa-lg text-danger"></i> PDF </span></a>
                                         </form>
                                         <div class="dropdown-divider"></div>
-                                        <form id="xls" action="{{ route('ponto.xls') }}" method="GET">
+                                        <form id="xls" target="_blank" action="{{ route('ponto.xls') }}" method="GET">
                                             @foreach ($pontos as $ponto)
                                                 <input type="hidden" name="data[]" value="{{$ponto->data}}">
                                                 <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
@@ -48,7 +48,7 @@
                                         </form>
 
                                         <div class="dropdown-divider"></div>
-                                        <form id="csv" action="{{ route('ponto.csv') }}" method="GET">
+                                        <form id="csv" target="_blank" action="{{ route('ponto.csv') }}" method="GET">
                                             @foreach ($pontos as $ponto)
                                                 <input type="hidden" name="data[]" value="{{$ponto->data}}">
                                                 <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
@@ -59,7 +59,6 @@
                                                 <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
                                             @endforeach
                                             <a href="#" class="dropdown-item" onclick='document.forms["csv"].submit()'><span class="text-primary"> <i class="far fa-file-excel fa-lg text-primary"></i> CSV </span></a>
-                                            
                                         </form>
                                     </div>
                                 </div>
@@ -88,12 +87,12 @@
                                   class="table-success"
                                 @else
                                   class="table-secondary"
-                                @endif style="border: solid 1px black;">
-                                    <td> {{ date('d/m/Y', strtotime($ponto->data)) }}</td>
-                                    <td> {{$ponto->entrada}} </td>
-                                    <td> {{$ponto->entrada_almoco}} </td>
-                                    <td> {{$ponto->saida_almoco}} </td>
-                                    <td> {{$ponto->saida}} </td>
+                                @endif style="border: solid 0.1px black;">
+                                    <td style="border: solid 0.1px black;"> {{ date('d/m/Y', strtotime($ponto->data)) }}</td>
+                                    <td style="border: solid 0.1px black;"> {{$ponto->entrada}} </td>
+                                    <td style="border: solid 0.1px black;"> {{$ponto->entrada_almoco}} </td>
+                                    <td style="border: solid 0.1px black;"> {{$ponto->saida_almoco}} </td>
+                                    <td style="border: solid 0.1px black;"> {{$ponto->saida}} </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -107,11 +106,9 @@
 
 {{-- Removendo o registro --}}
 <script>
-    function remover(ponto, funcionario){
-        $confirmacao = confirm('Tem certeza que deseja remover este Funcionário?');
-
-        if($confirmacao){
-            window.location.href = "{{url('/')}}/ponto/"+ponto+"/destroy"
-        }
-    }
+    // function GerarPDF(){
+    //     console.log('oi');
+    //     var win = window.open(url, '_blank');
+    //     win.focus();
+    // }
 </script>
