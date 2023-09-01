@@ -17,16 +17,14 @@
 <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
 <script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+{{-- <script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script> --}}
 <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
 <!-- ChartJS -->
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
 <script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
 <script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
@@ -138,15 +136,6 @@
             "initComplete": function () {
                 $('div.fg-toolbar:first').append('<span>Titulo</span>');
             },
-            "buttons": 
-            [
-                {"extend": "copyHtml5","text": "COPIAR"},          
-                {"extend": "pdf","text": "PDF"},
-                {"extend": "csv","text": "CSV"},
-                {"extend": "excelHtml5","text": "EXCEL"},
-                {"extend": "print","text": "IMPRIMIR"},
-                {"extend": "colvis","text": "COLUNAS"}
-            ],
             language: {
                 lengthMenu: "Exibir _MENU_ records por página",
                 zeroRecords: "Nenhum registro encontrado.",
@@ -157,14 +146,6 @@
                 paginate: {
                     previous: "Anterior",
                     next: "Próximo"
-                },
-                buttons: {
-                    copyTitle: 'Copiado para área de transferência',
-                    copyKeys: 'Appuyez sur <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> pour copier les données du tableau à votre presse-papiers. <br><br>Pour annuler, cliquez sur ce message ou appuyez sur Echap.',
-                    copySuccess: {
-                        _: '%d linhas copiadas',
-                        1: '1 linha copiada'
-                    }
                 }
             }
         }).buttons().container().appendTo('#table-wrapper .col-md-6:eq(0)');
