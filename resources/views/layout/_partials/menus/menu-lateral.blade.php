@@ -42,4 +42,19 @@
     </li>
   </ul>
 </nav>
+
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="horaextra" role="menu">
+    <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+    <li class="nav-item menu">
+      <a href="{{ route('escala.index') }}" class="nav-link">
+        <i class="nav-icon fas fa-calendar-alt fa-lg"></i>
+        <p>
+          Escala
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
 <!-- /.sidebar-menu -->

@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     ResetaSenhaController,
     UsuarioController,
     ErrositefController,
+    EscalaController,
     PontoController
 };
 
@@ -75,4 +76,9 @@ Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], functi
     Route::get('pdf', [PontoController::class, 'pdf'])->name('pdf');
     Route::get('xlsx', [PontoController::class, 'xlsx'])->name('xlsx');
     Route::get('csv', [PontoController::class, 'csv'])->name('csv');
+});
+
+// ESCALA
+Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], function(){
+    Route::get('/index', [EscalaController::class, 'index'])->name('index');
 });
