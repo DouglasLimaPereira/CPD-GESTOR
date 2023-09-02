@@ -277,7 +277,7 @@ class PontoController extends Controller
         $hora_extra = carbon::create('00','00','00');
 
         #------------------------------------
-        #| Iniciando a hora negativa zerada |
+        #| Calculando a hora negativa |
         #------------------------------------
         $hora_negativas = carbon::create('00','00','00');
 
@@ -328,7 +328,7 @@ class PontoController extends Controller
         #------------------------------------
         $hora_extra = $hora_extra->toTimeString();
         $hora_negativas = $hora_negativas->toTimeString();
-
+        
         return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas'));
     }
 
