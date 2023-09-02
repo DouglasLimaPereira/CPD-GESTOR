@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="row">
+        {{--  @dd($hora_extra, $hora_negativas)  --}}
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -66,4 +67,3 @@
         </div>
     </div>
 @endsection
-
