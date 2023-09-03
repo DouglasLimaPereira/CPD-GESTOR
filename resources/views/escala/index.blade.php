@@ -18,21 +18,57 @@
 
     {{-- @section('scripts') --}}
         <script>
-            {{--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>  --}}
-            {{--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>  --}}
             document.addEventListener('DOMContentLoaded', function() {
                 let calendarEl = document.getElementById('calendar');
                  
                 let calendar = new FullCalendar.Calendar(calendarEl, {
-                    locale: 'pt-BR',
-                    initialView: 'dayGridMonth',
-                    timeZone: 'America/Fortaleza',
+
                     header: {
+                        left: 'dayGridMonth,timeGridWeek,timeGridDay custom1',
+                        center: 'title',
+                        right: 'custom2 prevYear,prev,next,nextYear'
+                    },
+                    footer: {
+                        left: 'custom1,custom2',
+                        center: '',
+                        right: 'prev,next'
+                    },
+
+                    themeSystem: 'bootstrap',
+                    timeZone: 'America/Fortaleza',
+                    locale: 'pt-BR',
+                    
+                    dayMaxEventRows: true, 
+                    views: {
+                        timeGrid: {
+                        dayMaxEventRows: 6
+                        }
+                    },
+                    
+                    initialView: 'dayGridMonth',
+                    
+                    contentHeight: 730,
+
                        left: 'prev, today',
                        center: 'title',
-                       right: 'next, month,agendaWeek,agendaDay,listMonth'
+                       right: 'next, month,agendaWeek,agendaDay,listMonth',
+                    
+
+                     events: @json($escala ?? ''),
+                     eventColor: '#007bff',
+                     eventDisplay: {
+                         backgroundColor: '#007bff',
+                     },
+
+                    eventClick: function(info) {
+                        alert('Event: ' + info.event.title);
                     },
-                     events: @json($events),
+
+                    
+                    dateClick: function(info) {
+                        alert('Date: ' + info.dateStr);
+                        alert('Resource ID: ' + info.resource.id);
+                      }
                 });
 
                  calendar.render();
