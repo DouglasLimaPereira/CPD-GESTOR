@@ -10,6 +10,7 @@ class Escala extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'evento',
         'data_inicio',
         'data_fim'

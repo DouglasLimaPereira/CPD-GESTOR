@@ -15,6 +15,7 @@ class CreateEscalasTable extends Migration
     {
         Schema::create('escalas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('evento');
             $table->datetime('data_inicio');
             $table->datetime('data_fim');

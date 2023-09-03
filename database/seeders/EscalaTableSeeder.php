@@ -1,10 +1,12 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Escala;
-use Illuminate\Database\Seeder;
 
-class EscalaSeeder extends Seeder
+
+use Illuminate\Database\Seeder;
+use App\Models\Escala;
+
+class EscalaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,26 +18,31 @@ class EscalaSeeder extends Seeder
         
         $escala =[
             [
+                'user_id' => 1,
                 'evento' => 'DSR',
                 'data_inicio' => '2023-09-07 07:00:00',
                 'data_fim' => '2023-09-07 22:00:00',
             ],
             [
+                'user_id' => 1,
                 'evento' => 'FOLGA',
                 'data_inicio' => '2023-09-10 07:00:00',
                 'data_fim' => '2023-09-10 22:00:00',
             ],
             [
+                'user_id' => 1,
                 'evento' => 'DSR',
                 'data_inicio' => '2023-09-14 07:00:00',
                 'data_fim' => '2023-09-14 22:00:00',
             ],
             [
+                'user_id' => 1,
                 'evento' => 'DSR',
                 'data_inicio' => '2023-09-21 07:00:00',
                 'data_fim' => '2023-09-21 22:00:00',
             ],
             [
+                'user_id' => 1,
                 'evento' => 'DSR',
                 'data_inicio' => '2023-09-28 07:00:00',
                 'data_fim' => '2023-09-28 22:00:00',

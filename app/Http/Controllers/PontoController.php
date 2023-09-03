@@ -94,6 +94,7 @@ class PontoController extends Controller
             // verificando se existe o ponto de saida e redirecionando para um recurso calculador de hora extra
             if (isset($request->saida) && $request->saida != '') {
                 $horas = $this->hora_extra->calcularHoraExtra($request);
+
                 // --------------------------------------------------------------------------
                 // Verificando se a hora é negativa ou positiva e atalizando o banco de dados
                 // --------------------------------------------------------------------------
@@ -232,7 +233,7 @@ class PontoController extends Controller
     public function HoraExtra()
     {
         #-----------------------------------------------------------------------------------
-        #| Verificando se a data atual é maior que dia 21 e menor que dia 1 do próximo mês |
+        #| Verificando se a data atual é maior que dia 21 do mês atual e menor que dia 1 do próximo mês |
         #-----------------------------------------------------------------------------------
         if (carbon::now() >= carbon::now()->day(21) && carbon::now() < carbon::now()->add(1, 'month')->day(1)) {
             #------------------------------------------
@@ -246,7 +247,7 @@ class PontoController extends Controller
         
         }else {
             #----------------------------------------------------------------------------------------------------
-            #| Caso não caia na condição acima pega o dia 21 do mês anterior e dia atual do mês  a ser comparado|
+            #| Caso não caia na condição acima pega o dia 21 do mês anterior e dia atual do mês a ser comparado|
             #----------------------------------------------------------------------------------------------------
 
             #------------------------------------------
@@ -293,7 +294,6 @@ class PontoController extends Controller
                 $hora_negativas->addHours($horas[0]);
                 $hora_negativas->addMinutes($horas[1]);
                 $hora_negativas->addSeconds($horas[2]);
-
             }
         }
         
@@ -345,7 +345,7 @@ class PontoController extends Controller
         }elseif (isset($request->data_inicio)) {
             $pontos = $pontos->where('data', $request->data_inicio);
         }
-
+        
         if (isset($request->entrada)) {
             $pontos = $pontos->where('entrada', $request->entrada);
         }
