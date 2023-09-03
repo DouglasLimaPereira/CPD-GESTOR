@@ -14,6 +14,7 @@ class EscalaController extends Controller
 
         foreach ($escalas as $key => $item) {
             $escala[] = [
+                'id' => $item->id,
                 'title' => $item->evento,
                 'start' => $item->data_inicio,
                 'end' => $item->data_fim,

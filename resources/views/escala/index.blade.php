@@ -11,6 +11,7 @@
             <div class="card">
                 <div class="card-body">
                     <div id="calendar"></div>
+                    @include('escala._partials.modal-data-escala')
                 </div>
             </div>
         </div>
@@ -20,7 +21,6 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 let calendarEl = document.getElementById('calendar');
-                 
                 let calendar = new FullCalendar.Calendar(calendarEl, {
 
                     header: {
@@ -37,6 +37,11 @@
                     themeSystem: 'bootstrap',
                     timeZone: 'America/Fortaleza',
                     locale: 'pt-BR',
+                    droppable: true,
+                    selectable: true,
+                    selecthelper: true,
+                    contentHeight: 730,
+                    initialView: 'dayGridMonth',
                     
                     dayMaxEventRows: true, 
                     views: {
@@ -45,33 +50,23 @@
                         }
                     },
                     
-                    initialView: 'dayGridMonth',
-                    
-                    contentHeight: 730,
-
-                       left: 'prev, today',
-                       center: 'title',
-                       right: 'next, month,agendaWeek,agendaDay,listMonth',
-                    
-
-                     events: @json($escala ?? ''),
-                     eventColor: '#007bff',
-                     eventDisplay: {
-                         backgroundColor: '#007bff',
-                     },
-
-                    eventClick: function(info) {
-                        alert('Event: ' + info.event.title);
+                    events: @json($escala ?? ''),
+                    eventDisplay: {
+                        backgroundColor: '#007bff',
                     },
 
+                    select: function(event) {
+                        $('#data_escala #evento').val(event.title);
+                        $('#data_escala #data_inicio').val(event.start);
+                        $('#data_escala #data_fim').val(event.end);
+                        $('#data_escala #user_id').val(event.usuario);
+                        $('#data_escala').modal('toggle');
+                    }
                     
-                    dateClick: function(info) {
-                        alert('Date: ' + info.dateStr);
-                        alert('Resource ID: ' + info.resource.id);
-                      }
                 });
 
                  calendar.render();
+                 new Draggable(draggableEl);
              });            
         </script>
     {{-- @endsection --}}
