@@ -10,16 +10,17 @@ class EscalaController extends Controller
 {
     public function index(){
         $escalas = Escala::all();   
-        $events = [];
+        $escala = [];
 
         foreach ($escalas as $key => $item) {
-            $events[] = [
+            $escala[] = [
+                'id' => $item->id,
                 'title' => $item->evento,
                 'start' => $item->data_inicio,
                 'end' => $item->data_fim,
             ];
         }
         
-        return view('escala.index', compact('events'));
+        return view('escala.index', compact('escala'));
     }
 }
