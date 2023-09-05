@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CanteiroController;
 use App\Http\Controllers\Api\FatorController;
 use App\Http\Controllers\Api\PessoaController;
 use App\Http\Controllers\Api\ErrositefController;
+use App\Http\Controllers\Api\EscalaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,5 @@ Route::get('gera-senha', function(){
 Route::get('/companies/{company_id}/pessoas/{id}/get-email', [PessoaController::class, 'getEmail'])->name('pessoa.getemail');
 
 Route::get('errossitef/{cod_erro}/consultar', [ErrositefController::class, 'consultar'])->name('api.consultar_erro_sitef');
+
+Route::get('/escala/{escala_id}/get-escala', [EscalaController::class, 'getescala'])->name('getescala');

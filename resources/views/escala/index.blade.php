@@ -56,17 +56,36 @@
                     },
 
                     select: function(event) {
-                        $('#data_escala #evento').val(event.title);
-                        $('#data_escala #data_inicio').val(event.start);
-                        $('#data_escala #data_fim').val(event.end);
-                        $('#data_escala #user_id').val(event.usuario);
-                        $('#data_escala').modal('toggle');
-                    }
+                       console.log(event.event.id);
+                            
+
+
+                        // function getEscala(event.id){
+                        //     console.log(event.id);
+                        //     if(val != ""){
+                        //         $.ajax({
+                        //             url: "{{url('/')}}/api/escala/"+val+"/get-escala",
+                        //             method: 'GET',
+                        //             success: function(val){
+                        //                 $('#email').val(val)
+                        //             },
+                        //             error: function(e){
+                        //                 console.log(e)
+                        //             }
+                        //         })
+                        //     }
+                        // }
+
+                        // $('#data_escala #evento').val(event.title);
+                        // $('#data_escala #data_inicio').val(event.start);
+                        // $('#data_escala #data_fim').val(event.end);
+                        // $('#data_escala #user_id').val(event.usuario);
+                        // $('#data_escala').modal('toggle');
+                    },
                     
                 });
 
                  calendar.render();
-                 new Draggable(draggableEl);
              });            
         </script>
     {{-- @endsection --}}
