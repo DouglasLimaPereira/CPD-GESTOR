@@ -58,6 +58,7 @@
     function getErro()
     {
         let cod_erro = $('#codigo').val()
+        $('#codigoinfo').val('')
         $.ajax({
             url: "{{url('/')}}/api/errositef/codigo/"+cod_erro+"/consultar",
             method: 'GET',
@@ -69,7 +70,7 @@
                     $('#retentativa').append(dados.retentativa)
                     $('#resulterro').show()
                 }else{
-                    $('#resulterro').show()
+                    {{--  $('#resulterro').show()  --}}
                 }
             },
             error: function(){
