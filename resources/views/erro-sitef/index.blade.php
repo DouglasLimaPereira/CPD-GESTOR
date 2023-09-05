@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group" id="resulterro" style="display: none;">
-                                <div class="callout callout-info" style="background-color: #d4d8df">
+                                <div class="callout callout-info" style="background-color: #dee1e5">
                                     <b> <h4 id="codigoinfo"> </h4></b>
                                     <b> <h4 id="titulo"> </h4></b>
                                     <b> <h4 id="descricao"> </h4></b>

@@ -10,9 +10,6 @@ class ErrositefController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->codigo);
-        // $erro_sitef = Errositef::all();
-        // dd($rows);
         return view('erro-sitef.index');
     }
 

@@ -40,7 +40,7 @@
                     {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <i class="fas fa-arrow-circle-right"></i>
                     </a>  --}}
-                    <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
+                    <a href="{{ route('erro-sitef.index') }}" class="small-box-footer">
                         <i class="fas fa-arrow-circle-right"></i>
                     </a>
             </div>
