@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ErrositefController extends Controller
 {
     public function consultar($cod_erro){
-        dd($cod_erro);
-        return Errositef::firstWhere('codigo', $cod_erro);
+        $erro = Errositef::firstWhere('codigo', $cod_erro);
+        return response()->json($erro);
     }
 }

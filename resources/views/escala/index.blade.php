@@ -22,18 +22,6 @@
             document.addEventListener('DOMContentLoaded', function() {
                 let calendarEl = document.getElementById('calendar');
                 let calendar = new FullCalendar.Calendar(calendarEl, {
-
-                    header: {
-                        left: 'dayGridMonth,timeGridWeek,timeGridDay custom1',
-                        center: 'title',
-                        right: 'custom2 prevYear,prev,next,nextYear'
-                    },
-                    footer: {
-                        left: 'custom1,custom2',
-                        center: '',
-                        right: 'prev,next'
-                    },
-
                     themeSystem: 'bootstrap',
                     timeZone: 'America/Fortaleza',
                     locale: 'pt-BR',
@@ -42,6 +30,18 @@
                     selecthelper: true,
                     contentHeight: 730,
                     initialView: 'dayGridMonth',
+
+                    header: {
+                        start: 'dayGridMonth,timeGridWeek,timeGridDay custom1',
+                        center: 'title',
+                        end: 'custom2 prevYear,prev,next,nextYear'
+                    },
+                    footer: {
+                        start: 'custom1,custom2',
+                        center: '',
+                        end: 'prev,next'
+                    },
+
                     
                     dayMaxEventRows: true, 
                     views: {

@@ -37,7 +37,10 @@
                 <div class="icon">
                     <i class="fas fa-bug fa-lg" style="color: #000000;"></i>
                 </div>
-                    <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </a>  --}}
+                    <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
                         <i class="fas fa-arrow-circle-right"></i>
                     </a>
             </div>

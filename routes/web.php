@@ -52,14 +52,14 @@ Route::group(['prefix' => 'usuarios'], function(){
     Route::post('/store', [UsuarioController::class, 'store'])->name('usuarios.store');
 });
 
-Route::group(['prefix'=>'erro-sitef', 'middleware'=>['auth']], function(){
+Route::group(['prefix'=>'erro-sitef', 'as'=>'erro-sitef.', 'middleware'=>['auth']], function(){
     // MÓDULOS
-    Route::get('/', [ErrositefController::class, 'index'])->name('erro-sitef.index');
-    Route::get('/create', [ErrositefController::class, 'create'])->name('erro-sitef.create');
-    Route::post('/store', [ErrositefController::class, 'store'])->name('erro-sitef.store');
-    Route::get('/{erro_sitef}/edit', [ErrositefController::class, 'edit'])->name('erro-sitef.edit');
-    Route::put('/{erro_sitef}/update', [ErrositefController::class, 'update'])->name('erro-sitef.update');
-    Route::get('/{erro_sitef}/destroy', [ErrositefController::class, 'destroy'])->name('erro-sitef.destroy');
+    Route::get('/', [ErrositefController::class, 'index'])->name('index');
+    Route::get('/create', [ErrositefController::class, 'create'])->name('create');
+    Route::post('/store', [ErrositefController::class, 'store'])->name('store');
+    Route::get('/{erro_sitef}/edit', [ErrositefController::class, 'edit'])->name('edit');
+    Route::put('/{erro_sitef}/update', [ErrositefController::class, 'update'])->name('update');
+    Route::get('/{erro_sitef}/destroy', [ErrositefController::class, 'destroy'])->name('destroy');
 });
 
     // ROTAS PONTOS

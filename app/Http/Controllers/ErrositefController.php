@@ -11,9 +11,9 @@ class ErrositefController extends Controller
     public function index(Request $request)
     {
         // dd($request->codigo);
-        $rows = Errositef::where('codigo', '00')->get();
+        // $erro_sitef = Errositef::all();
         // dd($rows);
-        return view('erro-sitef.index', compact('rows'));
+        return view('erro-sitef.index');
     }
 
     public function create()

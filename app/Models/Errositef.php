@@ -9,7 +9,7 @@ class Errositef extends Model
 {
     use HasFactory;
 
-    protected $table = 'Errositefes';
+    protected $table = 'errositefes';
     protected $fillable = [
         'codigo',
         'titulo',

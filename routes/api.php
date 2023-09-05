@@ -23,4 +23,4 @@ Route::get('gera-senha', function(){
 
 Route::get('/companies/{company_id}/pessoas/{id}/get-email', [PessoaController::class, 'getEmail'])->name('pessoa.getemail');
 
-Route::get('errossitef/{cod_erro}/consultar', [ErrositefController::class, 'consultar'])->name('api.consultar_erro_sitef');
+Route::get('errositef/codigo/{cod_erro}/consultar', [ErrositefController::class, 'consultar'])->name('api.consultar_erro_sitef');
