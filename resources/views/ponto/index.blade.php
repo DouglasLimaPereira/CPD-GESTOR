@@ -24,10 +24,10 @@
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th>Nome</th>
-                                <th>Matrícula</th>
-                                <th>Situação Admissional</th>
-                                <th>data Admissão</th>
+                                <th>Entrada</th>
+                                <th>Saida P/Almoço</th>
+                                <th>Volta P/Almoço</th>
+                                <th>Saída</th>
                                 <th>AÇÕES</th>
                             </tr>
                         </thead>

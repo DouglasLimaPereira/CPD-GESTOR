@@ -2,7 +2,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="erro" role="menu">
     <li class="nav-item menu">
       <a href="{{ route('erro-sitef.index')}}" class="nav-link">
-        <i class="nav-icon fas fa-history fa-lg"></i>
+        <i class="nav-icon fas fa-exclamation-triangle fa-lg"></i>
         <p>
           Consultar Erro Sitef
         </p>

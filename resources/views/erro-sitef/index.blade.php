@@ -25,25 +25,25 @@
             <div class="card-body">
                 {{--  <form action="{{route('erro-sitef.index')}}" method="GET" enctype="multipart/form-data">   --}}
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="codigo">Código *</label>
                                 <input type="text" class="form-control" name="codigo" id="codigo" value="{{isset($erro_sitef) ? $erro_sitef->codigo : old('codigo')}}" required>
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <div class="form-group" id="resulterro" style="display: none;">
-                                <div class="callout callout-info">
-                                    <b>Código: </b>  <b id="codigoinfo"></b><br>
-                                    <b>Titulo: </b>  <b id="titulo"></b><br>
-                                    <b>Descrição: </b>  <b id="descricao"></b><br>
-                                    <b>Permite Retentativa? : </b> <b id="retentativa"></b><br>
+                                <div class="callout callout-info" style="background-color: #d4d8df">
+                                    <b> <h4 id="codigoinfo"> </h4></b>
+                                    <b> <h4 id="titulo"> </h4></b>
+                                    <b> <h4 id="descricao"> </h4></b>
+                                    <b> <h4 id="retentativa"> </h4></b>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <hr>
-                            <button class="btn btn-sm btn-success" onclick="getErro()"> <i class="fas fa-search"></i> Consultar </button>
+                            <button class="btn btn-sm btn-success float-right" onclick="getErro()"> <i class="fas fa-search"></i> Consultar </button>
                         </div>
                     </div>
                 {{--  </form>  --}}
@@ -62,12 +62,18 @@
             url: "{{url('/')}}/api/errositef/codigo/"+cod_erro+"/consultar",
             method: 'GET',
             success: function(dados){
-                $('#codigoinfo').append('')
+                $('#codigoinfo').html("")
                 if (dados){
-                    $('#codigoinfo').append(dados.codigo)
-                    $('#titulo').append(dados.titulo)
-                    $('#descricao').append(dados.descricao)
-                    $('#retentativa').append(dados.retentativa)
+                    $('#codigoinfo').html('<b>Código: 🔍</b>'+dados.codigo)
+                    $('#titulo').html('<b>Descrição: ⚠️💻</b>'+dados.titulo)
+                    $('#descricao').html('<b>Ação: 🗣</b>'+dados.descricao)
+                    if (dados.retentativa == 1) {
+                        $('#retentativa').html('<b>Permite Retentativa?: 👍</b>')
+                    }else if(dados.retentativa == 0){
+                        $('#retentativa').html('<b>Permite Retentativa?:</b> 👎</b>')
+                    }else{
+
+                    }
                     $('#resulterro').show()
                 }else{
                     {{--  $('#resulterro').show()  --}}
