@@ -58,11 +58,11 @@
     function getErro()
     {
         let cod_erro = $('#codigo').val()
-        $('#codigoinfo').val('')
         $.ajax({
             url: "{{url('/')}}/api/errositef/codigo/"+cod_erro+"/consultar",
             method: 'GET',
             success: function(dados){
+                $('#codigoinfo').append('')
                 if (dados){
                     $('#codigoinfo').append(dados.codigo)
                     $('#titulo').append(dados.titulo)

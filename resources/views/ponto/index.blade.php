@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="table-datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
+                    <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
                         <thead>
                             <tr>
                                 <th>Data</th>
@@ -82,3 +82,29 @@
         }
     }
 </script>
+
+<script>
+    UTILIZADO NOS DATATABLE 
+    $(function () {
+          $("#table_datatable").DataTable({
+              "responsive": true,
+              "lengthChange": false, 
+              "autoWidth": true,
+              "initComplete": function () {
+                  $('div.fg-toolbar:first').append('<span>Titulo</span>');
+              },
+              language: {
+                  lengthMenu: "Exibir _MENU_ records por página",
+                  zeroRecords: "Nenhum registro encontrado.",
+                  info: "Exibindo página _PAGE_ de _PAGES_",
+                  infoEmpty: "Não há registros disponíveis.",
+                  infoFiltered: "(Filtrado from _MAX_ total registros)",
+                  search: "Buscar",
+                  paginate: {
+                      previous: "Anterior",
+                      next: "Próximo"
+                  }
+              }
+          });
+      });
+  </script>
