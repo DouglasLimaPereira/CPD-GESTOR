@@ -24,11 +24,21 @@
             <!-- /.card-header -->
             <div class="card-body">
                 {{--  <form action="{{route('erro-sitef.index')}}" method="GET" enctype="multipart/form-data">   --}}
-                    <div class="row">
+                    <div class="col-md-12">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="codigo">Código *</label>
                                 <input type="text" class="form-control" name="codigo" id="codigo" value="{{isset($erro_sitef) ? $erro_sitef->codigo : old('codigo')}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group" id="resulterro" style="display: none;">
+                                <div class="callout callout-info">
+                                    <b>Código: </b>  <b id="codigoinfo"></b><br>
+                                    <b>Titulo: </b>  <b id="titulo"></b><br>
+                                    <b>Descrição: </b>  <b id="descricao"></b><br>
+                                    <b>Permite Retentativa? : </b> <b id="retentativa"></b><br>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-9">
@@ -37,16 +47,6 @@
                         </div>
                     </div>
                 {{--  </form>  --}}
-                <div class="row" style="display: none;">
-                    <div class="col-md-6">
-                        <div class="callout callout-info">
-                            <b>Código: </b>  <b id="codigo"></b><br>
-                            <b>Titulo: </b>  <b id="titulo"></b><br>
-                            <b>Descrição: </b>  <b id="descricao"></b><br>
-                            <b>Permite Retentativa? : </b> <b id="retentativa"></b><br>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -58,13 +58,19 @@
     function getErro()
     {
         let cod_erro = $('#codigo').val()
-
         $.ajax({
-            url: "{{url('/')}}/errositef/codigo/"+cod_erro+"/consultar",
+            url: "{{url('/')}}/api/errositef/codigo/"+cod_erro+"/consultar",
             method: 'GET',
             success: function(dados){
-                console.log(dados)
-                
+                if (dados){
+                    $('#codigoinfo').append(dados.codigo)
+                    $('#titulo').append(dados.titulo)
+                    $('#descricao').append(dados.descricao)
+                    $('#retentativa').append(dados.retentativa)
+                    $('#resulterro').show()
+                }else{
+                    $('#resulterro').show()
+                }
             },
             error: function(){
                 console.log('Sem resultados')
