@@ -15,7 +15,7 @@
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a href="{{route('erro-sitef.create')}}" class="nav-link active"><i class="fas fa-plus-circle"></i> NOVO ERRO</a>
+                                <a href="{{route('erro-sitef.create')}}" class="nav-link active btn-info"><i class="fas fa-plus-circle"></i> NOVO ERRO</a>
                             </li>
                         </ul>
                     </div>

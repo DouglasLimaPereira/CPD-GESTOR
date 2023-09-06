@@ -32,18 +32,17 @@
             selecthelper: true,
             contentHeight: 730,
             
-            dayMaxEventRows: true, 
-            views: {
-                timeGrid: {
-                dayMaxEventRows: 3
-                }
-            },
-            
             events: @json($escala ?? ''),
             eventDisplay: {
                 backgroundColor: '#007bff',
             },
-
+            
+            dayMaxEventRows: true, // for all non-TimeGrid views
+            views: {
+                timeGrid: {
+                dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
+                }
+            },
             select: function(event) {
                 console.log(event)
                 $('#data_escala #evento').val(event.title);

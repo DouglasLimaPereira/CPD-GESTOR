@@ -16,7 +16,7 @@
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
                                 <div class="dropdown">
-                                    <a class="btn btn-primary btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <a class="btn btn-info btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                         Gerar Relatório
                                     </a>
                                     
