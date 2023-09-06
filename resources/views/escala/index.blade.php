@@ -44,12 +44,14 @@
                 backgroundColor: '#007bff',
             },
 
-            select: function(info) {
-                $('#data_escala').modal('show')
-                console.log(info.startStr);
-                console.log(info.event.id);
-            },
-            
+            select: function(event) {
+                console.log(event)
+                $('#data_escala #evento').val(event.title);
+                $('#data_escala #data_inicio').val(event.startStr);
+                $('#data_escala #data_fim').val(event.endStr);
+                $('#data_escala #user_id').val(event.usuario);
+                $('#data_escala').modal('toggle');
+            }
         });
 
             calendar.render();

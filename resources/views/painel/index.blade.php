@@ -5,87 +5,80 @@
 @section('page-title', 'Painel de Controle')
 
 @section('content')
-
-<h4 class="mt-3"><em>DADOS DO USUÁRIO</em></h4>
-    <div class="row">
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4>Minhas Informações</h4>
-                    <br>
-                    <br>
-                </div>
-                <div class="icon">
-                    <i class="far fa-user " style="color: #000000;"></i>
-                </div>
-                    <a href="{{route('usuarios.index')}}" class="small-box-footer">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
+<h4 class="mt-3 MB-3"><em>ACESSO RAPÍDO</em></h4>
+<div class="row">
+    <div class="col">
+        <div class="small-box bg-info mt-3">
+            <div class="inner">
+                <h4>Minhas Informações</h4>
+                <br>
+                <br>
             </div>
+            <div class="icon">
+                <i class="far fa-user fa-xs" style="color: #000000;"></i>
+            </div>
+                <a href="{{route('usuarios.index')}}" class="small-box-footer">
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
     
-    <h4 class="mt-3"><em>ERROS SITEF</em></h4>
-    <div class="row">
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4>Consultar erro Sitef</h4>
-                    <br>
-                    <br>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-bug fa-lg" style="color: #000000;"></i>
-                </div>
-                    {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>  --}}
-                    <a href="{{ route('erro-sitef.index') }}" class="small-box-footer">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
+    <div class="col">
+        <h4 class="mt-3"></h4>
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h4>Consultar erro Sitef</h4>
+                <br>
+                <br>
             </div>
+            <div class="icon">
+                <i class="fas fa-bug fa-xs" style="color: #000000;"></i>
+            </div>
+            {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>  --}}
+                <a href="{{ route('erro-sitef.index') }}" class="small-box-footer">
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
-
-    <h4 class="mt-3"><em>HORAS EXTRAS</em></h4>
-    <div class="row">
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4>{{$hora_extra}}</h4>
-                    <br>
-                    <br>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-hourglass-half " style="color: #000000;"></i>
-                </div>
-                    <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
+    
+    <div class="col">
+        <h4 class="mt-3"></h4>
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h4>{{$hora_extra}}</h4>
+                <br>
+                <br>
             </div>
+            <div class="icon">
+                <i class="fas fa-hourglass-half fa-xs" style="color: #000000;"></i>
+            </div>
+                <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
-
-    <h4 class="mt-3"><em>RELATÓRIOS</em></h4>
-    <div class="row">
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4>PDF / CSV / XLS</h4>
-                    <br>
-                    <br>
-                </div>
-                <div class="icon">
-                    <i class="far fa-file-pdf" style="color: #000000;"></i>
-                </div>
-                    <a href="{{ route('ponto.relatorio') }}" class="small-box-footer">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </a>
+    
+    <div class="col">
+        <h4 class="mt-3"></h4>
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h4>Relatório</h4>
+                <br>
+                <br>
             </div>
+            <div class="icon">
+                <i class="far fa-file-pdf fa-xs" style="color: #000000;"></i>
+            </div>
+            <a href="{{ route('ponto.relatorio') }}" class="small-box-footer">
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
-
-    @include('erro-sitef._partials.modal-consulta-erros-sitef')
+</div>
+<hr>        
+@include('erro-sitef._partials.modal-consulta-erros-sitef')
 @endsection
 
 @section('scripts')

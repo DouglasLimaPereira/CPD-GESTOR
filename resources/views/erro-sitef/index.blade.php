@@ -28,7 +28,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="codigo">Código *</label>
-                                <input type="text" class="form-control" name="codigo" id="codigo" value="{{isset($erro_sitef) ? $erro_sitef->codigo : old('codigo')}}" required>
+                                <input type="text" class="form-control" name="codigo" id="codigo" onchange="getErro()" value="{{isset($erro_sitef) ? $erro_sitef->codigo : old('codigo')}}" required>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -41,10 +41,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        {{--  <div class="col-md-12">
                             <hr>
                             <button class="btn btn-sm btn-success float-right" onclick="getErro()"> <i class="fas fa-search"></i> Consultar </button>
-                        </div>
+                        </div>  --}}
                     </div>
                 {{--  </form>  --}}
             </div>
@@ -75,6 +75,7 @@
                         $('#codigoinfo').html("")
                         $('#titulo').html('<b class="text-danger">Nenhum Registro Encontrado </b>')
                         $('#descricao').html('')
+                        $('#retentativa').html('')
                     }
                     $('#resulterro').show()
                 }else{

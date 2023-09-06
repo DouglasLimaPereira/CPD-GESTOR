@@ -14,7 +14,7 @@
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a href="{{ route('ponto.create') }}" class="nav-link active"><i class="fas fa-plus-circle"></i> NOVO PONTO</a>
+                                <a href="{{ route('ponto.create') }}" class="nav-link active btn-info"><i class="fas fa-plus-circle"></i> NOVO PONTO</a>
                             </li>
                         </ul>
                     </div>

@@ -7,10 +7,6 @@
                         <div class="col-md-10">
                             FILTRO
                         </div>
-
-                        <div class="col-md-2">
-                            <button type="submit" class="form-control btn btn-light">Filtrar</button>
-                        </div>
                     </div>
                 </div>
                 
@@ -57,6 +53,11 @@
                               <input type="time" class="form-control" name="saida" id="entrada" value="{{ (isset($_GET['saida'])) ? $_GET['saida'] : '' }}">
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-2 float-right">
+                        <button type="submit" class="form-control btn btn-info">Filtrar</button>
                     </div>
                 </div>
             </div>

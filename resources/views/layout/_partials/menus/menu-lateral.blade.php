@@ -26,14 +26,14 @@
       <ul class="nav nav-treeview">
         <li class="nav-item">
           <a href="{{ route('ponto.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-user-clock fa-lg"></i>
+            <i class="nav-icon fas fa-stopwatch-20 fa-lg"></i>
              <p>Pontos</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('ponto.relatorio') }}" class="nav-link">
             <i class="nav-icon far fa-file-pdf fa-lg"></i>
-             <p>Relatório de Pontos Pdf</p>
+             <p>Relatório de Pontos</p>
           </a>
         </li>
       </ul>
@@ -47,7 +47,7 @@
          with font-awesome or any other icon font library -->
     <li class="nav-item menu">
       <a href="{{ route('ponto.hora-extra') }}" class="nav-link">
-        <i class="nav-icon fas fa-history fa-lg"></i>
+        <i class="nav-icon fas fa-user-clock fa-lg"></i>
         <p>
           Consultar horas
         </p>
@@ -62,7 +62,7 @@
          with font-awesome or any other icon font library -->
     <li class="nav-item menu">
       <a href="{{ route('escala.index') }}" class="nav-link">
-        <i class="nav-icon fas fa-calendar-alt fa-lg"></i>
+        <i class="nav-icon far fa-calendar-alt fa-lg"></i>
         <p>
           Escala
         </p>
