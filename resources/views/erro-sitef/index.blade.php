@@ -72,14 +72,14 @@
                     }else if(dados.retentativa == 0){
                         $('#retentativa').html('<b>Permite Retentativa?:</b> 👎</b>')
                     }else{
-                        $('#codigoinfo').html("")
-                        $('#titulo').html('<b class="text-danger">Nenhum Registro Encontrado </b>')
-                        $('#descricao').html('')
                         $('#retentativa').html('')
                     }
                     $('#resulterro').show()
                 }else{
-                    {{--  $('#resulterro').show()  --}}
+                    $('#codigoinfo').html("")
+                    $('#titulo').html('<b class="text-danger">Nenhum Registro Encontrado </b>')
+                    $('#descricao').html('')
+                    $('#retentativa').html('')
                 }
             },
             error: function(){

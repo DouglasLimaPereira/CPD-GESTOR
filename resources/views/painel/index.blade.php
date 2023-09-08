@@ -5,7 +5,7 @@
 @section('page-title', 'Painel de Controle')
 
 @section('content')
-<h4 class="mt-3 MB-3"><em>ACESSO RAPÍDO</em></h4>
+<h4 class="mt-3 MB-3"><em>ACESSO RÁPIDO</em></h4>
 <div class="row">
     <div class="col">
         <div class="small-box bg-info mt-3">

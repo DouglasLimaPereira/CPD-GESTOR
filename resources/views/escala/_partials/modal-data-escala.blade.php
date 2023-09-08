@@ -19,14 +19,14 @@
                 <div class="col-md-12">
                     <div class="form-gruop">
                         <label for="">Data Inicio <span class="text-danger">*</span></label>
-                        <input type="date" min="3" name="data_inicio" class="form-control" class="data_inicio" id="data_inicio" value="{{old('data_inicio')}}" required>
+                        <input type="datetime" min="3" name="data_inicio" class="form-control" class="data_inicio" id="data_inicio" value="{{old('data_inicio')}}" required>
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-gruop">
                         <label for="">Data Final <span class="text-danger">*</span></label>
-                        <input type="date" min="3" name="data_fim" class="form-control" class="data_fim" id="data_fim" value="{{old('data_fim')}}" required>
+                        <input type="datetime-local" min="3" name="data_fim" class="form-control" class="data_fim" id="data_fim" value="{{old('data_fim')}}" required>
                     </div>
                 </div>
             </div>
