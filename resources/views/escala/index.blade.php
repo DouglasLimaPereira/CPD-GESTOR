@@ -59,9 +59,22 @@
             },
             selectable: true,
             select: function(info) {
+                let dataFim = info.endStr.split('T') 
+                let dataInicio = info.startStr.split('T')
+
+                let horaInicio = dataInicio[1]
+                horaInicio = horaInicio.split(':', 2)
+                horaInicio = horaInicio[0]+':'+horaInicio[1]
+
+                let horaFim = dataFim[1]
+                horaFim = horaFim.split(':', 2)
+                horaFim = horaFim[0]+':'+horaFim[1]
+
+                console.log(horaInicio,horaFim)
+
                 $('#cad_escala #evento').val('');
-                $('#cad_escala #hora_inicio').val('');
-                $('#cad_escala #hora_fim').val('');
+                $('#cad_escala #hora_inicio').val(horaInicio);
+                $('#cad_escala #hora_fim').val(horaFim);
                 $('#cad_escala #data_inicio').val(info.startStr.toLocaleString()),
                 $('#cad_escala #data_fim').val(info.endStr.toLocaleString()),
                 $('#cad_escala').modal('show');
