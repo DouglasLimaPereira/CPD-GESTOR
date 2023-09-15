@@ -99,7 +99,6 @@
               <input class="form-control" type="time" min="6:40" max="23:25" id="hora_fim" name="hora_fim" required>
             </div>
           </div>
-          <hr>
           <span class="modal-footer text-danger">( * ) Campos Obrigatórios</span>
         </div>
         <div class="modal-footer">
