@@ -81,4 +81,6 @@ Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], functi
 // ESCALA
 Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], function(){
     Route::get('/index', [EscalaController::class, 'index'])->name('index');
+    Route::post('/store', [EscalaController::class, 'store'])->name('store');
+    Route::put('/update', [EscalaController::class, 'update'])->name('update');
 });

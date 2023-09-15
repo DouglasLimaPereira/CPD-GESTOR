@@ -23,4 +23,12 @@ class EscalaController extends Controller
         
         return view('escala.index', compact('escala'));
     }
+
+    public function store(Request $request){
+        dd($request->all());
+    }
+
+    public function update(Request $request, Escala $escala){
+        dd($request->all());
+    }
 }
