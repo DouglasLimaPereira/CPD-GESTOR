@@ -30,7 +30,7 @@
               <div class="row">
                   <div class="form-gruop col">
                       <label for="data_inicio">Data de Inicio <span class="text-danger">*</span></label>
-                      <input class="form-control" type="date" id="data_inicio" name="data_inicio" required readonly>
+                      <input class="form-control" type="date" id="data_inicio" name="data_inicio" required>
                   </div>
                   <div class="form-gruop col">
                     <label for="">Hora <span class="text-danger">*</span></label>
@@ -87,7 +87,7 @@
           <div class="row">
               <div class="form-gruop col">
                   <label for="data_inicio">Data de Inicio <span class="text-danger">*</span></label>
-                  <input class="form-control" type="date" min="" max="" id="data_inicio" name="data_inicio" required readonly>
+                  <input class="form-control" type="date" min="" max="" id="data_inicio" name="data_inicio" required>
               </div>
               <div class="form-gruop col">
                 <label for="">Hora <span class="text-danger">*</span></label>
