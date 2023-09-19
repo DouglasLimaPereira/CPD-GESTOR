@@ -12,6 +12,7 @@ class Escala extends Model
     protected $fillable = [
         'user_id',
         'evento',
+        'color',
         'data_inicio',
         'data_fim'
     ];

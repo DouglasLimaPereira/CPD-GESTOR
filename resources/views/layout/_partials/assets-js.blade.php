@@ -35,7 +35,8 @@
 {{-- Toastr --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-  <script>
+
+<script>
       // Utilização em formulários
       $(function(){
           $('#cnpj').mask('00.000.000/0000-00', {reverse: true})
@@ -108,7 +109,7 @@
 
 </script>
 
-<script>
+{{-- <script>
   // UTILIZADO NOS DATATABLE 
   $(function () {
         $("#table-datatable").DataTable({
@@ -132,7 +133,42 @@
             }
         }).buttons().container().appendTo('#table-wrapper .col-md-6:eq(0)');
     });
-</script>
+</script> --}}
+{{-- <script>
+  $(document).ready(function() {
+      $('#atualizarEscala').click( function(){
+        console.log(eventId);
+        $('#editEscala_form').submit(function() {
+          $.ajax({
+                url: "{{url('/')}}/escala/"+eventId+"/update",
+                Type: 'POST',
+                processData: false,
+                contentType: false,
+                data: {
+                    evento: $('#evento').value,
+                    data_inicio: $('#data_inicio').value,
+                    hora_inicio: $('#hora_inicio').value,
+                    data_fim: $('#data_fim').value,
+                    hora_fim: $('#hora_fim').value,
+                },
+                success: function(dados){
+                  console.log('sucesso');
+                },
+                error: function(e){
+                  console.log(e,'Sem resultados')
+                }
+            });
+        });
+      }) 
+      // $('#ajaxform').submit(function() {
+      //   // aplica as configurações do options ao ajaxSubmit
+      //   $(this).ajaxSubmit(options); 
 
+      //   // !!! Importante !!! 
+      //   // sempre retornar false para evitar o carregamento da página. Por baixo dos panos ele aplica 'event.preventDefault()'.
+      //   return false; 
+      // }); 
+  });
+</script> --}}
 @yield('scripts')
 
