@@ -34,7 +34,9 @@ class EscalaController extends Controller
                 return back()->withInput()->with('info', 'Hora de inicio da escala não pode ser menor ou igual que a hora final');
             }
 
-            if ($request['evento'] == 'DIA TRABALHADO') {
+            if ($request['evento'] == 'ATESTADO MEDICO') {
+                $color = '#94a4ad';
+            }elseif ($request['evento'] == 'DIA TRABALHADO') {
                 $color = '#0b5ed7';
             }elseif ($request['evento'] == 'FOLGA') {
                 $color = '#fc8403';
@@ -73,7 +75,9 @@ class EscalaController extends Controller
                 return back()->withInput()->with('info', 'Hora de inicio da escala não pode ser menor ou igual que a hora final');
             }
 
-            if ($request['evento'] == 'DIA TRABALHADO') {
+            if ($request['evento'] == 'ATESTADO MEDICO') {
+                $color = '#94a4ad';
+            }elseif ($request['evento'] == 'DIA TRABALHADO') {
                 $color = '#0b5ed7';
             }elseif ($request['evento'] == 'FOLGA') {
                 $color = '#fc8403';

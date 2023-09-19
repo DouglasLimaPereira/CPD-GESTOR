@@ -23,6 +23,7 @@
                         <label for="">Evento <span class="text-danger">*</span></label>
                         <select name="evento" class="form-control" id="evento" required>
                           <option value="">Selecione</option>
+                          <option value="ATESTADO MEDICO">Atestado Médico</option>
                           <option value="DIA TRABALHADO">Dia Trabalhado</option>
                           <option value="FOLGA">Folga</option>
                           <option value="FOLGA FERIADO">Folga Feriado</option>
@@ -83,6 +84,7 @@
                 <label for="">Evento <span class="text-danger">*</span></label>
                 <select name="evento" class="form-control" id="evento" required>
                   <option value="">Selecione</option>
+                  <option value="ATESTADO MEDICO">Atestado Médico</option>
                   <option value="DIA TRABALHADO">Dia Trabalhado</option>
                   <option value="FOLGA">Folga</option>
                   <option value="FOLGA FERIADO">Folga Feriado</option>
