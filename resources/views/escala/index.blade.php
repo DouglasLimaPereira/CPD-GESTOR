@@ -2,7 +2,7 @@
 
 @section('title', 'Escala')
 
-@section('page-title', 'Escala')
+{{-- @section('page-title', 'Escala') --}}
 
 @section('content')
 
@@ -23,7 +23,19 @@
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'pt-BR',
+                aspectRatio: 2,
                 dayMaxEventRows: true,
+                themeSystem: 'bootstrap',
+                headerToolbar: {
+                    start: 'prev', // will normally be on the left. if RTL, will be on the right
+                    center: 'title',
+                    end: 'today next' // will normally be on the right. if RTL, will be on the left
+                },
+                buttonText: {
+                    today: 'Dia Atual',
+                    prev: '◁ Mês Anterior',
+                    next: 'Próximo Mês ▷',
+                },
                 views: {
                     dayGridMonth: {
                         dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
@@ -31,9 +43,7 @@
                 },
     
                 events: @json($escala ?? ''),
-                eventDisplay: {
-                    backgroundColor: '#007bff',
-                },
+                eventDisplay: true,
     
                 eventClick: function(info) {
                     eventId = info.event.id
