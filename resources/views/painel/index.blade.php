@@ -12,7 +12,6 @@
             <div class="inner">
                 <h4>Minhas Informações</h4>
                 <br>
-                <br>
             </div>
             <div class="icon">
                 <i class="far fa-user fa-xs" style="color: #000000;"></i>
@@ -28,7 +27,6 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h4>Consultar erro Sitef</h4>
-                <br>
                 <br>
             </div>
             <div class="icon">
@@ -47,9 +45,8 @@
         <h4 class="mt-3"></h4>
         <div class="small-box bg-info">
             <div class="inner">
-                <h4>{{$hora_extra}}</h4>
-                <br>
-                <br>
+                <h4>Horas Extras</h4>
+                {{$hora_extra}}
             </div>
             <div class="icon">
                 <i class="fas fa-hourglass-half fa-xs" style="color: #000000;"></i>
@@ -65,7 +62,6 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h4>Relatório</h4>
-                <br>
                 <br>
             </div>
             <div class="icon">

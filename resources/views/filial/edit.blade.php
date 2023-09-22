@@ -1,16 +1,16 @@
 @extends('layout.app')
 
-@section('title', 'Erro Sitef - Novo')
+@section('title', 'Construtoras')
 
-@section('page-title', 'Erro Sitef')
+@section('page-title', 'Construtoras')
 
 @section('content')
-
+    
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Cadastro</h3>
+                    <h3 class="card-title"><i class="fas fa-pencil-alt"></i> Edição</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             {{-- <li class="nav-item">
@@ -21,7 +21,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    @include('erro-sitef._form')
+                    @include('construtoras._form')
                 </div>
             </div>
         </div>

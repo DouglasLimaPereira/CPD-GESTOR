@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Módulos - Edição')
+@section('title', 'Erro Sitef - Edição')
 
-@section('page-title', 'Módulos')
+@section('page-title', 'Erro Sitef')
 
 @section('content')
 

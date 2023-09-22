@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     UsuarioController,
     ErrositefController,
     EscalaController,
+    FilialController,
     PontoController
 };
 
@@ -84,4 +85,12 @@ Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], func
     Route::post('/store', [EscalaController::class, 'store'])->name('store');
     Route::get('/{escala}/destroy', [EscalaController::class, 'destroy'])->name('destroy');
     Route::put('/{escala}/update', [EscalaController::class, 'update'])->name('update');
+});
+
+// FILIAL
+Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], function(){
+    Route::get('/index', [FilialController::class, 'index'])->name('index');
+    Route::post('/edite', [FilialController::class, 'edite'])->name('edite');
+    Route::post('/store', [FilialController::class, 'store'])->name('store');
+    Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
 });
