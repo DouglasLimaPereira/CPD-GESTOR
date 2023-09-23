@@ -16,16 +16,17 @@ class CreateFilialsTable extends Migration
         Schema::create('filiais', function (Blueprint $table) {
             $table->id();
             $table->string('nome_fantasia');
+            $table->string('razao_social');
             $table->string('email');
-            $table->string('email_comercial');
+            $table->string('email_comercial')->nullable();
             $table->string('telefone');
-            $table->string('site');
-            $table->string('instagram');
+            $table->string('site')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('logo');
             $table->string('cep');
             $table->string('logradouro');
             $table->string('numero');
-            $table->string('complemento');
+            $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->string('cidade');
             $table->string('uf');

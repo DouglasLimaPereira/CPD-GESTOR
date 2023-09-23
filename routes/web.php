@@ -90,7 +90,7 @@ Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], func
 // FILIAL
 Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], function(){
     Route::get('/index', [FilialController::class, 'index'])->name('index');
-    Route::post('/edite', [FilialController::class, 'edite'])->name('edite');
+    Route::get('{filial}/edit', [FilialController::class, 'edit'])->name('edit');
     Route::post('/store', [FilialController::class, 'store'])->name('store');
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
 });

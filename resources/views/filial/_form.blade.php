@@ -159,7 +159,7 @@
 
     <hr>
     
-    <a href="{{route('filial.show', $filial->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>    
+    <a href="{{route('filial.index', $filial->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>    
     
     <button type="submit" class="btn btn-sm btn-success">{!!(isset($filial)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
   </form>

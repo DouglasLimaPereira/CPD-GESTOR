@@ -58,16 +58,9 @@ class User extends Authenticatable
  
     }
 
-    public function companies()
+    public function filiais()
     {
-       // return $this->belongsToMany(Company::class)->withPivot('pessoa_id', 'superadmin', 'active')->withTimestamps();
-    
-       return $this->hasOne(Companyuser::class);
-    }
-
-    public function pessoa()
-    {
-        return $this->hasOne(Pessoa::class);
+       return $this->belongsToMany(Filial::class)->withPivot('user_id', 'filial_id', 'superadmin')->withTimestamps();
     }
 
     /**

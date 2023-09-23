@@ -9,10 +9,11 @@ class Filial extends Model
 {
     use HasFactory;
     
-    protected $table = 'Filiais';
+    protected $table = 'filiais';
 
     protected $fillable = [
         'nome_fantasia',
+        'razao_social',
         'logo',
         'email',
         'email_comercial',
@@ -28,4 +29,10 @@ class Filial extends Model
         'uf',
         'cnpj',
     ];
+
+    public function usuarios(){
+        return $this->belongsToMany(User::class)->withPivot('filial_id', 'user_id', 'superadmin')->withTimestamps();
+    }
+
+    
 }

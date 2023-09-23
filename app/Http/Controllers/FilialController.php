@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Filial;
+use App\Models\Estado;
 use App\Http\Requests\StoreFilialRequest;
 use App\Http\Requests\UpdateFilialRequest;
 
@@ -15,7 +16,10 @@ class FilialController extends Controller
      */
     public function index()
     {
-        //
+        // dd(auth()->user()->filiais);
+        $filial = Filial::find(1);
+        $estados = Estado::all();
+        return view('filial.index', compact('filial'));
     }
 
     /**
@@ -58,7 +62,8 @@ class FilialController extends Controller
      */
     public function edit(Filial $filial)
     {
-        //
+        $estados = Estado::all();
+        return view('filial.edit', compact('filial', 'estados'));
     }
 
     /**
@@ -70,7 +75,8 @@ class FilialController extends Controller
      */
     public function update(UpdateFilialRequest $request, Filial $filial)
     {
-        //
+        
+        return redirect()->route('filial.index', $filial->id)->with('success', 'Filial atualizada com sucesso!');
     }
 
     /**

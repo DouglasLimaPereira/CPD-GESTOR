@@ -25,8 +25,9 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="callout callout-info">
-                                <b>Código: </b> {{$filial->id}}<br>
+                                {{--  <b>Código: </b> {{($filial->id) ?? '-'}}<br>  --}}
                                 <b>Nome Fantasia:</b> {{$filial->nome_fantasia}}<br>
+                                <b>Razão Social:</b> {{$filial->razao_social}}<br>
                                 <b>CNPJ: </b> <span class="cnpj-view">{{$filial->cnpj}}</span><br>
                                 <b>Endereço: </b> 
                                     {{$filial->logradouro}},
@@ -79,12 +80,11 @@
                         <div class="col-md-12">
                             {{-- @elseif(request()->is('clientes/*')) --}}
                                 <a href="#!" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
-                                @if(auth()->user()->filiais->where('filial_id', session()->get('filial_id'))->where('superadmin', true)->first())
-                                    @can('editar', 'App\\Models\Construtora')
+                                {{--  @if(auth()->user()->filiais->where('filial_id', session()->get('filial_id'))->where('superadmin', true)->first())  --}}
+                                    {{--  @can('editar', 'App\\Models\Construtora')  --}}
                                         <a href="{{route('filial.edit', $filial->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
-                                    @endcan
-                                @endif
-                            @endif
+                                    {{--  @endcan  --}}
+                                {{--  @endif  --}}
                         </div>
                     </div>
                 </div>
