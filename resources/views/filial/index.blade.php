@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Construtoras')
+@section('title', 'Filial')
 
-@section('page-title', 'Construtora')
+@section('page-title', 'Filial')
 
 @section('content')
     
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Visualização</h3>
+                    <h3 class="card-title"><i class="fas fa-eye"></i> Visualização</h3>
                     <div class="card-tools">
                         {{-- <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
@@ -25,7 +25,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="callout callout-info">
-                                {{--  <b>Código: </b> {{($filial->id) ?? '-'}}<br>  --}}
+                                <b>Código: </b> SM{{($filial->codigo) ?? '-'}}<br> 
                                 <b>Nome Fantasia:</b> {{$filial->nome_fantasia}}<br>
                                 <b>Razão Social:</b> {{$filial->razao_social}}<br>
                                 <b>CNPJ: </b> <span class="cnpj-view">{{$filial->cnpj}}</span><br>
@@ -37,12 +37,11 @@
                             </div>
                             <div class="callout callout-info">
                                 <b>Telefone: </b> {{($filial->telefone) ?? '-'}}<br>
-                                <b>Whatsapp: </b> {{($filial->whatsapp) ?? '-'}}<br>
                                 <b>E-mail SAC: </b> {{($filial->email) ?? '-'}}<br>
                                 <b>E-mail Financeiro: </b> {{($filial->email_financeiro) ?? '-'}}<br>
                                 <b>E-mail Comercial: </b> {{($filial->email_comercial) ?? '-'}}<br>
-                                <b>Site: </b> {{($filial->website) ?? '-'}}<br>
-                                <b>Instagram: </b> {{($filial->instagram) ?? '-'}}<br>
+                                <b>Site: </b> <a href="http://{{($filial->site) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{($filial->site) ?? '-'}}</a> <br>
+                                <b>Instagram: </b> <a href="{{($filial->instagram) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{$instagram}} </a>  <br>
                             </div>
                             {{-- <div class="callout callout-info">
                                 <b>Estado: </b> 
@@ -61,30 +60,20 @@
                                 <b>Tamanho do anexo: </b> {{$filial->limite_anexo}} mb
                             </div> --}}
                         </div>
-                        {{-- <div class="col-md-6 p-2 text-center">
-                            
-                                @if($filial->logotipo)
-                                    @if($filial->logo_origem == 'g')
-                                        <img class="img-fluid" src="{{env('APP_URL_GESTOR')}}/storage/{{$filial->logotipo}}" width="500" alt="{{mb_strtoupper($filial->nome)}}" title="{{mb_strtoupper($filial->nome)}}">
-                                    @elseif($filial->logo_origem == 'c')
-                                        <img class="img-fluid" src="{{url('/')}}/storage/{{$filial->logotipo}}" width="500" alt="{{mb_strtoupper($filial->nome)}}" title="{{mb_strtoupper($filial->nome)}}">
-                                    @endif
-                                @else
-                                    <span class="badge badge-secondary">Não existe logotipo cadastrado</span>
-                                @endif
-                            
-                        </div> --}}
+                        <div class="col-md-6 p-2 text-center">
+                            @if($filial->logo)
+                                <img class="img-fluid" src="{{url('/')}}/storage/{{$filial->logo}}" width="500" alt="{{mb_strtoupper($filial->nome)}}" title="{{mb_strtoupper($filial->nome)}}">
+                            @else
+                                <span class="badge badge-secondary">Não existe logotipo cadastrado</span>
+                            @endif
+                        </div>
                     </div>
                     <div class="dropdown-divider"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            {{-- @elseif(request()->is('clientes/*')) --}}
-                                <a href="#!" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
-                                {{--  @if(auth()->user()->filiais->where('filial_id', session()->get('filial_id'))->where('superadmin', true)->first())  --}}
-                                    {{--  @can('editar', 'App\\Models\Construtora')  --}}
-                                        <a href="{{route('filial.edit', $filial->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
-                                    {{--  @endcan  --}}
-                                {{--  @endif  --}}
+                            @if(auth()->user()->filiais()->where('filial_id', session()->get('filial'))->where('superadmin', true)->first()) 
+                                <a href="{{route('filial.edit', $filial->id)}}" class="btn btn-success"><i class="fas fa-edit"></i> Editar</a>
+                            @endif 
                         </div>
                     </div>
                 </div>

@@ -27,14 +27,12 @@
                 dayMaxEventRows: true,
                 themeSystem: 'bootstrap',
                 headerToolbar: {
-                    start: 'prev', // will normally be on the left. if RTL, will be on the right
+                    start: '', // will normally be on the left. if RTL, will be on the right
                     center: 'title',
-                    end: 'today next' // will normally be on the right. if RTL, will be on the left
+                    end: 'today prev next' // will normally be on the right. if RTL, will be on the left
                 },
                 buttonText: {
-                    today: 'Dia Atual',
-                    prev: '◁ Mês Anterior',
-                    next: 'Próximo Mês ▷',
+                    today: 'Hoje',
                 },
                 views: {
                     dayGridMonth: {

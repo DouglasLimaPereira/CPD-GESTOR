@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="callout callout-info">
-                <b>Código: </b> {{$filial->id}}<br>
+                <b>Código: </b> SM{{$filial->codigo}}<br>
                 <b>Nome Fantasia:</b> {{$filial->nome_fantasia}}<br>
                 <b>Razão Social: </b> {{$filial->razao_social}}<br>
                 <b>CNPJ: </b> <span class="cnpj-view" id="cnpj-view">{{$filial->cnpj}}</span><br>
@@ -124,14 +124,14 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="whatsapp">Whatsapp *</label>
                 <input type="text" name="whatsapp" class="form-control" id="whatsapp" value="{{(isset($filial)) ? $filial->whatsapp : old('whatsapp')}}" required>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-md-6">

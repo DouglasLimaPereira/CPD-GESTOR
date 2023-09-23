@@ -6,6 +6,7 @@ use App\Models\Filial;
 use App\Models\Estado;
 use App\Http\Requests\StoreFilialRequest;
 use App\Http\Requests\UpdateFilialRequest;
+use Illuminate\Support\Facades\DB;
 
 class FilialController extends Controller
 {
@@ -16,10 +17,9 @@ class FilialController extends Controller
      */
     public function index()
     {
-        // dd(auth()->user()->filiais);
-        $filial = Filial::find(1);
-        $estados = Estado::all();
-        return view('filial.index', compact('filial'));
+        $filial = Filial::find(session()->get('filial'));
+        $instagram = $instagram = explode('/', $filial->instagram)[3];
+        return view('filial.index', compact('filial', 'instagram'));
     }
 
     /**
@@ -75,8 +75,17 @@ class FilialController extends Controller
      */
     public function update(UpdateFilialRequest $request, Filial $filial)
     {
-        
-        return redirect()->route('filial.index', $filial->id)->with('success', 'Filial atualizada com sucesso!');
+        try {
+            DB::beginTransaction();
+            
+            $filial->update($request->all());
+
+            DB::commit();
+            return redirect()->route('filial.index', $filial->id)->with('success', 'Filial atualizada com sucesso!');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->withInput()->with('info', 'Erro ao atualizar Filial');
+        }
     }
 
     /**

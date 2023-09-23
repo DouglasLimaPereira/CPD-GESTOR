@@ -6,6 +6,7 @@
 
 @section('content')
 <h4 class="mt-3 MB-3"><em>ACESSO RÁPIDO</em></h4>
+<hr>
 <div class="row">
     <div class="col">
         <div class="small-box bg-info mt-3">
@@ -14,7 +15,7 @@
                 <br>
             </div>
             <div class="icon">
-                <i class="far fa-user fa-xs" style="color: #000000;"></i>
+                <i class="far fa-user fa-xs" style="font-size: 44px;"></i>
             </div>
                 <a href="{{route('usuarios.index')}}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>
@@ -30,7 +31,7 @@
                 <br>
             </div>
             <div class="icon">
-                <i class="fas fa-bug fa-xs" style="color: #000000;"></i>
+                <i class="fas fa-bug fa-xs" style="font-size: 44px;"></i>
             </div>
             {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
                     <i class="fas fa-arrow-circle-right"></i>
@@ -49,7 +50,7 @@
                 {{$hora_extra}}
             </div>
             <div class="icon">
-                <i class="fas fa-hourglass-half fa-xs" style="color: #000000;"></i>
+                <i class="fas fa-hourglass-half fa-xs" style="font-size: 44px;"></i>
             </div>
                 <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>
@@ -65,7 +66,7 @@
                 <br>
             </div>
             <div class="icon">
-                <i class="far fa-file-pdf fa-xs" style="color: #000000;"></i>
+                <i class="far fa-file-pdf fa-xs" style="font-size: 44px;"></i>
             </div>
             <a href="{{ route('ponto.relatorio') }}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>

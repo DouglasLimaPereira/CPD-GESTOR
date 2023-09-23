@@ -15,6 +15,7 @@ class CreateFilialsTable extends Migration
     {
         Schema::create('filiais', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo');
             $table->string('nome_fantasia');
             $table->string('razao_social');
             $table->string('email');

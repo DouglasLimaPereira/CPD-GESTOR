@@ -12,6 +12,7 @@ class Filial extends Model
     protected $table = 'filiais';
 
     protected $fillable = [
+        'codigo',
         'nome_fantasia',
         'razao_social',
         'logo',
