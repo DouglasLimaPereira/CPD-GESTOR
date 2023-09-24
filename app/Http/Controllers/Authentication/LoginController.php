@@ -61,6 +61,10 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    public function cadastro(){
+        return view('authentication.cadastro');
+    }
+
     public function changeCompany()
     {
         $user = Auth::user();

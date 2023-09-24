@@ -14,12 +14,6 @@ use App\Http\Controllers\{
 //use App\Http\Controllers\Api\FatorController;
 use App\Http\Controllers\Authentication\LoginController;
 
-Route::get('eh-teste', function(){
-    return storage_path();
-    $e = url('/') . ' - ' . env('APP_URL_CLIENTE') . ' - ' . env('APP_DEV_URL_CLIENTE');
-    return $e;
-});
-
 Route::get('/', function () {
     if(auth()->user()) return redirect()->route('painel.index');
     return view('authentication.login');
@@ -38,11 +32,12 @@ Route::group(['prefix'=>'reseta-senha'], function(){
 
 
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+Route::get('/cadastro', [LoginController::class, 'cadastro'])->name('login.cadastro');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->get('painel', [PainelController::class, 'index'])->name('painel.index');
 
-// SUPERADMIN USUÁRIOS
+    // SUPERADMIN USUÁRIOS
 Route::group(['prefix' => 'usuarios'], function(){
     Route::get('/', [UsuarioController::class, 'index'])->name('usuarios.index');
     Route::get('/{usuario}/show', [UsuarioController::class, 'show'])->name('usuarios.show');
@@ -53,8 +48,8 @@ Route::group(['prefix' => 'usuarios'], function(){
     Route::post('/store', [UsuarioController::class, 'store'])->name('usuarios.store');
 });
 
+    // ERRO_SITEF
 Route::group(['prefix'=>'erro-sitef', 'as'=>'erro-sitef.', 'middleware'=>['auth']], function(){
-    // MÓDULOS
     Route::get('/', [ErrositefController::class, 'index'])->name('index');
     Route::get('/create', [ErrositefController::class, 'create'])->name('create');
     Route::post('/store', [ErrositefController::class, 'store'])->name('store');
@@ -79,7 +74,7 @@ Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], functi
     Route::get('csv', [PontoController::class, 'csv'])->name('csv');
 });
 
-// ESCALA
+    // ESCALA
 Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], function(){
     Route::get('/index', [EscalaController::class, 'index'])->name('index');
     Route::post('/store', [EscalaController::class, 'store'])->name('store');
@@ -87,7 +82,7 @@ Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], func
     Route::put('/{escala}/update', [EscalaController::class, 'update'])->name('update');
 });
 
-// FILIAL
+    // FILIAL
 Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], function(){
     Route::get('/index', [FilialController::class, 'index'])->name('index');
     Route::get('{filial}/edit', [FilialController::class, 'edit'])->name('edit');

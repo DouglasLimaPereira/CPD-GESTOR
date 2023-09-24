@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Filial;
 use App\Models\Estado;
+use App\Recursos\Anexo;
 use App\Http\Requests\StoreFilialRequest;
 use App\Http\Requests\UpdateFilialRequest;
 use Illuminate\Support\Facades\DB;
 
 class FilialController extends Controller
 {
+
+    private $anexo;
+
+    public function __construct(Anexo $anexo)
+    {
+        $this->anexo = $anexo;
+    } 
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +27,7 @@ class FilialController extends Controller
     public function index()
     {
         $filial = Filial::find(session()->get('filial'));
-        $instagram = $instagram = explode('/', $filial->instagram)[3];
+        $instagram = explode('/', $filial->instagram)[3];
         return view('filial.index', compact('filial', 'instagram'));
     }
 
@@ -79,6 +88,13 @@ class FilialController extends Controller
             DB::beginTransaction();
             
             $filial->update($request->all());
+            
+            if(isset($request->logo) && $request->logo->isValid()){
+                $logo = $this->anexo->filial_store($filial->id, $request->logo, $filial->logo);
+                $filial->update([
+                    'logo' => $logo,
+                ]);
+            }
 
             DB::commit();
             return redirect()->route('filial.index', $filial->id)->with('success', 'Filial atualizada com sucesso!');

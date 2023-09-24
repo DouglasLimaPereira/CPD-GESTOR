@@ -27,6 +27,16 @@ class Anexo
         return $anexo->store('usuario/' .base64_encode($user_id).'/foto', 'public');
     }
 
+    public function filial_store($filial_id, $anexo, $anexo_banco, )
+    {
+        //Deletando o arquivo caso já exista algum
+        // dd('oi');
+        if(Storage::disk('public')->exists($anexo_banco))
+        Storage::disk('public')->delete($anexo_banco);
+
+        return $anexo->store('filial/' .base64_encode($filial_id).'/logo', 'public');
+    }
+
     // public function storeWithResize($ponto = null, $user = null, $anexo_banco, $diretorio, $anexo)
     // {
     //     //Deletando o arquivo caso já exista algum

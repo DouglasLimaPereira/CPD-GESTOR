@@ -30,16 +30,12 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">   
-                <label for="logotipo">Logotipo</label>
-                <input type="file" accept=".jpeg, .png, .jpg, .gif, .svg" name="logotipo" class="form-control" id="logotipo">
+                <label for="logotipo">Logo</label>
+                <input type="file" accept=".jpeg, .png, .jpg, .gif, .svg" name="logo" class="form-control" id="logo">
                 <small class="text-info">Formatos permitidos: .jpeg, .png, .jpg, .gif, .svg.</small>
-                @if (isset($filial) && ($filial->logotipo))
+                @if (isset($filial) && ($filial->logo))
                     <br>
-                    @if($filial->logo == 'g')
-                        <img src="{{env('APP_URL_GESTOR')}}/storage/{{$filial->logotipo}}" width="150">
-                    @elseif($filial->logo == 'c')
-                        <img src="{{url('/')}}/storage/{{$filial->logotipo}}" width="150">
-                    @endif
+                    <img src="{{url('/')}}/storage/{{$filial->logo}}" width="150">
                 @endif
             </div>
         </div>

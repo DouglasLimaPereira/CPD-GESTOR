@@ -93,135 +93,130 @@ class UsuarioController extends Controller
         }
     }
 
-    // public function store(UsuarioRequest $request)
-    // {
-    //     // dd($request->all());
+    public function store(UsuarioRequest $request)
+    {
+        // dd($request->all());
         
-    //     $is_user = false;
-    //     $usuario = null;
+        $is_user = false;
+        $usuario = null;
         
-    //     DB::beginTransaction();
+        DB::beginTransaction();
             
-    //     try {
-    //         //Registrando na tabela de usuários
-    //         try{
-    //             //Verificando se o email informado já está cadastrado na tabela de usuários
-    //             if(!$usuario = User::firstWhere('email', $request->email))
-    //                 $usuario = User::create($request->all());
-    //                 $usuario->update(['superadmin'=>false]);
+        try {
+            //Registrando na tabela de usuários
+            try{
+                //Verificando se o email informado já está cadastrado na tabela de usuários
+                if(!$usuario = User::firstWhere('email', $request->email))
+                    $usuario = User::create($request->all());
+                    $usuario->update(['superadmin'=>false]);
                 
-    //         }catch(\Exception $e) {
-    //             // return back()->with('error', $e->getMessage());
-    //             return back()->withErrors('Error 000011: Erro ao tentar salvar o usuário.');
-    //         }
+            }catch(\Exception $e) {
+                // return back()->with('error', $e->getMessage());
+                return back()->withErrors('Error 000011: Erro ao tentar salvar o usuário.');
+            }
 
-    //         //Registrando na tabela pessoas
-    //         try{
-    //             $pessoa = $company->pessoas()->firstWhere('email', $usuario->email);
-    //             if(!$pessoa){
-    //                 // dd($request->all());
-    //                 $pessoa = $company->pessoas()->create($request->all());
-    //             }
-    //             $pessoa->update(['user_id' => $usuario->id]);
+            //Registrando na tabela pessoas
+            // try{
+            //     $pessoa = $company->pessoas()->firstWhere('email', $usuario->email);
+            //     if(!$pessoa){
+            //         // dd($request->all());
+            //         $pessoa = $company->pessoas()->create($request->all());
+            //     }
+            //     $pessoa->update(['user_id' => $usuario->id]);
 
-    //         }catch(\Exception $e){
-    //             dd($e->getMessage());
-    //             return back()->withErrors('Error 000012: Erro ao tentar salvar a pessoa.');
-    //         }
+            // }catch(\Exception $e){
+            //     dd($e->getMessage());
+            //     return back()->withErrors('Error 000012: Erro ao tentar salvar a pessoa.');
+            // }
             
-    //         //Realizando o vínculo entre construtora e usuário
-    //         // if($aa = !(Companyuser::where('company_id', $company->id)->where('user_id', $usuario->id)->where('pessoa_id', $pessoa->id)->first())){
+            //Realizando o vínculo entre construtora e usuário
+            // if($aa = !(Companyuser::where('company_id', $company->id)->where('user_id', $usuario->id)->where('pessoa_id', $pessoa->id)->first())){
                 
-    //             $canteiros = Canteiro::where('company_id', $company->id)->get();
+                $filiais = Filial::usuarios()->where('id', $request['filial_id'])->get();
                 
-    //             if ($canteiros->count() > 0) {
-    //                 foreach ($canteiros as $key => $canteiro) {
-
-    //                     if(isset($request->imagem) && $request->imagem)
-    //                     {
-    //                         //Verificando se o arquivo é válido como imagem
-    //                         if($request->imagem->isValid()){    
-    //                             //Cadastrando a nova imagem
+                if ($filiais->count() > 0) {
+                    foreach ($filiais as $key => $filial) {
+                        // if(isset($request->imagem) && $request->imagem)
+                        // {
+                        //     //Verificando se o arquivo é válido como imagem
+                        //     if($request->imagem->isValid()){    
+                        //         //Cadastrando a nova imagem
                                 
-    //                             $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
-    //                             $imagem = $request->imagem->storeAs('companies/' . base64_encode($company->id) . '/canteiros/'.base64_encode(session()->get('canteiro_id')).'/usuarios/images', $imagem_nome, 'public');
+                        //         $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
+                        //         $imagem = $request->imagem->storeAs('companies/' . base64_encode($company->id) . '/canteiros/'.base64_encode(session()->get('canteiro_id')).'/usuarios/images', $imagem_nome, 'public');
 
-    //                             $compania = $company->companyusers()->create([
-    //                                 'pessoa_id' => $pessoa->id,
-    //                                 'user_id' => $usuario->id,
-    //                                 'superadmin' => 1,
-    //                                 'imagem' => $imagem,
-    //                                 'imagem_origem' => 'g',
-    //                                 'canteiro_id' => $canteiro->id,
-    //                             ]);
+                        //         $compania = $company->companyusers()->create([
+                        //             'pessoa_id' => $pessoa->id,
+                        //             'user_id' => $usuario->id,
+                        //             'superadmin' => 1,
+                        //             'imagem' => $imagem,
+                        //             'imagem_origem' => 'g',
+                        //             'canteiro_id' => $canteiro->id,
+                        //         ]);
                                 
-    //                             $usuario->update(['imagem'=>$imagem]);
-    //                         }
+                        //         $usuario->update(['imagem'=>$imagem]);
+                        //     }
 
-    //                     } else {
-    //                         $compania = $company->companyusers()->create([
-    //                             'pessoa_id' => $pessoa->id,
-    //                             'user_id' => $usuario->id,
-    //                             'superadmin' => 1,
-    //                             'canteiro_id' => $canteiro->id,
-    //                         ]);
-    //                     }
-    //                 }
-    //             } else{
-    //                 if(isset($request->imagem) && $request->imagem)
-    //                 {
-    //                     //Verificando se o arquivo é válido como imagem
-    //                     if($request->imagem->isValid()){    
-    //                         //Cadastrando a nova imagem
+                        // } else {
+                            $filial_user = $usuario->filiais()->create([
+                                
+                                'user_id' => $usuario->id,
+                                'superadmin' => 1,
+                                'canteiro_id' => $canteiro->id,
+                            ]);
+                        // }
+                    }
+                } else{
+                    // if(isset($request->imagem) && $request->imagem)
+                    // {
+                    //     //Verificando se o arquivo é válido como imagem
+                    //     if($request->imagem->isValid()){    
+                    //         //Cadastrando a nova imagem
                             
-    //                         $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
-    //                         $imagem = $request->imagem->storeAs('companies/' . base64_encode($company->id) . '/canteiros/'.base64_encode(session()->get('canteiro_id')).'/usuarios/images', $imagem_nome, 'public');
+                    //         $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
+                    //         $imagem = $request->imagem->storeAs('companies/' . base64_encode($company->id) . '/canteiros/'.base64_encode(session()->get('canteiro_id')).'/usuarios/images', $imagem_nome, 'public');
 
-    //                         $compania = $company->companyusers()->create([
-    //                             'pessoa_id' => $pessoa->id,
-    //                             'user_id' => $usuario->id,
-    //                             'superadmin' => 1,
-    //                             'imagem' => $imagem,
-    //                             'imagem_origem' => 'g',
-    //                         ]);
+                    //         $compania = $company->companyusers()->create([
+                    //             'pessoa_id' => $pessoa->id,
+                    //             'user_id' => $usuario->id,
+                    //             'superadmin' => 1,
+                    //             'imagem' => $imagem,
+                    //             'imagem_origem' => 'g',
+                    //         ]);
                             
-    //                         $usuario->update(['imagem'=>$imagem]);
-    //                     }
+                    //         $usuario->update(['imagem'=>$imagem]);
+                    //     }
 
-    //                 } else {
-    //                     $compania = $company->companyusers()->create([
-    //                         'pessoa_id' => $pessoa->id,
-    //                         'user_id' => $usuario->id,
-    //                         'superadmin' => 1,
-    //                     ]);
-    //                 }
-    //             }
-    //         // }else{
-    //         //     return back()->with('warning', 'O email informado já está sendo utilizado.');
-    //         // }
-    //         // dd('teste');
-    //         DB::commit();
+                    // } else {
+                        $filial_user = $usuario->filiais()->attach($filiais->id, 'superadmin');
+                    // }
+                }
+            // }else{
+            //     return back()->with('warning', 'O email informado já está sendo utilizado.');
+            // }
+            // dd('teste');
+            DB::commit();
 
-    //         /**
-    //          * Este recurso ocorre após os registros dos dados no banco. Caso dê erro o processo de 
-    //          * cadastro já o foi realizado
-    //          */
-    //         // dd($request->all());
-    //         if (isset($request->enviar_email)) {
-    //             try {
-    //                 $this->sendNotification($pessoa, $usuario, $request->senha, $is_user);
-    //             } catch (\Throwable $th) {
-    //                 //return back()->withErrors($th->getMessage());
-    //                 return back()->withErrors('Error 000015: Dados registrados com sucesso! Contudo o Email de confirmação de cadastro não pode ser enviado.');
-    //             }
-    //         }
+            /**
+             * Este recurso ocorre após os registros dos dados no banco. Caso dê erro o processo de 
+             * cadastro já o foi realizado
+             */
+            // dd($request->all());
+            // if (isset($request->enviar_email)) {
+            //     try {
+            //         $this->sendNotification($pessoa, $usuario, $request->senha, $is_user);
+            //     } catch (\Throwable $th) {
+            //         //return back()->withErrors($th->getMessage());
+            //         return back()->withErrors('Error 000015: Dados registrados com sucesso! Contudo o Email de confirmação de cadastro não pode ser enviado.');
+            //     }
+            // }
             
-    //         return redirect()->route('construtoras.usuarios.index', $company->id)->with('success', 'Usuário cadastrado com sucesso');
-    //     } catch (\Exception $e) {
-    //         DB::rollBack();
-    //         return back()->withErrors('Error 000014: Erro ao tentar realizar o cadastro do usuário.');
-    //     }
-    // }
+            return redirect()->back()->with('success', 'Usuário cadastrado com sucesso');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors('Error 000014: Erro ao tentar realizar o cadastro do usuário.');
+        }
+    }
 
     // public function edit(User $usuario)
     // {

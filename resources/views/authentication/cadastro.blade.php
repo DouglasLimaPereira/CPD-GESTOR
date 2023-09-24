@@ -35,25 +35,25 @@
                 @endif
             
             
-            <form action="{{route('login.store')}}" method="POST">
+            <form action="{{route('cadastro.store')}}" method="POST">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" name="email" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                        
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                </div>
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-4">
@@ -67,7 +67,6 @@
                 <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">[Cancelar recuperação]</a>
             </p>
             <div id="form-recupera-senha"></div>
-            <div> Não possui uma conta? <a href="{{ route('usuarios.store') }}">Cadastre-se</a></div>
         </div>
     <!-- /.login-card-body -->
   </div>
