@@ -9,13 +9,13 @@
 <hr>
 <div class="row">
     <div class="col">
-        <div class="small-box bg-info mt-3">
+        <div class="small-box bg-info">
             <div class="inner">
                 <h4>Minhas Informações</h4>
                 <br>
             </div>
             <div class="icon">
-                <i class="far fa-user fa-xs" style="font-size: 44px;"></i>
+                <i class="far fa-user" style="font-size: 44px;"></i>
             </div>
                 <a href="{{route('usuarios.index')}}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>
@@ -24,14 +24,13 @@
     </div>
     
     <div class="col">
-        <h4 class="mt-3"></h4>
         <div class="small-box bg-info">
             <div class="inner">
                 <h4>Consultar erro Sitef</h4>
                 <br>
             </div>
             <div class="icon">
-                <i class="fas fa-bug fa-xs" style="font-size: 44px;"></i>
+                <i class="fas fa-bug" style="font-size: 44px;"></i>
             </div>
             {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
                     <i class="fas fa-arrow-circle-right"></i>
@@ -43,14 +42,13 @@
     </div>
     
     <div class="col">
-        <h4 class="mt-3"></h4>
         <div class="small-box bg-info">
             <div class="inner">
                 <h4>Horas Extras</h4>
                 {{$hora_extra}}
             </div>
             <div class="icon">
-                <i class="fas fa-hourglass-half fa-xs" style="font-size: 44px;"></i>
+                <i class="fas fa-hourglass-half" style="font-size: 44px;"></i>
             </div>
                 <a href="{{ route('ponto.hora-extra') }}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>
@@ -59,14 +57,13 @@
     </div>
     
     <div class="col">
-        <h4 class="mt-3"></h4>
         <div class="small-box bg-info">
             <div class="inner">
                 <h4>Relatório</h4>
                 <br>
             </div>
             <div class="icon">
-                <i class="far fa-file-pdf fa-xs" style="font-size: 44px;"></i>
+                <i class="far fa-file-pdf" style="font-size: 44px;"></i>
             </div>
             <a href="{{ route('ponto.relatorio') }}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>

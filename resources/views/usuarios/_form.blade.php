@@ -148,7 +148,7 @@
     <hr>
     <div class="row float-right">
         {{--  <a href="{{route('painel.index')}}" class="btn btn-sm btn-secondary mr-3"><i class="fas fa-undo-alt"></i> Voltar</a>  --}}
-        <button type="submit" class="btn btn-sm btn-success">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+        <button type="submit" class="btn btn-sm btn-success mr-3">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
     </div>
   </form>
 
@@ -173,28 +173,28 @@
             gerarSenha();
         @endif
 
-        // $(document).ready(function(){
+         $(document).ready(function(){
         //     //Atribuindo a busca no select
-        //     $('.user_id').selectpicker();
+             $('.user_id').selectpicker();
 
-        //     $('#gerar-senha').click(function(){
-        //         gerarSenha();
-        //     })
+             {{--  $('#gerar-senha').click(function(){
+                 gerarSenha();
+             })  --}}
 
-        //     $('#limpa-senha').click(function(){
-        //         $('#senha').val(``)
-        //         $('#senha').attr('readonly', 'readonly')
-        //     })
+             $('#limpa-senha').click(function(){
+                 $('#senha').val(``)
+                 $('#senha').attr('readonly', 'readonly')
+             })
 
-        //     $('#preencher-senha').click(function(){
-        //         $('#senha').val(``)
-        //         $('#senha').removeAttr('readonly')
-        //     })
-        //     $('#cancelar-senha').click(function(){
-        //         $('#senha').val(``)
-        //         $('#senha').attr('readonly', true)
-        //     })
-
+             $('#preencher-senha').click(function(){
+                 $('#senha').val(``)
+                 $('#senha').removeAttr('readonly')
+             })
+             $('#cancelar-senha').click(function(){
+                 $('#senha').val(``)
+                 $('#senha').attr('readonly', true)
+             })
+        }
         //     //Trazendo as users a partir do banco de dados
             
         //     $("#record-from-database").click(function(){

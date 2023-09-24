@@ -103,12 +103,3 @@
     </div>
 
 @endsection
-
-{{-- Removendo o registro --}}
-<script>
-    // function GerarPDF(){
-    //     console.log('oi');
-    //     var win = window.open(url, '_blank');
-    //     win.focus();
-    // }
-</script>

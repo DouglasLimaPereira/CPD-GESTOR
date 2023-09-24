@@ -57,7 +57,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="col-md-2 float-right">
-                        <button type="submit" class="form-control btn btn-info">Filtrar</button>
+                        <button type="submit" class="form-control btn btn-info"><i class="fa-solid fa-filter"></i> Filtrar</button>
                     </div>
                 </div>
             </div>

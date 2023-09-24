@@ -22,10 +22,10 @@
                 </div>
                 <div class="card-body">
                     <div class="card card-profile">
-                        <div class="card-avatar text-center">
+                        <div class="card-avatar text-center mt-3">
                             @if (isset($usuario) && ($usuario->imagem))
                                 {{--  <a href="{{url('/')}}/storage/{{$usuario->imagem}}" target="_blank">  --}}
-                                    <img src="{{url('/')}}/storage/{{$usuario->imagem}}" width="170">
+                                    <img src="{{url('/')}}/storage/{{$usuario->imagem}}" width="170" style="border-radius: 50%">
                                 {{--  </a>  --}}
                             @else
                                 <img src="{{asset('image/user.jpg')}}" style="height: 300;">
@@ -33,9 +33,11 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-category text-gray">{{ $usuario->cargo }} / {{ $usuario->name }}</h3>
-                            <h4 class="card-title">Loja: </h4><br>
-                            <h4 class="card-title">Endereço: </h4><br>
-                            <h4 class="card-title">Situação: </h4>
+                            {{--  @dd($usuario->filiais()->where('filial_id', session()->get('filial'))->get('codigo'))  --}}
+                            <b class="">Loja:</b> SM{{$filial->codigo}}<br>
+                            <b class="">Endereço:</b> {{$filial->logradouro}},
+                            Nº {{$filial->numero}}, {{($filial->complemento) ? '{$filial->logradouro} ,' : ''}}
+                            {{$filial->bairro}}, <span class="cep-view">{{$filial->cep}}</span>, {{$filial->cidade}} - {{$filial->uf}} <br>
                         </div>
                     </div>
                 </div>
@@ -50,7 +52,7 @@
         $confirmacao = confirm('Tem certeza que deseja remover este Usuário?');
 
         if($confirmacao){
-            window.location.href = "{{url('/')}}/construtoras/"+val+"/usuarios/"+val+"/destroy"
+            window.location.href = "{{url('/')}}/filial/"+val+"/usuarios/"+val+"/destroy"
         }
     }
 </script>

@@ -27,20 +27,6 @@
                             <b>Código: </b> {{$usuario->id}}<br>
                             <b>Nome: </b> {{$usuario->name}}<br>
                             <b>Telefone: </b> {!!($usuario->telefone) ? '<span class="text-primary">' . $usuario->telefone . '</span>' : '<span class="text-danger">Não informado</span>'!!}<br>
-                            <b>Usuário autoriza pelo setor de engenharia ?: </b>
-                                @if ($usuario->pessoa->engenharia == 1)
-                                    SIM
-                                @else
-                                    NÃO
-                                @endif
-                            <br>
-                            <b>Usuário autoriza pelo setor de segurança no trabalho ?: </b>
-                                @if ($usuario->pessoa->seguranca == 1)
-                                    SIM
-                                @else
-                                    NÃO
-                                @endif
-                            <br>
                             <b>Cargo: </b> {{ $usuario->cargo }}<br>
                             <b>E-mail: </b> {{$usuario->email}}<br>
                         </div>
@@ -71,11 +57,9 @@
                     <div class="mr-2">
                         <a href="{{route('construtoras.usuarios.index', $company->id)}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
                         
-                        {{-- @if (($usuario->id == auth()->usuario()->id ) || ( auth()->usuario()->companies->firstWhere('superadmin', 1))) --}}
-                            
+                        @if (($usuario->id == auth()->user()->id ) || ( auth()->user()->filiais->firstWhere('superadmin', 1)))
                             <a href="{{ route('construtoras.usuarios.edit', [$company->id, $usuario->id]) }}" class="btn btn-outline-success"><i class="fas fa-edit"></i> Editar </a>
-                        
-                        {{-- @endif --}}
+                        @endif
                     </div>
                 </div>
             </div>
