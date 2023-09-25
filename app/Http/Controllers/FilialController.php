@@ -26,7 +26,7 @@ class FilialController extends Controller
      */
     public function index()
     {
-        $filial = Filial::find(session()->get('filial'));
+        $filial = session()->get('filial');
         $instagram = explode('/', $filial->instagram)[3];
         return view('filial.index', compact('filial', 'instagram'));
     }

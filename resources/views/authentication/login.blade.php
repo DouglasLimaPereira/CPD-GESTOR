@@ -63,11 +63,12 @@
                     </div>
             </form>
             <p class="mb-1 mt-3">
-                <a href="javascript:void(0)" id="recupera-senha">Esqueci minha senha!</a>
+                <a href="javascript:void(0)" id="recupera-senha">Esqueci minha senha!</a><br>
+                Não possui uma conta? <a href="javascript:void(0)" id="cadastre-se">Cadastre-se</a>
                 <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">[Cancelar recuperação]</a>
             </p>
             <div id="form-recupera-senha"></div>
-            <div> Não possui uma conta? <a href="{{ route('usuarios.store') }}">Cadastre-se</a></div>
+            {{-- <div>  <a href="{{ route('usuarios.store') }}">Cadastre-se</a></div> --}}
         </div>
     <!-- /.login-card-body -->
   </div>
@@ -100,6 +101,10 @@
         $('#cancela-recuperar-senha').click(function(){
             $('#cancela-recuperar-senha').hide()
             $('#form-recupera-senha').html(``)
+        });
+
+        $('#cadastre-se').click(function(){
+            window.location.href = "{{url('/')}}/usuarios/store";
         });
     </script>
 </body>

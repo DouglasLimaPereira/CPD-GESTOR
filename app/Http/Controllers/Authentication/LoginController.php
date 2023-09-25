@@ -38,8 +38,8 @@ class LoginController extends Controller
 
             Session::put('user-name', Auth::user()->name);
             Session::put('user-cargo', Auth::user()->cargo);
-            $user_filial = auth()->user()->filiais()->first();
-            Session::put('filial', $user_filial->id);
+            $filial = auth()->user()->filiais()->first();
+            Session::put('filial', $filial);
             
 
             return redirect()->route('painel.index');

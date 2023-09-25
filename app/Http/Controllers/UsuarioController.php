@@ -25,7 +25,7 @@ class UsuarioController extends Controller
     {
         // $rows = $company->users()->where('superadmin', true)->paginate(10);
         $usuario = User::firstWhere('id', auth()->user()->id);
-        $filial = $usuario->filiais()->where('filial_id', session()->get('filial'))->first();
+        $filial = session()->get('filial');
         return view('usuarios.index', compact('usuario', 'filial'));
         
     }
