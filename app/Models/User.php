@@ -20,14 +20,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
-        'active',
-        'cargo',
-        'superadmin',
-        'imagem',
-        'telefone',
     ];
 
     /**
@@ -71,5 +65,10 @@ class User extends Authenticatable
     public function pontos()
     {
         return $this->hasMany(Ponto::class);
+    }
+
+    public function funcionario()
+    {
+        return $this->hasOne(Funcionario::class);
     }
 }

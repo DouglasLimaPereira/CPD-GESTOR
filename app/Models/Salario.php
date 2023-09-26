@@ -15,14 +15,16 @@ class Salario extends Model
     protected $fillable = [
         'funcao_id',
         'valor',
-        'data_vigencia',
         'data_atualizacao',
-        'cad_user_id',
-        'active'
     ];
 
     public function funcao()
     {
-        return $this->belongsTo(Canteiro::class);
+        return $this->belongsTo(Funcao::class);
+    }
+
+    public function filial()
+    {
+        return $this->belongsTo(Filial::class);
     }
 }

@@ -4,37 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Funcao extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
+    protected $table = 'funcoes';
 
     protected $fillable = [
-        'company_id',
         'nome',
         'descricao',
-        'tipo',
-        'active',
-        'user_cad_id',
     ];
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
-
-    public function salarios()
+    public function salario()
     {
         //Verficar este relacionamento
-        return $this->hasMany(Funcaosalario::class);
+        return $this->belongsTo(Salario::class);
     }
 
     public function funcaoFuncionario()
     {
-        return $this->hasMany(Funcaofuncionario::class);
-    }    
+        return $this->hasOne(funcionario::class);
+    }
 }

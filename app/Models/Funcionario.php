@@ -14,23 +14,25 @@ class Funcionario extends Model
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'company_id',
-        'pessoa_id',
+        'user_id',
+        'funcao_id',
         'matricula',
+        'nome',
+        'telefone',
+        'superadmin',
+        'imagem',
         'situacao_admissional',
         'data_admissao',
         'data_demissao',
-        'active',
-        'cad_user_id'
     ];
 
-    public function pessoa()
+    public function usuario()
     {
-        return $this->belongsTo(Pessoa::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function funcoes()
+    public function funcao()
     {
-        return $this->hasMany(Funcaofuncionario::class);
+        return $this->belongsTo(Funcao::class);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Construtoras - Administradores - Novo')
+@section('title', 'Construtoras - Usuario - Novo')
 
 @section('page-title', 'Construtoras - Administradores')
 

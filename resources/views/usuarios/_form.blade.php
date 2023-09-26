@@ -9,10 +9,10 @@
 @endif
 
 @if(isset($usuario))
-    <form action="{{route('usuarios.update', $usuario->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('usuario.update', $usuario->id)}}" method="POST" enctype="multipart/form-data">
     @method('PUT')
 @else
-    <form action="{{route('usuarios.store', $usuario->id)}}" method="POST" enctype="multipart/form-data">    
+    <form action="{{route('usuario.store', $usuario->id)}}" method="POST" enctype="multipart/form-data">    
 @endif
     @csrf
     <h5 class="mt-3"><em>DADOS PESSOAIS</em></h5>
@@ -32,7 +32,7 @@
         <div class="col-md-6">
             <div class="form-group">   
                 <label for="nome">Nome *</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{(isset($usuario)) ? $usuario->name : old('name')}}">
+                <input type="text" name="name" class="form-control" id="name" value="{{(isset($usuario)) ? $usuario->funcionario->nome : old('name')}}">
                 {{-- @if(!isset($usuario))
                     <span class="user-from-database" style="display: none">
                         <select name="pessoa_id" id="pessoa_id" class="form-control pessoa_id" data-live-search="true" data-style="border-secondary" onchange="getMail(this.value)">
@@ -53,14 +53,14 @@
         <div class="col-md-6">
             <div class="form-group">   
                 <label for="telefone">Telefone *</label>
-                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($usuario)) ? $usuario->telefone : old('telefone')}}" required>
+                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($usuario)) ? $usuario->funcionario->telefone : old('telefone')}}" required>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-group">   
                 <label for="cargo">Cargo *</label>
-                <input type="text" name="cargo" class="form-control" id="cargo" value="{{(isset($usuario)) ? $usuario->cargo :  old('cargo')}}" required>
+                <input type="text" name="cargo" class="form-control" id="cargo" value="{{(isset($usuario)) ? $usuario->funcionario->funcao->nome :  old('cargo')}}" required>
             </div>
         </div>
 
@@ -128,8 +128,8 @@
                 <div class="form-group">
                     <label for="active">Ativo *</label>
                     <select name="active" id="active" class="form-control" required>
-                        <option value="1" @if($usuario->active == true) selected @endif>SIM</option>
-                        <option value="0" @if($usuario->active == false) selected @endif>NÃO</option>
+                        <option value="1" @if($usuario->funcionario->situacao_admissional == true) selected @endif>SIM</option>
+                        <option value="0" @if($usuario->funcionario->situacao_admissional == false) selected @endif>NÃO</option>
                     </select>
                 </div>
             </div>

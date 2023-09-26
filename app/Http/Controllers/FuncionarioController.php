@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use App\Models\Filial;
 use Illuminate\Http\Request;
 use App\Http\Requests\FuncionarioRequest;
-use App\Models\Companyuser;
 use App\Models\Funcionario;
-use App\Models\Pessoa;
 use App\Models\Funcao;
 use App\Models\User;
 use App\Notifications\UsuarioCadastroNotification;
@@ -17,9 +15,9 @@ use Illuminate\Support\Facades\Notification;
 
 class FuncionarioController extends Controller
 {
-    public function index(Company $company)
+    public function index(Filial $filial)
     {
-        $pessoas = Pessoa::has('funcionario')->orderby('nome')->where('company_id', $company->id)->paginate(10);
+        $pessoas = Pessoa::has('funcionario')->orderby('nome')->where('filial_id', $filial->id)->paginate(10);
 
         return view('funcionarios.index', compact('company', 'pessoas'));
     }

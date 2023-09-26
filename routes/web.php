@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     ErrositefController,
     EscalaController,
     FilialController,
+    FuncionarioController,
     PontoController
 };
 
@@ -37,15 +38,26 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->get('painel', [PainelController::class, 'index'])->name('painel.index');
 
-    // SUPERADMIN USUÁRIOS
-Route::group(['prefix' => 'usuarios'], function(){
-    Route::get('/', [UsuarioController::class, 'index'])->name('usuarios.index');
-    Route::get('/{usuario}/show', [UsuarioController::class, 'show'])->name('usuarios.show');
-    Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios.create');
-    Route::get('/{usuario}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
-    Route::put('/{usuario}/update', [UsuarioController::class, 'update'])->name('usuarios.update');
-    Route::get('/{usuario}/destroy', [UsuarioController::class, "destroy"])->name('usuarios.destroy');
-    Route::post('/store', [UsuarioController::class, 'store'])->name('usuarios.store');
+    // PERFIL USUÁRIO
+Route::group(['prefix' => 'usuario', 'as' => 'usuario.', 'middleware'=>['auth']], function(){
+    Route::get('/', [UsuarioController::class, 'index'])->name('index');
+    Route::get('/{usuario}/show', [UsuarioController::class, 'show'])->name('show');
+    Route::get('/create', [UsuarioController::class, 'create'])->name('create');
+    Route::get('/{usuario}/edit', [UsuarioController::class, 'edit'])->name('edit');
+    Route::put('/{usuario}/update', [UsuarioController::class, 'update'])->name('update');
+    Route::get('/{usuario}/destroy', [UsuarioController::class, "destroy"])->name('destroy');
+    Route::post('/store', [UsuarioController::class, 'store'])->name('store');
+});
+
+    // FUNCIONÁRIO
+Route::group(['prefix' => 'funcionarios', 'as' => 'funcionarios.', 'middleware'=>['auth']], function(){
+    Route::get('/', [FuncionarioController::class, 'index'])->name('index');
+    Route::get('/{funcionario}/show', [FuncionarioController::class, 'show'])->name('show');
+    Route::get('/create', [FuncionarioController::class, 'create'])->name('create');
+    Route::get('/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('edit');
+    Route::put('/{funcionario}/update', [FuncionarioController::class, 'update'])->name('update');
+    Route::get('/{funcionario}/destroy', [FuncionarioController::class, "destroy"])->name('destroy');
+    Route::post('/store', [FuncionarioController::class, 'store'])->name('store');
 });
 
     // ERRO_SITEF

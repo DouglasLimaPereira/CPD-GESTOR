@@ -46,11 +46,11 @@
     <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
     <li class="nav-item menu">
-      <a href="{{ route('usuarios.index') }}" class="nav-link">
+      <a href="{{ route('usuario.index') }}" class="nav-link">
         {{--  <i class=" fas fa-user-clock"></i>  --}}
         <i class="nav-icon fa-solid fa-users fa-lg"></i>
         <p>
-          Usuários
+          Funcionários
         </p>
       </a>
     </li>

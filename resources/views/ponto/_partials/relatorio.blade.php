@@ -2,7 +2,7 @@
 
 @section('title', 'Relatório Pontos')
 
-@section('page-title', 'Relatório Pontos')
+@section('page-title', 'Relatório de Pontos')
 
 @section('content')
 
@@ -11,13 +11,13 @@
             @include('ponto._partials.filtro')
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Listagem de Pontos</h3>
+                    <h3 class="card-title"><i class="fa-regular fa-rectangle-list"></i> Listagem de Pontos</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
                                 <div class="dropdown">
                                     <a class="btn btn-info btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                        Gerar Relatório
+                                        <i class="fa-solid fa-file-export"></i> Gerar Relatório
                                     </a>
                                     
                                     <div class="dropdown-menu">

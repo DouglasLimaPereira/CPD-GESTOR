@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Perfil')
+@section('title', 'Usuário - Perfil')
 
-@section('page-title', 'Editar Perfil')
+@section('page-title', 'Perfil Usuário')
 
 @section('content')
     <div class="row">
@@ -23,19 +23,20 @@
                 <div class="card-body">
                     <div class="card card-profile">
                         <div class="card-avatar text-center mt-3">
-                            @if (isset($usuario) && ($usuario->imagem))
+                            @if (isset($usuario) && ($usuario->funcionario->imagem))
                                 {{--  <a href="{{url('/')}}/storage/{{$usuario->imagem}}" target="_blank">  --}}
-                                    <img src="{{url('/')}}/storage/{{$usuario->imagem}}" width="170" style="border-radius: 50%">
+                                    <img src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="280" style="border-radius: 50%">
                                 {{--  </a>  --}}
                             @else
                                 <img src="{{asset('image/user.jpg')}}" style="height: 300;">
                             @endif
                         </div>
                         <div class="card-body">
-                            <h3 class="card-category text-gray">{{ $usuario->cargo }} / {{ $usuario->name }}</h3>
+                            <h3 class="card-category text-gray">{{ $usuario->funcionario->nome }}</h3>
                             {{--  @dd($usuario->filiais()->where('filial_id', session()->get('filial'))->get('codigo'))  --}}
-                            <b class="">Loja:</b> SM{{$filial->codigo}}<br>
-                            <b class="">Endereço:</b> {{$filial->logradouro}},
+                            <b>Cargo:</b> {{ $usuario->funcionario->funcao->nome }}<br>
+                            <b>Loja:</b> SM{{$filial->codigo}} {{$filial->bairro}}<br>
+                            <b>Endereço:</b> {{$filial->logradouro}},
                             Nº {{$filial->numero}}, {{($filial->complemento) ? '{$filial->logradouro} ,' : ''}}
                             {{$filial->bairro}}, <span class="cep-view">{{$filial->cep}}</span>, {{$filial->cidade}} - {{$filial->uf}} <br>
                         </div>

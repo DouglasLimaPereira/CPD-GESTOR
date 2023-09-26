@@ -45,7 +45,7 @@
           $('#total_funcionarios').mask('000', {reverse: true})
           $('#limite_armazenamento').mask('00000,00', {reverse: true})
           $('#limite_anexo').mask('#.00', {reverse: true})
-          $('#telefone').mask('(00) 000000000')
+          $('#telefone').mask('(00) 00000-0000')
           $('#whatsapp').mask('(00) 000000000')
           $('#salario').mask('#.##0,00', {reverse: true})
 

@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Listagem de Pontos</h3>
+                    <h3 class="card-title"><i class="fa-regular fa-rectangle-list"></i> Listagem de Pontos</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
@@ -20,15 +20,15 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
+                    <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
                         <thead>
                             <tr>
-                                <th>Data</th>
-                                <th>Entrada</th>
-                                <th>Saida P/Almoço</th>
-                                <th>Volta P/Almoço</th>
-                                <th>Saída</th>
-                                <th>AÇÕES</th>
+                                <th><i class="fa-solid fa-calendar"></i> Data</th>
+                                <th><i class="fa-solid fa-clock"></i> Entrada</th>
+                                <th><i class="fa-solid fa-clock"></i> Saida P/Almoço</th>
+                                <th><i class="fa-solid fa-clock"></i> Volta P/Almoço</th>
+                                <th><i class="fa-solid fa-clock"></i> Saída</th>
+                                <th width="8%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +39,7 @@
                                     <td>{{$row->entrada_almoco}}</td>
                                     <td>{{$row->saida_almoco}}</td>
                                     <td>{{$row->saida}}</td>
-                                    <td class="td-1p">
+                                    <td class="text-center">
                                         <div class="dropdown">
                                             <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>

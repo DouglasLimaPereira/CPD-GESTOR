@@ -6,7 +6,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a href="javascript:void(0)" class="nav-link" onclick="sair()" title="SAIR">
-        <i class="fas fa-sign-out-alt"></i>
+        SAIR <i class="fas fa-sign-out-alt fa-lg"></i>
       </a>
     </li>
   </ul>
