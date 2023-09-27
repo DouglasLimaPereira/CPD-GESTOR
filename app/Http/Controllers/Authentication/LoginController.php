@@ -25,19 +25,18 @@ class LoginController extends Controller
         {
             $request->session()->regenerate();
             
-            if(!Auth::user()->active)
+            if(!Auth::user()->funcionario->situacao_admissional)
             {
                 Auth::logout();
                 return back()->withErrors('Acesso indisponível.');
             }
 
-            if(!Auth::user()->superadmin) {
+            if(!Auth::user()->funcionario->superadmin) {
                 Auth::logout();
                 return back()->withErrors('Você não tem acesso a essa área.');
             }
 
-            Session::put('user-name', Auth::user()->name);
-            Session::put('user-cargo', Auth::user()->cargo);
+            Session::put('user', Auth::user());
             $filial = auth()->user()->filiais()->first();
             Session::put('filial', $filial);
             
@@ -62,6 +61,10 @@ class LoginController extends Controller
     }
 
     public function cadastro(){
+        return view('authentication.cadastro');
+    }
+
+    public function cadastroStore(){
         return view('authentication.cadastro');
     }
 
