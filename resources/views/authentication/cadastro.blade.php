@@ -21,7 +21,7 @@
 <div class="login-box">
     
     <!-- /.login-logo -->
-    <div class="card">
+    <div class="card" style="border-radius: 15px; border-bottom-left-radius:15px; border-bottom-right-radius:15px;">
         <div class="login-logo">
             <img src="{{asset('assets/images/mateus.png')}}" class="img-fluid" alt="">
         </div>
