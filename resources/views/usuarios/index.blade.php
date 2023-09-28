@@ -25,7 +25,7 @@
                         <div class="card-avatar text-center mt-3">
                             @if (isset($usuario) && ($usuario->funcionario->imagem))
                                 {{--  <a href="{{url('/')}}/storage/{{$usuario->imagem}}" target="_blank">  --}}
-                                    <img src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="280" style="border-radius: 50%">
+                                    <img src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="295" style="border-radius: 50%">
                                 {{--  </a>  --}}
                             @else
                                 <img src="{{asset('image/user.jpg')}}" style="height: 300;">

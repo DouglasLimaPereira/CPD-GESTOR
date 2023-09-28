@@ -11,21 +11,23 @@
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style-login.css')}}">
-    <link rel="stylesheet" href="{{asset('dist/css/util.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/main.css')}}">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
     
     <!-- /.login-logo -->
-    <div class="card" style="border-radius: 15px; border-bottom-left-radius:15px; border-bottom-right-radius:15px;">
+    <div class="card" style="border-radius: 15px;">
         <div class="login-logo">
             <img src="{{asset('assets/images/mateus.png')}}" class="img-fluid" alt="">
         </div>
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body" style="border-radius: 15px;">
                 @if($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <ul class="list">
@@ -42,7 +44,7 @@
                 <span class="login100-form-title p-b-10">
                     Login
                 </span>
-                <p class="login-box-msg">Informe seus dados de acesso</p>
+                <p class="login-box-msg" style="font-size: 17px;">Informe seus dados de acesso</p>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
                     <input class="input100" type="text" name="email">
@@ -51,30 +53,30 @@
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
                     <span class="btn-show-pass">
-                        <i class="fa-regular fa-eye"></i>
+                        <i class="fa-regular fa-eye-slash"></i>
                     </span>
                     <input class="input100" type="password" name="pass">
-                    <span class="focus-input100" data-placeholder="Senha de acesso"></span>
+                    <span class="focus-input100" data-placeholder="Senha"></span>
                 </div>
 
-                <div class="container-login100-form-btn">
+                <div class="container-login100-form-btn mt-0">
                     <div class="wrap-login100-form-btn">
-                        <button class="btn btn-success login100-form-btn">
+                        <button class="login100-form-btn">
                             Login
                         </button>
                     </div>
                 </div>
 
-                <div class="text-center p-t-40">
-                    <span class="txt1">
+                <div class="text-center mt-4">
+                    <span>
                         Não tem uma conta?
                     </span>
 
-                    <a class="txt2" href="#">
+                    <a href="#">
                         Cadastre-se
                     </a>
                     <p class="mb-1 mt-3">
-                        <a href="javascript:void(0)" id="recupera-senha">Esqueci minha senha!</a>
+                        <a href="javascript:void(0)" id="recupera-senha" style="font-size: 17px;">Esqueci minha senha!</a>
                         <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">[Cancelar recuperação]</a>
                     </p>
                     <div id="form-recupera-senha"></div>
