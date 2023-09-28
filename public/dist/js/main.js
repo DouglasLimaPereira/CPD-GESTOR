@@ -71,14 +71,14 @@
     $('.btn-show-pass').on('click', function(){
         if(showPass == 0) {
             $(this).next('input').attr('type','text');
-            $(this).find('i').removeClass('fa-regular fa-eye-slash');
-            $(this).find('i').addClass('fa-regular fa-eye');
+            $(this).find('i').removeClass('fa-regular fa-eye');
+            $(this).find('i').addClass('fa-regular fa-eye-slash');
             showPass = 1;
         }
         else {
             $(this).next('input').attr('type','password');
-            $(this).find('i').removeClass('fa-regular fa-eye');
-            $(this).find('i').addClass('fa-regular fa-eye-slash');
+            $(this).find('i').removeClass('fa-regular fa-eye-slash');
+            $(this).find('i').addClass('fa-regular fa-eye');
             showPass = 0;
         }
         

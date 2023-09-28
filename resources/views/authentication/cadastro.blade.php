@@ -11,23 +11,21 @@
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style-login.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/main.css')}}">
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    
     <!-- /.login-logo -->
     <div class="card" style="border-radius: 15px;">
-        <div class="login-logo">
-            <img src="{{asset('assets/images/mateus.png')}}" class="img-fluid" alt="">
-        </div>
         <div class="card-body login-card-body" style="border-radius: 15px;">
+            <div class="login-logo">
+                <img src="{{asset('assets/images/mateus.png')}}" class="img-fluid" alt="">
+            </div>
+
                 @if($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <ul class="list">
@@ -39,9 +37,9 @@
                 @endif
             
             
-            <form action="{{route('usuario.store')}}" method="POST">
+            <form action="{{route('login.store')}}" method="POST">
                 @csrf
-                <span class="login100-form-title p-b-10">
+                <span class="login100-form-title">
                     Login
                 </span>
                 <p class="login-box-msg" style="font-size: 17px;">Informe seus dados de acesso</p>
@@ -53,15 +51,15 @@
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
                     <span class="btn-show-pass">
-                        <i class="fa-regular fa-eye-slash"></i>
+                        <i class="fa-regular fa-eye"></i>
                     </span>
-                    <input class="input100" type="password" name="pass">
+                    <input class="input100" type="password" name="password">
                     <span class="focus-input100" data-placeholder="Senha"></span>
                 </div>
 
                 <div class="container-login100-form-btn mt-0">
                     <div class="wrap-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn button">
                             Login
                         </button>
                     </div>
@@ -72,16 +70,15 @@
                         Não tem uma conta?
                     </span>
 
-                    <a href="#">
+                    <a href="{{ route('login.cadastro') }}">
                         Cadastre-se
                     </a>
                     <p class="mb-1 mt-3">
-                        <a href="javascript:void(0)" id="recupera-senha" style="font-size: 17px;">Esqueci minha senha!</a>
-                        <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">[Cancelar recuperação]</a>
+                        <a href="javascript:void(0)" id="recupera-senha" style="font-size: 17px;">Esqueci minha senha!</a> <br>
+                        <div id="form-recupera-senha"></div>
+                        <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">Cancelar recuperação</a>
                     </p>
-                    <div id="form-recupera-senha"></div>
                 </div>
-                <div id="dropDownSelect1"></div>
             </form>
         </div>
     <!-- /.login-card-body -->
@@ -106,7 +103,7 @@
                     <div class="input-group mb-3">
                         <input type="email" name='email' class="form-control" placeholder="Informe aqui o seu email" required>
                         <span class="input-group-append">
-                            <button type="submite" class="btn btn-info">RECUPERAR</button>
+                            <button type="submite" class="btn btn" style="background-color: #0095d9; color:#ffffff;">RECUPERAR</button>
                         </span>
                     </div>
                 </form>

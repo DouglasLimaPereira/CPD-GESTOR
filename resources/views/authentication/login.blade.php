@@ -39,78 +39,47 @@
             
             <form action="{{route('login.store')}}" method="POST">
                 @csrf
-                {{--  <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="email" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                        
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary ">ACESSAR</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-            </form>
-            <p class="mb-1 mt-3">
-                <a href="javascript:void(0)" id="recupera-senha">Esqueci minha senha!</a><br>
-                Não possui uma conta? <a href="{{ route('login.cadastro') }}">Cadastre-se</a>
-                <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">[Cancelar recuperação]</a>
-            </p>
-            <div id="form-recupera-senha"></div>
-            <div>  <a href="{{ route('usuarios.store') }}">Cadastre-se</a></div>  --}}
-            <span class="login100-form-title">
-                Login
-            </span>
-            <p class="login-box-msg" style="font-size: 17px;">Informe seus dados de acesso</p>
-
-            <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                <input class="input100" type="text" name="email">
-                <span class="focus-input100" data-placeholder="Email"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input" data-validate="Enter password">
-                <span class="btn-show-pass">
-                    <i class="fa-regular fa-eye-slash"></i>
+                <span class="login100-form-title">
+                    Login
                 </span>
-                <input class="input100" type="password" name="password">
-                <span class="focus-input100" data-placeholder="Senha"></span>
-            </div>
+                <p class="login-box-msg" style="font-size: 17px;">Informe seus dados de acesso</p>
 
-            <div class="container-login100-form-btn mt-0">
-                <div class="wrap-login100-form-btn">
-                    <button class="login100-form-btn button">
-                        Login
-                    </button>
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+                    <input class="input100" type="text" name="email">
+                    <span class="focus-input100" data-placeholder="Email"></span>
                 </div>
-            </div>
 
-            <div class="text-center mt-4">
-                <span>
-                    Não tem uma conta?
-                </span>
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <span class="btn-show-pass">
+                        <i class="fa-regular fa-eye"></i>
+                    </span>
+                    <input class="input100" type="password" name="password">
+                    <span class="focus-input100" data-placeholder="Senha"></span>
+                </div>
 
-                <a href="#">
-                    Cadastre-se
-                </a>
-                <p class="mb-1 mt-3">
-                    <a href="javascript:void(0)" id="recupera-senha" style="font-size: 17px;">Esqueci minha senha!</a> <br>
-                    <div id="form-recupera-senha"></div>
-                    <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">Cancelar recuperação</a>
-                </p>
-            </div>
+                <div class="container-login100-form-btn mt-0">
+                    <div class="wrap-login100-form-btn">
+                        <button class="login100-form-btn button">
+                            Login
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <span>
+                        Não tem uma conta?
+                    </span>
+
+                    <a href="{{ route('login.cadastro') }}">
+                        Cadastre-se
+                    </a>
+                    <p class="mb-1 mt-3">
+                        <a href="javascript:void(0)" id="recupera-senha" style="font-size: 17px;">Esqueci minha senha!</a> <br>
+                        <div id="form-recupera-senha"></div>
+                        <a href="javascript:void(0)" class="text-danger" id="cancela-recuperar-senha" style="display: none">Cancelar recuperação</a>
+                    </p>
+                </div>
+            </form>
         </div>
     <!-- /.login-card-body -->
   </div>
