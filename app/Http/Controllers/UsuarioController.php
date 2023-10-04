@@ -23,23 +23,32 @@ class UsuarioController extends Controller
 
     public function index()
     {
+        if (session()->get('filial')->id) {
+            # code...
+        }
+        // $rows = $company->users()->where('superadmin', true)->paginate(10);
+        $usuarios = User::where('id', '!=', auth()->user()->id)->paginate(10);
+        return view('usuarios.index', compact('usuarios'));
+        
+    }
+
+    public function perfil()
+    {
         // $rows = $company->users()->where('superadmin', true)->paginate(10);
         $usuario = User::firstWhere('id', auth()->user()->id);
         $filial = session()->get('filial');
-        return view('usuarios.index', compact('usuario', 'filial'));
+        return view('usuarios.perfil', compact('usuario', 'filial'));
         
     }
 
     public function show(User $usuario)
     {
-        return view('usuarios.show', compact('usuario', 'company'));
+        return view('usuarios.show', compact('usuario'));
     }
 
     public function create()
-    {   
-        $pessoas = User::where('user_id', null)->orderBy('nome')->get();
-
-        return view('usuarios.create', compact('company', 'pessoas'));
+    { 
+        return view('usuarios.create', compact('company'));
     }
 
     public function update(User $usuario, UsuarioRequest $request)
@@ -218,14 +227,14 @@ class UsuarioController extends Controller
         }
     }
 
-    // public function edit(User $usuario)
-    // {
-    //     $companyuser = $usuario->pessoa->companyuser;
-    //     // dd($companyuser->pessoa->telefone);
+    public function edit(User $usuario)
+    {
+        $companyuser = $usuario->pessoa->companyuser;
+        // dd($companyuser->pessoa->telefone);
         
-    //     //if($usuario->$company->id != $company->id) return back()->with(['warning'=>'Recurso não encontrado']);
-    //     return view('usuarios.edit', compact('company', 'usuario', 'companyuser'));
-    // }
+        //if($usuario->$company->id != $company->id) return back()->with(['warning'=>'Recurso não encontrado']);
+        return view('usuarios.edit', compact('company', 'usuario', 'companyuser'));
+    }
 
     // public function update(User $usuario, UsuarioRequest $request)
     // {

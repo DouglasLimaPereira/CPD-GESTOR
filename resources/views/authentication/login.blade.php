@@ -66,13 +66,13 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <span>
+                    {{--  <span>
                         Não tem uma conta?
                     </span>
 
                     <a href="{{ route('login.cadastro') }}">
                         Cadastre-se
-                    </a>
+                    </a>  --}}
                     <p class="mb-1 mt-3">
                         <a href="javascript:void(0)" id="recupera-senha" style="font-size: 17px;">Esqueci minha senha!</a> <br>
                         <div id="form-recupera-senha"></div>

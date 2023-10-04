@@ -17,7 +17,7 @@
             <div class="icon">
                 <i class="far fa-user" style="font-size: 44px;"></i>
             </div>
-                <a href="{{route('funcionarios.index')}}" class="small-box-footer">
+                <a href="{{route('usuario.perfil', auth()->user()->id)}}" class="small-box-footer">
                 <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>

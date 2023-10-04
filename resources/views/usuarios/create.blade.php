@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Construtoras - Usuario - Novo')
+@section('title', 'Usuario - Novo')
 
-@section('page-title', 'Construtoras - Administradores')
+@section('page-title', 'Cadastro de usuário')
 
 @section('content')
     <div class="row">

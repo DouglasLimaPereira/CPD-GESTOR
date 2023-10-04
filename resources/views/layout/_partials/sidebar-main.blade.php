@@ -16,7 +16,7 @@
               <img src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" class="img-circle elevation-2">
             </div>
             <div class="info">
-              <a href="{{ route('usuario.index') }}" class="d-block">{{auth()->user()->funcionario->nome}}</a>
+              <a href="{{ route('usuario.perfil', auth()->user()->id) }}" class="d-block">{{auth()->user()->funcionario->nome}}</a>
             </div>
           </div>
     

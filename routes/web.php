@@ -40,6 +40,7 @@ Route::middleware(['auth'])->get('painel', [PainelController::class, 'index'])->
 
     // PERFIL USUÁRIO
 Route::group(['prefix' => 'usuario', 'as' => 'usuario.', 'middleware'=>['auth']], function(){
+    Route::get('/{usuario}', [UsuarioController::class, 'perfil'])->name('perfil');
     Route::get('/', [UsuarioController::class, 'index'])->name('index');
     Route::get('/{usuario}/show', [UsuarioController::class, 'show'])->name('show');
     Route::get('/create', [UsuarioController::class, 'create'])->name('create');
