@@ -14,7 +14,7 @@
                     @include('usuarios._form')
                 </div>
             </div>
-        </div>  
+        </div>
 
         <div class="col-md-4">
             <div class="card card-dark">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 @endsection
 

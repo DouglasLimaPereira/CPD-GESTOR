@@ -14,6 +14,7 @@ class FuncaoController extends Controller
 {
     public function index(Company $company)
     {
+        Filial::all();
         return view('funcoes.index', compact('company'));
     }
 

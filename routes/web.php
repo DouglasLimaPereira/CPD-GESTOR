@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     PontoController
 };
 
+
 //use App\Http\Controllers\Api\FatorController;
 use App\Http\Controllers\Authentication\LoginController;
 
@@ -24,7 +25,7 @@ Route::get('/login', function () {
     return view('authentication.login');
 })->name('login');
 
-// Rotas para Redefinição de Senha 
+// Rotas para Redefinição de Senha
 Route::group(['prefix'=>'reseta-senha'], function(){
     Route::post('/send-mail', [ResetaSenhaController::class, 'sendMail'])->name('resetasenha.sendmail');
     Route::get('/{token}', [ResetaSenhaController::class, 'resetView'])->middleware('guest')->middleware('guest')->name('password.reset');
@@ -40,26 +41,26 @@ Route::middleware(['auth'])->get('painel', [PainelController::class, 'index'])->
 
     // PERFIL USUÁRIO
 Route::group(['prefix' => 'usuario', 'as' => 'usuario.', 'middleware'=>['auth']], function(){
-    Route::get('/{usuario}', [UsuarioController::class, 'perfil'])->name('perfil');
     Route::get('/', [UsuarioController::class, 'index'])->name('index');
+    Route::get('/{usuario}/perfil', [UsuarioController::class, 'perfil'])->name('perfil');
     Route::get('/{usuario}/show', [UsuarioController::class, 'show'])->name('show');
-    Route::get('/create', [UsuarioController::class, 'create'])->name('create');
+    Route::get('/creat', [UsuarioController::class, 'creat'])->name('creat');
     Route::get('/{usuario}/edit', [UsuarioController::class, 'edit'])->name('edit');
     Route::put('/{usuario}/update', [UsuarioController::class, 'update'])->name('update');
     Route::get('/{usuario}/destroy', [UsuarioController::class, "destroy"])->name('destroy');
     Route::post('/store', [UsuarioController::class, 'store'])->name('store');
 });
 
-    // FUNCIONÁRIO
-Route::group(['prefix' => 'funcionarios', 'as' => 'funcionarios.', 'middleware'=>['auth']], function(){
-    Route::get('/', [FuncionarioController::class, 'index'])->name('index');
-    Route::get('/{funcionario}/show', [FuncionarioController::class, 'show'])->name('show');
-    Route::get('/create', [FuncionarioController::class, 'create'])->name('create');
-    Route::get('/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('edit');
-    Route::put('/{funcionario}/update', [FuncionarioController::class, 'update'])->name('update');
-    Route::get('/{funcionario}/destroy', [FuncionarioController::class, "destroy"])->name('destroy');
-    Route::post('/store', [FuncionarioController::class, 'store'])->name('store');
-});
+//     // FUNCIONÁRIO
+// Route::group(['prefix' => 'funcionarios', 'as' => 'funcionarios.', 'middleware'=>['auth']], function(){
+//     Route::get('/', [FuncionarioController::class, 'index'])->name('index');
+//     Route::get('/{funcionario}/show', [FuncionarioController::class, 'show'])->name('show');
+//     Route::get('/create', [FuncionarioController::class, 'create'])->name('create');
+//     Route::get('/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('edit');
+//     Route::put('/{funcionario}/update', [FuncionarioController::class, 'update'])->name('update');
+//     Route::get('/{funcionario}/destroy', [FuncionarioController::class, "destroy"])->name('destroy');
+//     Route::post('/store', [FuncionarioController::class, 'store'])->name('store');
+// });
 
     // ERRO_SITEF
 Route::group(['prefix'=>'erro-sitef', 'as'=>'erro-sitef.', 'middleware'=>['auth']], function(){

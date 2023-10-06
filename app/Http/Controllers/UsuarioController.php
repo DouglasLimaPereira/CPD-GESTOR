@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioRequest;
 use App\Models\User;
+use App\Models\Funcao;
+use App\Models\Filial;
 use App\Notifications\UsuarioCadastroNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -13,32 +15,27 @@ use App\Recursos\Anexo;
 
 class UsuarioController extends Controller
 {
-    
+
     private $hora_extra;
 
     public function __construct(Anexo $anexo)
     {
         $this->anexo = $anexo;
-    } 
+    }
 
     public function index()
     {
-        if (session()->get('filial')->id) {
-            # code...
-        }
-        // $rows = $company->users()->where('superadmin', true)->paginate(10);
-        $usuarios = User::where('id', '!=', auth()->user()->id)->paginate(10);
+        $usuarios = session()->get('filial')->usuarios()->paginate(10);
         return view('usuarios.index', compact('usuarios'));
-        
     }
 
     public function perfil()
     {
-        // $rows = $company->users()->where('superadmin', true)->paginate(10);
         $usuario = User::firstWhere('id', auth()->user()->id);
+        $cargos = Funcao::all();
         $filial = session()->get('filial');
-        return view('usuarios.perfil', compact('usuario', 'filial'));
-        
+        $filiais = Filial::all();
+        return view('usuarios.perfil', compact('usuario', 'filial', 'filiais', 'cargos'));
     }
 
     public function show(User $usuario)
@@ -46,9 +43,10 @@ class UsuarioController extends Controller
         return view('usuarios.show', compact('usuario'));
     }
 
-    public function create()
-    { 
-        return view('usuarios.create', compact('company'));
+    public function creat()
+    {
+        $cargos = Funcao::all();
+        return view('usuarios.create', compact('cargos'));
     }
 
     public function update(User $usuario, UsuarioRequest $request)
@@ -61,41 +59,54 @@ class UsuarioController extends Controller
                 return back()->with('info', 'O Email informado já está cadastrado');
 
             DB::beginTransaction();
-            
+
             // ATUALIZANDO OS DADOS DA TABELA USERS
-            
-            if($request->password != '')
+
+            if ($request->password != '')
             {
                 $usuario->update([
-                    'name' => $request->name,
                     'email' => $request->email,
-                    'telefone' => $request->telefone,
-                    'cargo' => $request->cargo,
-                    'active' => $request->active,
                     'password' => bcrypt($request->password),
                 ]);
 
-            }else{
-                $usuario->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
+                $usuario->funcionario->update([
+                    'user_id' => $usuario->id,
+                    'funcao_id' => $request->cargo,
+                    'matricula' => $request->matricula,
+                    'nome' => $request->name,
                     'telefone' => $request->telefone,
                     'cargo' => $request->cargo,
-                    'active' => $request->active,
+                    'situacao_admissional' => $request->active,
+                ]);
+
+            } else{
+                $usuario->update([
+                    'email' => $request->email,
+                ]);
+
+                $usuario->funcionario->update([
+                    'user_id' => $usuario->id,
+                    'funcao_id' => $request->cargo,
+                    'matricula' => $request->matricula,
+                    'nome' => $request->name,
+                    'telefone' => $request->telefone,
+                    'cargo' => $request->cargo,
+                    'situacao_admissional' => $request->active,
                 ]);
             }
 
             if(isset($request->imagem) && $request->imagem->isValid()){
-                $imagem = $this->anexo->user_store(auth()->user()->id, $request->imagem, $usuario->imagem);
-                $usuario->update([
+                $imagem = $this->anexo->user_store(auth()->user()->id, $request->imagem, $usuario->funcionario->imagem);
+                $usuario->funcionario->update([
                     'imagem' => $imagem,
                 ]);
             }
-            
+
             DB::commit();
-            
-            return redirect()->route('usuarios.index', $usuario->id)->with('success', 'Usuário atualizado com sucesso!');
+
+            return redirect()->route('usuario.perfil', $usuario->id)->with('success', 'Usuário atualizado com sucesso!');
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             DB::rollBack();
             // return back()->withErrors($th->getMessage());
             return back()->with('error', 'Erro ao Atualizar dados!');
@@ -105,12 +116,12 @@ class UsuarioController extends Controller
     public function store(UsuarioRequest $request)
     {
         // dd($request->all());
-        
+
         $is_user = false;
         $usuario = null;
-        
+
         DB::beginTransaction();
-            
+
         try {
             //Registrando na tabela de usuários
             try{
@@ -118,7 +129,7 @@ class UsuarioController extends Controller
                 if(!$usuario = User::firstWhere('email', $request->email))
                     $usuario = User::create($request->all());
                     $usuario->update(['superadmin'=>false]);
-                
+
             }catch(\Exception $e) {
                 // return back()->with('error', $e->getMessage());
                 return back()->withErrors('Error 000011: Erro ao tentar salvar o usuário.');
@@ -137,20 +148,20 @@ class UsuarioController extends Controller
             //     dd($e->getMessage());
             //     return back()->withErrors('Error 000012: Erro ao tentar salvar a pessoa.');
             // }
-            
+
             //Realizando o vínculo entre construtora e usuário
             // if($aa = !(Companyuser::where('company_id', $company->id)->where('user_id', $usuario->id)->where('pessoa_id', $pessoa->id)->first())){
-                
+
                 $filiais = Filial::usuarios()->where('id', $request['filial_id'])->get();
-                
+
                 if ($filiais->count() > 0) {
                     foreach ($filiais as $key => $filial) {
                         // if(isset($request->imagem) && $request->imagem)
                         // {
                         //     //Verificando se o arquivo é válido como imagem
-                        //     if($request->imagem->isValid()){    
+                        //     if($request->imagem->isValid()){
                         //         //Cadastrando a nova imagem
-                                
+
                         //         $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
                         //         $imagem = $request->imagem->storeAs('companies/' . base64_encode($company->id) . '/canteiros/'.base64_encode(session()->get('canteiro_id')).'/usuarios/images', $imagem_nome, 'public');
 
@@ -162,13 +173,13 @@ class UsuarioController extends Controller
                         //             'imagem_origem' => 'g',
                         //             'canteiro_id' => $canteiro->id,
                         //         ]);
-                                
+
                         //         $usuario->update(['imagem'=>$imagem]);
                         //     }
 
                         // } else {
                             $filial_user = $usuario->filiais()->create([
-                                
+
                                 'user_id' => $usuario->id,
                                 'superadmin' => 1,
                                 'canteiro_id' => $canteiro->id,
@@ -179,9 +190,9 @@ class UsuarioController extends Controller
                     // if(isset($request->imagem) && $request->imagem)
                     // {
                     //     //Verificando se o arquivo é válido como imagem
-                    //     if($request->imagem->isValid()){    
+                    //     if($request->imagem->isValid()){
                     //         //Cadastrando a nova imagem
-                            
+
                     //         $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
                     //         $imagem = $request->imagem->storeAs('companies/' . base64_encode($company->id) . '/canteiros/'.base64_encode(session()->get('canteiro_id')).'/usuarios/images', $imagem_nome, 'public');
 
@@ -192,7 +203,7 @@ class UsuarioController extends Controller
                     //             'imagem' => $imagem,
                     //             'imagem_origem' => 'g',
                     //         ]);
-                            
+
                     //         $usuario->update(['imagem'=>$imagem]);
                     //     }
 
@@ -207,7 +218,7 @@ class UsuarioController extends Controller
             DB::commit();
 
             /**
-             * Este recurso ocorre após os registros dos dados no banco. Caso dê erro o processo de 
+             * Este recurso ocorre após os registros dos dados no banco. Caso dê erro o processo de
              * cadastro já o foi realizado
              */
             // dd($request->all());
@@ -219,7 +230,7 @@ class UsuarioController extends Controller
             //         return back()->withErrors('Error 000015: Dados registrados com sucesso! Contudo o Email de confirmação de cadastro não pode ser enviado.');
             //     }
             // }
-            
+
             return redirect()->back()->with('success', 'Usuário cadastrado com sucesso');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -231,7 +242,7 @@ class UsuarioController extends Controller
     {
         $companyuser = $usuario->pessoa->companyuser;
         // dd($companyuser->pessoa->telefone);
-        
+
         //if($usuario->$company->id != $company->id) return back()->with(['warning'=>'Recurso não encontrado']);
         return view('usuarios.edit', compact('company', 'usuario', 'companyuser'));
     }
@@ -247,9 +258,9 @@ class UsuarioController extends Controller
     //             return back()->withErrors('O Email informado já está cadastrado');
 
     //         DB::beginTransaction();
-            
+
     //         // ATUALIZANDO OS DADOS DA TABELA USERS
-            
+
     //         if($request->senha != '')
     //         {
     //             $usuario->update([
@@ -274,10 +285,10 @@ class UsuarioController extends Controller
     //         ]);
 
     //         $companyuser = $usuario->companies;
-            
+
     //             $imagem = $companyuser->imagem;
     //             // $canteiro->update($request->all());
-                
+
     //             //Processo de atualização de imagem
     //             if(isset($request->imagem) && $request->imagem)
     //             {
@@ -286,7 +297,7 @@ class UsuarioController extends Controller
     //                     Storage::disk('public')->delete($imagem);
 
     //                 //Verificando se o arquivo é válido como imagem
-    //                 if($request->imagem->isValid()){    
+    //                 if($request->imagem->isValid()){
     //                     //Cadastrando a nova imagem
     //                     $imagem_nome = sha1(date('Y-m-d H:m:s')). '.' . $request->imagem->getClientOriginalExtension();
     //                     $imagem = $request->imagem->storeAs('companies/' . base64_encode($companyuser->company_id) . '/usuarios/images', $imagem_nome, 'public');
@@ -298,9 +309,9 @@ class UsuarioController extends Controller
     //                     ]);
     //                 }
     //             }
-            
+
     //         DB::commit();
-            
+
     //         return redirect()->route('construtoras.usuarios.index', $company->id)->with('success', 'Usuário atualizado com sucesso!');
     //     } catch (\Throwable $th) {
     //         DB::rollBack();
@@ -311,7 +322,7 @@ class UsuarioController extends Controller
 
     // public function destroy(User $usuario)
     // {
-    //     // REMOVENDO REGISTRO DA TABELA COMPANYUSER        
+    //     // REMOVENDO REGISTRO DA TABELA COMPANYUSER
     //     try {
     //         $usuario->pessoa->companyuser()->update(['active' => false]);
     //         $usuario->pessoa->companyuser()->delete();
