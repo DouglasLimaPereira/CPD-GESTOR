@@ -133,7 +133,7 @@
                 <select name="filial" id="filial" class="form-control selectpicker" required data-live-search="true">
                     <option value="">--- Selecione ---</option>
                     @foreach ($filiais as $filial_M)
-                    <option value="{{ $filial_M->id }}" @if(session()->get('filial')->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
+                    <option value="{{ $filial_M->id }}" @if(isset($usuario) && session()->get('filial')->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
                     @endforeach
                 </select>
             </div>
