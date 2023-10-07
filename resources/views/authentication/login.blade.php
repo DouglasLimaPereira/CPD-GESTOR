@@ -10,7 +10,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style-login.css')}}">
@@ -35,8 +35,8 @@
                         </ul>
                     </div>
                 @endif
-            
-            
+
+
             <form action="{{route('login.store')}}" method="POST">
                 @csrf
                 <span class="login100-form-title">
@@ -44,17 +44,28 @@
                 </span>
                 <p class="login-box-msg" style="font-size: 17px;">Informe seus dados de acesso</p>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                    <input class="input100" type="text" name="email">
-                    <span class="focus-input100" data-placeholder="Email"></span>
+                {{-- <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input class="form-control" type="text" name="email" placeholder="Email">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <span class="btn-show-pass">
-                        <i class="fa-regular fa-eye"></i>
-                    </span>
-                    <input class="input100" type="password" name="password">
-                    <span class="focus-input100" data-placeholder="Senha"></span>
+                <div class="form-group">
+                    <span class="btn-show-pass"></span>
+                    <label for="Senha">Senha</label>
+                    <input class="form-control" type="password" name="password" placeholder="Senha">
+                </div> --}}
+                <div class="form-group">
+                    <div class="form-floating mb-3">
+                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-floating">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Senha</label>
+                    </div>
                 </div>
 
                 <div class="container-login100-form-btn mt-0">
@@ -99,7 +110,7 @@
             $('#cancela-recuperar-senha').show()
             $('#form-recupera-senha').html(`
                 <form action="{{ route('resetasenha.sendmail') }}" method="POST">
-                    @csrf 
+                    @csrf
                     <div class="input-group mb-3">
                         <input type="email" name='email' class="form-control" placeholder="Informe aqui o seu email" required>
                         <span class="input-group-append">
