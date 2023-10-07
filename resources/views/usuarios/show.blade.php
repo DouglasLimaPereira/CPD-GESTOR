@@ -19,7 +19,7 @@
                 </div>
             </div>
             <!-- /.card-header -->
-            
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -30,31 +30,25 @@
                             <b>Cargo: </b> {{ $usuario->funcionario->funcao->nome }}<br>
                             <b>E-mail: </b> {{$usuario->email}}<br>
                         </div>
-                        
+
                         <div class="callout callout-info">
-                            <b>Estado </b> 
+                            <b>Estado </b>
                             {!!($usuario->funcionario->situacao_admissional) ? '<span class="badge badge-pill badge-success">ATIVO</span>' : '<span class="badge badge-pill badge-danger">INATIVO</span>'!!}
-                                
-                            {{--<br>
-                            <b>Perfil </b> {!!($perfil) ? $perfil->nome : '<span class="badge badge-pill badge-danger">NÃO INFORMADO</span>' !!} --}}
-                            
+                            <br>
+                            <b>Filial </b> SM{{ session()->get('filial')->codigo }} - {{ session()->get('filial')->bairro }}
                             <br>
                         </div>
                     </div>
-                    
+
                     <div class="callout callout-info col-md-6 border p-2 text-center">
-                        <img class="img-fluid" src="{{env('APP_URL_GESTOR')}}/{{str_replace('public', 'storage', $usuario->imagem)}}" width="500" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
-                        
-                        <img class="img-fluid" src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="500" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">    
-                        
-                        
+                        <img class="img-fluid" src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="130" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="row col-md-12">
                     <div class="mr-2">
                         <a href="{{route('usuario.index')}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
-                        
+
                         @if (($usuario->funcionario->situacao_admissional == auth()->user()->id ) || ( auth()->user()->funcionario->firstWhere('superadmin', 1)))
                             <a href="{{ route('usuario.edit', $usuario->id) }}" class="btn btn-outline-success"><i class="fas fa-edit"></i> Editar </a>
                         @endif

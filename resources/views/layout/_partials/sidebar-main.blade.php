@@ -7,19 +7,19 @@
             <img src="{{asset('image/mix.png')}}" alt="MATEUS Logo" class="elevation-2">
           </span>
         </a>
-    
+
         <!-- Sidebar -->
         <div class="sidebar">
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
               {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
-              <img src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" class="img-circle elevation-2">
+              <img src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" style="border-radius: 3%">
             </div>
-            <div class="info">
+            <div class="info mt-3">
               <a href="{{ route('usuario.perfil', auth()->user()->id) }}" class="d-block">{{auth()->user()->funcionario->nome}}</a>
             </div>
           </div>
-    
+
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="Painel" role="menu">
               <!-- Add icons to the links using the .nav-icon class
@@ -34,7 +34,7 @@
               </li>
             </ul>
           </nav>
-    
+
           @include('layout._partials.menus.menu-lateral')
           <!-- /.sidebar-menu -->
         </div>

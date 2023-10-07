@@ -16,6 +16,8 @@
 <script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <!-- daterangepicker -->
 <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
@@ -110,11 +112,11 @@
 </script>
 
 {{-- <script>
-  // UTILIZADO NOS DATATABLE 
+  // UTILIZADO NOS DATATABLE
   $(function () {
         $("#table-datatable").DataTable({
             "responsive": true,
-            "lengthChange": false, 
+            "lengthChange": false,
             "autoWidth": true,
             "initComplete": function () {
                 $('div.fg-toolbar:first').append('<span>Titulo</span>');
@@ -159,15 +161,15 @@
                 }
             });
         });
-      }) 
+      })
       // $('#ajaxform').submit(function() {
       //   // aplica as configurações do options ao ajaxSubmit
-      //   $(this).ajaxSubmit(options); 
+      //   $(this).ajaxSubmit(options);
 
-      //   // !!! Importante !!! 
+      //   // !!! Importante !!!
       //   // sempre retornar false para evitar o carregamento da página. Por baixo dos panos ele aplica 'event.preventDefault()'.
-      //   return false; 
-      // }); 
+      //   return false;
+      // });
   });
 </script> --}}
 @yield('scripts')

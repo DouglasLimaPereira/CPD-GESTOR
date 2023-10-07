@@ -115,7 +115,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="senha">Senha <span class="text-danger">*</span></label>
-                <input type="text" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
+                <input type="password" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
                     @if (!isset($usuario))
                         <a href="javascript:void(0)" id="gerar-senha" class="text-info">[Gerar senha]</a>
                         <a href="javascript:void(0)" id="limpa-senha" class="text-danger">[Limpar senha]</a>
@@ -130,7 +130,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="filial">Filial <span class="text-danger">*</span></label>
-                <select name="filial" id="filial" class="form-control" required>
+                <select name="filial" id="filial" class="form-control selectpicker" required data-live-search="true">
                     <option value="">--- Selecione ---</option>
                     @foreach ($filiais as $filial_M)
                     <option value="{{ $filial_M->id }}" @if(session()->get('filial')->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
@@ -185,51 +185,22 @@
   @section('scripts')
     <script>
         $(document).ready(function(){
-        
-            {{--  $('#gerar-senha').click(function(){
-                gerarSenha();
-            })  --}}
-    
+
             $('#limpa-senha').click(function(){
                 $('#senha').val(``)
                 $('#senha').attr('readonly', 'readonly')
             });
-    
+
             $('#preencher-senha').click(function(){
-               alert('oi');
                 $('#senha').val(``)
                 $('#senha').removeAttr('readonly')
             });
-    
+
             $('#cancelar-senha').click(function(){
                 $('#senha').val(``)
                 $('#senha').attr('readonly', true)
             });
-       }
-
-        function preencherSenha(){
-            document.getElementById('preencher-senha').removeAttribute('readyonly');
-        }
-
-        function gerarSenha()
-        {
-            $('#senha').val('...')
-                $.ajax({
-                    url: "{{url('/')}}/api/gera-senha",
-                    method: 'GET',
-                    success: function(senha){
-                        $('#senha').val(senha)
-                    },
-                    error: function(){
-                        console.log('Sem resultados')
-                    }
-                })
-                $('#senha').attr('readonly', 'readonly')
-        }
-        @if(!isset($usuario))
-            gerarSenha();
-        @endif
-
+       });
 
         {{--  function getMail(val){
             if(val != ""){

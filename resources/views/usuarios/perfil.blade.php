@@ -25,14 +25,14 @@
                         <div class="card-avatar text-center mt-3">
                             @if (isset($usuario) && ($usuario->funcionario->imagem))
                                 {{--  <a href="{{url('/')}}/storage/{{$usuario->imagem}}" target="_blank">  --}}
-                                    <img src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="295" style="border-radius: 50%">
+                                    <img src="{{url('/')}}/storage/{{$usuario->funcionario->imagem}}" width="270" style="border-radius: 3%">
                                 {{--  </a>  --}}
                             @else
                                 <img src="{{asset('image/user.jpg')}}" style="height: 300;">
                             @endif
                         </div>
                         <div class="card-body">
-                            <h3 class="card-category text-gray">{{ $usuario->funcionario->nome }}</h3>
+                            <h3 class="card-category text-gray text-center">{{ $usuario->funcionario->nome }}</h3>
                             {{--  @dd($usuario->filiais()->where('filial_id', session()->get('filial'))->get('codigo'))  --}}
                             <b>Cargo:</b> {{ $usuario->funcionario->funcao->nome }}<br>
                             <b>Loja:</b> SM{{$filial->codigo}} {{$filial->bairro}}<br>
@@ -46,8 +46,8 @@
         </div>
     </div>
 @endsection
-
-{{-- Removendo o registro --}}
+{{--
+{{-- Removendo o registro --} }
 <script>
     function remover(val){
         $confirmacao = confirm('Tem certeza que deseja remover este Usuário?');
@@ -56,5 +56,5 @@
             window.location.href = "{{url('/')}}/filial/"+val+"/usuarios/"+val+"/destroy"
         }
     }
-</script>
+</script> --}}
 
