@@ -31,35 +31,21 @@
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="nome">Nome *</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{(isset($usuario)) ? $usuario->funcionario->nome : old('name')}}">
-                {{-- @if(!isset($usuario))
-                    <span class="user-from-database" style="display: none">
-                        <select name="pessoa_id" id="pessoa_id" class="form-control pessoa_id" data-live-search="true" data-style="border-secondary" onchange="getMail(this.value)">
-                            <option value="">Selecione...</option>
-                            @isset($pessoas)
-                                @forelse ($pessoas as $pessoa)
-                                    <option value="{{$pessoa->id}}">{{$pessoa->nome}}</option>
-                                @empty
-                                    <option value="">Nenhum registro encontrado...</option>
-                                @endforelse
-                            @endisset
-                        </select>
-                    </span>
-                @endif --}}
+                <label for="nome">Nome <span class="text-danger">*</span></label>
+                <input type="text" name="nome" class="form-control" id="nome" value="{{(isset($usuario)) ? $usuario->funcionario->nome : old('nome')}}">
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="telefone">Telefone *</label>
+                <label for="telefone">Telefone <span class="text-danger">*</span></label>
                 <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($usuario)) ? $usuario->funcionario->telefone : old('telefone')}}" required>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="cargo">Cargo *</label>
+                <label for="cargo">Cargo <span class="text-danger">*</span></label>
                 <select name="cargo" id="cargo" class="form-control">
                     <option value="">--- Selecione ---</option>
                     @foreach ($cargos as $cargo)
@@ -71,14 +57,14 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="data_admissao">Matricula *</label>
+                <label for="data_admissao">Matricula <span class="text-danger">*</span></label>
                 <input type="matricula" name="matricula" class="form-control" id="matricula" value="{{(isset($usuario)) ? $usuario->funcionario->matricula : old('matricula')}}" required>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="data_admissao">Admissão *</label>
+                <label for="data_admissao">Admissão <span class="text-danger">*</span></label>
                 <input type="date" name="data_admissao" class="form-control" id="data_admissao" value="{{(isset($usuario)) ? $usuario->funcionario->data_admissao : old('data_admissao')}}" required>
             </div>
         </div>
@@ -111,7 +97,6 @@
                             </div> --} }
                         </div>
                 @endif --}}
-
             </div>
         </div>
 
@@ -122,47 +107,59 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="email">Email *</label>
+                <label for="email">Email <span class="text-danger">*</span></label>
                 <input type="email" name="email" class="form-control" id="email" value="{{(isset($usuario)) ? $usuario->email : old('email')}}" required>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="senha">Senha *</label>
-                <input type="text" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
+                <label for="senha">Senha <span class="text-danger">*</span></label>
+                <input type="text" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" required>
                     @if (!isset($usuario))
                         <a href="javascript:void(0)" id="gerar-senha" class="text-info">[Gerar senha]</a>
                         <a href="javascript:void(0)" id="limpa-senha" class="text-danger">[Limpar senha]</a>
                         <a href="javascript:void(0)" id="preencher-senha" class="text-secondary">[Preencher Manualmente]</a>
                     @else
-                        <a href="javascript:void(0)" id="preencher-senha" class="text-primary">[ Alterar Senha ? ]</a>
+                        <a href="javascript:void(0)" id="preencher-senha" onclick="preencherSenha()" class="text-primary">[ Alterar Senha ? ]</a>
                         <a href="javascript:void(0)" id="cancelar-senha" class="text-danger">[ Cancelar ]</a>
                     @endif
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="filial">Filial <span class="text-danger">*</span></label>
+                <select name="filial" id="filial" class="form-control" required>
+                    <option value="">--- Selecione ---</option>
+                    @foreach ($filiais as $filial_M)
+                    <option value="{{ $filial_M->id }}" @if(session()->get('filial')->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         @if(isset($usuario))
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label for="filial">Filial *</label>
-                    <select name="filial" id="filial" class="form-control" required>
+                    <label for="active">Ativo <span class="text-danger">*</span></label>
+                    <select name="situacao_admissional" id="active" class="form-control" required>
                         <option value="">--- Selecione ---</option>
-                        @foreach ($filiais as $filial_M)
-                        <option value="{{ $filial_M->id }}" @if($filial->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
-                        @endforeach
+                        <option value="1" @if(isset($usuario) && $usuario->funcionario->situacao_admissional == true) selected @endif>SIM</option>
+                        <option value="0" @if(isset($usuario) && $usuario->funcionario->situacao_admissional == false) selected @endif>NÃO</option>
                     </select>
                 </div>
             </div>
         @endif
 
-        @if(isset($usuario))
-            <div class="col-md-6">
+        @if( auth()->user()->funcionario->superadmin)
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label for="active">Ativo *</label>
-                    <select name="active" id="active" class="form-control" required>
-                        <option value="1" @if($usuario->funcionario->situacao_admissional == true) selected @endif>SIM</option>
-                        <option value="0" @if($usuario->funcionario->situacao_admissional == false) selected @endif>NÃO</option>
+                    <label for="superadmin">Superadmin <span class="text-danger">*</span></label>
+                    <select name="superadmin" id="superadmin" class="form-control" required>
+                        <option value="">--- Selecione ---</option>
+                        <option value="1" @if(isset($usuario) && $usuario->funcionario->superadmin == true) selected @endif>SIM</option>
+                        <option value="0" @if(isset($usuario) && $usuario->funcionario->superadmin == false) selected @endif>NÃO</option>
                     </select>
                 </div>
             </div>
@@ -187,6 +184,33 @@
 
   @section('scripts')
     <script>
+        $(document).ready(function(){
+        
+            {{--  $('#gerar-senha').click(function(){
+                gerarSenha();
+            })  --}}
+    
+            $('#limpa-senha').click(function(){
+                $('#senha').val(``)
+                $('#senha').attr('readonly', 'readonly')
+            });
+    
+            $('#preencher-senha').click(function(){
+               alert('oi');
+                $('#senha').val(``)
+                $('#senha').removeAttr('readonly')
+            });
+    
+            $('#cancelar-senha').click(function(){
+                $('#senha').val(``)
+                $('#senha').attr('readonly', true)
+            });
+       }
+
+        function preencherSenha(){
+            document.getElementById('preencher-senha').removeAttribute('readyonly');
+        }
+
         function gerarSenha()
         {
             $('#senha').val('...')
@@ -206,49 +230,8 @@
             gerarSenha();
         @endif
 
-         $(document).ready(function(){
-        //     //Atribuindo a busca no select
-             $('.user_id').selectpicker();
 
-             {{--  $('#gerar-senha').click(function(){
-                 gerarSenha();
-             })  --}}
-
-             $('#limpa-senha').click(function(){
-                 $('#senha').val(``)
-                 $('#senha').attr('readonly', 'readonly')
-             })
-
-             $('#preencher-senha').click(function(){
-                 $('#senha').val(``)
-                 $('#senha').removeAttr('readonly')
-             })
-             $('#cancelar-senha').click(function(){
-                 $('#senha').val(``)
-                 $('#senha').attr('readonly', true)
-             })
-        }
-        //     //Trazendo as users a partir do banco de dados
-
-        //     $("#record-from-database").click(function(){
-        //         if($('#record-from-database').is(':checked')){
-        //             $('.nome-texto').hide()
-        //             $('.nome-texto').val('')
-        //             $('.user-from-database').show()
-        //             $('#email').attr('readonly', 'readonly')
-        //             $('#email').val('')
-
-        //         }else{
-        //             $('.nome-texto').show()
-        //             $('.user_id').val(null).trigger("change")
-        //             $('.user-from-database').hide()
-        //             $('#email').val('')
-        //             $('#email').removeAttr('readonly')
-        //         }
-        //     })
-        // })
-
-        function getMail(val){
+        {{--  function getMail(val){
             if(val != ""){
                 $.ajax({
                     url: "{{url('/')}}/api/companies/{{session()->get('company_id')}}/pessoas/"+val+"/get-email",
@@ -261,6 +244,6 @@
                     }
                 })
             }
-        }
+        }  --}}
     </script>
   @endsection
