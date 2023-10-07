@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsuarioRequest;
 use App\Models\User;
 use App\Models\Funcao;
 use App\Models\Filial;
@@ -91,17 +92,8 @@ class UsuarioController extends Controller
             //Realizando o vínculo entre Filial e usuário
             if(!($usuario->filiais()->where('filial_id', session()->get('filial')->id)->where('user_id', $usuario->id)->first())){
                 
-                if ($filiais = $usuario->filiais()->count() > 0) {
-                    foreach ($filiais as $key => $filial) {
-                        $filial_user = $usuario->filiais()->create([
-                            'user_id' => $usuario->id,
-                            'superadmin' => 0,
-                            'filial_id' => $filial->id,
-                        ]);
-                    }
-                } else{
-                    $filial_user = $usuario->filiais()->attach($request->filial, ['superadmin'=>$request['superadmin']]);
-                }
+                $filial_user = $usuario->filiais()->attach($request->filial, ['superadmin'=>$request['superadmin']]);
+                
             }
             
             DB::commit();
@@ -145,10 +137,10 @@ class UsuarioController extends Controller
                     'user_id' => $usuario->id,
                     'funcao_id' => $request->cargo,
                     'matricula' => $request->matricula,
-                    'nome' => $request->name,
+                    'nome' => $request->nome,
                     'telefone' => $request->telefone,
                     'cargo' => $request->cargo,
-                    'situacao_admissional' => $request->active,
+                    'situacao_admissional' => $request->situacao_admissional,
                 ]);
     
             } else{
@@ -160,10 +152,10 @@ class UsuarioController extends Controller
                     'user_id' => $usuario->id,
                     'funcao_id' => $request->cargo,
                     'matricula' => $request->matricula,
-                    'nome' => $request->name,
+                    'nome' => $request->nome,
                     'telefone' => $request->telefone,
                     'cargo' => $request->cargo,
-                    'situacao_admissional' => $request->active,
+                    'situacao_admissional' => $request->situacao_admissional,
                 ]);
             }
     
