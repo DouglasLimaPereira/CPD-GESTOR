@@ -106,9 +106,9 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="cod-barras" role="menu">
     <li class="nav-item menu">
       <a href="{{ route('codigo-barras.index') }}" class="nav-link">
-        <i class="fa-solid fa-barcode"></i>
+        <i class="nav-icon fa-solid fa-barcode"></i>
         <p>
-          Gerar Código de Barras
+          Gerar Cód Barras
         </p>
       </a>
     </li>
