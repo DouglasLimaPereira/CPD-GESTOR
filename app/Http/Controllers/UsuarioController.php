@@ -6,11 +6,7 @@ use App\Http\Requests\UsuarioRequest;
 use App\Models\User;
 use App\Models\Funcao;
 use App\Models\Filial;
-use App\Notifications\UsuarioCadastroNotification;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use App\Recursos\Anexo;
 use Illuminate\Http\Request;
 
@@ -81,6 +77,13 @@ class UsuarioController extends Controller
                         'data_admissao' => $request->data_admissao,
                         'situacao_admissional' => 1,
                         'superadmin' => $request->superadmin,
+                    ]);
+                }
+
+                if(isset($request->imagem) && $request->imagem->isValid()){
+                    $imagem = $this->anexo->user_store(auth()->user()->id, $request->imagem, $usuario->funcionario->imagem);
+                    $usuario->funcionario->update([
+                        'imagem' => $imagem,
                     ]);
                 }
                 

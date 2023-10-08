@@ -267,6 +267,27 @@ select {
   word-wrap: normal;
 }
 
+.btn-show-pass {
+  font-size: 20px;
+  background-color: -webkit-linear-gradient(left, #0095d9, #ee1c25);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 10px;
+  padding-right: 7px;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
 button,
 [type="button"],
 [type="reset"],

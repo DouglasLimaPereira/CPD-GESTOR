@@ -101,4 +101,17 @@
     </li>
   </ul>
 </nav>
+
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="cod-barras" role="menu">
+    <li class="nav-item menu">
+      <a href="{{ route('codigo-barras.index') }}" class="nav-link">
+        <i class="fa-solid fa-barcode"></i>
+        <p>
+          Gerar Código de Barras
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
 <!-- /.sidebar-menu -->

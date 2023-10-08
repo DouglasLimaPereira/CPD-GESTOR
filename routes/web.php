@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    CodigoBarrasController,
     PainelController,
     ResetaSenhaController,
     UsuarioController,
@@ -102,4 +103,9 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
     Route::get('{filial}/edit', [FilialController::class, 'edit'])->name('edit');
     Route::post('/store', [FilialController::class, 'store'])->name('store');
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
+});
+
+Route::group(['prefix'=>'codigo-barras', 'as' =>'codigo-barras.', 'middleware'=>['auth']], function(){
+    Route::get('/index', [CodigoBarrasController::class, 'index'])->name('index');
+    Route::get('/', [CodigoBarrasController::class, 'gerarCod'])->name('gerarcod');
 });

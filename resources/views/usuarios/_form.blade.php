@@ -116,6 +116,7 @@
             <div class="form-group">
                 <label for="senha">Senha <span class="text-danger">*</span></label>
                 <input type="password" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
+                <span class="btn-show-pass"> <i class="fa-regular fa-eye"></i> </span>
                     @if (!isset($usuario))
                         <a href="javascript:void(0)" id="gerar-senha" class="text-info">[Gerar senha]</a>
                         <a href="javascript:void(0)" id="limpa-senha" class="text-danger">[Limpar senha]</a>

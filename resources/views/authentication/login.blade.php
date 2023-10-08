@@ -49,8 +49,8 @@
                     <input class="form-control" type="text" name="email" placeholder="Email">
                 </div>
 
-                <div class="form-group">
-                    <span class="btn-show-pass"></span>
+                <div class="form-group"> fa-regular fa-eye
+                    <span class="btn-show-pass"> <i class=""></i> </span>
                     <label for="Senha">Senha</label>
                     <input class="form-control" type="password" name="password" placeholder="Senha">
                 </div> --}}
@@ -62,7 +62,9 @@
                 </div>
 
                 <div class="form-group">
+                    
                     <div class="form-floating">
+                        <span class="btn-show-pass"> <i class="fa-regular fa-eye"></i> </span>
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Senha</label>
                     </div>
