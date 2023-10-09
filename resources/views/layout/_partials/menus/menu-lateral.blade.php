@@ -105,10 +105,10 @@
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="cod-barras" role="menu">
     <li class="nav-item menu">
-      <a href="{{ route('codigo-barras.index') }}" class="nav-link">
+      <a href="{{ route('codigo_barra.index') }}" class="nav-link">
         <i class="nav-icon fa-solid fa-barcode"></i>
         <p>
-          Gerar Cód Barras
+          Gerar Cód Barra
         </p>
       </a>
     </li>

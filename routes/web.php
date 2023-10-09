@@ -105,7 +105,7 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
 });
 
-Route::group(['prefix'=>'codigo-barras', 'as' =>'codigo-barras.', 'middleware'=>['auth']], function(){
-    Route::get('/index', [CodigoBarrasController::class, 'index'])->name('index');
-    Route::get('/', [CodigoBarrasController::class, 'gerarCod'])->name('gerarcod');
+Route::group(['prefix'=>'codigo_barra', 'as' =>'codigo_barra.', 'middleware'=>['auth']], function(){
+    Route::get('/', [CodigoBarrasController::class, 'index'])->name('index');
+    // Route::get('codigo/{codigo}/gerar', [CodigoBarrasController::class, 'gerarCod'])->name('gerarcod');
 });
