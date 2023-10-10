@@ -107,5 +107,5 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
 
 Route::group(['prefix'=>'codigo_barra', 'as' =>'codigo_barra.', 'middleware'=>['auth']], function(){
     Route::get('/', [CodigoBarrasController::class, 'index'])->name('index');
-    // Route::get('codigo/{codigo}/gerar', [CodigoBarrasController::class, 'gerarCod'])->name('gerarcod');
+    Route::get('pdf', [CodigoBarrasController::class, 'gerarPdf'])->name('gerarPdf');
 });

@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Gerar Codigo de Barras')
+@section('title', 'Gerar Codigo de Barra')
 
-@section('page-title', 'Gerar Codigo de Barras')
+@section('page-title', 'Gerar Codigo de Barra')
 
 @section('content')
 
@@ -13,34 +13,33 @@
 
             </div>
             <div class="card-body">
-                {{-- <form action="{{ route('codigo-barras.index') }}" method="GET"> --}}
+                <div class="col-md-12">
                     <div class="col-md-12">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="codigo">Código *</label>
-                                <input type="text" class="form-control" maxlength="6" name="codigo" id="codigo" onkeyup="gerarCodigo()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="codigo">Código <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" maxlength="6" name="codigo" id="codigo" onkeyup="gerarCodigo()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                         </div>
-                        {{-- @if(isset($codigo)) --}}
-                            <div class="col-md-12">
-                                <div class="form-group" id="resultcod" style="display: none;">
-                                    <div class="callout callout-info" style="background-color: #dee1e5;">
-                                        <div id="codigoinfo">
-                                        </div>
-                                    </div>
+                    </div>
+                    
+                    <div class="col-md-12">                                
+                        <div class="form-group" id="resultcod" style="display: none;">
+                            <div class="callout callout-info" style="background-color: #dee1e5;">
+                                <div id="codigoinfo">
                                 </div>
                             </div>
-                        {{-- @endisset --}}
+                        </div>
                     </div>
-                {{-- </form> --}}
+                </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
 
-<script>
 
+
+
+<script>
     function gerarCodigo()
     {
         let cod_erro = $('#codigo').val()
@@ -52,20 +51,25 @@
                 $('#codigoinfo').html("")
                 if (codigo){
                     $('#codigoinfo').html(`
-                    <table class="table table-xs table-borderless">
-                        <thead>
-                          <tr>
-                            <td class="tet-center">`+codigo+`</td>
-                          </tr>
-                          <tr>
-                            <td class='col-md-3'>
-                                <label for="numero">Quantidade por Página <span class="text-danger">*</span></label> <small class="text-info">Minimo 1 | Maximo 10</small>
-                                <input type="number" min="1" class="form-control" max="10" name="numero" id="numero" required>
-                            </td>
-                          </tr>
-                          <tr> <td> <button class="btn btn-primary ml-3" onclick="exortar()"><i class="fa-regular fa-file-pdf"></i> Exportar PDF</button> </td> </tr>
-                        </thead>
-                    </table>`)
+                    <form target="_blank" action="{{ route('codigo_barra.gerarPdf') }}" method="GET">
+                        <input type="hidden" name="codigo" value="`+cod_erro+`">
+                        <div class="row">
+                            <div class="col-md-2 ml-3 mt-3">
+                                <div class="input-group">
+                                    `+codigo+`
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="numero">Quantidade por Página <span class="text-danger">*</span></label> <span class="badge badge-info right">Minimo 1 | Maximo 13</span> <br>
+                                <div class="input-group">  
+                                    <input type="number" name="quantidade_cod" class="form-control" min="1" max="13" value="1" placeholder="Quantidade de Cód na página" aria-label="Quantidade de Cód na página" aria-describedby="export pdf">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" target="_blank"><i class="fa-regular fa-file-pdf"></i> Gerar PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>`)
                     $('#resultcod').show()
                 }else{
                     $('#codigoinfo').html('<b class="text-danger">Não foi possível gerar codigo de barra </b>');
