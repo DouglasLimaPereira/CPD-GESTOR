@@ -19,6 +19,7 @@ class CreateEscalasTable extends Migration
             $table->string('evento');
             $table->datetime('data_inicio');
             $table->datetime('data_fim');
+            $table->string('color');
             $table->timestamps();
         });
     }

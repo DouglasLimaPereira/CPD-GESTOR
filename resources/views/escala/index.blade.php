@@ -18,7 +18,7 @@
     </div>
 
     <script>
-        let user_nome = "<?php echo $user_nome; ?>";
+        let user_nome = "<?php echo isset($user_nome)?$user_nome:''; ?>";
         let eventId
         let evento
         document.addEventListener('DOMContentLoaded', function() {
