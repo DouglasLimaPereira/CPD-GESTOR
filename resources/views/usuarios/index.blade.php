@@ -72,6 +72,8 @@
 </div>
 @endsection
 
+@section('scripts')
+
 {{-- Removendo o registro --}}
 <script>
     function remover(val){
@@ -82,4 +84,5 @@
         }
     }
 </script>
+@endsection
 

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 use Illuminate\Http\Request;
-use DNS1D;
-use Pdf;
-use DNS2D;
 
 class CodigoBarrasController extends Controller
 {

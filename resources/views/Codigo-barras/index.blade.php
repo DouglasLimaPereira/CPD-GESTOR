@@ -23,7 +23,7 @@
                     
                     <div class="col-md-12">                                
                         <div class="form-group" id="resultcod" style="display: none;">
-                            <div class="callout callout-info" style="background-color: #dee1e5;">
+                            <div class="callout callout-info" style="background-color: #dee1e5;" style="padding: 10px;">
                                 <div id="codigoinfo">
                                 </div>
                             </div>
@@ -38,6 +38,7 @@
 
 
 
+@section('scripts')
 
 <script>
     function gerarCodigo()
@@ -60,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <label for="numero">Quantidade por Página <span class="text-danger">*</span></label> <span class="badge badge-info right">Minimo 1 | Maximo 13</span> <br>
+                                <label for="numero">Quantidade por Página <span class="text-danger">*</span></label> <span class="badge badge-info right">Minimo 1 | Maximo 10</span> <br>
                                 <div class="input-group">  
                                     <input type="number" name="quantidade_cod" class="form-control" min="1" max="13" value="1" placeholder="Quantidade de Cód na página" aria-label="Quantidade de Cód na página" aria-describedby="export pdf">
                                     <div class="input-group-append">
@@ -82,3 +83,4 @@
     }
 
 </script>
+@endsection

@@ -125,3 +125,20 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="show_escala" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_title"> Cadastrar escala do dia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="col-md-12 showescala">
+
+      </div>
+    </div>
+  </div>
+</div>

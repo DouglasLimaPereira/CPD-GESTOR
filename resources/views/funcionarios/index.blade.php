@@ -20,7 +20,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @include('partials.datatables.buttons')
                     <table id="table-datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
                         <thead>
                             <tr>
@@ -77,6 +76,8 @@
 
 @endsection
 
+@section('scripts')
+
 {{-- Removendo o registro --}}
 <script>
     function remover(company, funcionario){
@@ -87,3 +88,4 @@
         }
     }
 </script>
+@endsection

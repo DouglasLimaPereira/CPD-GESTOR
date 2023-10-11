@@ -72,6 +72,8 @@
 
 @endsection
 
+@section('scripts')
+
 {{-- Removendo o registro --}}
 <script>
     function remover(ponto, funcionario){
@@ -108,3 +110,4 @@
           });
       });
   </script>
+@endsection

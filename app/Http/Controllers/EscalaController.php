@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Escala;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,6 +14,8 @@ class EscalaController extends Controller
         $escala = [];
 
         foreach ($escalas as $key => $item) {
+            // dd($item->usuarios());
+            $user_nome = User::find($item->user_id)->funcionario->nome;
             $escala[] = [
                 'id' => $item->id,
                 'title' => $item->evento,
@@ -22,7 +25,7 @@ class EscalaController extends Controller
             ];
         }
         
-        return view('escala.index', compact('escala'));
+        return view('escala.index', compact('escala','user_nome'));
     }
 
     public function store(Request $request){
