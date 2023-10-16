@@ -59,8 +59,7 @@
           </div>
         </form>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-undo"></i> Voltar</button>
-            <button class="btn btn-danger" onclick="excluirEscala()"><i class="fas fa-trash-alt"></i> Remover</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancelar</button>
             <button class="btn btn-success" onclick="atualizarEscala()"><i class="fas fa-sync"></i> Atualizar</button>
           </div>
       </div>
@@ -118,8 +117,8 @@
           <span class="modal-footer text-danger">( * ) Campos Obrigatórios</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" onclick="CadEscala()">Salvar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+          <button type="submit" class="btn btn-success" onclick="CadEscala()"><i class="fa-regular fa-floppy-disk"></i> Salvar</button>
         </div>
       </form>
     </div>
@@ -131,13 +130,16 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_title"> Cadastrar escala do dia</h5>
+        <h5 class="modal-title" id="modal_title"> Escala do dia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="col-md-12 showescala">
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
       </div>
     </div>
   </div>

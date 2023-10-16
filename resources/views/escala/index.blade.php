@@ -74,6 +74,7 @@
                     eventId = info.event.id
                     let dataFim = info.event.endStr.split('T') 
                     let dataInicio = info.event.startStr.split('T')
+                    let data = dataInicio[0].split('-')
     
                     let horaInicio = dataInicio[1]
                     horaInicio = horaInicio.split(':', 2)
@@ -89,13 +90,13 @@
                     if (info.event) {
                         $('#show_escala .showescala').append(`
 
-                        <div class="callout callout-info" style="background-color: #dee1e5; padding: 0;">
-                            <table class="mt-0 mb-0 table table-bordered" style="padding: 0;">
+                        <div class="callout callout-info" style=" padding: 0; margin-top: 15px;">
+                            <table class="mt-0 mb-0 table " style="padding: 0;">
                                 <thead>
                                     <tr>
                                         <th><b> `+user_nome+` </b></th>
                                         <th><b> `+info.event.title+` </b></th>
-                                        <th><b> `+dataInicio[0].toLocaleString('pt-BR')+` </b></th>
+                                        <th><b> `+data[2]+`/`+data[1]+`/`+data[0]+` </b></th>
                                         <th><b> `+horaInicio+` </b></th>
                                         <th><b> `+horaFim+` </b></th>
                                         <th width="5%" class="text-center">
@@ -104,9 +105,9 @@
                                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="dropdown-item" type="button" onclick="editarEscala()"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
+                                                    <button class="dropdown-item text-success" type="button" onclick="editarEscala()"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
                                                     <div class="dropdown-divider"></div>
-                                                    <button class="dropdown-item" type="button" onclick="excluirEscala()"><i class="fa-regular fa-trash-can"></i> Excluir</button>
+                                                    <button class="dropdown-item text-danger" type="button" onclick="excluirEscala()"><i class="fa-regular fa-trash-can"></i> Excluir</button>
                                                 </div>
                                             </div>
                                         </th>
