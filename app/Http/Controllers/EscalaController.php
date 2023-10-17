@@ -14,8 +14,11 @@ class EscalaController extends Controller
         $escala = [];
 
         foreach ($escalas as $key => $item) {
-            // dd($item->usuarios());
-            $user_nome = User::find($item->user_id)->funcionario->nome;
+
+            if ($item) {
+                $user_nome = User::find($item->user_id)->funcionario->nome;
+            }
+            
             $escala[] = [
                 'id' => $item->id,
                 'title' => $item->evento,
@@ -24,8 +27,12 @@ class EscalaController extends Controller
                 'end' => $item->data_fim,
             ];
         }
-        
-        return view('escala.index', compact('escala','user_nome'));
+
+        if (!(empty($escala))) {
+            return view('escala.index', compact('escala','user_nome'));
+        }else{
+            return view('escala.index', compact('escala'));
+        }
     }
 
     public function store(Request $request){
@@ -65,6 +72,7 @@ class EscalaController extends Controller
             return back()->with('success', 'Escala criada com sucesso!');
         } catch (\Throwable $e) {
             DB::rollback();
+            dd($e->getMessage());
             return redirect()->back()->with('info', 'Erro ao Cadastrar Escala');
         }
     }
