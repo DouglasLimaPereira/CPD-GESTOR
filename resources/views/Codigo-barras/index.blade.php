@@ -63,7 +63,7 @@
                             <div class="col-md-5">
                                 <label for="numero">Quantidade por Página <span class="text-danger">*</span></label> <span class="badge badge-info right">Minimo 1 | Maximo 10</span> <br>
                                 <div class="input-group">  
-                                    <input type="number" name="quantidade_cod" class="form-control" min="1" max="13" value="1" placeholder="Quantidade de Cód na página" aria-label="Quantidade de Cód na página" aria-describedby="export pdf">
+                                    <input type="number" name="quantidade_cod" class="form-control" min="1" max="10" value="1" placeholder="Quantidade de Cód na página" aria-label="Quantidade de Cód na página" aria-describedby="export pdf">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-primary" target="_blank"><i class="fa-regular fa-file-pdf"></i> Gerar PDF</button>
                                     </div>
