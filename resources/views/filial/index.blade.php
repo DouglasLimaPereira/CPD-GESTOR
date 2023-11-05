@@ -71,7 +71,7 @@
                     <div class="dropdown-divider"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            @if(auth()->user()->filiais()->where('filial_id', session()->get('filial'))->where('superadmin', true)->first()) 
+                            @if(auth()->user()->filiais()->where('filial_id', session()->get('filial')->id)->where('superadmin', true)->first()) 
                                 <a href="{{route('filial.edit', $filial->id)}}" class="btn btn-success"><i class="fas fa-edit"></i> Editar</a>
                             @endif 
                         </div>
