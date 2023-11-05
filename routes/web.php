@@ -68,7 +68,7 @@ Route::group(['prefix'=>'erro-sitef', 'as'=>'erro-sitef.', 'middleware'=>['auth'
     Route::get('/', [ErrositefController::class, 'index'])->name('index');
     Route::get('/create', [ErrositefController::class, 'create'])->name('create');
     Route::post('/store', [ErrositefController::class, 'store'])->name('store');
-    Route::get('/{erro_sitef}/edit', [ErrositefController::class, 'edit'])->name('edit');
+    Route::get('/{erro_sitef}/edite', [ErrositefController::class, 'edit'])->name('edit');
     Route::put('/{erro_sitef}/update', [ErrositefController::class, 'update'])->name('update');
     Route::get('/{erro_sitef}/destroy', [ErrositefController::class, 'destroy'])->name('destroy');
 });

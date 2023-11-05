@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                @if (auth()->user()->superadmin == 1)
+                @if (auth()->user()->funcionario->superadmin == 1)
                 <h3 class="card-title">Consultar Codigo</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
@@ -23,31 +23,28 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                {{--  <form action="{{route('erro-sitef.index')}}" method="GET" enctype="multipart/form-data">   --}}
+                <div class="col-md-12">
                     <div class="col-md-12">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="codigo">Código *</label>
-                                <input type="text" class="form-control" name="codigo" id="codigo" onchange="getErro()" value="{{isset($erro_sitef) ? $erro_sitef->codigo : old('codigo')}}" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="codigo">Código *</label>
+                            <input type="text" class="form-control" name="codigo" id="codigo" onchange="getErro()" value="{{isset($erro_sitef) ? $erro_sitef->codigo : old('codigo')}}" required>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group" id="resulterro" style="display: none;">
-                                <div class="callout callout-info" style="background-color: #dee1e5">
-                                    <b> <h4 id="codigoinfo"> </h4></b>
-                                    <b> <h4 id="titulo"> </h4></b>
-                                    <b> <h4 id="descricao"> </h4></b>
-                                    <b> <h4 id="retentativa"> </h4></b>
-                                </div>
-                            </div>
-                        </div>
-                        {{--  <div class="col-md-12">
-                            <hr>
-                            <button class="btn btn-sm btn-success float-right" onclick="getErro()"> <i class="fas fa-search"></i> Consultar </button>
-                        </div>  --}}
                     </div>
-                {{--  </form>  --}}
+                    <div class="col-md-12">
+                        <div class="form-group" id="resulterro" style="display: none;">
+                            <div class="callout callout-info" style="background-color: #dee1e5">
+                                <b> <h4 id="codigoinfo"> </h4></b>
+                                <b> <h4 id="titulo"> </h4></b>
+                                <b> <h4 id="descricao"> </h4></b>
+                                <b> <h4 id="retentativa"> </h4></b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="card-footer" id="card_footer" style="display: none;">
+                <a href="javascript:void(0)" class="btn btn-success float-right" onclick="editErro()"><i class="fas fa-edit"></i> Editar Sitef</a>
+            </div> 
         </div>
     </div>
 </div>
@@ -55,7 +52,7 @@
 @section('scripts')
 
 <script>
-
+    let id_erro = ''
     function getErro()
     {
         let cod_erro = $('#codigo').val()
@@ -65,6 +62,7 @@
             success: function(dados){
                 $('#codigoinfo').html("")
                 if (dados){
+                    id_erro = dados.id
                     $('#codigoinfo').html('<b>Código: 🔍</b>'+dados.codigo)
                     $('#titulo').html('<b>Descrição: ⚠️💻</b>'+dados.titulo)
                     $('#descricao').html('<b>Ação: 🗣</b>'+dados.descricao)
@@ -75,12 +73,14 @@
                     }else{
                         $('#retentativa').html('')
                     }
+
                     $('#resulterro').show()
+                    $('#card_footer').show()
                 }else{
-                    $('#codigoinfo').html("")
                     $('#titulo').html('<b class="text-danger">Nenhum Registro Encontrado </b>')
                     $('#descricao').html('')
                     $('#retentativa').html('')
+                    $('#card_footer').html(``)
                 }
             },
             error: function(){
@@ -88,6 +88,11 @@
             }
         })
     }
+</script>
 
+<script>
+    function editErro(){
+        window.location.href = "{{url('/')}}/erro-sitef/"+id_erro+"/edite"
+    }
 </script>
 @endsection
