@@ -103,6 +103,21 @@
 </nav>
 
 <nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="horaextra" role="menu">
+    <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+    <li class="nav-item menu">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fa-solid fa-list-check"></i>
+        <p>
+          Check-List Loja {{session()->get('filial')->codigo}}
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="cod-barras" role="menu">
     <li class="nav-item menu">
       <a href="{{ route('codigo_barra.index') }}" class="nav-link">
