@@ -1,19 +1,19 @@
 @extends('layout.app')
 
-@section('title', 'Usuário')
+@section('title', 'Check-list')
 
-@section('page-title', 'Usuário')
+@section('page-title', 'Check-list')
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><i class="fa-regular fa-rectangle-list"></i> Listagem de Usuários</h3>
+                <h3 class="card-title"><i class="fa-regular fa-rectangle-list"></i> Listagem de Check-list</h3>
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item">
-                            <a href="{{ route('usuario.creat') }}" class="nav-link active btn btn-info"><i class="fas fa-plus-circle"></i> NOVO USUÁRIO</a>
+                            <a href="{{ route('check-list.create') }}" class="nav-link active btn btn-info"><i class="fas fa-plus-circle"></i> NOVO CHECK-LIST</a>
                         </li>
                     </ul>
                 </div>
@@ -23,23 +23,17 @@
                     <thead>
                         <tr>
                             <th><i class="fa-solid fa-fingerprint"></i></i> ID</th>
-                            <th><i class="fa-solid fa-signature"></i> Nome</th>
-                            <th><i class="fa-solid fa-envelope"></i> E-mail</th>
-                            <th><i class="fa-solid fa-briefcase"></i> Cargo</th>
-                            <th><i class="fa-solid fa-id-card-clip"></i> Matricula</th>
-                            <th><i class="fa-solid fa-file-signature"></i> Admissão</th>
+                            <th><i class="fa-solid fa-calendar"></i> Data</th>
+                            <th><i class="fa-solid fa-list-check"></i> Tipo Check-list</th>
                             <th width="8%"><i class="fa-solid fa-gears"></i> Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($usuarios as $row)
+                        @forelse($check_lists as $row)
                             <tr>
                                 <td>{{$row->id}}</td>
-                                <td>{{$row->funcionario->nome}}</td>
-                                <td>{{$row->email}}</td>
-                                <td>{{$row->funcionario->funcao->nome}}</td>
-                                <td>{{$row->funcionario->matricula}}</td>
-                                <td>{{date('d/m/Y', strtotime($row->funcionario->data_admissao))}}</td>
+                                <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                <td>{{$row->tipo}}</td>
                                 <td class="text-center">
                                     <div class="dropdown">
                                         <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
@@ -64,7 +58,9 @@
                 </table>
                 <br>
                 <div class="d-flex float-right">
-                    {{$usuarios->links()}}
+                    @if ($check_lists)
+                        {{$check_lists->links()}}
+                    @endif
                 </div>
             </div>
         </div>

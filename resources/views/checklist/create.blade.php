@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Usuario - Novo')
+@section('title', 'Check-list - Novo')
 
-@section('page-title', 'Cadastro de usuário')
+@section('page-title', 'Cadastro de check-list')
 
 @section('content')
     <div class="row">
@@ -20,7 +20,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    @include('usuarios._form')
+                    @include('checklist._form')
                 </div>
             </div>
         </div>

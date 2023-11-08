@@ -8,8 +8,8 @@
     </div>
 @endif
 
-@if(isset($usuario))
-    <form action="{{route('usuario.update', $usuario->id)}}" method="POST" enctype="multipart/form-data">
+@if(isset($check_list))
+    <form action="{{route('usuario.update', $check_list->id)}}" method="POST" enctype="multipart/form-data">
     @method('PUT')
 @else
     <form action="{{route('usuario.store')}}" method="POST" enctype="multipart/form-data">
@@ -17,29 +17,46 @@
     @csrf
     <h5 class="mt-3"><em>DADOS PESSOAIS</em></h5>
     <hr>
-    {{-- @if(!isset($usuario))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="icheck-primary d-inline">
-                    <input type="checkbox" id="record-from-database" name="record_from_database">
-                        <label for="record-from-database">Cadastrar usuário a partir do banco de dados de funcionários
-                    </label>
-                </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="cargo">Tipo de Check-list <span class="text-danger">*</span></label>
+            <select name="cargo" id="cargo" class="form-control" onchange="tipo_checklist(event.e)">
+                <option value="">--- Selecione ---</option>
+                <option value="">Abertura</option>
+                <option value="">Fechamento</option>
+                <option value="">Balança</option>
+                <option value="">Log MFE</option>
+                <option value="">Limpeza Consultor</option>
+                <option value="">Limpeza Balança Pdv</option>
+                <option value="">Limpeza dos Rack´s</option>
+                <option value="">Limpeza Desktop</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="abertura">
+
+        <div class="col-md-6" style="border: black 1px; border-radius: 12px;">
+            <div class="form-group">
+                <label for="telefone">Rádio da loja <span class="text-danger">*</span></label>
+                
             </div>
         </div>
-    @endif --}}
-    <div class="row mt-3">
+
+    </div>
+    {{--  <div class="row mt-3">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="nome">Nome <span class="text-danger">*</span></label>
-                <input type="text" name="nome" class="form-control" id="nome" value="{{(isset($usuario)) ? $usuario->funcionario->nome : old('nome')}}">
+                <input type="text" name="nome" class="form-control" id="nome" value="{{(isset($check_list)) ? $check_list->funcionario->nome : old('nome')}}">
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 <label for="telefone">Telefone <span class="text-danger">*</span></label>
-                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($usuario)) ? $usuario->funcionario->telefone : old('telefone')}}" required>
+                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{(isset($check_list)) ? $check_list->funcionario->telefone : old('telefone')}}" required>
             </div>
         </div>
 
@@ -49,7 +66,7 @@
                 <select name="cargo" id="cargo" class="form-control">
                     <option value="">--- Selecione ---</option>
                     @foreach ($cargos as $cargo)
-                        <option value="{{ $cargo->id }}" {{ (isset($usuario) && $usuario->funcionario->funcao_id == $cargo->id)  ? 'selected' : '' }}> {{ $cargo->nome }} </option>
+                        <option value="{{ $cargo->id }}" {{ (isset($check_list) && $check_list->funcionario->funcao_id == $cargo->id)  ? 'selected' : '' }}> {{ $cargo->nome }} </option>
                     @endforeach
                 </select>
             </div>
@@ -58,35 +75,35 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="data_admissao">Matricula <span class="text-danger">*</span></label>
-                <input type="matricula" name="matricula" class="form-control" id="matricula" value="{{(isset($usuario)) ? $usuario->funcionario->matricula : old('matricula')}}" required>
+                <input type="matricula" name="matricula" class="form-control" id="matricula" value="{{(isset($check_list)) ? $check_list->funcionario->matricula : old('matricula')}}" required>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 <label for="data_admissao">Admissão <span class="text-danger">*</span></label>
-                <input type="date" name="data_admissao" class="form-control" id="data_admissao" value="{{(isset($usuario)) ? $usuario->funcionario->data_admissao : old('data_admissao')}}" required>
+                <input type="date" name="data_admissao" class="form-control" id="data_admissao" value="{{(isset($check_list)) ? $check_list->funcionario->data_admissao : old('data_admissao')}}" required>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 <label for="logotipo">Foto</label>
-                {{-- @if(!$canteiro->logotipo)  --}}
+                {{-- @if(!$canteiro->logotipo)  --} }
 
                     <input type="file" name="imagem" class="form-control" id="imagem" value="{{old('imagem')}}" accept="image/png, image/jpeg, image/jpg">
                     <small class="text-info">Formatos permitidos: .jpeg, .png, .jpg, .svg.</small>
                 {{-- @endif --}}
 
 
-                {{-- @if (isset($usuario))
+                {{-- @if (isset($check_list))
 
                         <br>
                         <div class="img-hidden-after-remove">
-                            @if($usuario->imagem_origem == 'g')
-                                <img class="img-fluid" src="{{env('APP_URL_GESTOR')}}/storage/{{$usuario->imagem}}" width="250" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
-                            @elseif($usuario->imagem_origem == 'c')
-                                <img class="img-fluid" src="{{env('APP_URL')}}/storage/{{str_replace('public', '',$usuario->imagem)}}" width="250" alt="{{mb_strtoupper($usuario->nome)}}" title="{{mb_strtoupper($usuario->nome)}}">
+                            @if($check_list->imagem_origem == 'g')
+                                <img class="img-fluid" src="{{env('APP_URL_GESTOR')}}/storage/{{$check_list->imagem}}" width="250" alt="{{mb_strtoupper($check_list->nome)}}" title="{{mb_strtoupper($check_list->nome)}}">
+                            @elseif($check_list->imagem_origem == 'c')
+                                <img class="img-fluid" src="{{env('APP_URL')}}/storage/{{str_replace('public', '',$check_list->imagem)}}" width="250" alt="{{mb_strtoupper($check_list->nome)}}" title="{{mb_strtoupper($check_list->nome)}}">
                             @endif
 
                             {{-- <img src="{{Storage::url($canteiro->logotipo)}}" width="250"> --}}
@@ -96,7 +113,7 @@
                                 <label for="remover_logotipo" id="remover_logotipo" class="custom-control-label text-danger">Remova esta imagem para cadastrar uma nova.</label>
                             </div> --} }
                         </div>
-                @endif --}}
+                @endif --} }
             </div>
         </div>
 
@@ -108,7 +125,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email">Email <span class="text-danger">*</span></label>
-                <input type="email" name="email" class="form-control" id="email" value="{{(isset($usuario)) ? $usuario->email : old('email')}}" required>
+                <input type="email" name="email" class="form-control" id="email" value="{{(isset($check_list)) ? $check_list->email : old('email')}}" required>
             </div>
         </div>
 
@@ -117,7 +134,7 @@
                 <label for="senha">Senha <span class="text-danger">*</span></label>
                 <input type="password" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
                 <span class="btn-show-pass"> <i class="fa-regular fa-eye"></i> </span>
-                    @if (!isset($usuario))
+                    @if (!isset($check_list))
                         <a href="javascript:void(0)" id="gerar-senha" class="text-info">[Gerar senha]</a>
                         <a href="javascript:void(0)" id="limpa-senha" class="text-danger">[Limpar senha]</a>
                         <a href="javascript:void(0)" id="preencher-senha" class="text-secondary">[Preencher Manualmente]</a>
@@ -134,20 +151,20 @@
                 <select name="filial" id="filial" class="form-control selectpicker" required data-live-search="true">
                     <option value="">--- Selecione ---</option>
                     @foreach ($filiais as $filial_M)
-                    <option value="{{ $filial_M->id }}" @if(isset($usuario) && session()->get('filial')->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
+                    <option value="{{ $filial_M->id }}" @if(isset($check_list) && session()->get('filial')->id == $filial_M->id) selected @endif>SM{{ $filial_M->codigo }} - {{ $filial_M->bairro }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
 
-        @if(isset($usuario))
+        @if(isset($check_list))
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="active">Ativo <span class="text-danger">*</span></label>
                     <select name="situacao_admissional" id="active" class="form-control" required>
                         <option value="">--- Selecione ---</option>
-                        <option value="1" @if(isset($usuario) && $usuario->funcionario->situacao_admissional == true) selected @endif>SIM</option>
-                        <option value="0" @if(isset($usuario) && $usuario->funcionario->situacao_admissional == false) selected @endif>NÃO</option>
+                        <option value="1" @if(isset($check_list) && $check_list->funcionario->situacao_admissional == true) selected @endif>SIM</option>
+                        <option value="0" @if(isset($check_list) && $check_list->funcionario->situacao_admissional == false) selected @endif>NÃO</option>
                     </select>
                 </div>
             </div>
@@ -159,8 +176,8 @@
                     <label for="superadmin">Superadmin <span class="text-danger">*</span></label>
                     <select name="superadmin" id="superadmin" class="form-control" required>
                         <option value="">--- Selecione ---</option>
-                        <option value="1" @if(isset($usuario) && $usuario->funcionario->superadmin == true) selected @endif>SIM</option>
-                        <option value="0" @if(isset($usuario) && $usuario->funcionario->superadmin == false) selected @endif>NÃO</option>
+                        <option value="1" @if(isset($check_list) && $check_list->funcionario->superadmin == true) selected @endif>SIM</option>
+                        <option value="0" @if(isset($check_list) && $check_list->funcionario->superadmin == false) selected @endif>NÃO</option>
                     </select>
                 </div>
             </div>
@@ -174,12 +191,12 @@
                 <label for="enviar_email" class="custom-control-label text-info">Deseja enviar o email com a senha?</label>
             </div>
         </div>
-    </div> --}}
+    </div> --} }  --}}
 
     <hr>
     <div class="row float-right">
         {{--  <a href="{{route('painel.index')}}" class="btn btn-sm btn-secondary mr-3"><i class="fas fa-undo-alt"></i> Voltar</a>  --}}
-        <button type="submit" class="btn btn-sm btn-success mr-3">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+        <button type="submit" class="btn btn-sm btn-success mr-3">{!!(isset($check_list)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
     </div>
   </form>
 

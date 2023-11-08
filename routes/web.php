@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    CheckListController,
     CodigoBarrasController,
     PainelController,
     ResetaSenhaController,
@@ -105,7 +106,19 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
 });
 
+    //CÓDIGO DE BARRAS
 Route::group(['prefix'=>'codigo_barra', 'as' =>'codigo_barra.', 'middleware'=>['auth']], function(){
     Route::get('/', [CodigoBarrasController::class, 'index'])->name('index');
     Route::get('pdf', [CodigoBarrasController::class, 'gerarPdf'])->name('gerarPdf');
+});
+
+    // CHECK-LIST
+Route::group(['prefix'=>'check-list', 'as'=>'check-list.', 'middleware'=>['auth']], function(){
+    Route::get('/', [CheckListController::class, 'index'])->name('index');
+    Route::get('/create', [CheckListController::class, 'create'])->name('create');
+    Route::post('/store', [CheckListController::class, 'store'])->name('store');
+    Route::post('/show', [CheckListController::class, 'show'])->name('show');
+    Route::get('/{check-list}/edite', [CheckListController::class, 'edit'])->name('edit');
+    Route::put('/{check-list}/update', [CheckListController::class, 'update'])->name('update');
+    Route::get('/{check-list}/destroy', [CheckListController::class, 'destroy'])->name('destroy');
 });

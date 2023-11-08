@@ -4,7 +4,7 @@
         <!-- Brand Logo -->
         <a href="{{route('painel.index')}}" class="brand-link text-center">
           <span class="brand-text font-weight-light text-center">
-            <img src="{{asset('image/mix.png')}}" alt="MATEUS Logo" class="elevation-2">
+            <img src="{{asset('assets/images/SIC.png')}}" height="120" alt="SIC Logo" class="elevation-2">
           </span>
         </a>
 
