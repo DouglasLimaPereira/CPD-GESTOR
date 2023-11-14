@@ -23,7 +23,7 @@
     <div class="card" style="border-radius: 15px;">
         <div class="card-body login-card-body" style="border-radius: 15px;">
             <div class="login-logo">
-                <img src="{{asset('assets/images/mateus.png')}}" class="img-fluid" alt="">
+                <img src="{{asset('assets/images/SGC.ico')}}" class="img-fluid" alt="SGC" style="height: 150px">
             </div>
 
                 @if($errors->any())

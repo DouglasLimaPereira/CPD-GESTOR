@@ -7,11 +7,23 @@ use Illuminate\Http\Request;
 
 class CheckListController extends Controller
 {
+    public function abertura(){
+        $data = Date('D/m/Y');
+        return $data;
+    }
+
+    public function fechamento(){
+        $data = Date('D/m/Y');
+        return $data;
+    }
+
     public function index(){
+        // $hoje = $this->Datatual();
+        // dd($hoje);
         $check_lists = [];
         return view('checklist.index', compact('check_lists'));
     }
-
+    
     public function create(){
         return View('checklist.create');
     }

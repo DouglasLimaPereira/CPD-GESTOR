@@ -17,7 +17,7 @@
           <tbody>
               @for ($Qcod = 1; $Qcod <= $quantidade_cod; $Qcod++)
                 <tr>
-                  <td> <img class="mt-4" src="data:image/png;base64,{{DNS1D::getBarcodePNG($codigo, "EAN13",1,60,array(1,1,1), true)}}" alt="barcode"/> </td>
+                  <td> <img style="margin-bottom: 26px" src="data:image/png;base64,{{DNS1D::getBarcodePNG($codigo, "EAN13",1,65,array(1,1,1), true)}}" alt="barcode"/> </td>
                 </tr>
               @endfor
           </tbody>
