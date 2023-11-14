@@ -35,16 +35,55 @@
         </div>
     </div>
 
-    <div class="abertura">
-
-        <div class="col-md-6" style="border: black 1px; border-radius: 12px;">
-            <div class="form-group">
-                <label for="telefone">Rádio da loja <span class="text-danger">*</span></label>
-                
-            </div>
+    <div id="checklist" class="abertura col-md-4">
+        <div class="callout callout" style=" padding: 0; margin-top: 15px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><b> Rádio </b></th>
+                        <th><b> Status </b></th>
+                        <th>
+                            <input class="status" type="checkbox" name="status" id="">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-
     </div>
+
+    <div id="checklist" class="abertura col-md-4">
+        <div class="callout callout" style=" padding: 0; margin-top: 15px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><b> PDV's </b></th>
+                        <th><b> Status </b></th>
+                        <th>
+                            <input class="status" type="checkbox" name="status" id="">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div id="checklist" class="abertura col-md-4">
+        <div class="callout callout" style=" padding: 0; margin-top: 15px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><b> Consultores </b></th>
+                        <th><b> Status </b></th>
+                        <th>
+                            <input class="status" type="checkbox" name="status" id="">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
     {{--  <div class="row mt-3">
         <div class="col-md-6">
             <div class="form-group">
