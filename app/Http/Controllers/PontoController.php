@@ -334,16 +334,21 @@ class PontoController extends Controller
 
     public function relatorio(Request $request) {
         $user = auth()->user();
-        $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user->id)->get();
+        $pontos = '';
+        if (isset($request->data_inicio) && isset($request->data_fim)) {
+            $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user->id)->get();
+        }else{
+            $pontos = [];
+        }
         
         if (isset($request->data_fim) && $request->data_inicio == '') {
             return back()->with('info', 'Necessário informar a data inícial após informa a data final');
+        } elseif (isset($request->data_fim) == '' && $request->data_inicio){
+            return back()->with('info', 'Necessário informar a data final após informa a data inicial');
         }
 
         if (isset($request->data_inicio) && isset($request->data_fim)) {
             $pontos = $pontos->whereBetween('data', [ $request->data_inicio, $request->data_fim ]);
-        }elseif (isset($request->data_inicio)) {
-            $pontos = $pontos->where('data', $request->data_inicio);
         }
         
         if (isset($request->entrada)) {

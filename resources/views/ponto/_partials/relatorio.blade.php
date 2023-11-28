@@ -79,7 +79,30 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pontos as $ponto)
+                            @forelse ($pontos as $ponto )
+                            <tr 
+                            @if ($ponto->horas_negativas != '00:00:00')
+                              class="table-danger"
+                            @elseif ($ponto->horas_extras != '00:00:00')
+                              class="table-success"
+                            @else
+                              class="table-secondary"
+                            @endif style="border: solid 0.1px black;">
+                                <td style="border: solid 0.1px black;"> {{ date('d/m/Y', strtotime($ponto->data)) }}</td>
+                                <td style="border: solid 0.1px black;"> {{$ponto->entrada}} </td>
+                                <td style="border: solid 0.1px black;"> {{$ponto->entrada_almoco}} </td>
+                                <td style="border: solid 0.1px black;"> {{$ponto->saida_almoco}} </td>
+                                <td style="border: solid 0.1px black;"> {{$ponto->saida}} </td>
+                            </tr>
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="5">
+                                        <span class="text-danger">Nenhum registro encontrado</span>
+                                    </td>
+                                </tr>
+                            @endforelse
+
+                            {{--  @foreach ($pontos as $ponto)
                                 <tr 
                                 @if ($ponto->horas_negativas != '00:00:00')
                                   class="table-danger"
@@ -94,7 +117,7 @@
                                     <td style="border: solid 0.1px black;"> {{$ponto->saida_almoco}} </td>
                                     <td style="border: solid 0.1px black;"> {{$ponto->saida}} </td>
                                 </tr>
-                            @endforeach
+                            @endforeach  --}}
                         </tbody>
                     </table>
                 </div>

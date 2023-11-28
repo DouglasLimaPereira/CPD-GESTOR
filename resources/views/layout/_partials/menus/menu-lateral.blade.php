@@ -80,7 +80,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{ route('ponto.index') }}" class="nav-link">
+          <a href="{{ route('check-list.index') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-door-open"></i>
              <p>Abertura</p>
           </a>
