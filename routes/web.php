@@ -114,6 +114,16 @@ Route::group(['prefix'=>'codigo_barra', 'as' =>'codigo_barra.', 'middleware'=>['
 
     // CHECK-LIST
 Route::group(['prefix'=>'check-list', 'as'=>'check-list.', 'middleware'=>['auth']], function(){
+    Route::group(['prefix'=>'fechamento', 'as'=>'fechamento.'], function(){
+        Route::get('/', [CheckListController::class, 'fechamento_index'])->name('index');
+        Route::get('/create', [CheckListController::class, 'create'])->name('create');
+        Route::post('/store', [CheckListController::class, 'store'])->name('store');
+        Route::post('/show', [CheckListController::class, 'show'])->name('show');
+        Route::get('/{check-list}/edite', [CheckListController::class, 'edit'])->name('edit');
+        Route::put('/{check-list}/update', [CheckListController::class, 'update'])->name('update');
+        Route::get('/{check-list}/destroy', [CheckListController::class, 'destroy'])->name('destroy');
+    });
+
     Route::get('/', [CheckListController::class, 'index'])->name('index');
     Route::get('/create', [CheckListController::class, 'create'])->name('create');
     Route::post('/store', [CheckListController::class, 'store'])->name('store');

@@ -12,9 +12,8 @@ class CheckListController extends Controller
         return $data;
     }
 
-    public function fechamento(){
-        $data = Date('D/m/Y');
-        return $data;
+    public function fechamento_index(){
+        return view('checklist.abertura_fechamento.index');
     }
 
     public function index(){

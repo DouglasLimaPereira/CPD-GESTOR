@@ -86,7 +86,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('ponto.relatorio') }}" class="nav-link">
+          <a href="{{ route('check-list.fechamento.index') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-door-closed"></i>
              <p>Fechamento</p>
           </a>
