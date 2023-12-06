@@ -30,7 +30,7 @@
                 <br>
             </div>
             <div class="icon">
-                <i class="fas fa-bug" style="font-size: 44px;"></i>
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 44px;"></i>
             </div>
             {{--  <a class="small-box-footer" data-toggle="modal" data-target=".bd-example-modal-lg">
                     <i class="fas fa-arrow-circle-right"></i>
