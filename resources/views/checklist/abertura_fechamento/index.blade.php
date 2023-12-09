@@ -1,13 +1,3 @@
-{{--  @extends('layout.app')
-
-@section('title', 'Check-list')
-
-@section('page-title', '')
-
-@section('content')
-
-@endsection  --}}
-
 {{--  <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    {{--  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Josefin+Sans:wght@200;300&display=swap" rel="stylesheet">  --}}
-    {{--  <style>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Josefin+Sans:wght@200;300&display=swap" rel="stylesheet">
+    <style>
       @page {
         size: A4;
       }
@@ -196,7 +186,7 @@
           -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
           animation: dothatopcheck-19 0.4s ease 0s forwards;
         }
-    </style>  --} }
+    </style>
       <title>Document</title>
     </head>
     <body>
@@ -315,117 +305,169 @@
                 <div class="row col-12 justify-content-md-end">
                     <span> Fortaleza - CE {{date('d / m / Y')}}</span>
                 </div>
-    
             </div>
         </div>
     </div>
   </body>
-</html>  --}}
+</html>
 
+  --}}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+      .coracao {
+        float: right;
+        margin-top: -395px;
+        margin-right: 70px;
+        height: 410px;
+        opacity : 0.1;
+      }
 
-  <style>
+      .text-list {
+        font-size: 25px;
+        font-weight: 800;
+        text-shadow: 1px 1px 1px #4876ff;
+      }
+  
+      .titulo-list {
+        margin-top: -10px;
+        font-size: 25px;
+        font-weight: 800;
+        text-shadow: 1px 1px 1px #4876ff;
+      }
+        
+    </style>
+  </head>
+  <body>
+    <div class="" style="font-family: 'Architects Daughter', cursive; font-family: 'Josefin Sans', sans-serif; font-weight: 900">
+      <div style="border: 1px solid #000; width: 100%; border-radius: 15px;">
+        <div class="row">
+          <div class="cabecalho" style="text-align: center; width: 100%;">
+            <img src="{{ public_path('assets/images/mateus.png') }}"  height="150px" alt="logo Mateus">
+            <h2 class="titulo-list">Check-List Fechamento</h2>
+          </div>
+        </div>
 
-  </style>
-</head>
-<body>
-  <div class="container-md">
-        <div style="border: 1px solid #000; border-radius: 15px;">
-            <div class="row">
-                <div class="cabecalho" style="text-align: center;">
-                    <img src="{{ public_path('assets/images/mateus.png') }}"  height="150px" alt="logo Mateus">
-                    <h2 class="titulo-list">Check-List Fechamento</h2>
-                </div>
-            </div>
-
-            <div class="row">
-              <div style="margin-left: 80px">
-                  <div class="col-12">
-                      Nome: Douglas de Lima Pereira
-                  </div>
-                  <div class="col-12">
-                      Cargo: Auxiliar de CPD
-                  </div>
-                  <div class="col-12">
-                      Matricula: 119542
-                  </div>
+        <div class="row">
+          <div style="margin-left: 120px">
+              <div class="col-12">
+                  Nome: Douglas de Lima Pereira
               </div>
-            </div>
-
-            <div class="row justify-content-md-center">
-                <div class="justify-content-md-center" style="border: 1px solid #000;  width:50%; border-radius: 15px; margin-top: 40px; margin-left: 120px;">
-                  <div class="row justify-content-md-center list" style="margin-left: 10%;">
-                      <div class="input-group mt-3 mb-3">
-                          <div class="input-group-prepend">
-                              <div class="checkbox-wrapper-19">
-                                  <input type="checkbox" id="cbtest-1" />
-                                  <label for="cbtest-1" class="check-box">
-                              </div>
-                          </div>
-                          <span class="ml-4 text-list">Painéis de Senha Ligado</span>
-                      </div>
-  
-                      <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="checkbox-wrapper-19">
-                              <input type="checkbox" id="cbtest-2" />
-                              <label for="cbtest-2" class="check-box">
-                            </div>
-                          </div>
-                          <span class="ml-4 text-list">Tv Padaria Ligado</span>
-                      </div>
-  
-                      <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="checkbox-wrapper-19">
-                              <input type="checkbox" id="cbtest-3" />
-                              <label for="cbtest-3" class="check-box">
-                            </div>
-                          </div>
-                          <span class="ml-4 text-list">Som da loja (Radio) Ligado</span>
-                      </div>
-  
-                      <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="checkbox-wrapper-19">
-                              <input type="checkbox" id="cbtest-4" />
-                              <label for="cbtest-4" class="check-box">
-                          </div>
-                          </div>
-                          <span class="ml-4 text-list"> Consultores de Preço Verificados</span>
-                      </div>
-  
-                      <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="checkbox-wrapper-19">
-                              <input type="checkbox" id="cbtest-5" />
-                              <label for="cbtest-5" class="check-box">
-                          </div>
-                          </div>
-                          <span class="ml-4 text-list"> Balanças dos Setores Online</span>
-                      </div>
-                      <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="checkbox-wrapper-19">
-                              <input type="checkbox" id="cbtest-6" />
-                              <label for="cbtest-6" class="check-box">
-                          </div>
-                          </div>
-                          <span class="ml-4 text-list">Impressora(s) Gondolas Ok</span>
-                      </div>
-                  </div>
-                  <img class="coracao" src="{{ public_path('image/mateus_cora.png') }}" height="60px" alt="">
+              <div class="col-12">
+                  Cargo: Auxiliar de CPD
+              </div>
+              <div class="col-12">
+                  Matricula: 119542
               </div>
           </div>
         </div>
-  </div>
-</body>
-</html>
+
+        <div class="row">
+          <div class="" style="border: 1px solid #000; height: 360px; width:50%; border-radius: 15px; margin-top: 40px;">
+              <div class="" style="margin-left: 10%;">
+                  <div class="input-group mt-1 mb-1">
+                      <div class="input-group-prepend">
+                          {{--  <div class="checkbox-wrapper-19">
+                              <input type="checkbox" id="cbtest-1" />
+                              <label for="cbtest-1" class="check-box">
+                          </div>  --}}
+                          <div class="square" style="border: 1px solid #000; height: 20px; width: 20px;"></div>
+                      </div>
+                      <span class="ml-4 text-list">Painéis de Senha Ligado</span>
+                  </div>
+                  
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <div class="checkbox-wrapper-19">
+                        <input type="checkbox" id="cbtest-2" />
+                        <label for="cbtest-2" class="check-box">
+                        </div>
+                      </div>
+                      <div class="square" style="border: 1px solid #000; height: 20px; width: 20px;"></div>
+                      <span class="ml-4 text-list">Tv Padaria Ligado</span>
+                  </div>
+
+                  <div class="input-group mb-1">
+                      <div class="input-group-prepend">
+                        <div class="checkbox-wrapper-19">
+                          <input type="checkbox" id="cbtest-3" />
+                          <label for="cbtest-3" class="check-box">
+                        </div>
+                      </div>
+                      <span class="ml-4 text-list">Som da loja (Radio) Ligado</span>
+                  </div>
+
+                  <div class="input-group mb-1">
+                      <div class="input-group-prepend">
+                        <div class="checkbox-wrapper-19">
+                          <input type="checkbox" id="cbtest-4" />
+                          <label for="cbtest-4" class="check-box">
+                        </div>
+                      </div>
+                      <span class="ml-4 text-list"> Consultores de Preço Verificados</span>
+                  </div>
+
+                  <div class="input-group mb-1">
+                      <div class="input-group-prepend">
+                        <div class="checkbox-wrapper-19">
+                          <input type="checkbox" id="cbtest-5" />
+                          <label for="cbtest-5" class="check-box">
+                      </div>
+                      </div>
+                      <span class="ml-4 text-list"> Balanças dos Setores Online</span>
+                  </div>
+                  <div class="input-group mb-1">
+                      <div class="input-group-prepend">
+                        <div class="checkbox-wrapper-19">
+                          <input type="checkbox" id="cbtest-6" />
+                          <label for="cbtest-6" class="check-box">
+                      </div>
+                      </div>
+                      <span class="ml-4 text-list">Impressora(s) Gondolas Ok</span>
+                  </div>
+              </div>
+              <img class="coracao" src="{{ public_path('image/mateus_cora.png') }}" height="60px" alt="">
+          </div>
+        </div>
+
+        <div class="">
+          <div style="border: 1px solid #000; height: 170px; width:90%; border-radius: 15px; margin-top: 40px; margin-left: 35px;">
+              <div style="margin: 20px;">
+                  <span style="margin-left:; padding-bottom: 15px;">Obs:</span>
+                  <hr style="margin-bottom: 30px;" color="black">
+                  <hr style="margin-bottom: 30px;" color="black">
+                  <hr style="margin-bottom: 30px;" color="black">
+              </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 20px">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-4"> <span>Verificado por:</span> </div>
+                <div class="col-md-4"> <span>Gerência:</span> </div>
+              </div>
+            </div>
+            {{--  <div class="row">  --}}
+                <div class="row col-12">
+                    <hr size="50" color="black" width="50px"><br>
+                </div>
+            {{--  </div>  --}}
+
+            <div class="row float-right">
+                <span> Fortaleza - CE {{date('d / m / Y')}}</span>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+  </html>
