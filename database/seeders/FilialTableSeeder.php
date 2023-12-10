@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Filial;
 
-class FilialSeeder extends Seeder
+class FilialUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
