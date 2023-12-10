@@ -1,5 +1,4 @@
-<nav class="">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
     <li class="nav-item erros">
       <a href="{{ route('erro-sitef.index')}}" class="nav-link">
         <i class="nav-icon fas fa-exclamation-triangle fa-lg"></i>
@@ -10,7 +9,7 @@
     </li>
   
     <li class="nav-item">
-      <a href="" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="nav-icon fas fa-clipboard-list fa-lg"></i>
         <p>
           Ponto
@@ -71,7 +70,7 @@
     </li>
     
     <li class="nav-item">
-      <a href="" class="nav-link">
+      <a href="#" class="nav-link">
         <i class="nav-icon fa-solid fa-list-check"></i>
         <p>
           Check-List Loja {{session()->get('filial')->codigo}}
@@ -105,7 +104,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="fa-solid fa-pump-soap"></i>
             <p>
               Limpeza
@@ -157,5 +156,4 @@
       </a>
     </li>
   </ul>
-</nav>
 <!-- /.sidebar-menu -->

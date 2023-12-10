@@ -8,6 +8,7 @@ use App\Models\Ponto;
 use Illuminate\Support\Facades\DB;
 use App\Recursos\Anexo;
 use App\Recursos\HoraExtra;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Carbon\Carbon;
 use DateTime\DateTime;
 use Exception;
@@ -386,7 +387,7 @@ class PontoController extends Controller
         $pontos = $request->all();
         // dd($pontos);
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
+        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         // ->download
         ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
@@ -404,7 +405,7 @@ class PontoController extends Controller
     public function csv(Request $request){
         dd($request);
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        return Pdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
+        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         // ->download
         ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
