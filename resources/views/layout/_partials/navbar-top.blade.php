@@ -13,6 +13,7 @@
             <a href="{{ route('usuario.perfil', auth()->user()->id) }}" class="d-block dropdown-item">{{auth()->user()->funcionario->nome}}</a>
           </li>
           {{--  <li><a class="dropdown-item" href="#">Something else here</a></li>  --}}
+          <div class="dropdown-divider"></div>
           <li>
             <a href="javascript:void(0)" class="dropdown-item" onclick="sair()" title="SAIR">
               Sair <i class="fas fa-sign-out-alt fa-md"></i>
