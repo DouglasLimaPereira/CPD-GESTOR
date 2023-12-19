@@ -81,10 +81,10 @@
         <li class="nav-item">
           <a href="{{ route('check-list.index') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-door-open"></i>
-             <p>Abertura</p>
+             <p>Check-Lists</p>
           </a>
         </li>
-        <li class="nav-item">
+        {{--  <li class="nav-item">
           <a href="{{ route('check-list.fechamento.index') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-door-closed"></i>
              <p>Fechamento</p>
@@ -141,8 +141,8 @@
                 <i class="nav-icon fa-solid fa-computer"></i>
                  <p>Desktop</p>
               </a>
-            </li>
-          </ul>
+            </li>  --}}
+          {{--  </ul>  --}}
         </li>
       </ul>
     </li>

@@ -10,15 +10,7 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-              {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
-              <img class="text-center" src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" style="border-radius: 3%">
-            </div>
-            <div class="info">
-              <a href="{{ route('usuario.perfil', auth()->user()->id) }}" class="d-block">{{auth()->user()->funcionario->nome}}</a>
-            </div>
-          </div>
+          
 
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="Painel" role="menu">

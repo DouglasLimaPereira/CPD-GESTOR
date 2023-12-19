@@ -5,8 +5,21 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a href="javascript:void(0)" class="nav-link" onclick="sair()" title="SAIR">
-        SAIR <i class="fas fa-sign-out-alt fa-lg"></i>
+      <div class="dropdown">
+        <img class="text-center dropdown-toggle" height="50" data-toggle="dropdown" src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" style="border-radius: 50px">
+        
+        <ul class="dropdown-menu">
+          <li>
+            <a href="{{ route('usuario.perfil', auth()->user()->id) }}" class="d-block dropdown-item">{{auth()->user()->funcionario->nome}}</a>
+          </li>
+          {{--  <li><a class="dropdown-item" href="#">Something else here</a></li>  --}}
+          <li>
+            <a href="javascript:void(0)" class="dropdown-item" onclick="sair()" title="SAIR">
+              Sair <i class="fas fa-sign-out-alt fa-md"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
       </a>
     </li>
   </ul>
