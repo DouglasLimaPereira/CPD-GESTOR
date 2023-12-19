@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 // use Barryvdh\DomPDF\Facade\Pdf;
+
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 // use Barryvdh\DomPDF\Facade\Pdf as Pdf;
-use Pdf;
+// use Pdf;
 
 class CheckListController extends Controller
 {
