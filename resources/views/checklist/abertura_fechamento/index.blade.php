@@ -19,8 +19,7 @@
       .checkbox-wrapper-19 {
           box-sizing: border-box;
           --checkbox-height: 25px;
-        }
-    
+        } 
         .text-list {
           font-size: 25px;
           font-weight: 800;
