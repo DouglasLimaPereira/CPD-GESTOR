@@ -8,24 +8,24 @@
     </div>
 @endif
 
-@if(isset($funcionario))
-    <form action="{{route('construtoras.funcionarios.update', [$funcionario->pessoa->company_id, $funcionario->id])}}" method="POST" enctype="multipart/form-data">
+@if(isset($row))
+    <form action="{{route('acesso_maxipos.update', [$row->id])}}" method="POST" enctype="multipart/form-data">
     @method('PUT')
 @else
-    <form action="{{route('construtoras.funcionarios.store', $company->id)}}" method="POST" enctype="multipart/form-data">    
+    <form action="{{route('acesso_maxipos.store', $row->id)}}" method="POST" enctype="multipart/form-data">    
 @endif
     @csrf
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
                 <label for="nome">Nome *</label>
-                <input type="text" name="nome" class="form-control" id="nome" value="{{(isset($funcionario)) ? $funcionario->pessoa->nome : old('nome')}}" required>
+                <input type="text" name="nome" class="form-control" id="nome" value="{{(isset($row)) ? $row->nome : old('nome')}}" required>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="nome">Email *</label>
-                <input type="email" name="email" class="form-control" id="email" value="{{(isset($funcionario)) ? $funcionario->pessoa->email : old('email')}}" required>
+                <input type="email" name="email" class="form-control" id="email" value="{{(isset($row)) ? $row->email : old('email')}}" required>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="matricula">Matrícula *</label>
-                <input type="text" name="matricula" placeholder="Insira a Matricula" class="form-control" id="matricula" value="{{(isset($funcionario)) ? $funcionario->matricula : old('matricula')}}" required>
+                <input type="text" name="matricula" placeholder="Insira a Matricula" class="form-control" id="matricula" value="{{(isset($row)) ? $row->matricula : old('matricula')}}" required>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
                 <select name="funcao_id" id="funcao_id" class="form-control" required>
                     <option value="">Selecione a Função</option>
                     @foreach ($funcoes as $item)
-                        <option value="{{ $item->id }}" {{(( isset( $funcionario ) && ( $item->id == $funcionario->funcoes()->firstWhere('active', 1)->funcao_id)) ? 'selected': '')}}>{{$item->nome}}</option>
+                        <option value="{{ $item->id }}" {{(( isset( $row ) && ( $item->id == $row->funcoes()->firstWhere('active', 1)->funcao_id)) ? 'selected': '')}}>{{$item->nome}}</option>
                     @endforeach
                 </select>
             </div>
@@ -58,8 +58,8 @@
                 <label for="situacao_admissional">Situação *</label>
                 <select name="situacao_admissional" id="situacao_admissional" class="form-control" required>
                     <option value="">Selecione...</option>
-                    <option value="1" {{((isset($funcionario) && $funcionario->situacao_admissional == 1) ? 'selected' : '')}}>Ativo</option>
-                    <option value="0" {{((isset($funcionario) && $funcionario->situacao_admissional == 0) ? 'selected' : '')}}>Demitido</option>
+                    <option value="1" {{((isset($row) && $row->situacao_admissional == 1) ? 'selected' : '')}}>Ativo</option>
+                    <option value="0" {{((isset($row) && $row->situacao_admissional == 0) ? 'selected' : '')}}>Demitido</option>
                 </select>
             </div>
         </div>
@@ -67,14 +67,14 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="data_admissao">Data admissão *</label>
-                <input type="date" name="data_admissao" class="form-control" id="data_admissao" value="{{(isset($funcionario)) ? $funcionario->data_admissao : old('data_admissao')}}" required>
+                <input type="date" name="data_admissao" class="form-control" id="data_admissao" value="{{(isset($row)) ? $row->data_admissao : old('data_admissao')}}" required>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="form-group">
                 <label for="data_demissao">Data demissão</label>
-                <input type="date" name="data_demissao" class="form-control" id="data_demissao" value="{{(isset($funcionario)) ? $funcionario->data_demissao : old('data_demissao')}}">
+                <input type="date" name="data_demissao" class="form-control" id="data_demissao" value="{{(isset($row)) ? $row->data_demissao : old('data_demissao')}}">
             </div>
         </div>
         </div>
@@ -99,15 +99,15 @@
     </div>
 
     <hr>
-    @if(isset($funcionario))
-        @if ($company->canteiros()->where('funcionario_id', $funcionario->id)->count() > 0)
+    @if(isset($row))
+        @if ($company->canteiros()->where('funcionario_id', $row->id)->count() > 0)
             <div class="card">
                 <div class="card-header bg-primary">
                     Funcionário vinculado a um ou mais canteiros como GERENTE:
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        @foreach ($company->canteiros()->where('funcionario_id', $funcionario->id)->get() as $item)
+                        @foreach ($company->canteiros()->where('funcionario_id', $row->id)->get() as $item)
                             <li class="list-group-item">{{$item->nome}}</li>
                         @endforeach
                     </ul>
@@ -117,5 +117,5 @@
     @endif
 
     <hr>
-    <a href="{{route('construtoras.funcionarios.index', $company->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
-    <button type="submit" class="btn btn-sm btn-success">{!!(isset($funcionario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    <a href="{{route('acesso_maxipos.index', $company->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
+    <button type="submit" class="btn btn-sm btn-success">{!!(isset($row)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
