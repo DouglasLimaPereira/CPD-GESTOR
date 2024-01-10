@@ -1,8 +1,0 @@
-body{
-    background: linear-gradient(hsla(0, 0%, 0%, 0.7), hsla(0, 0%, 0%, 0.9));
-}
-
-.tx-shadow{
-    text-shadow: black 0.04em 0.04em 0.2em;
-    font-weight: 600;
-}
