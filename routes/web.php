@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    AcessoMaxiposController,
     CheckListController,
     CodigoBarrasController,
     PainelController,
@@ -131,4 +132,16 @@ Route::group(['prefix'=>'check-list', 'as'=>'check-list.', 'middleware'=>['auth'
     Route::get('/{check-list}/edite', [CheckListController::class, 'edit'])->name('edit');
     Route::put('/{check-list}/update', [CheckListController::class, 'update'])->name('update');
     Route::get('/{check-list}/destroy', [CheckListController::class, 'destroy'])->name('destroy');
+});
+
+//ACESSO MAXIPOS
+Route::group(['prefix'=>'acesso_maxipos', 'as' =>'acesso_maxipos.', 'middleware'=>['auth']], function(){
+    Route::get('/', [AcessoMaxiposController::class, 'index'])->name('index');
+    Route::get('/create', [AcessoMaxiposController::class, 'create'])->name('create');
+    Route::post('/store', [AcessoMaxiposController::class, 'store'])->name('store');
+    Route::post('/show', [AcessoMaxiposController::class, 'show'])->name('show');
+    Route::get('/{acesso_maxipos}/edite', [AcessoMaxiposController::class, 'edit'])->name('edit');
+    Route::put('/{acesso_maxipos}/update', [AcessoMaxiposController::class, 'update'])->name('update');
+    Route::get('/{acesso_maxipos}/destroy', [AcessoMaxiposController::class, 'destroy'])->name('destroy');
+    // Route::get('pdf', [AcessoMaxiposController::class, 'gerarPdf'])->name('gerarPdf');
 });

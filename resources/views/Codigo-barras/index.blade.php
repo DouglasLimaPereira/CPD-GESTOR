@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="codigo">Código <span class="text-danger">*</span></label>
+                            <label for="codigo"><i class="fa-solid fa-barcode"></i> Código <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" maxlength="6" name="codigo" id="codigo" onkeyup="gerarCodigo()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                         </div>
                     </div>

@@ -41,10 +41,19 @@
         </p>
       </a>
     </li>
+
+    <li class="nav-item">
+      <a href="{{ route('acesso_maxipos.index') }}" class="nav-link">
+        <i class="nav-icon fa-solid fa-globe"></i>
+        <p>
+          Acessos Maxipos
+        </p>
+      </a>
+    </li>
     
     <li class="nav-item">
       <a href="{{ route('ponto.hora-extra') }}" class="nav-link">
-        <i class="nav-icon fa-solid fa-address-book fa-lg"></i>
+        <i class="nav-icon fa-solid fa-user-clock"></i>
         <p>
           Consultar horas
         </p>
@@ -80,7 +89,7 @@
       <ul class="nav nav-treeview">
         <li class="nav-item">
           <a href="{{ route('check-list.index') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-door-open"></i>
+            <i class="nav-icon fa-solid fa-table-list"></i>
              <p>Check-Lists</p>
           </a>
         </li>

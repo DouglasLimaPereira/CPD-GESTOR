@@ -51,7 +51,7 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                <a href="{{route('construtoras.funcionarios.edit', [$company->id, $row->funcionario->id])}}" class="dropdown-item"><i class="far fa-edit"></i> Editar</a>
+                                                <a href="{{route('construtoras.funcionarios.edit', [$company->id, $row->funcionario->id])}}" class="dropdown-item"><i class="fa-regular fa-pen-to-square" style="color: #17a2b8;"></i> Editar</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$company->id}}, {{$row->funcionario->id}})"><i class="fas fa-trash"></i> Remover</a>
                                             </div>
