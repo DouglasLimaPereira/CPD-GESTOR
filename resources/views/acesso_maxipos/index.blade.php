@@ -38,11 +38,11 @@
                                     <td>{{$row->nome}}</td>
                                     <td>{{$row->login}}</td>
                                     <td>
-                                        <span class="showpass">
+                                        <span id="{{$row->id}}" style="filter: blur(4px)">
                                             {{$row->senha}}
                                         </span>
-                                        <a href="#" onclick="showPass" class="btn btn-sm btn-secondary float-right">
-                                            <i class="fa-solid fa-eye-slash"></i>
+                                        <a href="javascript:void(0)" onclick="showPass({{$row->id}})" class="btn btn-sm btn-secondary float-right btn-{{$row->id}}">
+                                            <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>
                                     <td>{{date('d/m/Y', strtotime($row->updated_at))}}</td>
@@ -85,37 +85,24 @@
 
 @section('scripts')
 
-<script>
-    function showPass(){
-        alert('senha');
-    }
-</script>
-
 {{-- Removendo o registro --}}
 <script>
-
-        $('#showPass').click(function() {
-            $('.showpass').setAttribute("style","filter: blur(3px)"); 
-        }) 
-    
-    {{--  (function ($) {
-        /*[ Show pass ]*/
-        var showPass = 0;
-        $('.showpass').on('click', function(){
-            if(showPass == 0) {
-                $(this).next('input').attr('type','text');
-                $(this).find('i').removeClass('fa-regular fa-eye');
-                $(this).find('i').addClass('fa-regular fa-eye-slash');
-                showPass = 1;
-            }
-            else {
-                $(this).next('input').attr('type','password');
-                $(this).find('i').removeClass('fa-regular fa-eye-slash');
-                $(this).find('i').addClass('fa-regular fa-eye');
-                showPass = 0;
-            }
-        });
-    })(jQuery);  --}}
+    var showpass = 0;
+    function showPass(id){
+        let senha = document.getElementById(id);
+        if(showpass == 0) {
+            senha.removeAttribute('style');
+            $('.showpass').find('i').removeClass('fa-regular fa-eye');
+            $('.showpass').find('i').addClass('fa-regular fa-eye-slash');
+            showpass = 1;
+        }
+        else {
+            senha.style.webkitFilter = "blur(4px)";
+            $('.showpass').find('i').removeClass('fa-regular fa-eye-slash');
+            $('.showpass').find('i').addClass('fa-regular fa-eye');
+            showpass = 0;
+        }
+    }
 
     function remover(acesso){
         $confirmacao = confirm('Tem certeza que deseja remover este Funcionário?');
