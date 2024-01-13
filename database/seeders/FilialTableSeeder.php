@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Filial;
 
 class FilialTableSeeder extends Seeder
@@ -32,6 +33,12 @@ class FilialTableSeeder extends Seeder
             'site' => 'https://www.grupomateus.com.br/',
             'telefone' => '',
             'uf' => 'CE',
+        ]);
+
+        DB::table('filial_user')->insert([
+            'filial_id' => 1,
+            'user_id' => 1,
+            'superadmin' => 1
         ]);
     }
 }

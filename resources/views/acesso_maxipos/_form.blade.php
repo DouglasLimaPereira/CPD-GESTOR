@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="nome">ID GM <span class="text-danger">*</span> <span class="small text-danger">(Somente números)</span></label>
+                <label for="nome">Mateus ID <span class="text-danger">*</span> <span class="small text-danger">(Somente números)</span></label>
                 <input type="text" name="login" class="form-control" id="login" value="{{(isset($acesso_maxipos)) ? $acesso_maxipos->login : old('login')}}" required>
             </div>
         </div>

@@ -25,7 +25,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
-                                <th>ID usuário</th>
+                                <th>Mateus ID</th>
                                 <th>Senha</th>
                                 <th>Data atualização</th>
                                 <th style="width: 10px">Ações</th>
@@ -36,12 +36,12 @@
                                 <tr>
                                     <td>{{$row->id}}</td>
                                     <td>{{$row->nome}}</td>
-                                    <td>{{$row->login}}</td>
+                                    <td>GM{{$row->login}}</td>
                                     <td>
-                                        <span id="{{$row->id}}" style="filter: blur(4px)">
+                                        <span id="{{$row->id}}" class="senha select-none" style="filter: blur(4px)">
                                             {{$row->senha}}
                                         </span>
-                                        <a href="javascript:void(0)" onclick="showPass({{$row->id}})" class="btn btn-sm btn-secondary float-right btn-{{$row->id}}">
+                                        <a href="javascript:void(0)" onclick="showPass({{$row->id}})" class="btn btn-sm btn-secondary float-right showpass">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>
@@ -92,12 +92,14 @@
         let senha = document.getElementById(id);
         if(showpass == 0) {
             senha.removeAttribute('style');
+            $('.senha').removeClass('select-none');
             $('.showpass').find('i').removeClass('fa-regular fa-eye');
             $('.showpass').find('i').addClass('fa-regular fa-eye-slash');
             showpass = 1;
         }
         else {
             senha.style.webkitFilter = "blur(4px)";
+            $('.senha').addClass('select-none');
             $('.showpass').find('i').removeClass('fa-regular fa-eye-slash');
             $('.showpass').find('i').addClass('fa-regular fa-eye');
             showpass = 0;
