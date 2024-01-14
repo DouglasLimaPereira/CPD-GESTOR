@@ -8,9 +8,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card card-info">
             <div class="card-header">
-
+                <h3 class="card-title">Gerar Cód Barras</h3>
             </div>
             <div class="card-body">
                 <div class="col-md-12">

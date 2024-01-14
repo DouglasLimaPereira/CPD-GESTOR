@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12">
             @include('ponto._partials.filtro')
-            <div class="card">
+            <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa-regular fa-rectangle-list"></i> Listagem de Pontos</h3>
                     <div class="card-tools">

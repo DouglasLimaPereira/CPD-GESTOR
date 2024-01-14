@@ -98,7 +98,8 @@ class AcessoMaxiposController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(AcessoMaxipos $acesso_maxipos)
-    {
-        
+    {   
+        $acesso_maxipos->delete();
+        return redirect()->route('acesso_maxipos.index')->with('success', 'Usuario maxpos removido com sucesso!');
     }
 }

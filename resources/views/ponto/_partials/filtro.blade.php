@@ -1,8 +1,8 @@
 <form action="{{route('ponto.relatorio')}}" method="GET">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-dark font-weight-bold">
+            <div class="card card-info">
+                <div class="card-header font-weight-bold">
                     <div class="row">
                         <div class="col-md-10">
                             <i class="fa-solid fa-filter"></i> FILTRO

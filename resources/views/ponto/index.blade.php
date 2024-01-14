@@ -8,13 +8,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa-regular fa-rectangle-list"></i> Listagem de Pontos</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a href="{{ route('ponto.create') }}" class="nav-link active btn btn-info"><i class="fas fa-plus-circle"></i> NOVO PONTO</a>
+                                <a href="{{ route('ponto.create') }}" class="btn btn-md btn-info"><i class="fas fa-plus-circle"></i> NOVO PONTO</a>
                             </li>
                         </ul>
                     </div>

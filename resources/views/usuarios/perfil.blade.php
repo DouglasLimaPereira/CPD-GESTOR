@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <div class="card card-dark">
+            <div class="card card-info">
                 <div class="card-header">
                 </div>
                 <div class="card-body">
@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card card-dark">
+            <div class="card card-info">
                 <div class="card-header">
                 </div>
                 <div class="card-body">

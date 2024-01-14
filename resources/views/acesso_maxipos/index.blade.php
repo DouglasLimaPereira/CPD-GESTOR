@@ -8,13 +8,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Selecione um funcionário</h3>
+                    <h3 class="card-title">funcionários Frente de loja</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a href="{{route('acesso_maxipos.create', $filial)}}" class="nav-link active"><i class="fas fa-plus-circle"></i> NOVO ACESSO</a>
+                                <a href="{{route('acesso_maxipos.create', $filial)}}" class="btn btn-md btn-info"><i class="fas fa-plus-circle"></i> NOVO ACESSO</a>
                             </li>
                         </ul>
                     </div>
@@ -37,11 +37,11 @@
                                     <td>{{$row->id}}</td>
                                     <td>{{$row->nome}}</td>
                                     <td>GM{{$row->login}}</td>
-                                    <td>
+                                    <td class="showpass{{$row->id}}">
                                         <span id="{{$row->id}}" class="senha select-none" style="filter: blur(4px)">
                                             {{$row->senha}}
                                         </span>
-                                        <a href="javascript:void(0)" onclick="showPass({{$row->id}})" class="btn btn-sm btn-secondary float-right showpass">
+                                        <a href="javascript:void(0)" onclick="showPass({{$row->id}})" class="btn btn-sm btn-secondary float-right icon{{$row->id}}">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>
@@ -60,7 +60,7 @@
                                                 
                                                 <div class="dropdown-divider"></div>
 
-                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$filial}}, {{$row->id}})"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button> Remover</a>
+                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}})"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button> Remover</a>
                                             </div>
                                           </div>
                                     </td>
@@ -73,6 +73,7 @@
                         </tbody>
                     </table>
                     <br>
+                    <!-- -->
                     <div class="d-flex">
                         {{--  {{$rows->links()}}  --}}
                     </div>
@@ -85,27 +86,32 @@
 
 @section('scripts')
 
-{{-- Removendo o registro --}}
 <script>
+    // Alterando visualização de senha do acesso Mpos
     var showpass = 0;
     function showPass(id){
         let senha = document.getElementById(id);
         if(showpass == 0) {
             senha.removeAttribute('style');
             $('.senha').removeClass('select-none');
-            $('.showpass').find('i').removeClass('fa-regular fa-eye');
-            $('.showpass').find('i').addClass('fa-regular fa-eye-slash');
+            $('.icon'+senha.id).find('i').removeClass('fa-regular fa-eye');
+            $('.showpass'+senha.id).find('a').removeClass('btn-secondary');
+            $('.showpass'+senha.id).find('a').addClass('btn-dark');            
+            $('.icon'+senha.id).find('i').addClass('fa-regular fa-eye-slash');
             showpass = 1;
         }
         else {
             senha.style.webkitFilter = "blur(4px)";
             $('.senha').addClass('select-none');
-            $('.showpass').find('i').removeClass('fa-regular fa-eye-slash');
-            $('.showpass').find('i').addClass('fa-regular fa-eye');
+            $('.showpass'+senha.id).find('a').removeClass('btn-dark');
+            $('.showpass'+senha.id).find('a').addClass('btn-secondary');
+            $('.icon'+senha.id).find('i').removeClass('fa-regular fa-eye-slash');
+            $('.icon'+senha.id).find('i').addClass('fa-regular fa-eye');
             showpass = 0;
         }
     }
 
+    // Removendo o registro
     function remover(acesso){
         $confirmacao = confirm('Tem certeza que deseja remover este Funcionário?');
 

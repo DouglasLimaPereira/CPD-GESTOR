@@ -16,7 +16,7 @@
 @endif
     @csrf
     <div class="row col-md-12">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
                 <label for="nome">Nome completo <span class="text-danger">*</span></label>
                 <input type="text" name="nome" class="form-control" id="nome" value="{{(isset($acesso_maxipos)) ? $acesso_maxipos->nome : old('nome')}}" required>
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    @if (isset($acesso_maxipos))
+    {{-- @if (isset($acesso_maxipos))
     <div class="row col-md-12">
         <div class="col-md-4">
             <div class="form-group">
@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
 
     <hr>
     <div class="row">

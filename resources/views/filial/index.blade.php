@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-eye"></i> Visualização</h3>
                     <div class="card-tools">
@@ -40,7 +40,7 @@
                                 <b>E-mail SAC: </b> {{($filial->email) ?? '-'}}<br>
                                 <b>E-mail Financeiro: </b> {{($filial->email_financeiro) ?? '-'}}<br>
                                 <b>E-mail Comercial: </b> {{($filial->email_comercial) ?? '-'}}<br>
-                                <b>Site: </b> <a href="http://{{($filial->site) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{($filial->site) ?? '-'}}</a> <br>
+                                <b>Site: </b> <a href="{{($filial->site) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{($filial->site) ?? '-'}}</a> <br>
                                 <b>Instagram: </b> <a href="{{($filial->instagram) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{$instagram}} </a>  <br>
                             </div>
                             {{-- <div class="callout callout-info">

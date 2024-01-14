@@ -8,13 +8,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">Selecione um funcionário</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a href="{{route('construtoras.funcionarios.create', $company->id)}}" class="nav-link active"><i class="fas fa-plus-circle"></i> NOVO FUNCIONÁRIO</a>
+                                <a href="{{route('construtoras.funcionarios.create', $company->id)}}" class="btn btn-md btn-info"><i class="fas fa-plus-circle"></i> NOVO FUNCIONÁRIO</a>
                             </li>
                         </ul>
                     </div>

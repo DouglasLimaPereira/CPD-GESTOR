@@ -8,14 +8,14 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card card-info">
             <div class="card-header">
                 @if (auth()->user()->funcionario->superadmin == 1)
                 <h3 class="card-title">Consultar Codigo</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a href="{{route('erro-sitef.create')}}" class="nav-link active btn-info"><i class="fas fa-plus-circle"></i> NOVO ERRO</a>
+                                <a href="{{route('erro-sitef.create')}}" class="btn btn-md btn-info"><i class="fas fa-plus-circle"></i> NOVO ERRO</a>
                             </li>
                         </ul>
                     </div>
