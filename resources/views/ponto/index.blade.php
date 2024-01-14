@@ -28,7 +28,7 @@
                                 <th><i class="fa-solid fa-clock"></i> Saida P/Almoço</th>
                                 <th><i class="fa-solid fa-clock"></i> Volta P/Almoço</th>
                                 <th><i class="fa-solid fa-clock"></i> Saída</th>
-                                <th width="8%"><i class="fa-solid fa-gears"></i> Ações</th>
+                                <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
                         <tbody>

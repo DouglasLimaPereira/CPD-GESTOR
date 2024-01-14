@@ -32,7 +32,7 @@
                                 <th>CNPJ</th>
                                 <th>UF</th>
                                 <th>ESTADO</th>
-                                <th>AÇÕES</th>
+                                <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
                         <tbody>

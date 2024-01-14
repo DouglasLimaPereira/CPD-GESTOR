@@ -28,7 +28,7 @@
                                 <th>Mateus ID</th>
                                 <th>Senha</th>
                                 <th>Data atualização</th>
-                                <th style="width: 10px">Ações</th>
+                                <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
                         <tbody>

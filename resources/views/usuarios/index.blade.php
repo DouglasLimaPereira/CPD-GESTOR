@@ -28,7 +28,7 @@
                             <th><i class="fa-solid fa-briefcase"></i> Cargo</th>
                             <th><i class="fa-solid fa-id-card-clip"></i> Matricula</th>
                             <th><i class="fa-solid fa-file-signature"></i> Admissão</th>
-                            <th width="8%"><i class="fa-solid fa-gears"></i> Ações</th>
+                            <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                         </tr>
                     </thead>
                     <tbody>

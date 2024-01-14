@@ -19,13 +19,13 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
+                <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
                     <thead>
                         <tr>
-                            <th><i class="fa-solid fa-fingerprint"></i></i> ID</th>
-                            <th><i class="fa-solid fa-calendar"></i> Data</th>
-                            <th><i class="fa-solid fa-list-check"></i> Tipo Check-list</th>
-                            <th width="8%"><i class="fa-solid fa-gears"></i> Ações</th>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Tipo Check-list</th>
+                            <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                         </tr>
                     </thead>
                     <tbody>
