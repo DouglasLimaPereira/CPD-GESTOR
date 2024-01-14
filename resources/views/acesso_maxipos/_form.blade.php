@@ -59,8 +59,8 @@
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <a href="{{route('acesso_maxipos.index')}}" class="btn btn-sm btn-danger float-right"><i class="fas fa-undo-alt"></i> CANCELAR</a>
-            <button type="submit" class="btn btn-sm btn-success float-right mr-2">{!!(isset($acesso_maxipos)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+            <button type="submit" class="btn btn-outline-success float-right ml-2">{!!(isset($acesso_maxipos)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+            <a href="{{route('acesso_maxipos.index')}}" class="btn btn-outline-danger float-right"><i class="fas fa-undo-alt"></i> CANCELAR</a>
         </div>
     </div>
 </form>

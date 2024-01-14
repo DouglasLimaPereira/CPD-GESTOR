@@ -54,6 +54,8 @@
     </div>
 
     <hr>
-    <a href="{{route('erro-sitef.index')}}" class="btn btn-sm btn-secondary"><i class="fas fa-undo-alt"></i> CANCELAR</a>
-    <button type="submit" class="btn btn-sm btn-success">{!!(isset($erro_sitef)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    <div class="text-right">
+        <a href="{{route('erro-sitef.index')}}" class="btn btn-outline-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
+        <button type="submit" class="btn btn-outline-success">{!!(isset($erro_sitef)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    </div>
 </form>

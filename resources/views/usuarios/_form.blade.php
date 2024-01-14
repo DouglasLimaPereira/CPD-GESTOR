@@ -178,7 +178,7 @@
 
     <hr>
     <div class="row float-right">
-        {{--  <a href="{{route('painel.index')}}" class="btn btn-sm btn-secondary mr-3"><i class="fas fa-undo-alt"></i> Voltar</a>  --}}
+         <a href="{{route('usuario.index')}}" class="btn btn-outline-danger mr-3"><i class="fas fa-undo-alt"></i> Cancelar</a> 
         <button type="submit" class="btn btn-outline-success mr-3">{!!(isset($usuario)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
     </div>
   </form>

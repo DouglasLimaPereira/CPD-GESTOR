@@ -45,14 +45,12 @@
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <div class="row col-md-12">
-                    <div class="mr-2">
-                        <a href="{{route('usuario.index')}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
+                <div class="text-right">
+                    <a href="{{route('usuario.index')}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
 
-                        @if (($usuario->funcionario->situacao_admissional == auth()->user()->id ) || ( auth()->user()->funcionario->firstWhere('superadmin', 1)))
-                            <a href="{{ route('usuario.edit', $usuario->id) }}" class="btn btn-outline-success"><i class="fas fa-edit"></i> Editar </a>
-                        @endif
-                    </div>
+                    @if (($usuario->funcionario->situacao_admissional == auth()->user()->id ) || ( auth()->user()->funcionario->firstWhere('superadmin', 1)))
+                        <a href="{{ route('usuario.edit', $usuario->id) }}" class="btn btn-outline-success"><i class="fas fa-edit"></i> Editar </a>
+                    @endif
                 </div>
             </div>
         </div>

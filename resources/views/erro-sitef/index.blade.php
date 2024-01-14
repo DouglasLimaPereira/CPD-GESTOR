@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="card-footer" id="card_footer" style="display: none;">
-                <a href="javascript:void(0)" class="btn btn-success float-right" onclick="editErro()"><i class="fas fa-edit"></i> Editar Sitef</a>
+                <a href="javascript:void(0)" class="btn btn-outline-success float-right" onclick="editErro()"><i class="fas fa-edit"></i> Editar Sitef</a>
             </div> 
         </div>
     </div>

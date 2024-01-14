@@ -23,11 +23,11 @@
                     <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
                         <thead>
                             <tr>
-                                <th><i class="fa-solid fa-calendar"></i> Data</th>
-                                <th><i class="fa-solid fa-clock"></i> Entrada</th>
-                                <th><i class="fa-solid fa-clock"></i> Saida P/Almoço</th>
-                                <th><i class="fa-solid fa-clock"></i> Volta P/Almoço</th>
-                                <th><i class="fa-solid fa-clock"></i> Saída</th>
+                                <th>Data</th>
+                                <th>Entrada</th>
+                                <th>Saida P/Almoço</th>
+                                <th>Volta P/Almoço</th>
+                                <th>Saída</th>
                                 <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>

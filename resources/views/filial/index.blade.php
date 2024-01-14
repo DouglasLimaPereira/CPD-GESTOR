@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             @if(auth()->user()->filiais()->where('filial_id', session()->get('filial')->id)->where('superadmin', true)->first()) 
-                                <a href="{{route('filial.edit', $filial->id)}}" class="btn btn-success float-right"><i class="fas fa-edit"></i> Editar</a>
+                                <a href="{{route('filial.edit', $filial->id)}}" class="btn btn-outline-success float-right"><i class="fas fa-edit"></i> Editar</a>
                             @endif 
                         </div>
                     </div>

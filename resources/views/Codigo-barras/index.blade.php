@@ -65,7 +65,7 @@
                                 <div class="input-group">  
                                     <input type="number" name="quantidade_cod" class="form-control" min="1" max="10" value="1" placeholder="Quantidade de Cód na página" aria-label="Quantidade de Cód na página" aria-describedby="export pdf">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary" target="_blank"><i class="fa-regular fa-file-pdf"></i> Gerar PDF</button>
+                                        <button type="submit" class="btn btn-info" target="_blank"> <i class="fa-regular fa-file-pdf"></i> Gerar PDF</button>
                                     </div>
                                 </div>
                             </div>
