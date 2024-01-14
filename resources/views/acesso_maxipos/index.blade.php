@@ -28,7 +28,7 @@
                                 <th>Mateus ID</th>
                                 <th>Senha</th>
                                 <th>Data atualização</th>
-                                <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
+                                <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,9 +46,9 @@
                                         </a>
                                     </td>
                                     <td>{{date('d/m/Y', strtotime($row->updated_at))}}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="dropdown">
-                                            <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">

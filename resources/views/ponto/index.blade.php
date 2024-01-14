@@ -28,7 +28,7 @@
                                 <th><i class="fa-solid fa-clock"></i> Saida P/Almoço</th>
                                 <th><i class="fa-solid fa-clock"></i> Volta P/Almoço</th>
                                 <th><i class="fa-solid fa-clock"></i> Saída</th>
-                                <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
+                                <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,15 +41,15 @@
                                     <td>{{$row->saida}}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
-                                            <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
+                                                <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><i class="far fa-edit"></i> Editar </a>
+                                                <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><i class="fas fa-trash"></i> Remover </a>
+                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
                                             </div>
                                         </div>
                                     </td>

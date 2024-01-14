@@ -22,13 +22,13 @@
                 <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
                     <thead>
                         <tr>
-                            <th><i class="fa-solid fa-fingerprint"></i></i> ID</th>
-                            <th><i class="fa-solid fa-signature"></i> Nome</th>
-                            <th><i class="fa-solid fa-envelope"></i> E-mail</th>
-                            <th><i class="fa-solid fa-briefcase"></i> Cargo</th>
-                            <th><i class="fa-solid fa-id-card-clip"></i> Matricula</th>
-                            <th><i class="fa-solid fa-file-signature"></i> Admissão</th>
-                            <th style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Cargo</th>
+                            <th>Matricula</th>
+                            <th>Admissão</th>
+                            <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,13 +42,13 @@
                                 <td>{{date('d/m/Y', strtotime($row->funcionario->data_admissao))}}</td>
                                 <td class="text-center">
                                     <div class="dropdown">
-                                        <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                            <a href="{{ route('usuario.show', $row->id ) }}" class="dropdown-item"><i class="far fa-eye"></i> Visualizar </a>
+                                            <a href="{{ route('usuario.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="{{ route('usuario.edit', $row->id) }}" class="dropdown-item"><i class="far fa-edit"></i> Editar </a>
+                                            <a href="{{ route('usuario.edit', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
                                             {{--  <div class="dropdown-divider"></div>  --}}
                                             {{--  <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><i class="fas fa-trash"></i> Remover </a>  --}}
                                         </div>

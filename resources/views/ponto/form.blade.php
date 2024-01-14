@@ -262,5 +262,7 @@
     @endif --}}
 
     <hr>
-    <a href="{{route('ponto.index')}}" class="btn btn-sm btn-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
-    <button type="submit" class="btn btn-sm btn-success">{!!(isset($ponto)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    <div class="text-right">
+        <a href="{{route('ponto.index')}}" class="btn btn-outline-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>
+        <button type="submit" class="btn btn-outline-success">{!!(isset($ponto)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
+    </div>

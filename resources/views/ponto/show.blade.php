@@ -123,13 +123,10 @@
                     </div> --}}
                 </div>
                 <div class="dropdown-divider"></div>
-                <div class="row col-md-12">
-                    <div class="mr-2">
-                        <a href="{{route('ponto.index')}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
-                            
-                        <a href="{{ route('ponto.edite', [$ponto->id]) }}" class="btn btn-outline-success"><i class="fas fa-edit"></i> Editar </a>
+                <div class="text-right">
+                    <a href="{{route('ponto.index')}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
                         
-                    </div>
+                    <a href="{{ route('ponto.edite', [$ponto->id]) }}" class="btn btn-outline-success"><i class="fas fa-edit"></i> Editar </a>
                 </div>
             </div>
         </div>
