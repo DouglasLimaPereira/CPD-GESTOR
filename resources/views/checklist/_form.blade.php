@@ -108,8 +108,50 @@
     </div>
 
     <div class="check-out-balanca" style="display: none">
+        <div class="mt-4">
+            <h5> <i class="fa-solid fa-scale-balanced"></i> <em> Quantidade de Balanças {{session()->get('filial')->nome_fantasia}} {{session()->get('filial')->codigo}} </em></h5>
+            <div class="row">
+                <div class="col">
+                    <label for="balanca_floja">Frente Loja<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" min="1" name="balanca_floja" id="balanca_floja">
+                </div>
+                <div class="col">
+                    <label for="balanca_acougue">Açougue<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_acougue" id="balanca_acougue">
+                </div>
+                <div class="col">
+                    <label for="balanca_frios">Frios<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_frios" id="balanca_frios">
+                </div>
+                <div class="col">
+                    <label for="balanca_peixaria">Peixaria<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_peixaria" id="balanca_peixaria">
+                </div>
+                <div class="col">
+                    <label for="balanca_padaria">Padaria<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_padaria" id="balanca_padaria">
+                </div>
+                <div class="col">
+                    <label for="balanca_hortifrute">Hortifrute<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_hortifrute" id="balanca_hortifrute">
+                </div>
+                <div class="col">
+                    <label for="balanca_doca">Doca<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_doca" id="balanca_doca">
+                </div>
+                <div class="col">
+                    <label for="balanca_pescoco">Pescoço<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_pescoco" id="balanca_pescoco">
+                </div>
+                <div class="col">
+                    <label for="balanca_aerea">Aérea<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="balanca_aerea" id="balanca_aerea">
+                </div>
+            </div>
+        </div>
+        <hr>
         <div class="callout callout-info">
-            <h5> <i class="fa-solid fa-scale-balanced"></i> <em> Balanças de Check-out Frente de Loja / {{session()->get('filial')->nome_fantasia}} {{session()->get('filial')->codigo}} </em></h5>
+            <h5> <i class="fa-solid fa-scale-balanced"></i> <em> Balanças de Check-out Frente de Loja</em></h5>
             <hr>
             <div class="row">
                 @for ($pdv = 101; $pdv <= 135; $pdv++)
@@ -479,8 +521,8 @@
 
     <hr>
     <div class="row float-right">
-        {{--  <a href="{{route('painel.index')}}" class="btn btn-sm btn-secondary mr-3"><i class="fas fa-undo-alt"></i> Voltar</a>  --}}
-        <button type="submit" class="btn btn-md btn-success mr-3">{!!(isset($check_list)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> CRIAR CHECK-LIST'!!}</button>
+         <a href="{{route('check-list.index')}}" class="btn btn-outline-danger mr-3"><i class="fas fa-undo-alt"></i> Cancelar</a> 
+        <button type="submit" class="btn btn-outline-success mr-3">{!!(isset($check_list)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> CRIAR CHECK-LIST'!!}</button>
     </div>
   </form>
 
@@ -517,6 +559,15 @@
                 $('.limpeza-balanca').hide();
                 $('.limpeza-hack').hide();
                 $('.limpeza-desktop').hide();
+                $('#balanca_floja').attr('required', 'true');
+                $('#balanca_acougue').attr('required', 'true');
+                $('#balanca_frios').attr('required', 'true');
+                $('#balanca_peixaria').attr('required', 'true');
+                $('#balanca_padaria').attr('required', 'true');
+                $('#balanca_hortifrute').attr('required', 'true');
+                $('#balanca_doca').attr('required', 'true');
+                $('#balanca_pescoco').attr('required', 'true');
+                $('#balanca_aerea').attr('required', 'true');
 
             }else if( text == 'Log MFE' ){
                 $('.Abertura_Fechamento').hide();
@@ -535,6 +586,7 @@
                 $('.limpeza-balanca').hide();
                 $('.limpeza-hack').hide();
                 $('.limpeza-desktop').hide();
+                $('#consultores').attr('required', 'true');
 
             }else if( text == 'Limpeza Balança Pdv' ){
                 $('.Abertura_Fechamento').hide();
@@ -544,6 +596,7 @@
                 $('.limpeza-balanca').show();
                 $('.limpeza-hack').hide();
                 $('.limpeza-desktop').hide();
+                $('#balanca_floja').attr('required', 'true');
 
             }else if( text == 'Limpeza dos Hacks' ){
                 $('.Abertura_Fechamento').hide();
@@ -553,6 +606,7 @@
                 $('.limpeza-balanca').hide();
                 $('.limpeza-hack').show();
                 $('.limpeza-desktop').hide();
+                $('#rack').attr('required', 'true');
 
             }else if( text == 'Limpeza Desktop' ){
                 $('.Abertura_Fechamento').hide();
@@ -562,6 +616,8 @@
                 $('.limpeza-balanca').hide();
                 $('.limpeza-hack').hide();
                 $('.limpeza-desktop').show();
+                $('#desktop').attr('required', 'true');
+
             }
         });
     </script>

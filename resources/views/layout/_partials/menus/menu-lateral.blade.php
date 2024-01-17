@@ -79,81 +79,10 @@
     </li>
     
     <li class="nav-item">
-      <a href="#" class="nav-link">
-        <i class="nav-icon fa-solid fa-list-check"></i>
-        <p>
-          Check-List Loja {{session()->get('filial')->codigo}}
-          <i class="right fas fa-angle-left"></i>
-        </p>
+      <a href="{{ route('check-list.index') }}" class="nav-link">
+        <i class="nav-icon fa-solid fa-table-list"></i>
+          <p>Check-List Loja {{session()->get('filial')->codigo}}</p>
       </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('check-list.index') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-table-list"></i>
-             <p>Check-Lists</p>
-          </a>
-        </li>
-        {{--  <li class="nav-item">
-          <a href="{{ route('check-list.fechamento.index') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-door-closed"></i>
-             <p>Fechamento</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-server"></i>
-             <p>Log</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-scale-unbalanced-flip"></i>
-             <p>Calibragem de balança</p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-pump-soap"></i>
-            <p>
-              Limpeza
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{ route('ponto.index') }}" class="nav-link">
-                <i class="nav-icon fa-solid fa-clipboard-list fa-lg"></i>
-                 <p>PDV</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-                <i class="nav-icon fa-regular fa-file-pdf fa-lg"></i>
-                 <p>Rack</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-                <i class="nav-icon fa-regular fa-file-pdf fa-lg"></i>
-                 <p>Consultores</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-                <i class="nav-icon fa-regular fa-file-pdf fa-lg"></i>
-                 <p>Sala CPD</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-                <i class="nav-icon fa-solid fa-computer"></i>
-                 <p>Desktop</p>
-              </a>
-            </li>  --}}
-          {{--  </ul>  --}}
-        </li>
-      </ul>
     </li>
     
     <li class="nav-item">

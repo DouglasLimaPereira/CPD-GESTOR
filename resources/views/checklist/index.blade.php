@@ -13,7 +13,7 @@
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item">
-                            <a href="{{ route('check-list.create') }}" class="btn btn-md btn-info"><i class="fas fa-plus-circle"></i> NOVO CHECK-LIST</a>
+                            <a href="{{ route('check-list.create') }}" class="btn btn-info btn-new"><i class="fas fa-plus-circle"></i> NOVO CHECK-LIST</a>
                         </li>
                     </ul>
                 </div>

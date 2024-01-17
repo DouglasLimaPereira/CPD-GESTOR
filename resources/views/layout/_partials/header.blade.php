@@ -36,6 +36,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <style>
+    .card.card-header {
+      border-radius: 15px; 
+    }
+    .card {
+      border-radius: 15px;
+    }
+    .btn-new, .card-title{
+      font-size: 1.3rem;
+      font-weight: 400;
+    }
     .select-none{
       user-select:none;
     }
