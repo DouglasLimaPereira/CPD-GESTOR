@@ -5,9 +5,13 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <div class="dropdown">
-        <img class="text-center dropdown-toggle" height="50" data-toggle="dropdown" src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" style="border-radius: 50px">
-        
+      <div class="dropdown" style="cursor: pointer;">
+        @if (auth()->user()->funcionario->imagem != '')
+          <img class="text-center dropdown-toggle" height="50" data-toggle="dropdown" src="{{url('/')}}/storage/{{auth()->user()->funcionario->imagem}}" style="border-radius: 50px">
+        @else
+          <img src="{{ asset('assets/image/user.jpg') }}" height="50" data-toggle="dropdown" alt="">
+        @endif
+
         <ul class="dropdown-menu dropdown-menu-right">
           <li>
             <a href="{{ route('usuario.perfil', auth()->user()->id) }}" class="d-block dropdown-item"> <i class="fa-solid fa-user"></i> <em> {{auth()->user()->funcionario->nome}} </em> </a>

@@ -115,16 +115,26 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="senha">Senha <span class="text-danger">*</span></label>
-                <input type="password" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
-                <span class="btn-show-pass"> <i class="fa-regular fa-eye"></i> </span>
+                <div class="input-group">
+                    <input type="password" name="password" class="form-control" id="senha" minlength="8" value="{{old('password')}}" onload="gerarSenha()" readonly required>
+                    <div class="input-group-append">
+                        <span class="btn btn-outline-secondary" id="btn-show-pass"> <i class="fa-regular fa-eye"></i> </span>
+                    </div>
+                </div>
+                <div id="butao-senha">
                     @if (!isset($usuario))
-                        <a href="javascript:void(0)" id="gerar-senha" class="text-info">[Gerar senha]</a>
-                        <a href="javascript:void(0)" id="limpa-senha" class="text-danger">[Limpar senha]</a>
-                        <a href="javascript:void(0)" id="preencher-senha" class="text-secondary">[Preencher Manualmente]</a>
+                        <a href="javascript:void(0)" id="gerar-senha" class="text-info">Gerar senha</a>
+                        <a href="javascript:void(0)" id="limpa-senha" class="text-danger">Limpar senha</a>
+                        <a href="javascript:void(0)" id="preencher-senha" class="text-secondary">Preencher Manualmente</a>
                     @else
-                        <a href="javascript:void(0)" id="preencher-senha" onclick="preencherSenha()" class="text-primary">[ Alterar Senha ? ]</a>
-                        <a href="javascript:void(0)" id="cancelar-senha" class="text-danger">[ Cancelar ]</a>
+                        <a href="javascript:void(0)" id="preencher-senha" class="text-primary"> 
+                            <span class="btn btn-sm btn-outline-success"> Alterar senha </span>
+                        </a>
+                        <a href="javascript:void(0)" id="cancelar-senha" class="text-danger" style="display: none;">
+                            <span class="btn btn-sm btn-outline-danger"> Cancelar alteração de senha </span>
+                        </a>
                     @endif
+                </div>
             </div>
         </div>
 
@@ -195,11 +205,15 @@
             $('#preencher-senha').click(function(){
                 $('#senha').val(``)
                 $('#senha').removeAttr('readonly')
+                $('#preencher-senha').hide()
+                $('#cancelar-senha').show()
             });
 
             $('#cancelar-senha').click(function(){
                 $('#senha').val(``)
                 $('#senha').attr('readonly', true)
+                $('#cancelar-senha').hide()
+                $('#preencher-senha').show()
             });
        });
 
@@ -217,5 +231,25 @@
                 })
             }
         }  --}}
+
+        (function ($) {
+            /*[ Show pass ]*/
+            var showPass = 0;
+            $('#btn-show-pass').on('click', function(){
+                if(showPass == 0) {
+                    $('#senha').attr('type','text');
+                    $(this).find('i').removeClass('fa-regular fa-eye');
+                    $(this).find('i').addClass('fa-regular fa-eye-slash');
+                    showPass = 1;
+                }
+                else {
+                    $('#senha').attr('type','password');
+                    $(this).find('i').removeClass('fa-regular fa-eye-slash');
+                    $(this).find('i').addClass('fa-regular fa-eye');
+                    showPass = 0;
+                }
+            });
+        })(jQuery);
+
     </script>
   @endsection

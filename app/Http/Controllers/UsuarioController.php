@@ -56,7 +56,7 @@ class UsuarioController extends Controller
                 if(!$usuario = User::firstWhere('email', $request->email))
                 $usuario = User::create([
                     'email' => $request->email,
-                    'password' => $request->password,
+                    'password' => bcrypt($request->password),
                 ]);
                 
             }catch(\Exception $e) {

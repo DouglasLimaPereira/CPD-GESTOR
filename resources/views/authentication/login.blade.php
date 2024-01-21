@@ -62,7 +62,6 @@
                 </div>
 
                 <div class="form-group">
-                    
                     <div class="form-floating">
                         <span class="btn-show-pass"> <i class="fa-regular fa-eye"></i> </span>
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
