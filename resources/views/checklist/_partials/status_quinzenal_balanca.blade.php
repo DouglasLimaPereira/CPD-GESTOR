@@ -136,7 +136,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="43%">
                                             <b> Balança `+bfl+` </b>
                                             <b><input class="form-control" type="number" name="" id=""> </b>
@@ -167,7 +167,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -196,7 +196,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -225,7 +225,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -254,7 +254,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -283,7 +283,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -312,7 +312,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -341,7 +341,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>
@@ -370,7 +370,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th width="20%"><img src="{{asset('image/balanca-checkout.png')}}" height="60px"></th>
+                                        <th width="20%"><img src="{{asset('assets/image/balanca-checkout.png')}}" height="60px"></th>
                                         <th width="33%"><b> Balança `+bfl+` </b></th>
                                         <th width="33%"><b>Peso: <input class="form-control" type="number" name="" id=""> </b></th>
                                         <th>

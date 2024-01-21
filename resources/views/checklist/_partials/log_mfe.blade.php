@@ -8,7 +8,7 @@
                     <table class="table">
                         <thead>
                             <tr> 
-                                <th><img src="{{asset('image/mfe.png')}}" height="60px"></th>
+                                <th><img src="{{asset('assets/image/mfe.png')}}" height="60px"></th>
                                 {{--  <th width="23%"><b style="margin-top: -5px"> IP </b></th>  --}}
                                 <th width="53%"><b> IP: <input class="form-control" type="text" name="mfe[{{$i}}]" id=""> </b></th>
                                 {{--  <th width="33%"><b> Status </b></th>  --}}

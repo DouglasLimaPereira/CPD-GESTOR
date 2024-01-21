@@ -40,7 +40,7 @@
                         <table class="table">
                             <thead>
                                 <tr> 
-                                    <th width="30%"><img src="{{asset('image/desktop.png')}}" height="60px"></th>
+                                    <th width="30%"><img src="{{asset('assets/image/desktop.png')}}" height="60px"></th>
                                     <th width="43%"><b> Desktop `+qdesktop+` </b></th>
                                     <th width="43%">
                                         <input class="status form-control text-success" type="checkbox" name="status[]" style="height: 30px; width: 30px;">

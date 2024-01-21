@@ -42,7 +42,7 @@
                     <table class="table">
                         <thead>
                             <tr> 
-                                <th width="20%"><img src="{{asset('image/caixa_som.png')}}" height="60px"></th>
+                                <th width="20%"><img src="{{asset('assets/image/caixa_som.png')}}" height="60px"></th>
                                 <th width="31%"><b> Rádio </b></th>
                                 <th width="33%"><b> Status </b></th>
                                 <th>
@@ -59,7 +59,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="20%"><img src="{{asset('image/consultor.png')}}" height="60px"></th>
+                                <th width="20%"><img src="{{asset('assets/image/consultor.png')}}" height="60px"></th>
                                 <th width="33%"><b> Consultores </b></th>
                                 <th width="33%"><b> Status </b></th>
                                 <th>
@@ -76,7 +76,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="20%"><img src="{{asset('image/pdv.png')}}" height="60px"></th>
+                                <th width="20%"><img src="{{asset('assets/image/pdv.png')}}" height="60px"></th>
                                 <th width="33%"><b> PDV/s </b></th>
                                 <th width="33%"><b> Status </b></th>
                                 <th>
@@ -93,7 +93,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="20%"><img src="{{asset('image/painel_senha.png')}}" height="60px"></th>
+                                <th width="20%"><img src="{{asset('assets/image/painel_senha.png')}}" height="60px"></th>
                                 <th width="33%"><b> Paineis Senhas </b></th>
                                 <th width="33%"><b> Status </b></th>
                                 <th>
@@ -146,31 +146,32 @@
             if( text == 'Abertura de Loja' ){
                 $('.Titulo').html('<h5 class="Titulo mt-3"> <i class="fa-solid fa-door-open"></i> <em> Abertura de Loja </em></h5>');
                 $('.Abertura_Fechamento').show();
-                $('.check-out-balanca').hide();
-                $('.Log-mfe').hide();
-                $('.limpeza-consultor').hide();
-                $('.limpeza-balanca').hide();
-                $('.limpeza-hack').hide();
-                $('.limpeza-desktop').hide();
+                $('.check-out-balanca').html('');
+                $('.Log-mfe').html('');
+                $('.limpeza-consultor').html('');
+                $('.limpeza-balanca').html('');
+                $('.limpeza-hack').html('');
+                $('.limpeza-desktop').html('');
 
             }else if( text == 'Fechamento de Loja' ){
                 $('.Titulo').html('<h5 class="Titulo mt-3"> <i class="fa-solid fa-door-closed"></i> <em> Fechamento de Loja </em></h5>');
                 $('.Abertura_Fechamento').show();
-                $('.check-out-balanca').hide();
-                $('.Log-mfe').hide();
-                $('.limpeza-consultor').hide();
-                $('.limpeza-balanca').hide();
-                $('.limpeza-hack').hide();
-                $('.limpeza-desktop').hide();
+                $('.check-out-balanca').html('');
+                $('.Log-mfe').html('');
+                $('.limpeza-consultor').html('');
+                $('.limpeza-balanca').html('');
+                $('.limpeza-hack').html('');
+                $('.limpeza-desktop').html('');
 
             }else if( text == 'Status Quinzenal de Balanças' ){
-                $('.Abertura_Fechamento').hide();
+                $('.Abertura_Fechamento').html('');
                 $('.check-out-balanca').show();
-                $('.Log-mfe').hide();
-                $('.limpeza-consultor').hide();
-                $('.limpeza-balanca').hide();
-                $('.limpeza-hack').hide();
-                $('.limpeza-desktop').hide();
+                $('.Log-mfe').html('');
+                $('.limpeza-consultor').html('');
+                $('.limpeza-balanca').html('');
+                $('.limpeza-hack').html('');
+                $('.limpeza-desktop').html('');
+                
                 $('#balanca_floja').attr('required', 'true');
                 $('#balanca_acougue').attr('required', 'true');
                 $('#balanca_frios').attr('required', 'true');
@@ -182,52 +183,52 @@
                 $('#balanca_aerea').attr('required', 'true');
 
             }else if( text == 'Log MFE' ){
-                $('.Abertura_Fechamento').hide();
-                $('.check-out-balanca').hide();
+                $('.Abertura_Fechamento').html('');
+                $('.check-out-balanca').html('');
                 $('.Log-mfe').show();
-                $('.limpeza-consultor').hide();
-                $('.limpeza-balanca').hide();
-                $('.limpeza-hack').hide();
-                $('.limpeza-desktop').hide();
+                $('.limpeza-consultor').html('');
+                $('.limpeza-balanca').html('');
+                $('.limpeza-hack').html('');
+                $('.limpeza-desktop').html('');
 
             }else if( text == 'Limpeza Consultor' ){
-                $('.Abertura_Fechamento').hide();
-                $('.check-out-balanca').hide();
-                $('.Log-mfe').hide();
+                $('.Abertura_Fechamento').html('');
+                $('.check-out-balanca').html('');
+                $('.Log-mfe').html('');
                 $('.limpeza-consultor').show();
-                $('.limpeza-balanca').hide();
-                $('.limpeza-hack').hide();
-                $('.limpeza-desktop').hide();
+                $('.limpeza-balanca').html('');
+                $('.limpeza-hack').html('');
+                $('.limpeza-desktop').html('');
                 $('#consultores').attr('required', 'true');
 
             }else if( text == 'Limpeza Balança Pdv' ){
-                $('.Abertura_Fechamento').hide();
-                $('.check-out-balanca').hide();
-                $('.Log-mfe').hide();
-                $('.limpeza-consultor').hide();
+                $('.Abertura_Fechamento').html('');
+                $('.check-out-balanca').html('');
+                $('.Log-mfe').html('');
+                $('.limpeza-consultor').html('');
                 $('.limpeza-balanca').show();
                 $('#balanca_pdv_floja').attr('required', 'true');
-                $('.limpeza-hack').hide();
-                $('.limpeza-desktop').hide();
+                $('.limpeza-hack').html('');
+                $('.limpeza-desktop').html('');
                 $('#balanca_floja').attr('required', 'true');
 
             }else if( text == 'Limpeza dos Racks' ){
-                $('.Abertura_Fechamento').hide();
-                $('.check-out-balanca').hide();
-                $('.Log-mfe').hide();
-                $('.limpeza-consultor').hide();
-                $('.limpeza-balanca').hide();
+                $('.Abertura_Fechamento').html('');
+                $('.check-out-balanca').html('');
+                $('.Log-mfe').html('');
+                $('.limpeza-consultor').html('');
+                $('.limpeza-balanca').html('');
                 $('.limpeza-hack').show();
-                $('.limpeza-desktop').hide();
+                $('.limpeza-desktop').html('');
                 $('#rack').attr('required', 'true');
 
             }else if( text == 'Limpeza Desktop' ){
-                $('.Abertura_Fechamento').hide();
-                $('.check-out-balanca').hide();
-                $('.Log-mfe').hide();
-                $('.limpeza-consultor').hide();
-                $('.limpeza-balanca').hide();
-                $('.limpeza-hack').hide();
+                $('.Abertura_Fechamento').html('');
+                $('.check-out-balanca').html('');
+                $('.Log-mfe').html('');
+                $('.limpeza-consultor').html('');
+                $('.limpeza-balanca').html('');
+                $('.limpeza-hack').html('');
                 $('.limpeza-desktop').show();
                 $('#desktop').attr('required', 'true');
             }

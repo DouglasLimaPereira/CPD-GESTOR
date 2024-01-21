@@ -41,7 +41,7 @@
                             <table class="table">
                                 <thead>
                                     <tr> 
-                                        <th><img src="{{asset('image/consultor.png')}}" height="60px"></th>
+                                        <th><img src="{{asset('assets/image/consultor.png')}}" height="60px"></th>
                                         <th width="25%"><b> Rua: <input class="form-control" min="1" type="number" name="consultor[]" id=""> </b></th>
                                         <th>
                                             <input class="form-control" type="file" name="foto[]">

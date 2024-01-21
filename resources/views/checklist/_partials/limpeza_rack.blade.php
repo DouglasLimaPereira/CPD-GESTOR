@@ -41,7 +41,7 @@
                     <table class="table">
                         <thead>
                             <tr> 
-                                <th width="30%"><img src="{{asset('image/hack.png')}}" height="60px"></th>
+                                <th width="30%"><img src="{{asset('assets/image/hack.png')}}" height="60px"></th>
                                 <th width="43%"><b> Rack `+qconsultor+` </b></th>
                                 <th width="43%">
                                     <input class="status form-control" type="checkbox" name="status[]" style="height: 30px; width: 30px;">
