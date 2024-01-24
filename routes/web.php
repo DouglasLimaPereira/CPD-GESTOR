@@ -103,6 +103,7 @@ Route::group(['prefix'=>'escala', 'as'=>'escala.', 'middleware'=>['auth']], func
 Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], function(){
     Route::get('/index', [FilialController::class, 'index'])->name('index');
     Route::get('{filial}/edit', [FilialController::class, 'edit'])->name('edit');
+    Route::get('/create', [FilialController::class, 'create'])->name('create');
     Route::post('/store', [FilialController::class, 'store'])->name('store');
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
 });
@@ -134,7 +135,7 @@ Route::group(['prefix'=>'check-list', 'as'=>'check-list.', 'middleware'=>['auth'
     Route::get('/{check-list}/destroy', [CheckListController::class, 'destroy'])->name('destroy');
 });
 
-//ACESSO MAXIPOS
+    //ACESSO MAXIPOS
 Route::group(['prefix'=>'acesso_maxipos', 'as' =>'acesso_maxipos.', 'middleware'=>['auth']], function(){
     Route::get('/', [AcessoMaxiposController::class, 'index'])->name('index');
     Route::get('/create', [AcessoMaxiposController::class, 'create'])->name('create');

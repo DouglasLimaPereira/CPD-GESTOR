@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Filial - Edição')
+@section('title', 'Filial - Cadastro')
 
-@section('page-title', 'Filial - Edição')
+@section('page-title', 'Filial - Cadastro')
 
 @section('content')
     
@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-pencil-alt"></i> Edição</h3>
+                    <h3 class="card-title"><i class="fas fa-pencil-alt"></i> Cadastro</h3>
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             {{-- <li class="nav-item">

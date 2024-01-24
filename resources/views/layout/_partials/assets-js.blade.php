@@ -6,6 +6,8 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+{{-- Data-Table --}}
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -37,21 +39,19 @@
 {{-- Toastr --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+ 
+<script src="/DataTables/datatables.js"></script>
 
 <script>
       // Utilização em formulários
       $(function(){
           $('#cnpj').mask('00.000.000/0000-00', {reverse: true})
           $('#cep').mask('00.000-000', {reverse: true})
-          $('#total_unidades').mask('000', {reverse: true})
-          $('#total_funcionarios').mask('000', {reverse: true})
-          $('#limite_armazenamento').mask('00000,00', {reverse: true})
-          $('#limite_anexo').mask('#.00', {reverse: true})
           $('#telefone').mask('(00) 00000-0000')
           $('#whatsapp').mask('(00) 000000000')
           $('#salario').mask('#.##0,00', {reverse: true})
-
       });
+
       //Recebendo os dados do serviço "VIA CEP"
       $(document).ready(function(){
         $("#cep").blur(function(){
@@ -110,6 +110,8 @@
   })
 
 </script>
+
+
 
 {{-- <script>
   // UTILIZADO NOS DATATABLE

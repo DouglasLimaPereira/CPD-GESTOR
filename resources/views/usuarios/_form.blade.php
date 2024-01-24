@@ -99,8 +99,8 @@
                 @endif --}}
             </div>
         </div>
-
     </div>
+
     <h5 class="mt-3"><em>DADOS DE ACESSO</em></h5>
     <hr>
 
@@ -123,9 +123,12 @@
                 </div>
                 <div id="butao-senha">
                     @if (!isset($usuario))
-                        <a href="javascript:void(0)" id="gerar-senha" class="text-info">Gerar senha</a>
-                        <a href="javascript:void(0)" id="limpa-senha" class="text-danger">Limpar senha</a>
-                        <a href="javascript:void(0)" id="preencher-senha" class="text-secondary">Preencher Manualmente</a>
+                        <a href="javascript:void(0)" id="preencher-senha" class="text-primary"> 
+                            <span class="btn btn-sm btn-outline-success"> Alterar senha </span>
+                        </a>
+                        <a href="javascript:void(0)" id="cancelar-senha" class="text-danger" style="display: none;">
+                            <span class="btn btn-sm btn-outline-danger"> Cancelar alteração de senha </span>
+                        </a>
                     @else
                         <a href="javascript:void(0)" id="preencher-senha" class="text-primary"> 
                             <span class="btn btn-sm btn-outline-success"> Alterar senha </span>
@@ -137,7 +140,12 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <h5 class="mt-3"><em>CONFIGURAÇÕES DE ACESSO</em></h5>
+    <hr>
+
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="filial">Filial <span class="text-danger">*</span></label>

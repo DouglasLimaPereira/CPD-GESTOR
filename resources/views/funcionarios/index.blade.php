@@ -87,5 +87,10 @@
             window.location.href = "{{url('/')}}/construtoras/"+company+"/funcionarios/"+funcionario+"/destroy"
         }
     }
+    
+    $(document).ready( function () {
+        $('#table-datatable').DataTable();
+    } );
+
 </script>
 @endsection

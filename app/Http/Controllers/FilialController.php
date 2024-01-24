@@ -38,7 +38,9 @@ class FilialController extends Controller
      */
     public function create()
     {
-        //
+        $estados = Estado::all();
+
+        return view('filial.create', compact('estados'));
     }
 
     /**
@@ -49,7 +51,24 @@ class FilialController extends Controller
      */
     public function store(StoreFilialRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            
+            $filial = Filial::create($request->all());
+            
+            if(isset($request->logo) && $request->logo->isValid()){
+                $logo = $this->anexo->filial_store($filial->id, $request->logo, $filial->logo);
+                $filial->update([
+                    'logo' => $logo,
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('filial.index', session()->get('filial')->id)->with('success', 'Filial cadastrada com sucesso!');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->withInput()->with('info', 'Erro ao cadastrar Filial', $th->getMessage());
+        }
     }
 
     /**

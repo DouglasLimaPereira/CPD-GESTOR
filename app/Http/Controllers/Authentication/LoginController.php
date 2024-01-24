@@ -31,7 +31,7 @@ class LoginController extends Controller
                 return back()->withErrors('Acesso indisponível.');
             }
 
-            if(!Auth::user()->funcionario->superadmin) {
+            if((!Auth::user()->funcionario->situacao_admissional) && (!Auth::user()->funcionario->superadmin)) {
                 Auth::logout();
                 return back()->withErrors('Você não tem acesso a essa área.');
             }

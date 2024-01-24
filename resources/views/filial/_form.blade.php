@@ -15,17 +15,48 @@
     <form action="{{route('filial.store')}}" method="POST" enctype="multipart/form-data">    
 @endif
     @csrf
+    @if (isset($filial))    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="callout callout-info">
+                    <b>Código: </b> SM{{$filial->codigo}}<br>
+                    <b>Nome Fantasia:</b> {{$filial->nome_fantasia}}<br>
+                    <b>Razão Social: </b> {{$filial->razao_social}}<br>
+                    <b>CNPJ: </b> <span class="cnpj-view" id="cnpj-view">{{$filial->cnpj}}</span><br>
+                    {{-- <b>Estado: </b> {!!($filial->estado) ? '<span class="badge badge-pill badge-primary">Ativo</span>' : '<span class="badge badge-pill badge-secondary">Inativo</span>'!!} --}}
+                </div>
+            </div>
+        </div>
+    @else
+    <h5 class="mt-3"><em><i class="nav-icon fas fa-store fa-lg"></i> INFORMAÇÕES FILIAL</em></h5>
+    <hr>
     <div class="row">
-        <div class="col-md-12">
-            <div class="callout callout-info">
-                <b>Código: </b> SM{{$filial->codigo}}<br>
-                <b>Nome Fantasia:</b> {{$filial->nome_fantasia}}<br>
-                <b>Razão Social: </b> {{$filial->razao_social}}<br>
-                <b>CNPJ: </b> <span class="cnpj-view" id="cnpj-view">{{$filial->cnpj}}</span><br>
-                {{-- <b>Estado: </b> {!!($filial->estado) ? '<span class="badge badge-pill badge-primary">Ativo</span>' : '<span class="badge badge-pill badge-secondary">Inativo</span>'!!} --}}
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="codigo">Código <span class="text-danger">*</span></label>
+                <input type="text" name="codigo" class="form-control" id="codigo" value="{{(isset($filial)) ? $filial->codigo : old('codigo')}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="nome_fantasia">Nome Fantasia <span class="text-danger">*</span></label>
+                <input type="text" name="nome_fantasia" class="form-control" id="nome_fantasia" value="{{(isset($filial)) ? $filial->nome_fantasia : old('nome_fantasia')}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="razao_social">Razão social <span class="text-danger">*</span></label>
+                <input type="text" name="razao_social" class="form-control" id="razao_social" value="{{(isset($filial)) ? $filial->razao_social : old('razao_social')}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="cnpj">Cnpj <span class="text-danger">*</span></label>
+                <input type="text" name="cnpj" class="form-control" id="cnpj" value="{{(isset($filial)) ? $filial->cnpj : old('cnpj')}}" required>
             </div>
         </div>
     </div>
+    @endif
     
     <div class="row">
         <div class="col-md-6">
@@ -47,21 +78,21 @@
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
-                <label for="cep">CEP *</label>
+                <label for="cep">CEP <span class="text-danger">*</span></label>
                 <input type="text" name="cep" class="form-control" id="cep" value="{{(isset($filial)) ? $filial->cep : old('cep')}}" required>
             </div>
         </div>
 
         <div class="col-md-5">
             <div class="form-group">
-                <label for="logradouro">Logradouro *</label>
+                <label for="logradouro">Logradouro <span class="text-danger">*</span></label>
                 <input type="text" name="logradouro" class="form-control" id="logradouro" value="{{(isset($filial)) ? $filial->logradouro : old('logradouro')}}" required>
             </div>
         </div>
 
         <div class="col-md-2">
             <div class="form-group">
-                <label for="numero">Número *</label>
+                <label for="numero">Número <span class="text-danger">*</span></label>
                 <input type="text" name="numero" class="form-control" id="numero" value="{{(isset($filial)) ? $filial->numero : old('numero')}}" required>
             </div>
         </div>
@@ -77,21 +108,21 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label for="bairro">Bairro *</label>
+                <label for="bairro">Bairro <span class="text-danger">*</span></label>
                 <input type="text" name="bairro" class="form-control" id="bairro" value="{{(isset($filial)) ? $filial->bairro : old('bairro')}}" required>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="cidade">Cidade *</label>
+                <label for="cidade">Cidade <span class="text-danger">*</span></label>
                 <input type="text" name="cidade" class="form-control" id="cidade" value="{{(isset($filial)) ? $filial->cidade : old('cidade')}}" required>
             </div>
         </div>
 
         <div class="col-md-2">
             <div class="form-group">
-                <label for="uf">UF *</label>
+                <label for="uf">UF <span class="text-danger">*</span></label>
                 <select name="uf" id="uf" class="form-control" value="{{old('uf')}}" required>
                     <option value="">Selecione...</option>
                     @foreach ($estados as $item)
@@ -108,13 +139,13 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="telefone">Telefone *</label>
+                <label for="telefone">Telefone <span class="text-danger">*</span></label>
                 <input type="text" name="telefone" class="form-control" id="telefone" value="{{(isset($filial)) ? $filial->telefone : old('telefone')}}" required>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="website">Website *</label>
+                <label for="website">Website <span class="text-danger">*</span></label>
                 <input type="text" name="site" class="form-control" id="site" value="{{(isset($filial)) ? $filial->site : old('site')}}" required>
             </div>
         </div>
@@ -123,7 +154,7 @@
     {{-- <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="whatsapp">Whatsapp *</label>
+                <label for="whatsapp">Whatsapp <span class="text-danger">*</span></label>
                 <input type="text" name="whatsapp" class="form-control" id="whatsapp" value="{{(isset($filial)) ? $filial->whatsapp : old('whatsapp')}}" required>
             </div>
         </div>
@@ -132,7 +163,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="email">E-mail SAC *</label>
+                <label for="email">E-mail SAC <span class="text-danger">*</span></label>
                 <input type="email" name="email" class="form-control" id="email" value="{{(isset($filial)) ? $filial->email : old('email')}}" required>
             </div>
         </div>
@@ -147,7 +178,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="email_comercial">E-mail comercial *</label>
+                <label for="email_comercial">E-mail comercial <span class="text-danger">*</span></label>
                 <input type="email" name="email_comercial" class="form-control" id="email_comercial" value="{{(isset($filial)) ? $filial->email_comercial : old('email_comercial')}}" required>
             </div>
         </div>
@@ -155,7 +186,7 @@
 
     <hr>
     <div class="text-right">
-        <a href="{{route('filial.index', $filial->id)}}" class="btn btn-outline-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>    
+        <a href="{{route('filial.index', session()->get('filial')->id)}}" class="btn btn-outline-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>    
         
         <button type="submit" class="btn btn-outline-success">{!!(isset($filial)) ? '<i class="fas fa-sync"></i> ATUALIZAR' : '<i class="fas fa-save"></i> SALVAR'!!}</button>
     </div>

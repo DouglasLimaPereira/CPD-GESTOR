@@ -12,13 +12,15 @@
             <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-eye"></i> Visualização</h3>
-                    <div class="card-tools">
-                        {{-- <ul class="nav nav-pills ml-auto">
-                            <li class="nav-item">
-                                <a href="{{route('spa.companys.create')}}" class="nav-link active">NOVO FUNCIONÁRIO</a>
-                            </li>
-                        </ul> --}}
-                    </div>
+                    @if (auth()->user()->funcionario->superadmin)    
+                        <div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a href="{{route('filial.create')}}" class="btn btn-md btn-info">NOVO FILIAL</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -43,22 +45,6 @@
                                 <b>Site: </b> <a href="{{($filial->site) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{($filial->site) ?? '-'}}</a> <br>
                                 <b>Instagram: </b> <a href="{{($filial->instagram) ?? '-'}}" target="_blank" style="text-decoration:none; color:blue;"> {{$instagram}} </a>  <br>
                             </div>
-                            {{-- <div class="callout callout-info">
-                                <b>Estado: </b> 
-                                @switch($filial->estado)
-                                    @case(0)
-                                        <span class="badge badge-pill badge-secondary">Inativo</span>
-                                        @break
-                                    @case(1)
-                                        <span class="badge badge-pill badge-primary">Ativo</span>
-                                        @break
-                                    @default
-                                @endswitch
-                                <br>
-                                <b>Obras cadastradas: </b> {{$filial->canteiros->count()}}<br>
-                                <b>Usuários cadastrados: </b> {{$filial->usuarios->count()}}<br>
-                                <b>Tamanho do anexo: </b> {{$filial->limite_anexo}} mb
-                            </div> --}}
                         </div>
                         <div class="col-md-6 p-2 text-center">
                             @if($filial->logo)
