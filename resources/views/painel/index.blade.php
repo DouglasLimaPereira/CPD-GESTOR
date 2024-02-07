@@ -71,11 +71,45 @@
         </div>
     </div>
 </div>
-<hr>        
-@include('erro-sitef._partials.modal-consulta-erros-sitef')
+{{-- <hr>        
+@include('erro-sitef._partials.modal-consulta-erros-sitef') --}}
+<br>
+<h4 class="mt-3 MB-3"><em>GRÁFICO DE HORAS</em></h4>
+<hr>
+<div id="curve_chart" style="width: 900px; height: 600px"></div>
+
 @endsection
 
-@section('scripts')
+{{-- @section('scripts') --}}
+
+      {{-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['day', 'Horas extras', 'Horas negativas'],
+            @php
+                foreach ($registro_horas as $i => $registro){
+                    [$registro[$i], $registro[$i], $registro[$i]] . ',';
+                }
+            @endphp
+          ]);
+  
+          var options = {
+            title: 'Horas Extras e Negativas',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+          };
+  
+          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  
+          chart.draw(data, options);
+        }
+    </script> --}}
+    
+  
     {{--  <script>
         function consultarerro()
         {
@@ -106,4 +140,4 @@
             }
         }
     </script>  --}}
-@endsection
+{{-- @endsection --}}

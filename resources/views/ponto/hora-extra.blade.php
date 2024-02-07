@@ -7,29 +7,30 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-info">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="info-box bg-success">
-                                <span class="info-box-icon"><i class="far fa-clock fa-lg"></i></span>
-                                <div class="info-box-content">
-                                  <span class="info-box-text">Horas Extras</span>
-                                  <span class="info-box-number">{{ $hora_extra }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="info-box bg-danger">
-                                <span class="info-box-icon"><i class="fas fa-history fa-lg"></i></span>
-                                <div class="info-box-content">
-                                  <span class="info-box-text">Horas Negativas</span>
-                                  <span class="info-box-number">{{ $hora_negativas }}</span>
-                                </div>
-                            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="info-box bg-success">
+                        <span class="info-box-icon"><i class="far fa-clock fa-lg"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Horas Extras</span>
+                          <span class="info-box-number">{{ $hora_extra }}</span>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-box bg-danger">
+                        <span class="info-box-icon"><i class="fas fa-history fa-lg"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Horas Negativas</span>
+                          <span class="info-box-number">{{ $hora_negativas }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-info">
+                <div class="card-header">
+                    Horas Extras / Negativas
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

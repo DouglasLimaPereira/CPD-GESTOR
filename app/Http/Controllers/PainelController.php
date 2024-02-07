@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Ponto;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
+use function PHPSTORM_META\map;
 
 class PainelController extends Controller
 {
@@ -109,6 +112,20 @@ class PainelController extends Controller
         $hora_extra = $hora_extra->toTimeString();
         $hora_negativas = $hora_negativas->toTimeString();
 
-        return view('painel.index', compact('hora_extra'));
+        // foreach ($pontos as $key => $ponto) {
+        //     dd($ponto);
+        // }
+        
+        $registro_horas = array();
+        foreach ($pontos as $ponto){
+            $registro_horas = [
+                'dia' => date('d', strtotime($ponto->data)),
+                'horas_extras' => $ponto->horas_extras,
+                'horas_negativas' => $ponto->horas_negativas,
+            ];
+        };
+
+        // dd($registro_horas);
+        return view('painel.index', compact('hora_extra','registro_horas'));
     }
 }

@@ -34,81 +34,11 @@
     </div>
 
     <div class="Abertura_Fechamento" style="display: none">
-        <div class="callout callout-info">
-            <div id="checklist" class="abertura col-md-4">
-                <h5 class="Titulo mt-3"></h5>
-                <hr>
-                <div class="callout callout-info" style=" padding: 0; margin-top: 15px;">
-                    <table class="table">
-                        <thead>
-                            <tr> 
-                                <th width="20%"><img src="{{asset('assets/image/caixa_som.png')}}" height="60px"></th>
-                                <th width="31%"><b> Rádio </b></th>
-                                <th width="33%"><b> Status </b></th>
-                                <th>
-                                    <input class="status" type="checkbox" name="status" id="">
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            
-            <div id="checklist" class="abertura col-md-4">
-                <div class="callout callout-info" style=" padding: 0; margin-top: 15px;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="20%"><img src="{{asset('assets/image/consultor.png')}}" height="60px"></th>
-                                <th width="33%"><b> Consultores </b></th>
-                                <th width="33%"><b> Status </b></th>
-                                <th>
-                                    <input class="status" type="checkbox" name="status" id="">
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            
-            <div id="checklist" class="abertura col-md-4">
-                <div class="callout callout-info" style=" padding: 0; margin-top: 15px;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="20%"><img src="{{asset('assets/image/pdv.png')}}" height="60px"></th>
-                                <th width="33%"><b> PDV/s </b></th>
-                                <th width="33%"><b> Status </b></th>
-                                <th>
-                                    <input class="status" type="checkbox" name="status" id="">
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            
-            <div id="checklist" class="abertura col-md-4">
-                <div class="callout callout-info" style=" padding: 0; margin-top: 15px;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="20%"><img src="{{asset('assets/image/painel_senha.png')}}" height="60px"></th>
-                                <th width="33%"><b> Paineis Senhas </b></th>
-                                <th width="33%"><b> Status </b></th>
-                                <th>
-                                    <input class="status" type="checkbox" name="status" id="">
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
+        @include('checklist._partials.abertura_fechamento')
     </div>
 
     <div class="check-out-balanca" style="display: none">
-        @include('checklist._partials.status_quinzenal_balanca')            
+        @include('checklist._partials.status_quinzenal_balanca'); 
     </div>
 
     <div class="Log-mfe" style="display: none">
@@ -146,91 +76,188 @@
             if( text == 'Abertura de Loja' ){
                 $('.Titulo').html('<h5 class="Titulo mt-3"> <i class="fa-solid fa-door-open"></i> <em> Abertura de Loja </em></h5>');
                 $('.Abertura_Fechamento').show();
-                $('.check-out-balanca').html('');
-                $('.Log-mfe').html('');
-                $('.limpeza-consultor').html('');
-                $('.limpeza-balanca').html('');
-                $('.limpeza-hack').html('');
-                $('.limpeza-desktop').html('');
+                $('.check-out-balanca').hide('');
+                $('.Log-mfe').hide('');
+                $('.limpeza-consultor').hide('');
+                $('.limpeza-balanca').hide('');
+                $('.limpeza-hack').hide('');
+                $('.limpeza-desktop').hide('');
+
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#desktop').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#consultor').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
 
             }else if( text == 'Fechamento de Loja' ){
                 $('.Titulo').html('<h5 class="Titulo mt-3"> <i class="fa-solid fa-door-closed"></i> <em> Fechamento de Loja </em></h5>');
                 $('.Abertura_Fechamento').show();
-                $('.check-out-balanca').html('');
-                $('.Log-mfe').html('');
-                $('.limpeza-consultor').html('');
-                $('.limpeza-balanca').html('');
-                $('.limpeza-hack').html('');
-                $('.limpeza-desktop').html('');
+                $('.check-out-balanca').hide('');
+                $('.Log-mfe').hide('');
+                $('.limpeza-consultor').hide('');
+                $('.limpeza-balanca').hide('');
+                $('.limpeza-hack').hide('');
+                $('.limpeza-desktop').hide('');
+
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#desktop').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#consultor').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
 
             }else if( text == 'Status Quinzenal de Balanças' ){
-                $('.Abertura_Fechamento').html('');
-                $('.check-out-balanca').show();
-                $('.Log-mfe').html('');
-                $('.limpeza-consultor').html('');
-                $('.limpeza-balanca').html('');
-                $('.limpeza-hack').html('');
-                $('.limpeza-desktop').html('');
-                
-                $('#balanca_floja').attr('required', 'true');
-                $('#balanca_acougue').attr('required', 'true');
-                $('#balanca_frios').attr('required', 'true');
-                $('#balanca_peixaria').attr('required', 'true');
-                $('#balanca_padaria').attr('required', 'true');
-                $('#balanca_hortifrute').attr('required', 'true');
-                $('#balanca_doca').attr('required', 'true');
-                $('#balanca_pescoco').attr('required', 'true');
-                $('#balanca_aerea').attr('required', 'true');
+                $('.Abertura_Fechamento').hide('');            
+                $('.check-out-balanca').show(); 
+                $('.Log-mfe').hide('');
+                $('.limpeza-consultor').hide('');
+                $('.limpeza-balanca').hide('');
+                $('.limpeza-hack').hide('');
+                $('.limpeza-desktop').hide('');
+
+                $('#balanca_floja').attr('required', true);
+                $('#balanca_acougue').attr('required', true);
+                $('#balanca_frios').attr('required', true);
+                $('#balanca_peixaria').attr('required', true);
+                $('#balanca_padaria').attr('required', true);
+                $('#balanca_hortifrute').attr('required', true);
+                $('#balanca_doca').attr('required', true);
+                $('#balanca_pescoco').attr('required', true);
+                $('#balanca_aerea').attr('required', true);
+                $('#desktop').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#consultor').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
 
             }else if( text == 'Log MFE' ){
-                $('.Abertura_Fechamento').html('');
-                $('.check-out-balanca').html('');
+                $('.Abertura_Fechamento').hide('');
+                $('.check-out-balanca').hide('');
                 $('.Log-mfe').show();
-                $('.limpeza-consultor').html('');
-                $('.limpeza-balanca').html('');
-                $('.limpeza-hack').html('');
-                $('.limpeza-desktop').html('');
+                $('.limpeza-consultor').hide('');
+                $('.limpeza-balanca').hide('');
+                $('.limpeza-hack').hide('');
+                $('.limpeza-desktop').hide('');
+
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#desktop').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#consultor').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
 
             }else if( text == 'Limpeza Consultor' ){
-                $('.Abertura_Fechamento').html('');
-                $('.check-out-balanca').html('');
-                $('.Log-mfe').html('');
+                $('.Abertura_Fechamento').hide('');
+                $('.check-out-balanca').hide('');
+                $('.Log-mfe').hide('');
                 $('.limpeza-consultor').show();
-                $('.limpeza-balanca').html('');
-                $('.limpeza-hack').html('');
-                $('.limpeza-desktop').html('');
-                $('#consultores').attr('required', 'true');
+                $('.limpeza-balanca').hide('');
+                $('.limpeza-hack').hide('');
+                $('.limpeza-desktop').hide('');
+
+                $('#consultor').attr('required', true);
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#desktop').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
 
             }else if( text == 'Limpeza Balança Pdv' ){
-                $('.Abertura_Fechamento').html('');
-                $('.check-out-balanca').html('');
-                $('.Log-mfe').html('');
-                $('.limpeza-consultor').html('');
+                $('.Abertura_Fechamento').hide('');
+                $('.check-out-balanca').hide('');
+                $('.Log-mfe').hide('');
+                $('.limpeza-consultor').hide('');
                 $('.limpeza-balanca').show();
-                $('#balanca_pdv_floja').attr('required', 'true');
-                $('.limpeza-hack').html('');
-                $('.limpeza-desktop').html('');
-                $('#balanca_floja').attr('required', 'true');
+                $('.limpeza-hack').hide('');
+                $('.limpeza-desktop').hide('');
+
+                $('#balanca_pdv_floja').attr('required', true);
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#desktop').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#consultor').removeAttr('required');
 
             }else if( text == 'Limpeza dos Racks' ){
-                $('.Abertura_Fechamento').html('');
-                $('.check-out-balanca').html('');
-                $('.Log-mfe').html('');
-                $('.limpeza-consultor').html('');
-                $('.limpeza-balanca').html('');
+                $('.Abertura_Fechamento').hide('');
+                $('.check-out-balanca').hide('');
+                $('.Log-mfe').hide('');
+                $('.limpeza-consultor').hide('');
+                $('.limpeza-balanca').hide('');
                 $('.limpeza-hack').show();
-                $('.limpeza-desktop').html('');
-                $('#rack').attr('required', 'true');
+                $('.limpeza-desktop').hide('');
+                $('#rack').attr('required', true);
+
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#desktop').removeAttr('required');
+                $('#consultor').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
 
             }else if( text == 'Limpeza Desktop' ){
-                $('.Abertura_Fechamento').html('');
-                $('.check-out-balanca').html('');
-                $('.Log-mfe').html('');
-                $('.limpeza-consultor').html('');
-                $('.limpeza-balanca').html('');
-                $('.limpeza-hack').html('');
+                $('.Abertura_Fechamento').hide('');
+                $('.check-out-balanca').hide('');
+                $('.Log-mfe').hide('');
+                $('.limpeza-consultor').hide('');
+                $('.limpeza-balanca').hide('');
+                $('.limpeza-hack').hide('');
                 $('.limpeza-desktop').show();
-                $('#desktop').attr('required', 'true');
+                $('#desktop').attr('required', true);
+
+                $('#balanca_floja').removeAttr('required');
+                $('#balanca_acougue').removeAttr('required');
+                $('#balanca_frios').removeAttr('required');
+                $('#balanca_peixaria').removeAttr('required');
+                $('#balanca_padaria').removeAttr('required');
+                $('#balanca_hortifrute').removeAttr('required');
+                $('#balanca_doca').removeAttr('required');
+                $('#balanca_pescoco').removeAttr('required');
+                $('#balanca_aerea').removeAttr('required');
+                $('#rack').removeAttr('required');
+                $('#consultor').removeAttr('required');
+                $('#balanca_pdv_floja').removeAttr('required');
             }
         });
     </script>

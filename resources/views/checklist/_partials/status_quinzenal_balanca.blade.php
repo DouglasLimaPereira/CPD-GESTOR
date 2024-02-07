@@ -131,7 +131,7 @@
             for (let bfl = 1; bfl <= frente_loja; bfl++) {
                 $('.display_floja').show();
                 $('#b_floja').append(`
-                    <div class="col-md-4">
+                    <div class="col-md-4" >
                         <div class="callout callout-info" style=" padding: 0;">
                             <table class="table">
                                 <thead>
