@@ -24,8 +24,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('ponto.hora-extra') }}" class="nav-link">
+            <i class="nav-icon fa-solid fa-user-clock"></i>
+            <p>Consultar horas</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('ponto.relatorio') }}" class="nav-link">
-            <i class="nav-icon fa-regular fa-file-pdf fa-lg"></i>
+            <i class="nav-icon fa-solid fa-file-pdf"></i>
              <p>Relatório de Pontos</p>
           </a>
         </li>
@@ -47,15 +53,6 @@
         <i class="nav-icon fa-solid fa-globe"></i>
         <p>
           Acessos Maxipos
-        </p>
-      </a>
-    </li>
-    
-    <li class="nav-item">
-      <a href="{{ route('ponto.hora-extra') }}" class="nav-link">
-        <i class="nav-icon fa-solid fa-user-clock"></i>
-        <p>
-          Consultar horas
         </p>
       </a>
     </li>

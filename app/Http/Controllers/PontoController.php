@@ -58,7 +58,7 @@ class PontoController extends Controller
             
             $dados['user_id'] = auth()->user()->id;
             
-            if (Ponto::firstWhere('data', $request['data'])) {
+            if (Ponto::where('data', $request['data'])->where('user_id', $dados['user_id'])->first()) {
                 return redirect()->back()->withInput()->with('info', 'Já existe Ponto cadastrado para este dia');
             }
 

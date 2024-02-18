@@ -33,27 +33,71 @@
                         </thead>
                         <tbody>
                             @forelse($pontos as $row)
-                                <tr>
-                                    <td>{{date('d/m/Y', strtotime($row->data))}}</td>
-                                    <td>{{$row->entrada}}</td>
-                                    <td>{{$row->entrada_almoco}}</td>
-                                    <td>{{$row->saida_almoco}}</td>
-                                    <td>{{$row->saida}}</td>
-                                    <td class="text-center">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
+                                @if ($row->tipo === 2)
+                                    <tr>
+                                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                        <td colspan="4" class="text-center">
+                                            {!!'<span class="badge badge-warning" style="font-size: 15px;">DSR</span>'!!}
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                                    <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @elseif ($row->tipo === 3)       
+                                    <tr>
+                                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                        <td colspan="4" class="text-center">
+                                            {!!'<span class="badge badge-success" style="font-size: 15px;">FOLGA</span>'!!}
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                                    <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                        <td>{{$row->entrada}}</td>
+                                        <td>{{$row->entrada_almoco}}</td>
+                                        <td>{{$row->saida_almoco}}</td>
+                                        <td>{{$row->saida}}</td>
+                                        <td class="text-center">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                                    <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
                             @empty
                             <tr>
                                 <td colspan="8"><span class="text-danger">Nenhum registro encontrado</span></td>

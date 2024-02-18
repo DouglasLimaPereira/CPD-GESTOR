@@ -100,7 +100,15 @@
                     <div class="col-md-12">
                         <div class="callout callout-info">
                             <b>Data: </b> {{ date('d / m / Y', strtotime($ponto->data)) }}<br>
-                            <b>DSR ?: </b> {!!($ponto->dsr) ? '<span class="badge badge-success" style="font-size: 15px;">SIM</span>' : '<span class="badge badge-danger" style="font-size: 15px;">NÃO</span>'!!} <br>
+                            <b>Tipo: </b>
+                            @if ($ponto->tipo === 1)
+                                {!!'<span class="badge badge-primary" style="font-size: 15px;">DIA TRABALHADO</span>'!!}
+                            @elseif ($ponto->tipo === 2)
+                                {!!'<span class="badge badge-warning" style="font-size: 15px;">DSR</span>'!!}
+                            @else
+                                {!!'<span class="badge badge-success" style="font-size: 15px;">FOLGA</span>'!!}
+                            @endif
+                            <br>
                             <b>Horario de Entrada: </b><br>
                             <i class="fas fa-stopwatch fa-lg" style="color: #005eff;"></i> <span class="badge badge-primary" style="font-size: 15px;">{{$ponto->entrada}}</span><br>
                             <b>Horario de Entrada K3: </b><br>
