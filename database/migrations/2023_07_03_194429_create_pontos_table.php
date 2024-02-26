@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('comprovante4')->nullable();
             $table->time('horas_extras')->nullable();
             $table->time('horas_negativas')->nullable();
-            $table->boolean('dsr');
+            $table->boolean('tipo');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -269,17 +269,17 @@ class PontoController extends Controller
         $user = auth()->user(); 
 
         #-----------------------------------------------------------------------------------
-        #| Recebendo os registros do ponto que se enquadra entre as datas de inicio e fim |
+        #| Recebendo os registros do ponto que se enquadra entre as datas de inicio e fim  |
         #-----------------------------------------------------------------------------------
-        // $pontos = $user->pontos()->whereBetween('data', [$data_inicio, $data_fim])->orderBy('data', 'asc')->where('dsr', 0)->get();
-        $pontos = $user->pontos()->get();
+        $pontos = $user->pontos()->whereBetween('data', [$data_inicio, $data_fim])->orderBy('data', 'asc')->where('tipo', 1)->get();
+        
         #---------------------------------
         #| Iniciando a hora extra zerada |
         #---------------------------------
         $hora_extra = carbon::create('00','00','00');
 
         #------------------------------------
-        #| Calculando a hora negativa |
+        #| Iniciando a hora negativa zerada |
         #------------------------------------
         $hora_negativas = carbon::create('00','00','00');
 
@@ -304,21 +304,21 @@ class PontoController extends Controller
         if ($hora_extra->toTimeString() != '00:00:00') {
             if ($hora_extra > $hora_negativas) {
                 $hora_n = explode(':', $hora_negativas->toTimeString());  
-                if ($hora_n[0] != '00')
+                // if ($hora_n[0] != '00')
                     $hora_extra->subHours($hora_n[0]);
-                if ($hora_n[1] != '00')
+                // if ($hora_n[1] != '00')
                     $hora_extra->subMinutes($hora_n[1]);
-                if ($hora_n[2] != '00')
+                // if ($hora_n[2] != '00')
                     $hora_extra->subSeconds($hora_n[2]);
             }else{
                 $hora_x = explode(':', $hora_extra->toTimeString());  
-                if ($hora_x[0] != '00')
+                // if ($hora_x[0] != '00')
                     $hora_negativas->subHours($hora_x[0]);
                     $hora_extra->subHours($hora_x[0]);
-                if ($hora_x[1] != '00')
+                // if ($hora_x[1] != '00')
                     $hora_negativas->subMinutes($hora_x[1]);
                     $hora_extra->subMinutes($hora_x[1]);
-                if ($hora_x[2] != '00')
+                // if ($hora_x[2] != '00')
                     $hora_negativas->subSeconds($hora_x[2]);
                     $hora_extra->subSeconds($hora_x[2]);
             }
@@ -329,8 +329,11 @@ class PontoController extends Controller
         #------------------------------------
         $hora_extra = $hora_extra->toTimeString();
         $hora_negativas = $hora_negativas->toTimeString();
-        
-        return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas'));
+        $result[] = ['Data', 'Extra', 'Negativa'];
+        foreach ($pontos as $key => $value) {
+            $result[++$key] = [$value->data, $value->horas_extras, $value->horas_negativas];
+        }
+        return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas', 'result'));
     }
 
     public function relatorio(Request $request) {

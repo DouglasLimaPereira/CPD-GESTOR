@@ -52,7 +52,7 @@ class PainelController extends Controller
         #-----------------------------------------------------------------------------------
         #| Recebendo os registros do ponto onde se enquadra entre as datas de inicio e fim |
         #-----------------------------------------------------------------------------------
-        $pontos = $user->pontos()->whereBetween('data', [$data_inicio, $data_fim])->orderBy('data', 'asc')->where('dsr', 0)->get();
+        $pontos = $user->pontos()->whereBetween('data', [$data_inicio, $data_fim])->orderBy('data', 'asc')->where('tipo', 1)->get();
         
         #---------------------------------
         #| Iniciando a hora extra zerada |
