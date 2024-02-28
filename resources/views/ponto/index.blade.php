@@ -121,7 +121,7 @@
 {{-- Removendo o registro --}}
 <script>
     function remover(ponto, funcionario){
-        $confirmacao = confirm('Tem certeza que deseja remover este Funcionário?');
+        $confirmacao = confirm('Tem certeza que deseja remover este Ponto?');
 
         if($confirmacao){
             window.location.href = "{{url('/')}}/ponto/"+ponto+"/destroy"

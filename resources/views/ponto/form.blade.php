@@ -44,7 +44,7 @@
                 @enderror
         </div>
     </div>
-    <div class="hora" {{(isset($ponto) && $ponto->tipo === 1) ? '': 'style="display: none"'}} >
+    <div class="hora" {!!(isset($ponto) && $ponto->tipo === 1) ? '': 'style="display: none"'!!} >
         <hr>
         <div class="row">
             <div class="col-md-5">

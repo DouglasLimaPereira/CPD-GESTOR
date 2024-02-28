@@ -64,34 +64,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+                    <div id="linechart_material" style="width: 900px; height: 500px"></div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      var result = <?php $result; ?>
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          result
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
 @endsection

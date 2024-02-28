@@ -228,7 +228,14 @@ class PontoController extends Controller
      */
     public function destroy(Ponto $ponto)
     {
-        //
+        // REMOVENDO REGISTRO DA TABELA FILIAL_USER, USER E INATIVANDO DA TABELA FUNCIONARIOS
+        try {
+            $ponto->delete();
+            return back()->with('success', 'Ponto removido com sucesso.');
+        } catch (\Exception $th) {
+            return back()->withErrors($th->getMessage());
+            return back()->with('error', 'Não foi possível remover este ponto.');
+        }
     }
 
     public function HoraExtra()
@@ -329,11 +336,11 @@ class PontoController extends Controller
         #------------------------------------
         $hora_extra = $hora_extra->toTimeString();
         $hora_negativas = $hora_negativas->toTimeString();
-        $result[] = ['Data', 'Extra', 'Negativa'];
-        foreach ($pontos as $key => $value) {
-            $result[++$key] = [$value->data, $value->horas_extras, $value->horas_negativas];
-        }
-        return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas', 'result'));
+        // $result[] = ['Data', 'Extra', 'Negativa'];
+        // foreach ($pontos as $key => $value) {
+        //     $result[++$key] = [$value->data, $value->horas_extras, $value->horas_negativas];
+        // }
+        return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas'));
     }
 
     public function relatorio(Request $request) {
