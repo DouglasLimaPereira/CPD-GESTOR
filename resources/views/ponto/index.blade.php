@@ -22,12 +22,37 @@
                 <div class="card-body">
                     <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
                         <thead>
+                            <tr class="align-self-end bg-light">
+                                @if ($horas[0] != '00:00:00')
+                                    <div class="text-right col-sm-3">
+                                        <div class="row justify-content-end text-right info-box bg-success">
+                                            <span class="info-box-icon"><i class="far fa-clock fa-lg"></i></span>
+                                            <div class="info-box-content">
+                                            <span class="info-box-text">SALDO DE HORAS EXTRAS</span>
+                                            <span class="info-box-number">{{ $horas[0] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="text-right col-md-3">
+                                        <div class="info-box bg-danger">
+                                            <span class="info-box-icon"><i class="fas fa-history fa-lg"></i></span>
+                                            <div class="info-box-content">
+                                            <span class="info-box-text">SALDO DE HORAS NEGATIVAS</span>
+                                            <span class="info-box-number">{{ $horas[1] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </tr>
                             <tr>
+                                {{-- @dd($horas) --}}
                                 <th>Data</th>
                                 <th>Entrada</th>
                                 <th>Saida P/Almoço</th>
                                 <th>Volta P/Almoço</th>
                                 <th>Saída</th>
+                                <th>Hora Extra / Negativa</th>
                                 <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
                         </thead>
@@ -38,6 +63,13 @@
                                         <td>{{date('d/m/Y', strtotime($row->data))}}</td>
                                         <td colspan="4" class="text-center">
                                             {!!'<span class="badge badge-warning" style="font-size: 15px;">DSR</span>'!!}
+                                        </td>
+                                        <td class="text-center">
+                                            @if($row->horas_extras != '00:00:00')
+                                                <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
+                                            @elseif($row->horas_negativas != '00:00:00')
+                                                <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
+                                            @endif
                                         </td>
                                         <td class="text-center">
                                             <div class="dropdown">
@@ -61,6 +93,13 @@
                                             {!!'<span class="badge badge-success" style="font-size: 15px;">FOLGA</span>'!!}
                                         </td>
                                         <td class="text-center">
+                                            @if($row->horas_extras != '00:00:00')
+                                                <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
+                                            @elseif($row->horas_negativas != '00:00:00')
+                                                <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
@@ -82,6 +121,13 @@
                                         <td>{{$row->entrada_almoco}}</td>
                                         <td>{{$row->saida_almoco}}</td>
                                         <td>{{$row->saida}}</td>
+                                        <td class="text-center">
+                                            @if($row->horas_extras != '00:00:00')
+                                                <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
+                                            @elseif($row->horas_negativas != '00:00:00')
+                                                <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">

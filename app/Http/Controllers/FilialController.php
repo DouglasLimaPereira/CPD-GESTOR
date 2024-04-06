@@ -111,7 +111,7 @@ class FilialController extends Controller
             if(isset($request->logo) && $request->logo->isValid()){
                 $logo = $this->anexo->filial_store($filial->id, $request->logo, $filial->logo);
                 $filial->update([
-                    'logo' => $logo,
+                    'logo' => $logo
                 ]);
             }
 

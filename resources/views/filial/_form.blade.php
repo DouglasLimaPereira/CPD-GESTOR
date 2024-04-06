@@ -183,7 +183,97 @@
             </div>
         </div>
     </div>
-
+        
+    <h5 class="mt-3" {{isset($filial) ? 'hidden' : ''}}><em><i class="fa-solid fa-gears"></i> CONFIGURAÇÕES ADICIONAIS</em></h5>
+    
+    <hr {{isset($filial) ? 'hidden' : ''}}>
+    <div class="row" {{isset($filial) ? 'hidden' : ''}}>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="quantidade_pdv">Quantidade PDV <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_pdv" class="form-control" id="quantidade_pdv" value="{{(isset($filial)) ? $filial->quantidade_pdv : old('quantidade_pdv')}}">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="quantidade_rack">Quantidade de Rack <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_rack" class="form-control" id="quantidade_rack" value="{{(isset($filial)) ? $filial->quantidade_rack : old('quantidade_rack')}}">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="quantidade_desktop">Quantidade de Desktop <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_desktop" class="form-control" id="quantidade_desktop" value="{{(isset($filial)) ? $filial->quantidade_desktop : old('quantidade_desktop')}}">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Consultores <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+    </div>
+    
+    <h5 class="mt-3" {{isset($filial) ? 'hidden' : ''}}><em><i class="fa-solid fa-scale-balanced"></i> BALANÇAS</em></h5>
+    
+    <hr {{isset($filial) ? 'hidden' : ''}}>
+    <div class="row" {{isset($filial) ? 'hidden' : ''}}>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Balanças Frente de Loja <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_pdv">Quantidade de Balanças Padaria <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_pdv" class="form-control" id="quantidade_pdv" value="{{(isset($filial)) ? $filial->quantidade_pdv : old('quantidade_pdv')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_rack">Quantidade de Balanças Açougue <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_rack" class="form-control" id="quantidade_rack" value="{{(isset($filial)) ? $filial->quantidade_rack : old('quantidade_rack')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_desktop">Quantidade de Balanças Peixaria <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_desktop" class="form-control" id="quantidade_desktop" value="{{(isset($filial)) ? $filial->quantidade_desktop : old('quantidade_desktop')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Balanças Frios <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Balanças Horti <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Balanças Pescoço <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Balanças Aerea <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="quantidade_consultor">Quantidade de Balanças Doca <span class="text-danger">*</span></label>
+                <input type="text" name="quantidade_consultor" class="form-control" id="quantidade_consultor" value="{{(isset($filial)) ? $filial->quantidade_consultor : old('quantidade_consultor')}}">
+            </div>
+        </div>
+    </div>
+    
     <hr>
     <div class="text-right">
         <a href="{{route('filial.index', session()->get('filial')->id)}}" class="btn btn-outline-danger"><i class="fas fa-undo-alt"></i> CANCELAR</a>    

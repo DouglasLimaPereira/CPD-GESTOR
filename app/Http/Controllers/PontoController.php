@@ -33,9 +33,10 @@ class PontoController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $pontos = $user->pontos()->orderBy('data', 'asc')->paginate(10);
+        $pontos = $user->pontos()->orderBy('data', 'desc')->paginate(10);
+        $horas = $this->HoraExtra();
 
-        return view('ponto.index', compact('pontos', 'user'));
+        return view('ponto.index', compact('pontos', 'user', 'horas'));
     }
 
     /**
@@ -238,7 +239,7 @@ class PontoController extends Controller
         }
     }
 
-    public function HoraExtra()
+    function HoraExtra()
     {
         #-----------------------------------------------------------------------------------
         #| Verificando se a data atual é maior que dia 21 do mês atual e menor que dia 1 do próximo mês |
@@ -252,6 +253,7 @@ class PontoController extends Controller
             #| Criando a data final a ser comparada |
             #----------------------------------------
             $data_fim = carbon::now()->toDateString();
+            dd($data_inicio, $data_fim );
         
         }else {
             #----------------------------------------------------------------------------------------------------
@@ -267,6 +269,7 @@ class PontoController extends Controller
             #| Criando a data final a ser comparda |
             #---------------------------------------
             $data_fim = carbon::now()->toDateString();
+            // dd($data_inicio, $data_fim );
 
         }
 
@@ -340,7 +343,8 @@ class PontoController extends Controller
         // foreach ($pontos as $key => $value) {
         //     $result[++$key] = [$value->data, $value->horas_extras, $value->horas_negativas];
         // }
-        return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas'));
+        // return view('ponto.hora-extra', compact('pontos', 'hora_extra', 'hora_negativas'));
+        return $horas = [$hora_extra, $hora_negativas];
     }
 
     public function relatorio(Request $request) {

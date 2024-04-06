@@ -12,28 +12,30 @@ class Anexo
         //Deletando o arquivo caso já exista algum
         // dd('oi');
         if(Storage::disk('public')->exists($anexo_banco))
-        Storage::disk('public')->delete($anexo_banco);
+            Storage::disk('public')->delete($anexo_banco);
 
         return $anexo->store('ponto/' . base64_encode($ponto_id) . '/usuario/' .base64_encode($user_id).'/comprovante', 'public');
     }
 
-    public function user_store($user_id, $anexo, $anexo_banco, )
+    public function user_store($user_id, $anexo, $anexo_banco)
     {
         //Deletando o arquivo caso já exista algum
         // dd('oi');
         if(Storage::disk('public')->exists($anexo_banco))
-        Storage::disk('public')->delete($anexo_banco);
+            Storage::disk('public')->delete($anexo_banco);
 
         return $anexo->store('usuario/' .base64_encode($user_id).'/foto', 'public');
     }
 
-    public function filial_store($filial_id, $anexo, $anexo_banco, )
+    public function filial_store($filial_id, $anexo, $anexo_banco)
     {
-        //Deletando o arquivo caso já exista algum
-        // dd('oi');
-        if(Storage::disk('public')->exists($anexo_banco))
-        Storage::disk('public')->delete($anexo_banco);
+        // dd($anexo_banco, $anexo);
 
+        //Deletando o arquivo caso já exista algum
+        if(Storage::disk('public')->exists($anexo_banco))
+            // dd($anexo_banco, $anexo);
+            Storage::disk('public')->delete($anexo_banco);
+        // dd('n foi');
         return $anexo->store('filial/' .base64_encode($filial_id).'/logo', 'public');
     }
 

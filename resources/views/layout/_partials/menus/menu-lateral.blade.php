@@ -23,12 +23,12 @@
              <p>Pontos</p>
           </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{ route('ponto.hora-extra') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-user-clock"></i>
             <p>Consultar horas</p>
           </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a href="{{ route('ponto.relatorio') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-file-pdf"></i>

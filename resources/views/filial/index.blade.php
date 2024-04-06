@@ -47,7 +47,9 @@
                             </div>
                         </div>
                         <div class="col-md-6 p-2 text-center">
-                            @if($filial->logo)
+                            @if(isset($filial) && $filial->logo)
+                                {{-- <img class="img-fluid" src="{{asset('storage/'.$filial->logo)}}" width="500" alt="{{mb_strtoupper($filial->nome)}}" title="{{mb_strtoupper($filial->nome)}}"> --}}
+
                                 <img class="img-fluid" src="{{url('/')}}/storage/{{$filial->logo}}" width="500" alt="{{mb_strtoupper($filial->nome)}}" title="{{mb_strtoupper($filial->nome)}}">
                             @else
                                 <span class="badge badge-secondary">Não existe logotipo cadastrado</span>
