@@ -62,7 +62,7 @@
                                     <tr>
                                         <td>{{date('d/m/Y', strtotime($row->data))}}</td>
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-warning" style="font-size: 15px;">DSR</span>'!!}
+                                            {!!'<span class="badge badge-warning" style="font-size: 15px; width:100%;">DSR</span>'!!}
                                         </td>
                                         <td class="text-center">
                                             @if($row->horas_extras != '00:00:00')
@@ -90,7 +90,7 @@
                                     <tr>
                                         <td>{{date('d/m/Y', strtotime($row->data))}}</td>
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-success" style="font-size: 15px;">FOLGA</span>'!!}
+                                            {!!'<span class="badge badge-success" style="font-size: 15px; width:100%;">FOLGA</span>'!!}
                                         </td>
                                         <td class="text-center">
                                             @if($row->horas_extras != '00:00:00')
