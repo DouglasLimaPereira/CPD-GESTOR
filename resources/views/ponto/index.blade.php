@@ -20,33 +20,32 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="row justify-content-end">
+                        @if ($horas[0] != '00:00:00')
+                            <div class="text-right col-sm-3">
+                                <div class="text-right info-box bg-success">
+                                    <span class="info-box-icon"><i class="far fa-clock fa-lg"></i></span>
+                                    <div class="info-box-content">
+                                    <span class="info-box-text">SALDO DE HORAS EXTRAS</span>
+                                    <span class="info-box-number">{{ $horas[0] }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="text-right col-md-3">
+                                <div class="info-box bg-danger">
+                                    <span class="info-box-icon"><i class="fas fa-history fa-lg"></i></span>
+                                    <div class="info-box-content">
+                                    <span class="info-box-text">SALDO DE HORAS NEGATIVAS</span>
+                                    <span class="info-box-number">{{ $horas[1] }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                     <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
                         <thead>
-                            <tr class="align-self-end bg-light">
-                                @if ($horas[0] != '00:00:00')
-                                    <div class="text-right col-sm-3">
-                                        <div class="row justify-content-end text-right info-box bg-success">
-                                            <span class="info-box-icon"><i class="far fa-clock fa-lg"></i></span>
-                                            <div class="info-box-content">
-                                            <span class="info-box-text">SALDO DE HORAS EXTRAS</span>
-                                            <span class="info-box-number">{{ $horas[0] }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="text-right col-md-3">
-                                        <div class="info-box bg-danger">
-                                            <span class="info-box-icon"><i class="fas fa-history fa-lg"></i></span>
-                                            <div class="info-box-content">
-                                            <span class="info-box-text">SALDO DE HORAS NEGATIVAS</span>
-                                            <span class="info-box-number">{{ $horas[1] }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            </tr>
                             <tr>
-                                {{-- @dd($horas) --}}
                                 <th>Data</th>
                                 <th>Entrada</th>
                                 <th>Saida P/Almoço</th>
@@ -58,92 +57,52 @@
                         </thead>
                         <tbody>
                             @forelse($pontos as $row)
-                                @if ($row->tipo === 2)
-                                    <tr>
-                                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                <tr>
+                                    <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                    @if ($row->tipo === 2)
                                         <td colspan="4" class="text-center">
                                             {!!'<span class="badge badge-warning" style="font-size: 15px; width:100%;">DSR</span>'!!}
                                         </td>
-                                        <td class="text-center">
-                                            @if($row->horas_extras != '00:00:00')
-                                                <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
-                                            @elseif($row->horas_negativas != '00:00:00')
-                                                <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                    <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @elseif ($row->tipo === 3)       
-                                    <tr>
-                                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                    @elseif ($row->tipo === 3)
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-success" style="font-size: 15px; width:100%;">FOLGA</span>'!!}
+                                            {!!'<span class="badge badge-success" style="font-size: 15px; width:100%;">FOLGA FERIADO</span>'!!}
                                         </td>
-                                        <td class="text-center">
-                                            @if($row->horas_extras != '00:00:00')
-                                                <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
-                                            @elseif($row->horas_negativas != '00:00:00')
-                                                <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
-                                            @endif
+                                    @elseif ($row->tipo === 4)
+                                        <td colspan="4" class="text-center">
+                                            {!!'<span class="badge badge-info" style="font-size: 15px; width:100%;">DOMINGO</span>'!!}
                                         </td>
-                                        <td class="text-center">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                    <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
-                                                </div>
-                                            </div>
+                                    @elseif ($row->tipo === 5)
+                                        <td colspan="4" class="text-center">
+                                            {!!'<span class="badge badge-light" style="font-size: 15px; width:100%; background-color:#ff6600; color:#fff;">ATESTADO MÉDICO</span>'!!}
                                         </td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                                    @else
                                         <td>{{$row->entrada}}</td>
                                         <td>{{$row->entrada_almoco}}</td>
                                         <td>{{$row->saida_almoco}}</td>
                                         <td>{{$row->saida}}</td>
-                                        <td class="text-center">
-                                            @if($row->horas_extras != '00:00:00')
-                                                <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
-                                            @elseif($row->horas_negativas != '00:00:00')
-                                                <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                    <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
-                                                </div>
+                                    @endif
+                                    <td class="text-center">
+                                        @if($row->horas_extras != '00:00:00')
+                                            <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
+                                        @elseif($row->horas_negativas != '00:00:00')
+                                            <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                                <a href="{{ route('ponto.show', $row->id ) }}" class="dropdown-item"><button class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </button> Visualizar </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="{{ route('ponto.edite', $row->id) }}" class="dropdown-item"><button class="btn btn-success btn-sm"> <i class="far fa-edit"></i> </button> Editar </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}}, {{$row->user->id}})"><button class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </button> Remover </a>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endif
+                                        </div>
+                                    </td>
+                                </tr>
                             @empty
                             <tr>
                                 <td colspan="8"><span class="text-danger">Nenhum registro encontrado</span></td>

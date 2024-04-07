@@ -26,6 +26,7 @@
                                 <th>ID</th>
                                 <th>Nome</th>
                                 <th>Mateus ID</th>
+                                <th>Cód GM</th>
                                 <th>Senha</th>
                                 <th>Data atualização</th>
                                 <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
@@ -37,6 +38,7 @@
                                     <td>{{$row->id}}</td>
                                     <td>{{$row->nome}}</td>
                                     <td>GM{{$row->login}}</td>
+                                    <td>{{$row->cod_gm}}</td>
                                     <td class="showpass{{$row->id}}">
                                         <span id="{{$row->id}}" class="senha select-none" style="filter: blur(4px)">
                                             {{$row->senha}}

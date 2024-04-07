@@ -19,7 +19,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label for="data">Data <span class="text-danger">*</span></label>
-                <input type="date" name="data" class="form-control" id="data" value="{{(isset($ponto)) ? $ponto->data : date('d/m/Y')}}" required>
+                <input type="date" name="data" class="form-control" id="data" value="{{(isset($ponto)) ? $ponto->data : Date('Y-m-d')}}" required>
                 @error('data')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -34,7 +34,9 @@
                     <option value="">Selecione...</option>
                     <option value="1" {{ (isset($ponto) && $ponto->tipo == 1) ? 'selected' : '' }} >DIA TRABALHADO</option>
                     <option value="2" {{ (isset($ponto) && $ponto->tipo == 2) ? 'selected' : '' }} >DSR</option>
-                    <option value="3" {{ (isset($ponto) && $ponto->tipo == 3) ? 'selected' : '' }} >FOLGA</option>
+                    <option value="3" {{ (isset($ponto) && $ponto->tipo == 3) ? 'selected' : '' }} >FOLGA FERIADO</option>
+                    <option value="4" {{ (isset($ponto) && $ponto->tipo == 4) ? 'selected' : '' }} >DOMINGO</option>
+                    <option value="5" {{ (isset($ponto) && $ponto->tipo == 5) ? 'selected' : '' }} >ATESTADO MÉDICO</option>
                 </select>
 
                 @error('tipo')

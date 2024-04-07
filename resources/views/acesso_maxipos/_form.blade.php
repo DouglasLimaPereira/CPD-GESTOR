@@ -24,19 +24,19 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="nome">Mateus ID <span class="text-danger">*</span> <span class="small text-danger">(Somente números)</span></label>
+                <label for="login">Mateus ID <span class="text-danger">*</span> <span class="small text-danger">(Somente números)</span></label>
                 <input type="text" name="login" class="form-control" id="login" value="{{(isset($acesso_maxipos)) ? $acesso_maxipos->login : old('login')}}" required>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="nome">Senha <span class="text-danger">*</span></label>
+                <label for="senha">Senha <span class="text-danger">*</span></label>
                 <input type="text" name="senha" class="form-control" id="senha" value="{{(isset($acesso_maxipos)) ? $acesso_maxipos->senha : old('senha')}}" required>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="nome">Cód GM</label>
+                <label for="cod_gm">Cód GM</label>
                 <input type="text" name="cod_gm" class="form-control" id="cod_gm"  value="{{(isset($acesso_maxipos)) ? $acesso_maxipos->cod_gm : old('senha')}}" required
                 @if(isset($acesso_maxipos) && session()->get('filial')->id != 1)
                     readonly    
