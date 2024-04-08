@@ -25,6 +25,6 @@ class Funcaofuncionario extends Model
 
     public function funcao()
     {
-        return $this->BelongsTo(Funcoes::class);
+        return $this->BelongsTo(Funcao::class);
     }
 }

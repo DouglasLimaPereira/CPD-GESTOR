@@ -5,7 +5,6 @@
 @section('page-title', 'Pontos')
 
 @section('content')
-
     <div class="row">
         <div class="col-md-12">
             <div class="card card-info">
@@ -26,8 +25,8 @@
                                 <div class="text-right info-box bg-success">
                                     <span class="info-box-icon"><i class="far fa-clock fa-lg"></i></span>
                                     <div class="info-box-content">
-                                    <span class="info-box-text">SALDO DE HORAS EXTRAS</span>
-                                    <span class="info-box-number">{{ $horas[0] }}</span>
+                                    <span class="info-box-text"> <b>SALDO DE HORAS EXTRAS</b></span>
+                                    <span class="info-box-number"><b>{{ $horas[0] }}</b></span>
                                     </div>
                                 </div>
                             </div>
@@ -36,14 +35,14 @@
                                 <div class="info-box bg-danger">
                                     <span class="info-box-icon"><i class="fas fa-history fa-lg"></i></span>
                                     <div class="info-box-content">
-                                    <span class="info-box-text">SALDO DE HORAS NEGATIVAS</span>
-                                    <span class="info-box-number">{{ $horas[1] }}</span>
+                                    <span class="info-box-text"><b>SALDO DE HORAS NEGATIVAS</b></span>
+                                    <span class="info-box-number"><b>{{ $horas[1] }}</b></span>
                                     </div>
                                 </div>
                             </div>
                         @endif
                     </div>
-                    <table id="table_datatable" class="table table-bordered table-striped table-hover table-responsve-sm">
+                    <table id="table_datatable" style="height: 20%;width:100%" class="table table-bordered table-striped table-hover table-responsve-xl">
                         <thead>
                             <tr>
                                 <th>Data</th>
@@ -57,23 +56,23 @@
                         </thead>
                         <tbody>
                             @forelse($pontos as $row)
-                                <tr>
+                                <tr style="height: 40px">
                                     <td>{{date('d/m/Y', strtotime($row->data))}}</td>
                                     @if ($row->tipo === 2)
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-warning" style="font-size: 15px; width:100%;">DSR</span>'!!}
+                                            {!!'<span class="badge badge-warning" style="font-size: 15px; width:100%; padding:6px;">DSR</span>'!!}
                                         </td>
                                     @elseif ($row->tipo === 3)
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-success" style="font-size: 15px; width:100%;">FOLGA FERIADO</span>'!!}
+                                            {!!'<span class="badge badge-success" style="font-size: 15px; width:100%; padding:6px;">FOLGA FERIADO</span>'!!}
                                         </td>
                                     @elseif ($row->tipo === 4)
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-info" style="font-size: 15px; width:100%;">DOMINGO</span>'!!}
+                                            {!!'<span class="badge badge-danger" style="font-size: 15px; width:100%; padding:6px;">DOMINGO</span>'!!}
                                         </td>
                                     @elseif ($row->tipo === 5)
                                         <td colspan="4" class="text-center">
-                                            {!!'<span class="badge badge-light" style="font-size: 15px; width:100%; background-color:#ff6600; color:#fff;">ATESTADO MÉDICO</span>'!!}
+                                            {!!'<span class="badge badge-info" style="font-size: 15px; width:100%; padding:6px;">ATESTADO MÉDICO</span>'!!}
                                         </td>
                                     @else
                                         <td>{{$row->entrada}}</td>
@@ -83,9 +82,9 @@
                                     @endif
                                     <td class="text-center">
                                         @if($row->horas_extras != '00:00:00')
-                                            <h4><span class="badge badge-success">+ {{$row->horas_extras}}</span></h4>
+                                            <h4><span class="badge badge-success" style="width:100%; padding:6px;">+ {{$row->horas_extras}}</span></h4>
                                         @elseif($row->horas_negativas != '00:00:00')
-                                            <h4><span class="badge badge-danger">- {{$row->horas_negativas}}</span></h4>
+                                            <h4><span class="badge badge-danger" style="width:100%; padding:6px;">- {{$row->horas_negativas}}</span></h4>
                                         @endif
                                     </td>
                                     <td class="text-center">

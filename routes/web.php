@@ -11,8 +11,10 @@ use App\Http\Controllers\{
     ErrositefController,
     EscalaController,
     FilialController,
+    FuncaoController,
     FuncionarioController,
-    PontoController
+    PontoController,
+    SalarioController
 };
 
 
@@ -106,6 +108,22 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
     Route::get('/create', [FilialController::class, 'create'])->name('create');
     Route::post('/store', [FilialController::class, 'store'])->name('store');
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
+
+    Route::group(['prefix'=>'funcao', 'as' =>'funcao.', 'middleware'=>['auth']], function(){
+        Route::get('/', [FuncaoController::class, 'index'])->name('index');
+        Route::get('filial/{filial}/funcao/{funcao}/edit', [FuncaoController::class, 'edit'])->name('edit');
+        Route::get('{filial}/create', [FuncaoController::class, 'create'])->name('create');
+        Route::post('{filial}/store', [FuncaoController::class, 'store'])->name('store');
+        Route::put('filial/{filial}/funcao/{funcao}/update', [FuncaoController::class, 'update'])->name('update');
+    });
+
+    Route::group(['prefix'=>'salario', 'as' =>'salario.', 'middleware'=>['auth']], function(){
+        Route::get('/', [SalarioController::class, 'index'])->name('index');
+        Route::get('{filial}/edit', [SalarioController::class, 'edit'])->name('edit');
+        Route::get('/create', [SalarioController::class, 'create'])->name('create');
+        Route::post('/store', [SalarioController::class, 'store'])->name('store');
+        Route::put('/{filial}/update', [SalarioController::class, 'update'])->name('update');
+    });
 });
 
     //CÓDIGO DE BARRAS

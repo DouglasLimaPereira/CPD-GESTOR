@@ -34,6 +34,9 @@ class Filial extends Model
     public function usuarios(){
         return $this->belongsToMany(User::class)->withPivot('filial_id', 'user_id', 'superadmin')->withTimestamps();
     }
-
+    public function funcoes()
+    {
+        return $this->hasMany(Funcao::class);
+    }
     
 }

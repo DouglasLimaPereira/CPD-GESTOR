@@ -33,7 +33,7 @@ class PontoController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $pontos = $user->pontos()->orderBy('data', 'desc')->paginate(10);
+        $pontos = $user->pontos()->orderBy('data', 'desc')->paginate(15);
         $horas = $this->HoraExtra();
 
         return view('ponto.index', compact('pontos', 'user', 'horas'));
@@ -253,7 +253,6 @@ class PontoController extends Controller
             #| Criando a data final a ser comparada |
             #----------------------------------------
             $data_fim = carbon::now()->toDateString();
-            dd($data_inicio, $data_fim );
         
         }else {
             #----------------------------------------------------------------------------------------------------
@@ -270,13 +269,12 @@ class PontoController extends Controller
             #---------------------------------------
             $data_fim = carbon::now()->toDateString();
             // dd($data_inicio, $data_fim );
-
         }
 
         #------------------------------
         #| Recebendo o usuario logado |
         #------------------------------
-        $user = auth()->user(); 
+        $user = auth()->user();
 
         #-----------------------------------------------------------------------------------
         #| Recebendo os registros do ponto que se enquadra entre as datas de inicio e fim  |
@@ -311,7 +309,7 @@ class PontoController extends Controller
         #---------------------------------------------
         #| Calculando horas negativas e horas extras |
         #---------------------------------------------
-        if ($hora_extra->toTimeString() != '00:00:00') {
+        // if ($hora_extra->toTimeString() != '00:00:00') {
             if ($hora_extra > $hora_negativas) {
                 $hora_n = explode(':', $hora_negativas->toTimeString());  
                 // if ($hora_n[0] != '00')
@@ -332,7 +330,7 @@ class PontoController extends Controller
                     $hora_negativas->subSeconds($hora_x[2]);
                     $hora_extra->subSeconds($hora_x[2]);
             }
-        }
+        // }
     
         #------------------------------------
         #| Convertendo horários para String |
@@ -360,6 +358,7 @@ class PontoController extends Controller
             return back()->with('info', 'Necessário informar a data inícial após informa a data final');
         } elseif (isset($request->data_fim) == '' && $request->data_inicio){
             return back()->with('info', 'Necessário informar a data final após informa a data inicial');
+        }else {
         }
 
         if (isset($request->data_inicio) && isset($request->data_fim)) {

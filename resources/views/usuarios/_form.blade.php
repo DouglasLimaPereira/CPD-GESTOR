@@ -204,7 +204,6 @@
   @section('scripts')
     <script>
         $(document).ready(function(){
-
             $('#limpa-senha').click(function(){
                 $('#senha').val(``)
                 $('#senha').attr('readonly', 'readonly')

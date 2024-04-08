@@ -16,6 +16,18 @@
 @endif
     @csrf
     <div class="row col-md-12">
+        @if(!isset($acesso_maxipos))
+            {{-- <div class="row"> --}}
+                {{-- <div class="col-md-12">
+                    <div class="icheck-primary d-inline">
+                        <input type="checkbox" id="record-from-database" name="record_from_database">
+                            <label for="record-from-database">Cadastrar usuário a partir do banco de dados de funcionários
+                        </label>
+                    </div>
+                </div>
+                <hr> --}}
+            {{-- </div> --}}
+        @endif
         <div class="col-md-4">
             <div class="form-group">
                 <label for="nome">Nome completo <span class="text-danger">*</span></label>

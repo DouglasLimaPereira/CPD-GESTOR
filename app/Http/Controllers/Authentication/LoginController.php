@@ -40,7 +40,6 @@ class LoginController extends Controller
             $filial = auth()->user()->filiais()->first();
             Session::put('filial', $filial);
             
-
             return redirect()->route('painel.index');
         }
         
