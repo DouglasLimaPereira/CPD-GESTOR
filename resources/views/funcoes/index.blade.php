@@ -32,36 +32,37 @@
                         </thead>
                         <tbody>
                             @forelse($rows as $row)
-                                <tr>
-                                    <td>{{$row->id}}</td>
-                                    <td>{{$row->nome}}</td>
-                                    <td>{{($row->salario) ? $row->salario->valor : '...'}}</td>
-                                    <td>{{date('d/m/Y', strtotime($row->updated_at))}}</td>
-                                    <td class="text-center">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                
-                                                @if(isset($row->salario))
-                                                    <a href="{{route('filial.salario.edit', [$row->id, $row->salario->id])}}" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-hand-holding-dollar"></i></button>Atualizar Salário</a>
-                                                @else
-                                                    <a href="{{route('filial.salario.create', $row->id)}}" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-hand-holding-dollar"></i></button>Incluir Salário</a>
-                                                @endif
-                                                
-                                                <div class="dropdown-divider"></div>
-                                                
-                                                <a href="{{route('filial.funcao.edit', [$filial, $row->id])}}" class="dropdown-item text-success"><button class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button> Editar</a>
-                                                
-                                                <div class="dropdown-divider"></div>
-
-                                                <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}})"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button> Remover</a>
-                                            </div>
-                                          </div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{$row->id}}</td>
+                                <td>{{$row->nome}}</td>
+                                <td>{{($row->salario) ? $row->salario->valor : '...'}}</td>
+                                <td>{{date('d/m/Y', strtotime($row->updated_at))}}</td>
+                                <td class="text-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                            
+                                            @if($row->salario)
+                                            <a href="{{route('filial.salario.edit', [$row->id, $row->salario->id])}}" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-hand-holding-dollar"></i></button>Atualizar Salário</a>
+                                            @else
+                                            <a href="{{route('filial.salario.create', $row->id)}}" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-hand-holding-dollar"></i></button>Incluir Salário</a>
+                                            @endif
+                                            
+                                            <div class="dropdown-divider"></div>
+                                            
+                                            <a href="{{route('filial.funcao.edit', [$filial, $row->id])}}" class="dropdown-item text-success"><button class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button> Editar</a>
+                                            
+                                            <div class="dropdown-divider"></div>
+                                            
+                                            <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}})"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button> Remover</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                             @empty
+                            @dd('Passou')
                             <tr>
                                 <td colspan="8"><span class="text-danger">Nenhum registro encontrado</span></td>
                             </tr>

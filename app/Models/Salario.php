@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Salario extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'funcao_id',

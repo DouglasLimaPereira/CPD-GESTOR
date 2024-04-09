@@ -17,7 +17,16 @@ class FuncaoController extends Controller
     {
         $filial = session('filial')->id;
         $rows = Funcao::where('filial_id', $filial)->get();
-        return view('funcoes.index', compact('rows', 'filial'));
+
+        foreach ($rows as $row) {
+            if ($row->slario) {
+                $row['salario_ativo'] = 1;
+            }else {
+                $row['salario_ativo'] = 0;
+            }
+        }
+       
+        return view('funcoes.index', compact('filial', 'rows'));
     }
 
     public function create(Filial $filial)
