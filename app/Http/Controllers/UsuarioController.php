@@ -70,7 +70,8 @@ class UsuarioController extends Controller
                 if(!$funcionario){
                     $funcionario = $usuario->funcionario()->create([
                         'user_id' => $usuario->id,
-                        'funcao_id' => $request->cargo,
+                        'funcao_id' => $request->funcao_id,
+                        'filial_id' => session('filial')->id,
                         'nome' => $request->nome,
                         'telefone' => $request->telefone,
                         'matricula' => $request->matricula,
@@ -138,11 +139,10 @@ class UsuarioController extends Controller
     
                 $usuario->funcionario->update([
                     'user_id' => $usuario->id,
-                    'funcao_id' => $request->cargo,
+                    'funcao_id' => $request->funcao_id,
                     'matricula' => $request->matricula,
                     'nome' => $request->nome,
                     'telefone' => $request->telefone,
-                    'cargo' => $request->cargo,
                     'situacao_admissional' => $request->situacao_admissional,
                 ]);
     

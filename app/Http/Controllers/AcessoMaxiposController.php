@@ -15,6 +15,7 @@ class AcessoMaxiposController extends Controller
      */
     public function index()
     {
+
         $filial = session()->get('filial')->id;
         $rows = Acessomaxipos::where('filial_id', $filial)->get();
         return view('acesso_maxipos.index', compact('rows', 'filial'));
@@ -43,7 +44,7 @@ class AcessoMaxiposController extends Controller
             'nome' => $request->nome,
             'login' => $request->login,
             'senha' => $request->senha,
-            'cod_gm' => $request->cod_gm,
+            'cod_gm' => $request->cod_gm
         ]);
 
         return redirect()->route('acesso_maxipos.index')->with('success', 'Usuario maxpos cadastrado com sucesso!');

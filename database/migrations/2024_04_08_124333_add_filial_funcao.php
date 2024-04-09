@@ -13,9 +13,9 @@ class AddFilialFuncao extends Migration
      */
     public function up()
     {
-        Schema::table('funcoes', function (Blueprint $table) {
-            $table->foreignId('filial_id')->constrained('filiais');
-        });
+        // Schema::table('funcoes', function (Blueprint $table) {
+        //     $table->foreignId('filial_id')->constrained('filiais');
+        // });
     }
 
     /**
@@ -25,9 +25,9 @@ class AddFilialFuncao extends Migration
      */
     public function down()
     {
-        Schema::table('funcoes', function (Blueprint $table) {
-            $table->dropForeign('filial_id');
-            $table->dropColumn('filial_id');
-        });
+        // Schema::table('funcoes', function (Blueprint $table) {
+        //     $table->dropForeign('filial_id');
+        //     $table->dropColumn('filial_id');
+        // });
     }
 }

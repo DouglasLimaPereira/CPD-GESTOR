@@ -62,6 +62,7 @@ class EscalaController extends Controller
             
             Escala::create([
                 'user_id' => auth()->user()->id,
+                'filial_id' => session('filial')->id,
                 'evento' => $request['evento'],
                 'color' => $color,
                 'data_inicio' => $request['data_inicio'].' '.$request['hora_inicio'].':00',

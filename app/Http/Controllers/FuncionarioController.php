@@ -29,9 +29,10 @@ class FuncionarioController extends Controller
         return view('funcionarios.create', compact('company', 'funcoes'));
     }
 
-    public function store(Company $company, FuncionarioRequest $request)
+    public function store(Company $company, Request $request)
     {
         $input = $request->all();
+        $input['filial_id'] = session('filial')->id;
         
         //Valida email
         if($company->pessoas->firstWhere('email', $input['email'])){

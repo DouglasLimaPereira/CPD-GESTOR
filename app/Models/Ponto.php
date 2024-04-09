@@ -13,6 +13,7 @@ class Ponto extends Model
 
     protected $fillable = [
         'user_id',
+        'filial_id',
         'tipo',
         'data',
         'entrada',

@@ -45,8 +45,8 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="cargo">Cargo <span class="text-danger">*</span></label>
-                <select name="cargo" id="cargo" class="form-control">
+                <label for="funcao_id">Cargo <span class="text-danger">*</span></label>
+                <select name="funcao_id" id="funcao_id" class="form-control">
                     <option value="">--- Selecione ---</option>
                     @foreach ($cargos as $cargo)
                         <option value="{{ $cargo->id }}" {{ (isset($usuario) && $usuario->funcionario->funcao_id == $cargo->id)  ? 'selected' : '' }}> {{ $cargo->nome }} </option>
