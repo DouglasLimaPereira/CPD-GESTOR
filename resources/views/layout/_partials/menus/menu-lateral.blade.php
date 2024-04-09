@@ -83,8 +83,14 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('filial.funcao.index') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-user-clock"></i>
+          <i class="nav-icon fa-solid fa-briefcase"></i>
             <p>Funções</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="fa-solid fa-boxes-packing"></i>
+            <p>Estoque</p>
           </a>
         </li>
       </ul>
