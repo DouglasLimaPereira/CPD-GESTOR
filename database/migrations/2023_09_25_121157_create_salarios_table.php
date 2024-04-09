@@ -18,6 +18,7 @@ class CreateSalariosTable extends Migration
             $table->foreignId('funcao_id')->constrained('funcoes');
             $table->decimal('valor');
             $table->date('data_atualizacao');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

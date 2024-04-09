@@ -108,7 +108,8 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
     Route::get('/create', [FilialController::class, 'create'])->name('create');
     Route::post('/store', [FilialController::class, 'store'])->name('store');
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
-
+    
+    // FUNÇÃO
     Route::group(['prefix'=>'funcao', 'as' =>'funcao.', 'middleware'=>['auth']], function(){
         Route::get('/', [FuncaoController::class, 'index'])->name('index');
         Route::get('filial/{filial}/funcao/{funcao}/edit', [FuncaoController::class, 'edit'])->name('edit');
@@ -117,12 +118,13 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
         Route::put('filial/{filial}/funcao/{funcao}/update', [FuncaoController::class, 'update'])->name('update');
     });
 
+    // SALARIO
     Route::group(['prefix'=>'salario', 'as' =>'salario.', 'middleware'=>['auth']], function(){
-        Route::get('/', [SalarioController::class, 'index'])->name('index');
-        Route::get('{filial}/edit', [SalarioController::class, 'edit'])->name('edit');
-        Route::get('/create', [SalarioController::class, 'create'])->name('create');
-        Route::post('/store', [SalarioController::class, 'store'])->name('store');
-        Route::put('/{filial}/update', [SalarioController::class, 'update'])->name('update');
+        // Route::get('/', [SalarioController::class, 'index'])->name('index');
+        Route::get('funcao/{funcao}/salario/{salario}/edit', [SalarioController::class, 'edit'])->name('edit');
+        Route::get('funcao/{funcao}/create', [SalarioController::class, 'create'])->name('create');
+        Route::post('funcao/{funcao}/store', [SalarioController::class, 'store'])->name('store');
+        Route::put('/funcao/{funcao}/salario/{salario}/update', [SalarioController::class, 'update'])->name('update');
     });
 });
 

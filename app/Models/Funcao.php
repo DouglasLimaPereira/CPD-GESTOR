@@ -18,8 +18,7 @@ class Funcao extends Model
 
     public function salario()
     {
-        //Verficar este relacionamento
-        return $this->belongsTo(Salario::class);
+        return $this->hasOne(Salario::class);
     }
 
     public function funcaoFuncionario()

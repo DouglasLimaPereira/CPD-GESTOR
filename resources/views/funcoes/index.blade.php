@@ -25,6 +25,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
+                                <th>Salário</th>
                                 <th>Data atualização</th>
                                 <th class="text-center" style="width: 10%"><i class="fa-solid fa-gears"></i> Ações</th>
                             </tr>
@@ -34,6 +35,7 @@
                                 <tr>
                                     <td>{{$row->id}}</td>
                                     <td>{{$row->nome}}</td>
+                                    <td>{{($row->salario) ? $row->salario->valor : '...'}}</td>
                                     <td>{{date('d/m/Y', strtotime($row->updated_at))}}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
@@ -41,7 +43,12 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                                <a href="https://rhsso.grupomateus.com.br/auth/realms/grupomateus/protocol/openid-connect/auth?client_id=maxipos&redirect_uri=http%3A%2F%2Fpdv.mateus%2Fmaxipos_backoffice%2Fkeycloack.html&state=8ec1d098-26bc-43c2-8dfb-e6eeb35cfea1&response_mode=fragment&response_type=code&scope=openid&nonce=4f46b804-97b3-4314-8e93-412cf3aa15c1&username={{$row->login}}&password={{$row->senha}}" target="_blank" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-up-right-from-square"></i></button> Acessar Mpos</a>
+                                                
+                                                @if(isset($row->salario))
+                                                    <a href="{{route('filial.salario.edit', [$row->id, $row->salario->id])}}" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-hand-holding-dollar"></i></button>Atualizar Salário</a>
+                                                @else
+                                                    <a href="{{route('filial.salario.create', $row->id)}}" class="dropdown-item text-info"><button class="btn btn-info btn-sm"><i class="fa-solid fa-hand-holding-dollar"></i></button>Incluir Salário</a>
+                                                @endif
                                                 
                                                 <div class="dropdown-divider"></div>
                                                 
