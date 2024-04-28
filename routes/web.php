@@ -88,7 +88,7 @@ Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], functi
     Route::get('{ponto}/destroy', [PontoController::class, 'destroy'])->name('destroy');
     Route::get('hora-extra', [PontoController::class, 'HoraExtra'])->name('hora-extra');
     Route::get('relatorio', [PontoController::class, 'relatorio'])->name('relatorio');
-    Route::get('{funcionario}/pdf', [PontoController::class, 'pdf'])->name('pdf');
+    Route::get('pdf', [PontoController::class, 'pdf'])->name('pdf');
     Route::get('xlsx', [PontoController::class, 'xlsx'])->name('xlsx');
     Route::get('csv', [PontoController::class, 'csv'])->name('csv');
 });

@@ -347,14 +347,16 @@ class PontoController extends Controller
         return $horas = [$hora_extra, $hora_negativas];
     }
 
-    public function relatorio(Request $request, Funcionario $funcionario) {
-        // dd($funcionario);
+    public function relatorio(Request $request) {
+        $funcionario_id = $request['funcionario'];
         $data_inicio = $request['data_inicio'];
         $data_fim = $request['data_fim'];
         $user = [];
+        $user_name = '';
 
-        if ($request['funcionario'] != '') {
-            dd($funcionario);
+        if (isset($request['funcionario']) != '') {
+            $funcionario = Funcionario::FirstWhere('id', $request['funcionario']);
+
             $user_id = $funcionario->id;
             $user_name = $funcionario->nome;
             $cargo = $funcionario->funcao->nome;
@@ -365,7 +367,6 @@ class PontoController extends Controller
         }
 
         $funcionarios = Funcionario::where('filial_id', session('filial')->id)->get();
-        $user_name = '';
         if (isset($request->data_inicio) && isset($request->data_fim)) {
             $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user_id)->get();
             $pontos = $pontos->whereBetween('data', [ $request->data_inicio, $request->data_fim ]);
@@ -410,15 +411,28 @@ class PontoController extends Controller
         // $meses = [1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril', 5 => 'mail', 6 => 'junho', 7 => 'julho', 8 => 'agosto', 9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'];
 
 
-        return view('ponto._partials.relatorio', compact('pontos', 'funcionarios', 'user_id', 'data_inicio', 'data_fim', 'user_name', 'cargo'));
+        return view('ponto._partials.relatorio', compact(
+            'pontos',
+            'funcionarios',
+            'user_id',
+            'data_inicio',
+            'data_fim',
+            'user_name',
+            'cargo',
+            'funcionario_id'
+        ));
 
     }
 
     public function pdf(Request $request){
-        $pontos = $request->all();
-        // dd($pontos);
+        
+        $pontos = Ponto::whereBetween('data', [ $request->data_inicio, $request->data_fim ])->where('user_id', $request->user_id)->get();
+        $user_name = $request['user_name'];
+        $cargo = $request['cargo'];
+        
+        // dd($request->all());
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos'))
+        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos', 'user_name', 'cargo'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         // ->download
         ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');

@@ -13,23 +13,23 @@
         <link rel="icon" type="image/x-icon" href="{{asset('image/coracao.png')}}">
         <style>
           body {
-            font-size :11px;
+            font-size :10px;
           }
         </style>
     </head>
     <body>
-        <img src="{{public_path('image/logo.png')}}" height="90" style="margin-left: 30%; margin-top: -7%;">
+        <img src="{{public_path('assets/image/logo.png')}}" height="90" style="margin-left: 30%; margin-top: -7%;">
         <table class="table table-bordered table-sm table-striped mb-0">
           <thead class="">
             <tr>
               <th colspan="2">Nome</th>
-              <th colspan="3">{{auth()->user()->name}}</th>
+              <th colspan="3">{{$user_name}}</th>
             </tr>
           </thead>
           <thead class="">
             <tr>
               <th colspan="2">Cargo</th>
-              <th colspan="3">{{auth()->user()->cargo}}</th>
+              <th colspan="3">{{$cargo}}</th>
             </tr>
           </thead>
           <thead class="">
@@ -39,57 +39,58 @@
             </tr>
           </thead>
         </table>
-        <table id="table_datatable" style="width:100%" class="table table-bordered table-striped table-hover table-responsve-xl">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Entrada</th>
-                    <th>Saida P/Almoço</th>
-                    <th>Volta P/Almoço</th>
-                    <th>Saída</th>
-                    <th>Hora Extra / Negativa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($pontos as $row)
-                    <tr>
-                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
-                        @if ($row->tipo === 2)
-                            <td colspan="4" class="text-center">
-                                {!!'<span class="badge badge-warning" style="width:100%;">DSR</span>'!!}
-                            </td>
-                        @elseif ($row->tipo === 3)
-                            <td colspan="4" class="text-center">
-                                {!!'<span class="badge badge-success" style="width:100%;">FOLGA FERIADO</span>'!!}
-                            </td>
-                        @elseif ($row->tipo === 4)
-                            <td colspan="4" class="text-center">
-                                {!!'<span class="badge badge-danger" style="width:100%;">DOMINGO</span>'!!}
-                            </td>
-                        @elseif ($row->tipo === 5)
-                            <td colspan="4" class="text-center">
-                                {!!'<span class="badge badge-info" style="width:100%;">ATESTADO MÉDICO</span>'!!}
-                            </td>
-                        @else
-                            <td>{{$row->entrada}}</td>
-                            <td>{{$row->entrada_almoco}}</td>
-                            <td>{{$row->saida_almoco}}</td>
-                            <td>{{$row->saida}}</td>
-                        @endif
-                        <td class="text-center">
-                            @if($row->horas_extras != '00:00:00')
-                                <h4><span class="badge badge-success" style="width:100%;">+ {{$row->horas_extras}}</span></h4>
-                            @elseif($row->horas_negativas != '00:00:00')
-                                <h4><span class="badge badge-danger" style="width:100%;">- {{$row->horas_negativas}}</span></h4>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                <tr>
-                    <td colspan="8"><span class="text-danger">Nenhum registro encontrado</span></td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+        <table class="table table-striped table-hover table-sm">
+          <thead>
+              <tr>
+                  <th>Data</th>
+                  <th>Entrada</th>
+                  <th>Saida P/Almoço</th>
+                  <th>Volta P/Almoço</th>
+                  <th>Saída</th>
+                  <th>Hora Extra / Negativa</th>
+              </tr>
+          </thead>
+          <tbody>
+              @forelse($pontos as $key => $row)
+                  <tr>
+                      <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                      @if ($row['tipo'] === 2)
+                          <td colspan="4" class="text-center">
+                              {!!'<span class="badge badge-warning" style="width:100%;">DSR</span>'!!}
+                          </td>
+                      @elseif ($row['tipo'] === 3)
+                          <td colspan="4" class="text-center">
+                              {!!'<span class="badge badge-success" style="width:100%;">FOLGA FERIADO</span>'!!}
+                          </td>
+                      @elseif ($row['tipo'] === 4)
+                          <td colspan="4" class="text-center">
+                              {!!'<span class="badge badge-danger" style="width:100%;">DOMINGO</span>'!!}
+                          </td>
+                      @elseif ($row['tipo'] === 5)
+                          <td colspan="4" class="text-center">
+                              {!!'<span class="badge badge-info" style="width:100%;">ATESTADO MÉDICO</span>'!!}
+                          </td>
+                      @else
+                          <td>{{$row->entrada}}</td>
+                          <td>{{$row->entrada_almoco}}</td>
+                          <td>{{$row->saida_almoco}}</td>
+                          <td>{{$row->saida}}</td>
+                      @endif
+                      <td class="text-center">
+                          @if($row->horas_extras != '00:00:00')
+                              <span class="badge badge-success" style="width:100%;">+ {{$row->horas_extras}}</span>
+                          @elseif($row->horas_negativas != '00:00:00')
+                              <span class="badge badge-danger" style="width:100%;">- {{$row->horas_negativas}}</span>
+                          @endif
+                      </td>
+                  </tr>
+              @empty
+              <tr>
+                  <td colspan="8"><span class="text-danger">Nenhum registro encontrado</span></td>
+              </tr>
+              @endforelse
+          </tbody>
+      </table>
+      <br>
     </body>
 </html>

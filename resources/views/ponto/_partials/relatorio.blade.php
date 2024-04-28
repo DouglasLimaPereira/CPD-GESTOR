@@ -15,13 +15,15 @@
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <form id="formpdf" target="_blank" action="{{ route('ponto.pdf', isset($_GET['funcionario'])) }}" method="GET">
-                                    <input type="hidden" name="data_inicio" value="{{$data_inicio}}">
-                                    <input type="hidden" name="data_fim" value="{{$data_fim}}">
-                                    <input type="hidden" name="user_name" value="{{$user_name}}">
-                                    <input type="hidden" name="cargo" value="{{$cargo}}">
-
-                                    {{-- @foreach ($pontos as $ponto)
+                                @if (isset($funcionario_id))
+                                    <form id="formpdf" target="_blank" action="{{ route('ponto.pdf', isset($funcionario_id)) }}" method="GET">
+                                        <input type="hidden" name="data_inicio" value="{{$data_inicio}}">
+                                        <input type="hidden" name="data_fim" value="{{$data_fim}}">
+                                        <input type="hidden" name="user_name" value="{{$user_name}}">
+                                        <input type="hidden" name="cargo" value="{{$cargo}}">
+                                        <input type="hidden" name="user_id" value="{{$funcionario_id}}">
+                                        
+                                        {{-- @foreach ($pontos as $ponto)
                                         <input type="hidden" name="data[]" value="{{$ponto->data}}">
                                         <input type="hidden" name="entrada[]" value="{{$ponto->entrada}}">
                                         <input type="hidden" name="entrada_almoco[]" value="{{$ponto->entrada_almoco}}">
@@ -29,11 +31,12 @@
                                         <input type="hidden" name="saida[]" value="{{$ponto->saida}}">
                                         <input type="hidden" name="horas_extras[]" value="{{$ponto->horas_extras}}">
                                         <input type="hidden" name="horas_negativas[]" value="{{$ponto->horas_negativas}}">
-                                    @endforeach --}}
-                                    @if (isset($_GET['data_inicio']))
+                                        @endforeach --}}
+                                        @if (isset($_GET['data_inicio']))
                                         <a href="#" class="btn btn-light" onclick='document.forms["formpdf"].submit()'><span class="text-danger"> <i class="fas fa-file-pdf fa-lg "></i> PDF </span></a>
-                                    @endif
-                                </form>
+                                        @endif
+                                    </form>
+                                @endif
                                 {{-- <div class="dropdown">
                                     <a class="btn btn-info btn-md dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fa-solid fa-file-export"></i> Gerar Relatório
