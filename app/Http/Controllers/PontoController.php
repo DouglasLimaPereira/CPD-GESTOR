@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PontosExport;
+use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use App\Models\Ponto;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class PontoController extends Controller
     {
         $this->anexo = $anexo;
         $this->hora_extra = $hora_extra;
-    } 
+    }
 
     /**
      * Display a listing of the resource.
@@ -54,12 +55,12 @@ class PontoController extends Controller
     {
         try {
             DB::beginTransaction();
-            
+
             $dados = $request->all();
-            
+
             $dados['user_id'] = auth()->user()->id;
             $dados['filial_id'] = session('filial')->id;
-            
+
             if (Ponto::where('data', $request['data'])->where('user_id', $dados['user_id'])->first()) {
                 return redirect()->back()->withInput()->with('info', 'Já existe Ponto cadastrado para este dia');
             }
@@ -72,21 +73,21 @@ class PontoController extends Controller
                     'comprovante1' => $comprovante1,
                 ]);
             }
-            
+
             if(isset($request->comprovante2) && $request->comprovante2->isValid()){
                 $comprovante2 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante2, $ponto->comprovante2);
                 $ponto->update([
                     'comprovante2' => $comprovante2,
                 ]);
             }
-            
+
             if(isset($request->comprovante3) && $request->comprovante3->isValid()){
                 $comprovante3 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante3, $ponto->comprovante3);
                 $ponto->update([
                     'comprovante3' => $comprovante3
                 ]);
             }
-            
+
             if(isset($request->comprovante4) && $request->comprovante4->isValid()){
                 $comprovante4 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante4, $ponto->comprovante4);
                 $ponto->update([
@@ -123,7 +124,7 @@ class PontoController extends Controller
                     'horas_negativas' => '00:00:00',
                 ]);
             }
-            
+
             DB::commit();
             return redirect()->route('ponto.index')->with('success', 'Ponto Cadastrado com Sucesso!');
 
@@ -156,30 +157,30 @@ class PontoController extends Controller
     {
         try {
             DB::beginTransaction();
-            
+
             $ponto->update($request->all());
-           
+
             if(isset($request->comprovante1) && $request->comprovante1->isValid()){
                 $comprovante1 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante1, $ponto->comprovante1);
                 $ponto->update([
                     'comprovante1' => $comprovante1,
                 ]);
             }
-            
+
             if(isset($request->comprovante2) && $request->comprovante2->isValid()){
                 $comprovante2 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante2, $ponto->comprovante2);
                 $ponto->update([
                     'comprovante2' => $comprovante2,
                 ]);
             }
-            
+
             if(isset($request->comprovante3) && $request->comprovante3->isValid()){
                 $comprovante3 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante3, $ponto->comprovante3);
                 $ponto->update([
                     'comprovante3' => $comprovante3
                 ]);
             }
-                        
+
             if(isset($request->comprovante4) && $request->comprovante4->isValid()){
                 $comprovante4 = $this->anexo->Store($ponto->id, auth()->user()->id, $request->comprovante4, $ponto->comprovante4);
                 $ponto->update([
@@ -254,7 +255,7 @@ class PontoController extends Controller
             #| Criando a data final a ser comparada |
             #----------------------------------------
             $data_fim = carbon::now()->toDateString();
-        
+
         }else {
             #----------------------------------------------------------------------------------------------------
             #| Caso não caia na condição acima pega o dia 21 do mês anterior e dia atual do mês a ser comparado|
@@ -264,7 +265,7 @@ class PontoController extends Controller
             #| Criando a data inícial a ser comparada |
             #------------------------------------------
             $data_inicio = carbon::now()->sub('1 month')->day(21)->toDateString();
-            
+
             #---------------------------------------
             #| Criando a data final a ser comparda |
             #---------------------------------------
@@ -281,7 +282,7 @@ class PontoController extends Controller
         #| Recebendo os registros do ponto que se enquadra entre as datas de inicio e fim  |
         #-----------------------------------------------------------------------------------
         $pontos = $user->pontos()->whereBetween('data', [$data_inicio, $data_fim])->orderBy('data', 'asc')->where('tipo', 1)->get();
-        
+
         #---------------------------------
         #| Iniciando a hora extra zerada |
         #---------------------------------
@@ -298,7 +299,7 @@ class PontoController extends Controller
                 $hora_extra->addHours($horas[0]);
                 $hora_extra->addMinutes($horas[1]);
                 $hora_extra->addSeconds($horas[2]);
-                
+
             } elseif ($ponto->horas_negativas != '00:00:00') {
                 $horas = explode(':', $ponto->horas_negativas);
                 $hora_negativas->addHours($horas[0]);
@@ -306,13 +307,13 @@ class PontoController extends Controller
                 $hora_negativas->addSeconds($horas[2]);
             }
         }
-        
+
         #---------------------------------------------
         #| Calculando horas negativas e horas extras |
         #---------------------------------------------
         // if ($hora_extra->toTimeString() != '00:00:00') {
             if ($hora_extra > $hora_negativas) {
-                $hora_n = explode(':', $hora_negativas->toTimeString());  
+                $hora_n = explode(':', $hora_negativas->toTimeString());
                 // if ($hora_n[0] != '00')
                     $hora_extra->subHours($hora_n[0]);
                 // if ($hora_n[1] != '00')
@@ -320,7 +321,7 @@ class PontoController extends Controller
                 // if ($hora_n[2] != '00')
                     $hora_extra->subSeconds($hora_n[2]);
             }else{
-                $hora_x = explode(':', $hora_extra->toTimeString());  
+                $hora_x = explode(':', $hora_extra->toTimeString());
                 // if ($hora_x[0] != '00')
                     $hora_negativas->subHours($hora_x[0]);
                     $hora_extra->subHours($hora_x[0]);
@@ -332,7 +333,7 @@ class PontoController extends Controller
                     $hora_extra->subSeconds($hora_x[2]);
             }
         // }
-    
+
         #------------------------------------
         #| Convertendo horários para String |
         #------------------------------------
@@ -346,57 +347,73 @@ class PontoController extends Controller
         return $horas = [$hora_extra, $hora_negativas];
     }
 
-    public function relatorio(Request $request) {
-        $user = auth()->user();
-        $pontos = '';
+    public function relatorio(Request $request, Funcionario $funcionario) {
+        // dd($funcionario);
+        $data_inicio = $request['data_inicio'];
+        $data_fim = $request['data_fim'];
+        $user = [];
+
+        if ($request['funcionario'] != '') {
+            dd($funcionario);
+            $user_id = $funcionario->id;
+            $user_name = $funcionario->nome;
+            $cargo = $funcionario->funcao->nome;
+        }else{
+            $user_id = auth()->user()->id;
+            $user_name = auth()->user()->funcionario->nome;
+            $cargo = auth()->user()->funcionario->funcao->nome;
+        }
+
+        $funcionarios = Funcionario::where('filial_id', session('filial')->id)->get();
+        $user_name = '';
         if (isset($request->data_inicio) && isset($request->data_fim)) {
-            $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user->id)->get();
+            $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user_id)->get();
+            $pontos = $pontos->whereBetween('data', [ $request->data_inicio, $request->data_fim ]);
         }else{
             $pontos = [];
         }
-        
-        if (isset($request->data_fim) && $request->data_inicio == '') {
-            return back()->with('info', 'Necessário informar a data inícial após informa a data final');
+
+        if (isset($request->data_inicio) && $request->data_inicio == '') {
+            return back()->with('info', 'Necessário informar a data inícial');
         } elseif (isset($request->data_fim) == '' && $request->data_inicio){
-            return back()->with('info', 'Necessário informar a data final após informa a data inicial');
-        }else {
+            return back()->with('info', 'Necessário informar a data final');
         }
 
-        if (isset($request->data_inicio) && isset($request->data_fim)) {
-            $pontos = $pontos->whereBetween('data', [ $request->data_inicio, $request->data_fim ]);
-        }
-        
-        if (isset($request->entrada)) {
-            $pontos = $pontos->where('entrada', $request->entrada);
-        }
-        if (isset($request->entrada_almoco)) {
-            $pontos = $pontos->where('entrada_almoco', $request->entrada_almoco);
-        }
-        if (isset($request->saida_almoco)) {
-            $pontos = $pontos->where('saida_almoco', $request->saida_almoco);
-        }
-        if (isset($request->saida)) {
-            $pontos = $pontos->where('saida', $request->saida);
-        }
+        //  elseif ((!isset($request->data_inicio)) && (!isset($request->data_fim))) {
+        //     return back()->with('info', 'Necessário informar as datas');
+        // }
+
+        // if (isset($request->entrada)) {
+        //     $pontos = $pontos->where('entrada', $request->entrada);
+        // }
+        // if (isset($request->entrada_almoco)) {
+        //     $pontos = $pontos->where('entrada_almoco', $request->entrada_almoco);
+        // }
+        // if (isset($request->saida_almoco)) {
+        //     $pontos = $pontos->where('saida_almoco', $request->saida_almoco);
+        // }
+        // if (isset($request->saida)) {
+        //     $pontos = $pontos->where('saida', $request->saida);
+        // }
 
         // $pontos = $pontos->get();
 
         // $pontos->map(function($item){
         //     $mes = explode('-', $item->data);
-            
+
         //     $item['mes'] = [];
 
         //     if (!(in_array($mes[1], $item['mes']))) {
         //         $item['mes'] = $mes[1];
-        //     } 
+        //     }
         // });
         // $meses = [1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril', 5 => 'mail', 6 => 'junho', 7 => 'julho', 8 => 'agosto', 9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'];
-        
 
-        return view('ponto._partials.relatorio', compact('pontos'));
+
+        return view('ponto._partials.relatorio', compact('pontos', 'funcionarios', 'user_id', 'data_inicio', 'data_fim', 'user_name', 'cargo'));
 
     }
-    
+
     public function pdf(Request $request){
         $pontos = $request->all();
         // dd($pontos);
@@ -408,10 +425,10 @@ class PontoController extends Controller
     }
 
     public function xlsx(Request $request){
-      
+
         $pontos = $request->all();
         $PontosXLSX = new PontosExport($pontos);
-        
+
         return Excel::download($PontosXLSX, 'Pontos-'.date('m').'-'.auth()->user()->name.'.xlsx');
 
     }

@@ -88,7 +88,7 @@ Route::group(['prefix'=>'ponto', 'as'=>'ponto.', 'middleware'=>['auth']], functi
     Route::get('{ponto}/destroy', [PontoController::class, 'destroy'])->name('destroy');
     Route::get('hora-extra', [PontoController::class, 'HoraExtra'])->name('hora-extra');
     Route::get('relatorio', [PontoController::class, 'relatorio'])->name('relatorio');
-    Route::get('pdf', [PontoController::class, 'pdf'])->name('pdf');
+    Route::get('{funcionario}/pdf', [PontoController::class, 'pdf'])->name('pdf');
     Route::get('xlsx', [PontoController::class, 'xlsx'])->name('xlsx');
     Route::get('csv', [PontoController::class, 'csv'])->name('csv');
 });
@@ -108,7 +108,7 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
     Route::get('/create', [FilialController::class, 'create'])->name('create');
     Route::post('/store', [FilialController::class, 'store'])->name('store');
     Route::put('/{filial}/update', [FilialController::class, 'update'])->name('update');
-    
+
     // FUNÇÃO
     Route::group(['prefix'=>'funcao', 'as' =>'funcao.', 'middleware'=>['auth']], function(){
         Route::get('/', [FuncaoController::class, 'index'])->name('index');

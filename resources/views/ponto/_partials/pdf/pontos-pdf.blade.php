@@ -21,52 +21,75 @@
         <img src="{{public_path('image/logo.png')}}" height="90" style="margin-left: 30%; margin-top: -7%;">
         <table class="table table-bordered table-sm table-striped mb-0">
           <thead class="">
-            <tr style="border: solid 1px black;">
-              <th colspan="2" style="border: solid 0.1px black;">Nome</th>
-              <th colspan="3" style="border: solid 0.1px black;">{{auth()->user()->name}}</th>
+            <tr>
+              <th colspan="2">Nome</th>
+              <th colspan="3">{{auth()->user()->name}}</th>
             </tr>
           </thead>
           <thead class="">
-            <tr style="border: solid 1px black;">
-              <th colspan="2" style="border: solid 0.1px black;">Cargo</th>
-              <th colspan="3" style="border: solid 0.1px black;">{{auth()->user()->cargo}}</th>
+            <tr>
+              <th colspan="2">Cargo</th>
+              <th colspan="3">{{auth()->user()->cargo}}</th>
             </tr>
           </thead>
           <thead class="">
-            <tr style="border: solid 1px black;">
-              <th colspan="2" style="border: solid 0.1px black;">Mês</th>
-              <th colspan="3" style="border: solid 0.1px black;">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
+            <tr>
+              <th colspan="2">Mês</th>
+              <th colspan="3">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
             </tr>
           </thead>
         </table>
-        <table class="table table-bordered table-sm table-striped">
-          <thead class="table-secondary">
-            <tr style="border: solid 1px black;">
-              <th style="border: solid 0.1px black;">Data</th>
-              <th style="border: solid 0.1px black;">Entrada</th>
-              <th style="border: solid 0.1px black;">Saida P/Almoço</th>
-              <th style="border: solid 0.1px black;">Volta P/Almoço</th>
-              <th style="border: solid 0.1px black;">Saída</th>
-            </tr>
-          </thead>
-          <tbody>
-              @foreach ($pontos['data'] as $key => $ponto)
-                <tr 
-                  @if ($pontos['horas_negativas'][$key] != '00:00:00')
-                    class="table-danger"
-                  @elseif ($pontos['horas_extras'][$key] != '00:00:00')
-                    class="table-success"
-                  @else
-                    class="table-secondary"
-                  @endif style="border: solid 1px black;">
-                      <td style="border: solid 0.1px black;"> {{ date('d/m/Y', strtotime($ponto)) }}</td>
-                      <td style="border: solid 0.1px black;"> {{$pontos['entrada'][$key]}} </td>
-                      <td style="border: solid 0.1px black;"> {{$pontos['entrada_almoco'][$key]}} </td>
-                      <td style="border: solid 0.1px black;"> {{$pontos['saida_almoco'][$key]}} </td>
-                      <td style="border: solid 0.1px black;"> {{$pontos['saida'][$key]}} </td>
+        <table id="table_datatable" style="width:100%" class="table table-bordered table-striped table-hover table-responsve-xl">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Entrada</th>
+                    <th>Saida P/Almoço</th>
+                    <th>Volta P/Almoço</th>
+                    <th>Saída</th>
+                    <th>Hora Extra / Negativa</th>
                 </tr>
-              @endforeach
-          </tbody>
+            </thead>
+            <tbody>
+                @forelse($pontos as $row)
+                    <tr>
+                        <td>{{date('d/m/Y', strtotime($row->data))}}</td>
+                        @if ($row->tipo === 2)
+                            <td colspan="4" class="text-center">
+                                {!!'<span class="badge badge-warning" style="width:100%;">DSR</span>'!!}
+                            </td>
+                        @elseif ($row->tipo === 3)
+                            <td colspan="4" class="text-center">
+                                {!!'<span class="badge badge-success" style="width:100%;">FOLGA FERIADO</span>'!!}
+                            </td>
+                        @elseif ($row->tipo === 4)
+                            <td colspan="4" class="text-center">
+                                {!!'<span class="badge badge-danger" style="width:100%;">DOMINGO</span>'!!}
+                            </td>
+                        @elseif ($row->tipo === 5)
+                            <td colspan="4" class="text-center">
+                                {!!'<span class="badge badge-info" style="width:100%;">ATESTADO MÉDICO</span>'!!}
+                            </td>
+                        @else
+                            <td>{{$row->entrada}}</td>
+                            <td>{{$row->entrada_almoco}}</td>
+                            <td>{{$row->saida_almoco}}</td>
+                            <td>{{$row->saida}}</td>
+                        @endif
+                        <td class="text-center">
+                            @if($row->horas_extras != '00:00:00')
+                                <h4><span class="badge badge-success" style="width:100%;">+ {{$row->horas_extras}}</span></h4>
+                            @elseif($row->horas_negativas != '00:00:00')
+                                <h4><span class="badge badge-danger" style="width:100%;">- {{$row->horas_negativas}}</span></h4>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                <tr>
+                    <td colspan="8"><span class="text-danger">Nenhum registro encontrado</span></td>
+                </tr>
+                @endforelse
+            </tbody>
         </table>
     </body>
 </html>

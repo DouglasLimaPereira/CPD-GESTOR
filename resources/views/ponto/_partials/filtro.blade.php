@@ -9,7 +9,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
@@ -28,12 +28,17 @@
 
                         <div class="col">
                             <div class="form-group">
-                                <label for="mes"><i class="fa-regular fa-clock"></i> HORA ENTRADA</label>
-                              <input type="time" class="form-control" name="entrada" id="entrada" value="{{ (isset($_GET['entrada'])) ? $_GET['entrada'] : '' }}">
+                                <label for="funcionario"><i class="fa-regular fa-clock"></i> FUNCIONÁRIO</label>
+                                <select class="form-control" name="funcionario" id="funcionario">
+                                    <option value="">Selecione...</option>
+                                    @foreach ($funcionarios as $func)
+                                        <option value="{{$func->id}}" {{ ($func->id == $user_id) ? "selected" : '' }}> {{$func->nome}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="form-group">
                                 <label for="mes"><i class="fa-regular fa-clock"></i> HORA ENTRADA K3</label>
                               <input type="time" class="form-control" name="entrada_almoco" id="entrada" value="{{ (isset($_GET['entrada_almoco'])) ? $_GET['entrada_almoco'] : '' }}">
@@ -52,7 +57,7 @@
                                 <label for="mes"><i class="fa-regular fa-clock"></i> HORA SAÍDA</label>
                               <input type="time" class="form-control" name="saida" id="entrada" value="{{ (isset($_GET['saida'])) ? $_GET['saida'] : '' }}">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="card-footer">
