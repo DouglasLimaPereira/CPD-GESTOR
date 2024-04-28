@@ -441,6 +441,7 @@ class PontoController extends Controller
     public function xlsx(Request $request){
 
         $pontos = $request->all();
+        
         $PontosXLSX = new PontosExport($pontos);
 
         return Excel::download($PontosXLSX, 'Pontos-'.date('m').'-'.auth()->user()->name.'.xlsx');
