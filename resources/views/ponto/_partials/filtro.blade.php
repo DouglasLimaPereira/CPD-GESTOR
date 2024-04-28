@@ -12,7 +12,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        {{--  <div class="col">
                             <div class="form-group">
                                 <label for="mes"><i class="fa-solid fa-calendar"></i> DATA INICIAL</label>
                                 <input type="date" class="form-control" name="data_inicio" id="" value="{{ (isset($_GET['data_inicio'])) ? $_GET['data_inicio'] : '' }}">
@@ -24,11 +24,23 @@
                                 <label for="mes"><i class="fa-solid fa-calendar"></i> DATA FINAL</label>
                                 <input type="date" class="form-control" name="data_fim" id="" value="{{ (isset($_GET['data_fim'])) ? $_GET['data_fim'] : '' }}">
                             </div>
+                        </div>  --}}
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="mes"><i class="fa-regular fa-calendar"></i> MÊS</label>
+                                <select class="form-control" name="mes" id="mes">
+                                    <option value="">Selecione...</option>
+                                    @foreach ($meses as $key => $value)
+                                        <option value="{{$key}}" {{ (isset($mes) && $mes == $key) ? "selected" : '' }}> {{$value}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="col">
                             <div class="form-group">
-                                <label for="funcionario"><i class="fa-regular fa-clock"></i> FUNCIONÁRIO</label>
+                                <label for="funcionario"><i class="fa-regular fa-user"></i> FUNCIONÁRIO</label>
                                 <select class="form-control" name="funcionario" id="funcionario">
                                     <option value="">Selecione...</option>
                                     @foreach ($funcionarios as $func)

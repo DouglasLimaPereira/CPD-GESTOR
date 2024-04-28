@@ -35,7 +35,18 @@
           <thead class="">
             <tr>
               <th colspan="2">Mês</th>
-              <th colspan="3">{{ date("F", mktime(0, 0, 0, date('m'), 10)) }}</th>
+              <th colspan="3">{{ $mes }}</th>
+            </tr>
+          </thead>
+          <thead class="">
+            <tr>
+              @if ($hora_extra > $hora_negativas)
+              <th colspan="2">Horas positivas</th>
+              <th colspan="3">{{ $hora_extra }}</th>
+              @else
+              <th colspan="2">Horas negativas</th>
+              <th colspan="3">{{ $hora_negativas }}</th>
+              @endif
             </tr>
           </thead>
         </table>

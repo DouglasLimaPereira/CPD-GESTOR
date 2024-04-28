@@ -316,21 +316,24 @@ class PontoController extends Controller
                 $hora_n = explode(':', $hora_negativas->toTimeString());
                 // if ($hora_n[0] != '00')
                     $hora_extra->subHours($hora_n[0]);
+                    // $hora_negativas->subHours($hora_n[0]);
                 // if ($hora_n[1] != '00')
                     $hora_extra->subMinutes($hora_n[1]);
+                    // $hora_negativas->subHours($hora_n[1]);
                 // if ($hora_n[2] != '00')
                     $hora_extra->subSeconds($hora_n[2]);
+                    // $hora_negativas->subHours($hora_n[2]);
             }else{
                 $hora_x = explode(':', $hora_extra->toTimeString());
                 // if ($hora_x[0] != '00')
                     $hora_negativas->subHours($hora_x[0]);
-                    $hora_extra->subHours($hora_x[0]);
+                    // $hora_extra->subHours($hora_x[0]);
                 // if ($hora_x[1] != '00')
                     $hora_negativas->subMinutes($hora_x[1]);
-                    $hora_extra->subMinutes($hora_x[1]);
+                    // $hora_extra->subMinutes($hora_x[1]);
                 // if ($hora_x[2] != '00')
                     $hora_negativas->subSeconds($hora_x[2]);
-                    $hora_extra->subSeconds($hora_x[2]);
+                    // $hora_extra->subSeconds($hora_x[2]);
             }
         // }
 
@@ -348,9 +351,16 @@ class PontoController extends Controller
     }
 
     public function relatorio(Request $request) {
+
+        if ($request->mes <= 9) {
+            $request['mes'] = "0{$request->mes}";
+        }
+
+        $data_inicio = date("Y-{$request['mes']}-01");
+        $data_fim = date("Y-{$request['mes']}-t");
+        $mes = $request->mes;
+        
         $funcionario_id = $request['funcionario'];
-        $data_inicio = $request['data_inicio'];
-        $data_fim = $request['data_fim'];
         $user = [];
         $user_name = '';
 
@@ -367,18 +377,24 @@ class PontoController extends Controller
         }
 
         $funcionarios = Funcionario::where('filial_id', session('filial')->id)->get();
-        if (isset($request->data_inicio) && isset($request->data_fim)) {
+
+        if (isset($request->mes)) {
+            // dd($data_inicio, $data_fim);
             $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user_id)->get();
-            $pontos = $pontos->whereBetween('data', [ $request->data_inicio, $request->data_fim ]);
+            $pontos = $pontos->whereBetween('data', [ $data_inicio, $data_fim ]);
+            // dd($pontos);
         }else{
             $pontos = [];
         }
 
-        if (isset($request->data_inicio) && $request->data_inicio == '') {
-            return back()->with('info', 'Necessário informar a data inícial');
-        } elseif (isset($request->data_fim) == '' && $request->data_inicio){
-            return back()->with('info', 'Necessário informar a data final');
-        }
+        if (isset($request->mes) == '') {
+            return back()->with('info', 'Necessário informar o mês');
+        } 
+        // elseif (isset($request->data_fim) == '' && $request->data_inicio){
+        //     return back()->with('info', 'Necessário informar a data final');
+        // } elseif (isset($request->funcionario) && $request->data_inicio == '' && $request->data_fim == ''){
+        //     return back()->with('info', 'Necessário informar as datas');
+        // }
 
         //  elseif ((!isset($request->data_inicio)) && (!isset($request->data_fim))) {
         //     return back()->with('info', 'Necessário informar as datas');
@@ -408,9 +424,8 @@ class PontoController extends Controller
         //         $item['mes'] = $mes[1];
         //     }
         // });
-        // $meses = [1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril', 5 => 'mail', 6 => 'junho', 7 => 'julho', 8 => 'agosto', 9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'];
-
-
+        $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Mail', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
+        // dd($meses);
         return view('ponto._partials.relatorio', compact(
             'pontos',
             'funcionarios',
@@ -419,20 +434,89 @@ class PontoController extends Controller
             'data_fim',
             'user_name',
             'cargo',
-            'funcionario_id'
+            'funcionario_id',
+            'meses',
+            'mes'
         ));
 
     }
 
     public function pdf(Request $request){
-        
+        $mes = '';
+        $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Mail', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
+        foreach ($meses as $key => $value) {
+            if ($request->mes == $key) {
+                $mes = $value;
+            }
+        }
+
         $pontos = Ponto::whereBetween('data', [ $request->data_inicio, $request->data_fim ])->where('user_id', $request->user_id)->get();
+
+        #---------------------------------
+        #| Iniciando a hora extra zerada |
+        #---------------------------------
+        $hora_extra = carbon::create('00','00','00');
+
+        #------------------------------------
+        #| Iniciando a hora negativa zerada |
+        #------------------------------------
+        $hora_negativas = carbon::create('00','00','00');
+        
+        foreach ($pontos as $key => $ponto) {
+            if ($ponto->horas_extras != '00:00:00') {
+                $horas = explode(':', $ponto->horas_extras);
+                $hora_extra->addHours($horas[0]);
+                $hora_extra->addMinutes($horas[1]);
+                $hora_extra->addSeconds($horas[2]);
+
+            } elseif ($ponto->horas_negativas != '00:00:00') {
+                $horas = explode(':', $ponto->horas_negativas);
+                $hora_negativas->addHours($horas[0]);
+                $hora_negativas->addMinutes($horas[1]);
+                $hora_negativas->addSeconds($horas[2]);
+            }
+        }
+
+        #---------------------------------------------
+        #| Calculando horas negativas e horas extras |
+        #---------------------------------------------
+        if ($hora_extra > $hora_negativas) {
+            $hora_n = explode(':', $hora_negativas->toTimeString());
+            // if ($hora_n[0] != '00')
+                $hora_extra->subHours($hora_n[0]);
+                // $hora_negativas->subHours($hora_n[0]);
+            // if ($hora_n[1] != '00')
+                $hora_extra->subMinutes($hora_n[1]);
+                // $hora_negativas->subHours($hora_n[1]);
+            // if ($hora_n[2] != '00')
+                $hora_extra->subSeconds($hora_n[2]);
+                // $hora_negativas->subHours($hora_n[2]);
+        }else{
+            $hora_x = explode(':', $hora_extra->toTimeString());
+            // if ($hora_x[0] != '00')
+                $hora_negativas->subHours($hora_x[0]);
+                // $hora_extra->subHours($hora_x[0]);
+            // if ($hora_x[1] != '00')
+                $hora_negativas->subMinutes($hora_x[1]);
+                // $hora_extra->subMinutes($hora_x[1]);
+            // if ($hora_x[2] != '00')
+                $hora_negativas->subSeconds($hora_x[2]);
+                // $hora_extra->subSeconds($hora_x[2]);
+        }
+
+        #------------------------------------
+        #| Convertendo horários para String |
+        #------------------------------------
+        $hora_extra = $hora_extra->toTimeString();
+        $hora_negativas = $hora_negativas->toTimeString();
+        dd($hora_extra, $hora_negativas);
+        
         $user_name = $request['user_name'];
         $cargo = $request['cargo'];
         
         // dd($request->all());
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos', 'user_name', 'cargo'))
+        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos', 'user_name', 'cargo', 'mes', 'hora_extra', 'hora_negativas'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         // ->download
         ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');
