@@ -352,14 +352,22 @@ class PontoController extends Controller
 
     public function relatorio(Request $request) {
 
+        $nextmes = intval($request->mes + 1);
+        
         if ($request->mes <= 9) {
             $request['mes'] = "0{$request->mes}";
         }
+        if ($nextmes <= 9) {
+            $request['next_mes'] = "0{$nextmes}";
+        }
 
-        $data_inicio = date("Y-{$request['mes']}-01");
-        $data_fim = date("Y-{$request['mes']}-t");
+        $data_inicio = carbon::createFromDate("2024-{$request['mes']}-21")->modify('-1 month')->toDateString();
+    
+        $data_fim = carbon::createFromDate("2024-{$request['mes']}-20")->toDateString();
+
+        // dd($request->next_mes,$data_inicio, $data_fim);
         $mes = $request->mes;
-        
+        $next_mes = $request->next_mes;
         $funcionario_id = $request['funcionario'];
         $user = [];
         $user_name = '';
@@ -424,7 +432,7 @@ class PontoController extends Controller
         //         $item['mes'] = $mes[1];
         //     }
         // });
-        $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Mail', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
+        $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
         // dd($meses);
         return view('ponto._partials.relatorio', compact(
             'pontos',
@@ -436,21 +444,27 @@ class PontoController extends Controller
             'cargo',
             'funcionario_id',
             'meses',
-            'mes'
+            'mes',
+            'next_mes'
         ));
 
     }
 
     public function pdf(Request $request){
         $mes = '';
-        $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Mail', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
+        $next_mes = '';
+        
+        $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
         foreach ($meses as $key => $value) {
             if ($request->mes == $key) {
                 $mes = $value;
             }
+            if ($request->next_mes == $key) {
+                $next_mes = $value;
+            }
         }
 
-        $pontos = Ponto::whereBetween('data', [ $request->data_inicio, $request->data_fim ])->where('user_id', $request->user_id)->get();
+        $pontos = Ponto::whereBetween('data', [ $request->data_inicio, $request->data_fim ])->where('user_id', $request->user_id)->orderby('data','asc')->get();
 
         #---------------------------------
         #| Iniciando a hora extra zerada |
@@ -509,14 +523,14 @@ class PontoController extends Controller
         #------------------------------------
         $hora_extra = $hora_extra->toTimeString();
         $hora_negativas = $hora_negativas->toTimeString();
-        dd($hora_extra, $hora_negativas);
+        // dd($hora_extra, $hora_negativas);
         
         $user_name = $request['user_name'];
         $cargo = $request['cargo'];
         
         // dd($request->all());
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos', 'user_name', 'cargo', 'mes', 'hora_extra', 'hora_negativas'))
+        return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos', 'user_name', 'cargo', 'mes', 'next_mes', 'hora_extra', 'hora_negativas'))
         // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
         // ->download
         ->stream('pontos'.date('m').'-'.auth()->user()->name.'.pdf');

@@ -49,6 +49,12 @@
               @endif
             </tr>
           </thead>
+          <thead class="">
+            <tr>
+              <th colspan="2">Horas Trabalhadas</th>
+              <th colspan="3">{{ $mes }}</th>
+            </tr>
+          </thead>
         </table>
         <table class="table table-striped table-hover table-sm">
           <thead>

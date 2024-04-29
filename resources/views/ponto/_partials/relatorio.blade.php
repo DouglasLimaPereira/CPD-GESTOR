@@ -24,6 +24,7 @@
                                         <input type="hidden" name="cargo" value="{{$cargo}}">
                                         <input type="hidden" name="user_id" value="{{$funcionario_id}}">
                                         <input type="hidden" name="mes" value="{{$mes}}">
+                                        <input type="hidden" name="next_mes" value="{{$next_mes}}">
                                         
                                         {{-- @foreach ($pontos as $ponto)
                                         <input type="hidden" name="data[]" value="{{$ponto->data}}">
