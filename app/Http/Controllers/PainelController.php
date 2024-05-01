@@ -47,7 +47,7 @@ class PainelController extends Controller
         #------------------------------
         #| Recebendo o usuario logado |
         #------------------------------
-        $user = auth()->user(); 
+        $user = auth()->user()->funcionario; 
 
         #-----------------------------------------------------------------------------------
         #| Recebendo os registros do ponto onde se enquadra entre as datas de inicio e fim |

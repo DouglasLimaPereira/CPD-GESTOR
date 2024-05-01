@@ -27,9 +27,15 @@ class Funcionario extends Model
         'data_demissao',
     ];
 
+
     public function usuario()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function pontos()
+    {
+        return $this->hasMany(Ponto::class);
     }
 
     public function funcao()

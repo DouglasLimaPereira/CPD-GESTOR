@@ -12,7 +12,7 @@ class Ponto extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id',
+        'funcionario_id',
         'filial_id',
         'tipo',
         'data',
@@ -33,7 +33,7 @@ class Ponto extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function funcionario()
     {
         return $this->belongsTo(User::class);
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pontos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('funcionario_id')->constrained('funcionarios');
             $table->date('data');
             $table->time('entrada')->nullable();
             $table->string('comprovante1')->nullable();

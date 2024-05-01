@@ -33,11 +33,14 @@ class PontoController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $pontos = $user->pontos()->orderBy('data', 'desc')->paginate(15);
+        $funcionario = auth()->user()->funcionario;
+        // dd($funcionario);
+        $pontos = $funcionario->pontos()->orderBy('data', 'desc')->paginate(15);
+        // ->orderBy('data', 'desc')->paginate(15);
+        // dd($pontos);
         $horas = $this->HoraExtra();
-
-        return view('ponto.index', compact('pontos', 'user', 'horas'));
+        // dd($pontos);
+        return view('ponto.index', compact('pontos', 'funcionario', 'horas'));
     }
 
     /**
@@ -58,10 +61,10 @@ class PontoController extends Controller
 
             $dados = $request->all();
 
-            $dados['user_id'] = auth()->user()->id;
+            $dados['funcionario_id'] = auth()->user()->funcionario->id;
             $dados['filial_id'] = session('filial')->id;
-
-            if (Ponto::where('data', $request['data'])->where('user_id', $dados['user_id'])->first()) {
+            // dd($dados['funcionario_id']);
+            if (Ponto::where('data', $request['data'])->where('funcionario_id', $dados['funcionario_id'])->first()) {
                 return redirect()->back()->withInput()->with('info', 'Já existe Ponto cadastrado para este dia');
             }
 
@@ -130,6 +133,7 @@ class PontoController extends Controller
 
         } catch (Exception $e) {
             DB::rollBack();
+            dd($e->getMessage());
             return redirect()->back()->withInput()->with('info', 'Erro ao Cadastrar Ponto');
         }
     }
@@ -276,7 +280,7 @@ class PontoController extends Controller
         #------------------------------
         #| Recebendo o usuario logado |
         #------------------------------
-        $user = auth()->user();
+        $user = auth()->user()->funcionario;
 
         #-----------------------------------------------------------------------------------
         #| Recebendo os registros do ponto que se enquadra entre as datas de inicio e fim  |
@@ -388,7 +392,7 @@ class PontoController extends Controller
 
         if (isset($request->mes)) {
             // dd($data_inicio, $data_fim);
-            $pontos = Ponto::orderBy('data', 'asc')->where('user_id', $user_id)->get();
+            $pontos = Ponto::orderBy('data', 'asc')->where('funcionario_id', $user_id)->get();
             $pontos = $pontos->whereBetween('data', [ $data_inicio, $data_fim ]);
             // dd($pontos);
         }else{

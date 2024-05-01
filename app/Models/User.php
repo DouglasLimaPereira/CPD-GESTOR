@@ -61,10 +61,10 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pontos():HasMany
-    {
-        return $this->hasMany(Ponto::class);
-    }
+    // public function pontos():HasMany
+    // {
+    //     return $this->hasMany(Ponto::class);
+    // }
 
     public function funcionario()
     {
