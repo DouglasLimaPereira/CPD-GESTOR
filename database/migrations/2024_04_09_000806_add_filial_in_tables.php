@@ -13,15 +13,16 @@ class AddFilialInTables extends Migration
      */
     public function up()
     {
-        // Schema::table('pontos', function (Blueprint $table) {
-        //     $table->foreignId('filial_id')->constrained('filiais')->after('id');
-        // });
-        // Schema::table('funcionarios', function (Blueprint $table) {
-        //     $table->foreignId('filial_id')->constrained('filiais')->after('id');
-        // });
-        // Schema::table('escalas', function (Blueprint $table) {
-        //     $table->foreignId('filial_id')->constrained('filiais')->after('id');
-        // });
+        Schema::table('pontos', function (Blueprint $table) {
+            $table->foreignId('filial_id')->constrained('filiais')->after('id');
+            $table->foreignId('funcionario_id')->constrained('funcionarios')->after('id');
+        });
+        Schema::table('funcionarios', function (Blueprint $table) {
+            $table->foreignId('filial_id')->constrained('filiais')->after('id');
+        });
+        Schema::table('escalas', function (Blueprint $table) {
+            $table->foreignId('filial_id')->constrained('filiais')->after('id');
+        });
     }
 
     /**

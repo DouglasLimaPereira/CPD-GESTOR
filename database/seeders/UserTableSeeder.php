@@ -24,15 +24,16 @@ class UserTableSeeder extends Seeder
             'nome' => 'Auxiliar de CPD',
             'descricao' => 'tecnologia da computacao',
         ]);
-        Funcionario::create([
-            'user_id' => 1,
-            'funcao_id' => 1,
-            'nome' => 'Douglas Lima',
-            'matricula' => '119542',
-            'telefone' => '85992274665',
-            'data_admissao' => '2023-03-09',
-            'situacao_admissional' => 1,
-            'superadmin' => 1,
-        ]);
+        // Funcionario::create([
+        //     'filial_id' => 1,
+        //     'user_id' => 1,
+        //     'funcao_id' => 1,
+        //     'nome' => 'Douglas Lima',
+        //     'matricula' => '119542',
+        //     'telefone' => '85992274665',
+        //     'data_admissao' => '2023-03-09',
+        //     'situacao_admissional' => 1,
+        //     'superadmin' => 1,
+        // ]);
     }
 }

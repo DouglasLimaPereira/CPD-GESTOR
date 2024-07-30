@@ -44,6 +44,7 @@ class FilialTableSeeder extends Seeder
         DB::table('funcionarios')->insert([
             'filial_id' => 1,
             'user_id' => 1,
+            'funcao_id' => 1,
             'superadmin' => 1,
             'data_admissao' => '2020-01-01',
             'funcao_id' => 1,
