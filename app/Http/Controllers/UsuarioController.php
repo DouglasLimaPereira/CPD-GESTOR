@@ -48,7 +48,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-        
+
         try {
             //Registrando na tabela de usuários
             try{
@@ -58,12 +58,12 @@ class UsuarioController extends Controller
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
                 ]);
-                
+
             }catch(\Exception $e) {
                 return back()->with('error', $e->getMessage());
                 return back()->withErrors('Error 000011: Erro ao tentar salvar o usuário.');
             }
-            
+
             #Registrando na tabela funcionarios
             try{
                 $funcionario = $usuario->funcionario()->firstWhere('user_id', $usuario->id);
@@ -87,29 +87,29 @@ class UsuarioController extends Controller
                         'imagem' => $imagem,
                     ]);
                 }
-                
+
             }catch(\Exception $e){
                 dd($e->getMessage());
                 return back()->withErrors('Error 000012: Erro ao tentar salvar Funcionário.');
             }
-            
+
             //Realizando o vínculo entre Filial e usuário
             if(!($usuario->filiais()->where('filial_id', session()->get('filial')->id)->where('user_id', $usuario->id)->first())){
-                
+
                 $filial_user = $usuario->filiais()->attach($request->filial, ['superadmin'=>$request['superadmin']]);
-                
+
             }
-            
+
             DB::commit();
-            
+
             return redirect()->back()->with('success', 'Usuário cadastrado com sucesso');
-            
+
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors('Error 000014: Erro ao tentar realizar o cadastro do usuário.');
         }
     }
-    
+
     public function edit(User $usuario)
     {
         $filiais = Filial::all();
@@ -125,18 +125,18 @@ class UsuarioController extends Controller
             //Checa se o email informado já existe
             if(User::where('id', '!=', $usuario->id)->where('email', $request->email)->first())
                 return back()->with('info', 'O Email informado já está cadastrado');
-    
+
             DB::beginTransaction();
-    
+
             // ATUALIZANDO OS DADOS DA TABELA USERS
-    
+
             if ($request->password != '')
             {
                 $usuario->update([
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
                 ]);
-    
+
                 $usuario->funcionario->update([
                     'user_id' => $usuario->id,
                     'funcao_id' => $request->funcao_id,
@@ -145,15 +145,15 @@ class UsuarioController extends Controller
                     'telefone' => $request->telefone,
                     'situacao_admissional' => $request->situacao_admissional,
                 ]);
-    
+
             } else{
                 $usuario->update([
                     'email' => $request->email,
                 ]);
-    
+
                 $usuario->funcionario->update([
                     'user_id' => $usuario->id,
-                    'funcao_id' => $request->cargo,
+                    'funcao_id' => $request->funcao_id,
                     'matricula' => $request->matricula,
                     'nome' => $request->nome,
                     'telefone' => $request->telefone,
@@ -161,16 +161,16 @@ class UsuarioController extends Controller
                     'situacao_admissional' => $request->situacao_admissional,
                 ]);
             }
-    
+
             if(isset($request->imagem) && $request->imagem->isValid()){
                 $imagem = $this->anexo->user_store(auth()->user()->id, $request->imagem, $usuario->funcionario->imagem);
                 $usuario->funcionario->update([
                     'imagem' => $imagem,
                 ]);
             }
-    
+
             DB::commit();
-    
+
             return redirect()->route('usuario.perfil', $usuario->id)->with('success', 'Usuário atualizado com sucesso!');
         } catch (\Throwable $th) {
             dd($th->getMessage());
