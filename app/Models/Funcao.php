@@ -12,6 +12,7 @@ class Funcao extends Model
     protected $table = 'funcoes';
 
     protected $fillable = [
+        'filial_id',
         'nome',
         'descricao',
     ];
@@ -24,5 +25,10 @@ class Funcao extends Model
     public function funcaoFuncionario()
     {
         return $this->hasOne(funcionario::class);
+    }
+
+    public function filiais()
+    {
+        return $this->hasMany(Filial::class);
     }
 }

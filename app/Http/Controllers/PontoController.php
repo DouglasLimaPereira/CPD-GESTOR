@@ -357,7 +357,7 @@ class PontoController extends Controller
     public function relatorio(Request $request) {
 
         $nextmes = intval($request->mes + 1);
-        
+
         if ($request->mes <= 9) {
             $request['mes'] = "0{$request->mes}";
         }
@@ -366,7 +366,7 @@ class PontoController extends Controller
         }
 
         $data_inicio = carbon::createFromDate("2024-{$request['mes']}-21")->modify('-1 month')->toDateString();
-    
+
         $data_fim = carbon::createFromDate("2024-{$request['mes']}-20")->toDateString();
 
         // dd($request->next_mes,$data_inicio, $data_fim);
@@ -401,7 +401,7 @@ class PontoController extends Controller
 
         if (isset($request->mes) == '') {
             return back()->with('info', 'Necessário informar o mês');
-        } 
+        }
         // elseif (isset($request->data_fim) == '' && $request->data_inicio){
         //     return back()->with('info', 'Necessário informar a data final');
         // } elseif (isset($request->funcionario) && $request->data_inicio == '' && $request->data_fim == ''){
@@ -457,7 +457,7 @@ class PontoController extends Controller
     public function pdf(Request $request){
         $mes = '';
         $next_mes = '';
-        
+
         $meses = [1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
         foreach ($meses as $key => $value) {
             if ($request->mes == $key) {
@@ -468,7 +468,7 @@ class PontoController extends Controller
             }
         }
 
-        $pontos = Ponto::whereBetween('data', [ $request->data_inicio, $request->data_fim ])->where('user_id', $request->user_id)->orderby('data','asc')->get();
+        $pontos = Ponto::whereBetween('data', [ $request->data_inicio, $request->data_fim ])->where('funcionario_id', $request->user_id)->orderby('data','asc')->get();
 
         #---------------------------------
         #| Iniciando a hora extra zerada |
@@ -479,7 +479,7 @@ class PontoController extends Controller
         #| Iniciando a hora negativa zerada |
         #------------------------------------
         $hora_negativas = carbon::create('00','00','00');
-        
+
         foreach ($pontos as $key => $ponto) {
             if ($ponto->horas_extras != '00:00:00') {
                 $horas = explode(':', $ponto->horas_extras);
@@ -528,10 +528,10 @@ class PontoController extends Controller
         $hora_extra = $hora_extra->toTimeString();
         $hora_negativas = $hora_negativas->toTimeString();
         // dd($hora_extra, $hora_negativas);
-        
+
         $user_name = $request['user_name'];
         $cargo = $request['cargo'];
-        
+
         // dd($request->all());
         // return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
         return FacadePdf::loadView('ponto._partials.pdf.pontos-pdf', compact('pontos', 'user_name', 'cargo', 'mes', 'next_mes', 'hora_extra', 'hora_negativas'))
@@ -543,7 +543,7 @@ class PontoController extends Controller
     public function xlsx(Request $request){
 
         $pontos = $request->all();
-        
+
         $PontosXLSX = new PontosExport($pontos);
 
         return Excel::download($PontosXLSX, 'Pontos-'.date('m').'-'.auth()->user()->name.'.xlsx');

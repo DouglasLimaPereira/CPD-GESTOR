@@ -20,10 +20,7 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('1234567890'),
         ]);
-        Funcao::create([
-            'nome' => 'Auxiliar de CPD',
-            'descricao' => 'tecnologia da computacao',
-        ]);
+        
         // Funcionario::create([
         //     'filial_id' => 1,
         //     'user_id' => 1,

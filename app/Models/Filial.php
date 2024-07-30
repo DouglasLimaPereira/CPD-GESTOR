@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Filial extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'filiais';
 
     protected $fillable = [
@@ -36,7 +36,7 @@ class Filial extends Model
     }
     public function funcoes()
     {
-        return $this->hasMany(Funcao::class);
+        return $this->belongsToMany(Funcao::class);
     }
-    
+
 }

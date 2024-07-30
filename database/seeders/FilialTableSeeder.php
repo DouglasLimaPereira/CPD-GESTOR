@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Filial;
+use App\Models\Funcao;
 
 class FilialTableSeeder extends Seeder
 {
@@ -33,6 +34,12 @@ class FilialTableSeeder extends Seeder
             'site' => 'https://www.grupomateus.com.br/',
             'telefone' => '',
             'uf' => 'CE',
+        ]);
+
+        Funcao::create([
+            'filial_id' => 1,
+            'nome' => 'Auxiliar de CPD',
+            'descricao' => 'tecnologia da computacao',
         ]);
 
         DB::table('filial_user')->insert([

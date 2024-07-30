@@ -14,6 +14,7 @@ class CreateFuncoesTable extends Migration
     public function up()
     {
         Schema::create('funcoes', function (Blueprint $table) {
+            $table->foreignId('filial_id')->constrained('filiais');
             $table->id();
             $table->string('nome');
             $table->text('descricao');
