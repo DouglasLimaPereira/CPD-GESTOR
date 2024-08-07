@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Módulos - Itens')
+@section('title', 'Item')
 
-@section('page-title', 'Módulos - Itens')
+@section('page-title', 'Item')
 
 @section('content')
 
@@ -21,9 +21,9 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="callout callout-info">
-                        <h5>Módulo: {{$modulo->nome}}</h5>
-                    </div>
+                    {{--  <div class="callout callout-info">
+                        <h5>Item: {{$modulo->nome}}</h5>
+                    </div>  --}}
                     @include('itens._form')
                 </div>
             </div>

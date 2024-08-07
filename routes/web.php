@@ -10,9 +10,11 @@ use App\Http\Controllers\{
     UsuarioController,
     ErrositefController,
     EscalaController,
+    EstoqueController,
     FilialController,
     FuncaoController,
     FuncionarioController,
+    ItemController,
     PontoController,
     SalarioController
 };
@@ -125,6 +127,26 @@ Route::group(['prefix'=>'filial', 'as'=>'filial.', 'middleware'=>['auth']], func
         Route::get('funcao/{funcao}/create', [SalarioController::class, 'create'])->name('create');
         Route::post('funcao/{funcao}/store', [SalarioController::class, 'store'])->name('store');
         Route::put('/funcao/{funcao}/salario/{salario}/update', [SalarioController::class, 'update'])->name('update');
+    });
+    
+    // Estoque
+    Route::group(['prefix'=>'estoque', 'as' =>'estoque.', 'middleware'=>['auth']], function(){
+        Route::get('/', [EstoqueController::class, 'index'])->name('index');
+        Route::get('{estoque}/edit', [EstoqueController::class, 'edit'])->name('edit');
+        Route::get('create', [EstoqueController::class, 'create'])->name('create');
+        Route::post('store', [EstoqueController::class, 'store'])->name('store');
+        Route::put('{estoque}/update', [EstoqueController::class, 'update'])->name('update');
+    });
+    
+    // Itens
+    Route::group(['prefix'=>'item', 'as' =>'item.', 'middleware'=>['auth']], function(){
+        Route::get('/', [ItemController::class, 'index'])->name('index');
+        Route::get('{item}/edit', [ItemController::class, 'edit'])->name('edit');
+        Route::get('create', [ItemController::class, 'create'])->name('create');
+        Route::post('store', [ItemController::class, 'store'])->name('store');
+        Route::put('{item}/update', [ItemController::class, 'update'])->name('update');
+        Route::get('{item}/destroy', [ItemController::class, 'destroy'])->name('destroy');
+
     });
 });
 

@@ -88,11 +88,17 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('filial.item.index') }}" class="nav-link">
+          <i class="nav-icon fa-solid fa-boxes-packing"></i>
+            <p>Item</p>
+          </a>
+        </li>
+        {{--  <li class="nav-item">
+          <a href="{{ route('filial.itens.index') }}" class="nav-link">
           <i class="fa-solid fa-boxes-packing"></i>
             <p>Estoque</p>
           </a>
-        </li>
+        </li>  --}}
       </ul>
     </li>
 

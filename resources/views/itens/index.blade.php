@@ -1,8 +1,8 @@
 @extends('layout.app')
 
-@section('title', 'Módulos - Itens')
+@section('title', 'Itens')
 
-@section('page-title', 'Módulos - Itens')
+@section('page-title', 'Itens')
 
 @section('content')
 
@@ -22,11 +22,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <div class="callout callout-info">
-                    <h5>Módulo: {{$modulo->nome}}</h5>
-                </div>
-                
-                @include('partials.datatables.buttons')
+                {{--  @include('partials.datatables.buttons')  --}}
                     <table id="table-datatable" class="table table-bordered table-striped table-hover table-responsve-md dataTable dtr-inline">
                     <thead>
                         <tr>
@@ -37,24 +33,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($modulo->itens as $row)
+                        @forelse ($itens as $row)
                             <tr>
                                 <td>{{$row->id}}</td>
                                 <td>{{$row->nome}}</td>
-                                <td>{!!($row->active) ? '<span class="badge bg-primary">SIM</span>' : '<span class="badge bg-secondary">NÃO</span>' !!}</td>
+                                <td>{{$row->marca}}</td>
+                                <td>{{ number_format($row->preco, 2, ',', '.')}}</td>
+                                {{--  <td>{!!($row->active) ? '<span class="badge bg-primary">SIM</span>' : '<span class="badge bg-secondary">NÃO</span>' !!}</td>  --}}
                                 <td class="td-1p">
                                     <div class="dropdown">
                                         <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                            <a href="{{route('modulos.itens.edit', [$modulo->id, $row->id])}}" class="dropdown-item"><i class="far fa-edit"></i> Editar</a>
+                                            <a href="{{route('filial.item.edit', $row->id)}}" class="dropdown-item"><i class="far fa-edit"></i> Editar</a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="{{route('modulos.itens.subitens.index', [$modulo->id, $row->id])}}" class="dropdown-item"><i class="fas fa-list"></i> Subitens</a>
+                                            {{--  <a href="{{route('filial.item.subitens.index', $row->id)}}" class="dropdown-item"><i class="fas fa-list"></i> Subitens</a>  --}}
                                             <div class="dropdown-divider"></div>
                                             {{-- <a href="{{route('modulos.itens.permissoes.index', [$modulo->id, $row->id])}}" class="dropdown-item"><i class="fas fa-check-double"></i> Permissões</a>
                                             <div class="dropdown-divider"></div> --}}
-                                            <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$modulo->id}}, {{$row->id}})"><i class="fas fa-trash"></i> Remover</a>
+                                            <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}})"><i class="fas fa-trash"></i> Remover</a>
                                         </div>
                                       </div>
                                 </td>
@@ -70,9 +68,9 @@
                 <div class="d-flex">
                     {{-- {!! $company-->links() !!} --}}
                 </div>
-                <div class="col-md-12">
+                {{--  <div class="col-md-12">
                     <a href="{{url()->previous()}}" class="btn btn-outline-secondary"><i class="fas fa-undo"></i> Voltar</a>
-                </div>
+                </div>  --}}
             </div>
         </div>
     </div>
@@ -88,10 +86,10 @@
         $('.novo-item').modal()
     })
     // Removendo o registro
-    function remover(modulo_id, val){
+    function remover(val){
         confirmacao = confirm('Tem certeza que deseja remover este registro?');
         if(confirmacao){
-            window.location.href = "{{url('/')}}/modulos/"+modulo_id+'/itens/'+val+'/destroy'
+            window.location.href = "{{url('/')}}/filial/item/"+val+'/destroy'
         }
     }
 </script>
