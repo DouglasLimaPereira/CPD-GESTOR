@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AcessoMaxiposController,
+    CalcularSenhaController,
     CheckListController,
     CodigoBarrasController,
     PainelController,
@@ -187,4 +188,9 @@ Route::group(['prefix'=>'acesso_maxipos', 'as' =>'acesso_maxipos.', 'middleware'
     Route::put('/{acesso_maxipos}/update', [AcessoMaxiposController::class, 'update'])->name('update');
     Route::get('/{acesso_maxipos}/destroy', [AcessoMaxiposController::class, 'destroy'])->name('destroy');
     // Route::get('pdf', [AcessoMaxiposController::class, 'gerarPdf'])->name('gerarPdf');
+});
+
+    //SENHA PDV
+Route::group(['prefix'=>'senha-pdv', 'as' =>'senha-pdv.', 'middleware'=>['auth']], function(){
+    Route::get('/', [CalcularSenhaController::class, 'index'])->name('index');
 });

@@ -1,25 +1,25 @@
 @extends('layout.app')
 
-@section('title', 'Itens')
+@section('title', 'Equipamentos')
 
-@section('page-title', 'Itens')
+@section('page-title', 'Equipamentos')
 
 @section('content')
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Selecione um item</h3>
+                <h3 class="card-title">Lista de Equipamentos</h3>
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item">
-                            <a href="javascript:void(0)" id="novo-item" class="nav-link active"><i class="fas fa-plus-circle"></i> NOVO ITEM</a>
-                            {{-- <a href="{{route('modulos.create')}}" class="nav-link active">NOVO ITEM</a> --}}
+                            <a href="javascript:void(0)" id="novo-item" class="btn btn-md btn-info"><i class="fas fa-plus-circle"></i> NOVO EQUIPAMENTO</a>
                         </li>
                     </ul>
                 </div>
             </div>
+
             <!-- /.card-header -->
             <div class="card-body">
                 {{--  @include('partials.datatables.buttons')  --}}
@@ -28,8 +28,9 @@
                         <tr>
                             <th style="width: 10px">ID</th>
                             <th>Nome</th>
-                            <th>Ativo</th>
-                            <th>AÇÕES</th>
+                            <th>Marca</th>
+                            <th>Preço</th>
+                            <th class="text-center">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,21 +41,20 @@
                                 <td>{{$row->marca}}</td>
                                 <td>{{ number_format($row->preco, 2, ',', '.')}}</td>
                                 {{--  <td>{!!($row->active) ? '<span class="badge bg-primary">SIM</span>' : '<span class="badge bg-secondary">NÃO</span>' !!}</td>  --}}
-                                <td class="td-1p">
+                                <td class="text-center" width="10%">
                                     <div class="dropdown">
-                                        <button class="btn btn-light" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                                            <a href="{{route('filial.item.edit', $row->id)}}" class="dropdown-item"><i class="far fa-edit"></i> Editar</a>
+                                            
+                                            <a href="{{route('filial.item.edit', $row->id)}}" class="dropdown-item text-success"><button class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button> Editar</a>
+                                            
                                             <div class="dropdown-divider"></div>
-                                            {{--  <a href="{{route('filial.item.subitens.index', $row->id)}}" class="dropdown-item"><i class="fas fa-list"></i> Subitens</a>  --}}
-                                            <div class="dropdown-divider"></div>
-                                            {{-- <a href="{{route('modulos.itens.permissoes.index', [$modulo->id, $row->id])}}" class="dropdown-item"><i class="fas fa-check-double"></i> Permissões</a>
-                                            <div class="dropdown-divider"></div> --}}
-                                            <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}})"><i class="fas fa-trash"></i> Remover</a>
+                                            
+                                            <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="remover({{$row->id}})"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button> Remover</a>
                                         </div>
-                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                         @empty

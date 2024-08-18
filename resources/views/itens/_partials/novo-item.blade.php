@@ -2,8 +2,8 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Novo Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="staticBackdropLabel">Novo Equipamento</h5>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -12,31 +12,39 @@
             @csrf
             <div class="row">
                 {{--  <div class="col-md-12">  --}}
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
-                        <label for="nome">Nome *</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-info">Nome *</span>
                         <input type="text" class="form-control" name="nome" value="{{isset($item) ? $item->nome : old('nome')}}" required>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text bg-info">Marca *</span>
+                        <input type="text" class="form-control" name="marca" value="{{isset($item) ? $item->marca : old('marca')}}" required>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text bg-info">Serial *</span>
+                        <input type="text" class="form-control" name="serial" value="{{isset($item) ? $item->serial : old('serial')}}" required>
+                      </div>
                     </div>
                 </div>
                 
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
-                        <label for="nome">Marca *</label>
-                        <input type="text" class="form-control" name="marca" value="{{isset($item) ? $item->marca : old('marca')}}" required>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="nome">Serial *</label>
-                        <input type="text" class="form-control" name="serial" value="{{isset($item) ? $item->serial : old('serial')}}" required>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="nome">Preço *</label>
-                        <input type="text" class="form-control" name="preco" value="{{isset($item) ? $item->preco : old('preco')}}" required>
+                        <div class="input-group">
+                            <span class="input-group-text bg-info">Preço *</span>
+                            <input type="text" class="form-control" name="preco" value="{{isset($item) ? $item->preco : old('preco')}}" required>
+                        </div>
                     </div>
                 </div>
 
@@ -54,8 +62,8 @@
                 </div>
             </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
-        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Cancelar</button>
+        <button type="submit" class="btn btn-outline-success"><i class="fas fa-save"></i> Salvar</button>
     </form>
     </div>
     </div>

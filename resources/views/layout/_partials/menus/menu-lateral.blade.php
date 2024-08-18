@@ -90,7 +90,7 @@
         <li class="nav-item">
           <a href="{{ route('filial.item.index') }}" class="nav-link">
           <i class="nav-icon fa-solid fa-boxes-packing"></i>
-            <p>Item</p>
+            <p>Equipamentos</p>
           </a>
         </li>
         {{--  <li class="nav-item">
@@ -123,6 +123,14 @@
         <i class="nav-icon fa-solid fa-barcode"></i>
         <p>
           Gerar Cód Barra
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ route('senha-pdv.index') }}" class="nav-link">
+        <i class="nav-icon fa-solid fa-computer"></i>
+        <p>
+          Senha PDV
         </p>
       </a>
     </li>
